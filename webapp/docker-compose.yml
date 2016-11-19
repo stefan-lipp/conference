@@ -1,0 +1,8 @@
+webserver:
+  container_name: webserver
+  build: .docker-images/webserver/
+  expose:
+    - 80
+  volumes:
+    - /dist:/usr/share/nginx/html
+  restart: always
