@@ -19,6 +19,7 @@ import { AppState, InternalStateType } from './app.service';
 // Services
 
 // Components
+import { NavigationComponent } from './components/navigation';
 import { TalksComponent } from './components/talks';
 
 // Directives
@@ -42,6 +43,7 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
+    NavigationComponent,
     TalksComponent,
   ],
   imports: [
