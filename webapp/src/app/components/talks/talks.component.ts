@@ -1,22 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Talk } from '../../models/talk-model';
+import { UUID } from 'angular2-uuid';
+
+import { Talk } from '../../models/talk.model';
+import { TalkService } from '../../services/talks/talk.service';
 
 @Component({
   selector: 'conference-talks',
   templateUrl: 'talks.template.html',
   styleUrls: [ 'talks.style.scss' ],
+  providers: [ TalkService ],
 })
-export class TalksComponent {
+export class TalksComponent implements OnInit {
 
-  public talks: Talk[] = [
-    { title: 'Test Talk 1', abstract: 'A description follows...', speakers: [ 'Test Speaker' ], numberOfLikes: 43},
-    { title: 'Test Talk 2', abstract: 'A description follows...', speakers: [ 'Test Speaker' ], numberOfLikes: 37},
-    { title: 'Test Talk 3', abstract: 'A description follows...', speakers: [ 'Test Speaker' ], numberOfLikes: 12},
-    { title: 'Test Talk 4', abstract: 'A description follows...', speakers: [ 'Test Speaker' ], numberOfLikes: 3},
-    { title: 'Test Talk 5', abstract: 'A description follows...', speakers: [ 'Test Speaker' ], numberOfLikes: 72},
-    { title: 'Test Talk 6', abstract: 'A description follows...', speakers: [ 'Test Speaker' ], numberOfLikes: 8},
-    { title: 'Test Talk 7', abstract: 'A description follows...', speakers: [ 'Test Speaker' ], numberOfLikes: 48},
-  ].sort((talk1, talk2) => talk2.numberOfLikes - talk1.numberOfLikes);
+  /**
+   * Talks that are given at the conference.
+   */
+  public talks: Talk[];
+
+
+  /**
+   * Constructor for the talk component.
+   */
+  constructor (private talkService: TalkService) { }
+
+
+  /**
+   * Finds all talks of the conference on initialization
+   * of the talk component.
+   *
+   * @memberof OnInit
+   */
+  public ngOnInit() {
+    this.talkService.findAll().then(talks => this.talks = talks);
+  }
+
+  /**
+   * Adds a new talk to the conference.
+   */
+  public addTalk() {
+    let talk: Talk = {
+      id: UUID.UUID(),
+      title: 'A new talk',
+      abstract: 'Abstract of the new talk',
+      speakers: [ 'Speaker of the new talk' ],
+      numberOfLikes: 0,
+    };
+
+    this.talkService.save(talk);
+  }
 
  }

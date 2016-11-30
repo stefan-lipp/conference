@@ -1,4 +1,5 @@
 export interface Talk {
+  id: string;
   title: string;
   abstract: string;
   speakers: string[];
