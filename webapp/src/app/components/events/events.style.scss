@@ -21,24 +21,24 @@
 
 .separator-line {
     height: 1px;
-    background: #aaa;
+    background: #ccc;
     margin: 0 -1em;
 }
-
 
 md-card {
     padding: 1.5em;
 }
 
-.likes-counter {
-    padding: .6em .5em .2em .5em;
-    color: #555;
+md-card-title {
+  font-size: 1em;
 }
 
-.like-icon {
+.icon {
     cursor: pointer;
     color: #555;
     padding: .2em;
 }
 
-
+.favoured {
+      color: #ddcc00;
+    }

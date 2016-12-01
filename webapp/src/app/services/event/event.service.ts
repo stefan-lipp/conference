@@ -12,7 +12,6 @@ export class EventService {
    */
   constructor(private http: Http) { }
 
-
   /**
    * Finds all events of the conference.
    *
