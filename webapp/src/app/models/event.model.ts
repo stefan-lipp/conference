@@ -1,4 +1,4 @@
-export interface Talk {
+export interface Event {
   id: string;
   title: string;
   abstract: string;

@@ -1,0 +1,17 @@
+<div class="flex-container">
+    <div *ngFor="let event of events" class="flex-item">
+        <md-card>
+            <md-card-title>{{ event.title }}</md-card-title>
+            <md-card-content>
+                <p>Abstract</p>
+                <p>{{event.abstract }}</p>
+            </md-card-content>
+
+            <div class="separator-line"></div>
+
+            <md-card-actions align="end">
+                <i class="material-icons like-icon">star_border</i>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

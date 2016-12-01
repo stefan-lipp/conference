@@ -1,6 +1,6 @@
-import { Talk } from '../../models/talk.model';
+import { Event } from '../../models/event.model';
 
-export var TALKS: Talk[] = [
+export var EVENTS: Event[] = [
   {
     id: 'f8610e59-a700-4551-a6f2-4520e9bf7425',
     title: 'Test Title 1',
@@ -29,10 +29,4 @@ export var TALKS: Talk[] = [
     speakers: [ 'Test Speaker 4' ],
     numberOfLikes: 64,
   },
-]
-
-
-
-
-
-
+];
