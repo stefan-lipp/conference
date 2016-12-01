@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http }       from '@angular/http';
 
+import { Observable } from 'rxjs';
+
 import { Event }      from '../../models/event.model';
 import { EVENTS }     from './mock-events';
 
@@ -17,8 +19,8 @@ export class EventService {
    *
    * @return A promise with a list of events.
    */
-  public findAll(): Promise<Event[]> {
-    return Promise.resolve(EVENTS);
+  public findAll(): Observable<Event[]> {
+    return Observable.of(EVENTS);
   }
 
   /**

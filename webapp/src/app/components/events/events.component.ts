@@ -30,7 +30,7 @@ export class EventsComponent implements OnInit {
    * @memberof OnInit
    */
   public ngOnInit() {
-    this.eventService.findAll().then(events => this.events = events);
+    this.eventService.findAll().subscribe(events => this.events = events);
   }
 
   /**
