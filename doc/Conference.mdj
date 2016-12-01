@@ -165,30 +165,6 @@
 										},
 										{
 											"_type": "ERDColumnView",
-											"_id": "AAAAAAFYuneMluO/qBk=",
-											"_parent": {
-												"$ref": "AAAAAAFYuliPJuA8zY4="
-											},
-											"model": {
-												"$ref": "AAAAAAFYuneMkuO8EYU="
-											},
-											"visible": true,
-											"enabled": true,
-											"lineColor": "#000000",
-											"fillColor": "#ffffff",
-											"fontColor": "#000000",
-											"font": "Arial;13;0",
-											"showShadow": true,
-											"containerChangeable": false,
-											"containerExtending": false,
-											"left": 333,
-											"top": 368,
-											"width": 124.59375,
-											"height": 13,
-											"autoResize": false
-										},
-										{
-											"_type": "ERDColumnView",
 											"_id": "AAAAAAFYuneAU+OxJ54=",
 											"_parent": {
 												"$ref": "AAAAAAFYuliPJuA8zY4="
@@ -206,7 +182,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 333,
-											"top": 383,
+											"top": 368,
 											"width": 124.59375,
 											"height": 13,
 											"autoResize": false
@@ -230,7 +206,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 333,
-											"top": 398,
+											"top": 383,
 											"width": 124.59375,
 											"height": 13,
 											"autoResize": false
@@ -254,7 +230,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 333,
-											"top": 413,
+											"top": 398,
 											"width": 124.59375,
 											"height": 13,
 											"autoResize": false
@@ -278,7 +254,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 333,
-											"top": 428,
+											"top": 413,
 											"width": 124.59375,
 											"height": 13,
 											"autoResize": false
@@ -302,7 +278,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 333,
-											"top": 443,
+											"top": 428,
 											"width": 124.59375,
 											"height": 13,
 											"autoResize": false
@@ -320,7 +296,7 @@
 									"left": 328,
 									"top": 303,
 									"width": 134.59375,
-									"height": 158,
+									"height": 143,
 									"autoResize": false
 								}
 							],
@@ -336,7 +312,7 @@
 							"left": 328,
 							"top": 280,
 							"width": 134.59375,
-							"height": 181,
+							"height": 166,
 							"autoResize": false,
 							"nameLabel": {
 								"$ref": "AAAAAAFYuliPJuA7aT0="
@@ -2792,7 +2768,7 @@
 							"width": 120,
 							"height": 153,
 							"autoResize": false,
-							"text": "Enum: Kind\n-------------------------\n* Talk\n* Demo\n* Poster Session\n* Workshop\n* Tutorial\n* Break\n* Other",
+							"text": "Enum: kind\n-------------------------\n* Talk\n* Demo\n* Poster Session\n* Workshop\n* Tutorial\n* Break\n* Other",
 							"wordWrap": true
 						},
 						{
@@ -3227,12 +3203,12 @@
 							"showShadow": true,
 							"containerChangeable": false,
 							"containerExtending": false,
-							"left": 512,
+							"left": 536,
 							"top": 600,
 							"width": 121,
 							"height": 64,
 							"autoResize": false,
-							"text": "Create for each author an entry in the person table",
+							"text": "Create an entry for each author in the person table",
 							"wordWrap": true
 						},
 						{
@@ -4144,11 +4120,11 @@
 							"_parent": {
 								"$ref": "AAAAAAFYuliPJeA4MSU="
 							},
-							"name": "eventId",
+							"name": "timeslotId",
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": true,
-							"nullable": false,
+							"nullable": true,
 							"unique": false
 						},
 						{
@@ -4158,19 +4134,6 @@
 								"$ref": "AAAAAAFYuliPJeA4MSU="
 							},
 							"name": "paperId",
-							"length": 0,
-							"primaryKey": false,
-							"foreignKey": true,
-							"nullable": true,
-							"unique": false
-						},
-						{
-							"_type": "ERDColumn",
-							"_id": "AAAAAAFYuneMkuO8EYU=",
-							"_parent": {
-								"$ref": "AAAAAAFYuliPJeA4MSU="
-							},
-							"name": "trackId",
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": true,
@@ -5141,7 +5104,7 @@
 							},
 							"name": "id",
 							"length": 0,
-							"primaryKey": false,
+							"primaryKey": true,
 							"foreignKey": false,
 							"nullable": false,
 							"unique": false
