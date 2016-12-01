@@ -12,7 +12,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     '../assets/sass/main.scss',
-    '../assets/sass/font-awesome.scss',
   ],
   templateUrl: 'app.template.html',
 })
