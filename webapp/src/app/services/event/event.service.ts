@@ -17,7 +17,7 @@ export class EventService {
   /**
    * Finds all events of the conference.
    *
-   * @return A promise with a list of events.
+   * @return An observable list of events.
    */
   public findAll(): Observable<Event[]> {
     return Observable.of(EVENTS);
@@ -26,7 +26,7 @@ export class EventService {
   /**
    * Saves a new event or updates an existing one.
    *
-   * @param event: The event to save or update.
+   * @param {Event}: The event to save or update.
    * @return void
    */
   public save(event: Event): void {
@@ -37,6 +37,21 @@ export class EventService {
       let existingIndex = EVENTS.indexOf(existingEvent);
       EVENTS[existingIndex] = event;
     }
+  }
+
+  /**
+   * Updates the favour status of an event.
+   *
+   * @param {Event} The event whose favour status to update.
+   * @return void
+   */
+  public updateFavourStatus(event: Event): void {
+    /*
+      TODO: Inform backend about updated favour status of event.
+
+      Send authHttp request to an api url like 'api/events/{event.id}/favourite' with a
+      request body containing true or false depending on 'event.favoured'
+    */
   }
 
 }
