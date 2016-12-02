@@ -29,14 +29,14 @@ export class EventsComponent implements OnInit {
    *
    * @memberof OnInit
    */
-  public ngOnInit() {
+  public ngOnInit () {
     this.eventService.findAll().subscribe(events => this.events = events);
   }
 
   /**
    * Adds a new event to the conference.
    */
-  public addEvent(event: Event) {
+  public addEvent (event: Event) {
     this.eventService.save(event);
   }
 
