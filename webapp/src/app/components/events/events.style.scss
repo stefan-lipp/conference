@@ -19,18 +19,14 @@
     -webkit-flex: 1 1 16em;
 }
 
-.separator-line {
-    height: 1px;
-    background: #ccc;
-    margin: 0 -1em;
-}
-
 md-card {
     padding: 1.5em;
 }
 
 md-card-title {
   font-size: 1em;
+  padding-bottom: 1em;
+  border-bottom: thin solid #ccc;
 }
 
 .icon {

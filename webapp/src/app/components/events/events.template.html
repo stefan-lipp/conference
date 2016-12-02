@@ -2,10 +2,17 @@
   <div *ngFor="let event of events" class="flex-item">
     <md-card>
       <md-card-title>{{ event.title }}</md-card-title>
-      <div class="separator-line"></div>
       <md-card-actions align="end">
-         <i *ngIf="event.favoured === true" (click)="discardFavour(event)" class="material-icons icon favoured">star</i>
-         <i *ngIf="event.favoured === false" (click)="favourEvent(event)" class="material-icons icon">star_border</i>
+        <i
+          *ngIf="event.favoured"
+          (click)="onFavouriteStateChange.emit([event, false])"
+          class="material-icons icon favoured"
+        >star</i>
+        <i
+          *ngIf="!event.favoured"
+          (click)="onFavouriteStateChange.emit([event, true])"
+          class="material-icons icon"
+        >star_border</i>
       </md-card-actions>
     </md-card>
   </div>
