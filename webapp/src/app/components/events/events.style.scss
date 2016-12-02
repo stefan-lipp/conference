@@ -1,0 +1,44 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    -webkit-flex-direction: row;
+    -webkit-flex-wrap: wrap;
+}
+
+.flex-item {
+    display: inline-block;
+    flex: 1;
+    min-width: 16em;
+    max-width: 24em;
+    padding: .5em;
+    margin: 0;
+
+    -webkit-flex: 1 1 16em;
+}
+
+.separator-line {
+    height: 1px;
+    background: #ccc;
+    margin: 0 -1em;
+}
+
+md-card {
+    padding: 1.5em;
+}
+
+md-card-title {
+  font-size: 1em;
+}
+
+.icon {
+    cursor: pointer;
+    color: #555;
+    padding: .2em;
+}
+
+.favoured {
+    color: #ddcc00;
+}

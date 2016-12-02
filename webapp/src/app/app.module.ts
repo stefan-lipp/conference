@@ -19,7 +19,8 @@ import { AppState, InternalStateType } from './app.service';
 // Services
 
 // Components
-import { HomeComponent } from './components/home';
+import { NavigationComponent } from './components/navigation';
+import { EventsComponent } from './components/events';
 
 // Directives
 
@@ -42,7 +43,8 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    HomeComponent,
+    NavigationComponent,
+    EventsComponent,
   ],
   imports: [
     BrowserModule,

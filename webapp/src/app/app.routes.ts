@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { HOME_ROUTES } from './components/home';
+import { EVENT_ROUTES } from './components/';
 
 export const ROUTES: Routes = [
-  ...HOME_ROUTES,
+  ...EVENT_ROUTES,
 ];

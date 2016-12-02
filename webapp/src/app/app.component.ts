@@ -8,11 +8,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
  * Top Level Component
  */
 @Component({
-  selector: 'conf-app',
+  selector: 'conference-app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     '../assets/sass/main.scss',
-    '../assets/sass/font-awesome.scss',
   ],
   templateUrl: 'app.template.html',
 })
