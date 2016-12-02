@@ -25,8 +25,6 @@ services:
       - 3000
     volumes:
       - ./backend:/usr/src/app
-    command: [ "npm", "install" ]
-    command: [ "npm", "start" ]
     restart: alyways
     links:
       - postgres
