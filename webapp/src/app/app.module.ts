@@ -1,10 +1,11 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -17,10 +18,19 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
 // Services
+import {
+  AuthService,
+  ApiService,
+  ApiMapperService,
+} from './services';
 
 // Components
-import { NavigationComponent } from './components/navigation';
-import { EventsComponent } from './components/events';
+import {
+  EventsComponent,
+  NavigationComponent,
+  LoginComponent,
+  RegisterComponent,
+} from './components';
 
 // Directives
 
@@ -45,17 +55,24 @@ type StoreType = {
     AppComponent,
     NavigationComponent,
     EventsComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: false }),
     MaterialModule.forRoot(),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
+    AUTH_PROVIDERS,
+    AuthService,
+    ApiService,
+    ApiMapperService,
   ],
 })
 export class AppModule {
