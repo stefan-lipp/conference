@@ -1,0 +1,46 @@
+version: '2'
+
+volumes: 
+  psdata:
+
+services:
+  postgres:
+    container_name: postgres-db
+    build:
+      context: .docker-images/database
+    expose:
+      - 5432
+    volumes: 
+      - psdata:/var/lib/postgressql/data
+    restart: always
+
+  backend:
+    container_name: backend-server
+    build:
+      context: .docker-images/backend/
+    environment:
+      PORT: "3000"
+      ENV: "dev"
+    expose:
+      - 3000
+    volumes:
+      - ./backend:/usr/src/app
+    restart: alyways
+    links:
+      - postgres
+    depends_on: 
+      - postgres
+
+  webserver:
+    container_name: frontend-server
+    build:
+      context: .docker-images/webserver/
+    ports:
+      - "80:80"
+    volumes:
+      - ./webapp/dist:/usr/share/nginx/html
+    restart: always
+    links:
+      - backend
+    depends_on:
+      - backend
