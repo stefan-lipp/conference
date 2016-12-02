@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/api/auth', auth)
 app.use('/api', index);
 
 // catch 404 and forward to error handler
@@ -31,8 +33,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.json({
-    error: true,
-    message: 'unknown error occurred (500)',
+    error: err,
   });
 });
 

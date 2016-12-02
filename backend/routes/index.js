@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+const jwtMiddleware = require('../middleware/jwt.middleware');
+
+router.get('/', jwtMiddleware, function(req, res, next) {
   res.json({
     success: true,
     env: process.env.ENV,  
