@@ -3,11 +3,18 @@ const router = express.Router();
 
 const jwtMiddleware = require('../middleware/jwt.middleware');
 
-router.get('/', jwtMiddleware, function(req, res, next) {
-  res.json({
-    success: true,
-    env: process.env.ENV,  
-  });
-});
+function apiSubroutes (app) {
 
-module.exports = router;
+  app.subroute('/', (app) => {
+
+    app.get(jwtMiddleware, function(req, res, next) {
+      res.json({
+        success: true,
+        env: process.env.ENV,
+      });
+    });
+
+  });
+}
+
+module.exports = apiSubroutes;

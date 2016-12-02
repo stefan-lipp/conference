@@ -12,29 +12,29 @@ function verifyJwt(req, res, next) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
   if (token) {
-    jwt.verify(token, config.jwtToken, function(err, decoded) {      
+    jwt.verify(token, config.jwtSecret, function(err, decoded) {
       if (err) {
-        return res.json({ 
-          error: true, 
-          success: false, 
+        return res.json({
+          error: true,
+          success: false,
           type: JWT_ERRORS.INVALID_TOKEN,
           message: 'Invalid token.'
-        });    
+        });
       } else {
         // All good
-        req.decoded = decoded;    
+        req.decoded = decoded;
         next();
       }
     });
 
   } else {
     // No token? return an error
-    return res.status(403).send({ 
+    return res.status(403).send({
         error: true,
-        success: false, 
+        success: false,
         type: JWT_ERRORS.INVALID_TOKEN,
-        message: 'No token provided.' 
-    });    
+        message: 'No token provided.'
+    });
   }
 };
 
