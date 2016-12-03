@@ -14,11 +14,13 @@ export class EventsComponent implements OnInit {
   /**
    * Events that take place at the conference.
    */
-  public events: Event[];
+  public events: Event[] = [ ];
 
 
   /**
    * Constructor for the events component.
+   *
+   * @param {EventService} An event service.
    */
   constructor (private eventService: EventService) { }
 
@@ -35,9 +37,32 @@ export class EventsComponent implements OnInit {
 
   /**
    * Adds a new event to the conference.
+   *
+   * @param {Event} The event to add to the conference.
+   * @return void
    */
-  public addEvent (event: Event) {
+  public addEvent (event: Event): void {
     this.eventService.save(event);
+  }
+
+  /**
+   * Favours an event for the current user.
+   *
+   * @param {Event} The event to favour.
+   */
+  public favourEvent (event: Event) {
+    event.favoured = true;
+    this.eventService.updateFavourStatus(event);
+  }
+
+  /**
+   * Marks an event as not favoured.
+   *
+   * @param {Event} The event to mark as not favoured.
+   */
+  public discardFavour(event: Event) {
+    event.favoured = false;
+    this.eventService.updateFavourStatus(event);
   }
 
  }

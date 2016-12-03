@@ -4,8 +4,8 @@
       <md-card-title>{{ event.title }}</md-card-title>
       <div class="separator-line"></div>
       <md-card-actions align="end">
-         <i *ngIf="event.favoured === true" class="material-icons icon favoured">star</i>
-         <i *ngIf="event.favoured === false" class="material-icons icon">star_border</i>
+         <i *ngIf="event.favoured === true" (click)="discardFavour(event)" class="material-icons icon favoured">star</i>
+         <i *ngIf="event.favoured === false" (click)="favourEvent(event)" class="material-icons icon">star_border</i>
       </md-card-actions>
     </md-card>
   </div>
