@@ -27,7 +27,7 @@ import {
 
 // Components
 import {
-  EventsComponent,
+  EventListComponent,
   NavigationComponent,
   EventOverviewComponent,
   LoginComponent,
@@ -56,7 +56,7 @@ type StoreType = {
   declarations: [
     AppComponent,
     NavigationComponent,
-    EventsComponent,
+    EventListComponent,
     LoginComponent,
     RegisterComponent,
     EventOverviewComponent,

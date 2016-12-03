@@ -11,10 +11,10 @@
 </div>
 <md-tab-group>
   <md-tab label="List">
-    <conference-events
+    <conference-event-list
       [events]="selectedEvents"
       (onFavouriteStateChange)="setFavouriteState($event)"
-    ></conference-events>
+    ></conference-event-list>
   </md-tab>
   <md-tab label="Calendar">
     <h2>NotYetImplemented</h2>
