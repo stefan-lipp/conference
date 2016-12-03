@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const subroute = require('express-subroute');
 
+const jwtMiddleware = require('./middleware/jwt.middleware');
+
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 
@@ -18,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.subroute('/api/auth', auth);
+
+app.use(jwtMiddleware);
 app.subroute('/api', index);
 
 // catch 404 and forward to error handler
