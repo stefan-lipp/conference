@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services';
 
 @Component({
-  selector: 'sl-login',
+  selector: 'conference-login',
   templateUrl: './login.template.html',
   styleUrls: [ './login.style.scss' ],
 })

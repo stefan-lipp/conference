@@ -14,7 +14,7 @@ const MIN_PASSWORD_LENGTH = 7;
 const MAX_PASSWORD_LENGTH = 53;
 
 @Component({
-  selector: 'sl-register',
+  selector: 'conference-register',
   templateUrl: './register.template.html',
 })
 export class RegisterComponent {

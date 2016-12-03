@@ -6,21 +6,22 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { RegisterComponent } from './register.component';
 import { AuthService } from '../../../services';
-import { RouterStub, AuthServiceStub } from '../../../../testing';
+import {
+  RouterStub,
+  AuthServiceStub,
+} from '../../../../testing';
 
 describe('RegisterComponent', () => {
   const mockRouter = new RouterStub();
   const mockAuthService = new AuthServiceStub();
 
   beforeEach(() => {
-    // spyOn(mockAuthService, 'register');
-    spyOn(mockRouter, 'navigate');
+    spyOn(mockAuthService, 'register').and.callThrough();
+    spyOn(mockRouter, 'navigate').and.callThrough();
 
     TestBed.configureTestingModule({
       providers: [
@@ -61,11 +62,11 @@ describe('RegisterComponent', () => {
 
           register.onSubmit(register.form.value);
 
-          // expect(mockAuthService.register).toHaveBeenCalledWith({
-          //   email: 'valid@email.com',
-          //   password: 'validPassword',
-          //   passwordConfirmation: 'validPassword',
-          // });
+          expect(mockAuthService.register).toHaveBeenCalledWith({
+            email: 'valid@email.com',
+            password: 'validPassword',
+            passwordConfirmation: 'validPassword',
+          });
           expect(mockRouter.navigate).toHaveBeenCalledWith(
             [ 'login' ],
             { queryParams: Object({ registerSuccess: true }) },
@@ -86,7 +87,7 @@ describe('RegisterComponent', () => {
 
           register.onSubmit(register.form.value);
 
-          // expect(mockAuthService.register).not.toHaveBeenCalled();
+          expect(mockAuthService.register).not.toHaveBeenCalled();
           expect(mockRouter.navigate).not.toHaveBeenCalled();
           expect(register.globalErrors).toContain({
             message: 'An error occured. Please make sure all fields are filled out correctly.',
@@ -106,7 +107,7 @@ describe('RegisterComponent', () => {
 
           register.onSubmit(register.form.value);
 
-          // expect(mockAuthService.register).not.toHaveBeenCalled();
+          expect(mockAuthService.register).not.toHaveBeenCalled();
           expect(mockRouter.navigate).not.toHaveBeenCalled();
           expect(register.globalErrors).toContain({
             message: 'An error occured. Please make sure all fields are filled out correctly.',
