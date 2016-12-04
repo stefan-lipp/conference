@@ -9,7 +9,8 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 
 subroute.install();
-
+const models = require('./model/index');
+models.sequelize.sync().then(function(){
 const app = express();
 
 app.use(logger('dev'));
@@ -41,3 +42,4 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+});
