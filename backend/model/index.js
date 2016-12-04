@@ -3,7 +3,8 @@
 var fs        = require("fs");
 var path      = require("path");
 var Sequelize = require("sequelize");
-var sequelize = new Sequelize('conference', 'eliti', 'ritter', {
+var config    = require(path.join(__dirname, '..', 'dbconfig.json'));
+var sequelize = new Sequelize(config.database, config.username, config.password, {
   host: 'localhost',
   dialect: 'postgres',
   define: {
@@ -24,13 +25,11 @@ fs
     return (file.indexOf(".") !== 0) && (file !== "index.js") && (file!=="node_modules") && (file!=="test") && (file!=="package.json");
   })
   .forEach(function(file) {
-    console.log(file);
     var model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
 
-sequelize.sync({force: true});
-//db.sequelize = sequelize;
-//db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-//module.exports = db;
+module.exports = db;
