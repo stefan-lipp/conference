@@ -26,6 +26,14 @@ module.exports = function(sequelize, DataTypes) {
         endtime : {
             type: DataTypes.DATE, // Timestamp
             allowNull: false
+        },
+        chair: {
+            type: UUID,
+            allowNull: true
+            references {
+                model: 'person',
+                key: 'id'
+            }
         }
     });
     return Session;
