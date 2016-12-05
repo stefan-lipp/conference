@@ -8,9 +8,11 @@ const subroute = require('express-subroute');
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 
-subroute.install();
 const models = require('./model/index');
-models.sequelize.sync().then(function(){
+
+
+subroute.install();
+models.sequelize.sync().then(function() {
 const app = express();
 
 app.use(logger('dev'));
