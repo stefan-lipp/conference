@@ -10,10 +10,10 @@ const auth = require('./routes/auth');
 
 const models = require('./model/index');
 
-
 subroute.install();
-models.sequelize.sync().then(function() {
 const app = express();
+
+models.sequelize.sync().then(function() {
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -43,5 +43,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = app;
 });
+
+module.exports = app;

@@ -28,9 +28,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     chair: {
-      type: UUID,
-      allowNull: true
-      references {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
         model: 'person',
         key: 'id'
       }
