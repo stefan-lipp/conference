@@ -12,7 +12,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       references: {
         model: "session",
-        key: "id"
+        key: "id",
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     },
     paperid: {
@@ -20,7 +22,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       references: {
         model: "paper",
-        key: "id"
+        key: "id",
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     },
     roomname: {
@@ -28,7 +32,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       references: {
         model: "room",
-        key: "name"
+        key: "name",
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     },
     alias: {
@@ -45,10 +51,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     kind: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       references:{
         model: "kind",
-        key: "name"
+        key: "name",
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     },
     isexclusive: {
@@ -64,7 +72,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: "conference",
-        key: "id"
+        key: "id",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }
     }
   });

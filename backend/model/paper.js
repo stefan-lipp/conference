@@ -28,10 +28,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     tag : {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "tag",
-        key: 'name'
+        key: 'name',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     }
   });

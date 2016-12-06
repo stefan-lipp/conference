@@ -7,7 +7,9 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       references: {
         model: 'paper',
-        key: 'id'
+        key: 'id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }
     },
     personid: {
@@ -15,7 +17,9 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       references: {
         model: 'person',
-        key: 'id'
+        key: 'id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }
     }
   });

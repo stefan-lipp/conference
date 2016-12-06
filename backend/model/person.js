@@ -15,7 +15,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       references: {
         model: 'institution',
-        key: 'id'
+        key: 'id',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     },
     email: {

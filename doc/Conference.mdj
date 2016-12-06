@@ -729,7 +729,7 @@
 									"containerExtending": false,
 									"left": 736,
 									"top": 309,
-									"width": 112.36083984375,
+									"width": 120.3017578125,
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
@@ -767,7 +767,7 @@
 											"containerExtending": false,
 											"left": 741,
 											"top": 332,
-											"width": 102.36083984375,
+											"width": 110.3017578125,
 											"height": 13,
 											"autoResize": false
 										},
@@ -791,7 +791,7 @@
 											"containerExtending": false,
 											"left": 741,
 											"top": 347,
-											"width": 102.36083984375,
+											"width": 110.3017578125,
 											"height": 13,
 											"autoResize": false
 										},
@@ -815,7 +815,7 @@
 											"containerExtending": false,
 											"left": 741,
 											"top": 362,
-											"width": 102.36083984375,
+											"width": 110.3017578125,
 											"height": 13,
 											"autoResize": false
 										},
@@ -839,7 +839,7 @@
 											"containerExtending": false,
 											"left": 741,
 											"top": 377,
-											"width": 102.36083984375,
+											"width": 110.3017578125,
 											"height": 13,
 											"autoResize": false
 										},
@@ -863,7 +863,7 @@
 											"containerExtending": false,
 											"left": 741,
 											"top": 392,
-											"width": 102.36083984375,
+											"width": 110.3017578125,
 											"height": 13,
 											"autoResize": false
 										},
@@ -887,7 +887,7 @@
 											"containerExtending": false,
 											"left": 741,
 											"top": 407,
-											"width": 102.36083984375,
+											"width": 110.3017578125,
 											"height": 13,
 											"autoResize": false
 										}
@@ -903,7 +903,7 @@
 									"containerExtending": false,
 									"left": 736,
 									"top": 327,
-									"width": 112.36083984375,
+									"width": 120.3017578125,
 									"height": 98,
 									"autoResize": false
 								}
@@ -919,7 +919,7 @@
 							"containerExtending": false,
 							"left": 736,
 							"top": 304,
-							"width": 112.36083984375,
+							"width": 120.3017578125,
 							"height": 121,
 							"autoResize": false,
 							"nameLabel": {
@@ -2825,7 +2825,7 @@
 							"containerExtending": false,
 							"left": 176,
 							"top": 144,
-							"width": 128.2275390625,
+							"width": 220,
 							"height": 145,
 							"autoResize": false,
 							"text": "Enum: kind\n-------------------------\n* Talk\n* Demo\n* Poster Session\n* Workshop\n* Tutorial\n* Break\n* Other",
@@ -5853,7 +5853,7 @@
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": true,
-							"nullable": false,
+							"nullable": true,
 							"unique": false
 						},
 						{
@@ -5879,7 +5879,7 @@
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": false,
-							"nullable": false,
+							"nullable": true,
 							"unique": false
 						},
 						{
@@ -6349,7 +6349,7 @@
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": true,
-							"nullable": false,
+							"nullable": true,
 							"unique": false
 						}
 					]
@@ -6922,7 +6922,7 @@
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": true,
-							"nullable": false,
+							"nullable": true,
 							"unique": false
 						},
 						{

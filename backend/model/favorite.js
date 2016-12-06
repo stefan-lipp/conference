@@ -8,6 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       references: {
         model: 'event',
         key: 'id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }
     },
     personid: {
@@ -15,7 +17,8 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       references: {
         model: 'person',
-        key: 'id'
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }
     }
   });

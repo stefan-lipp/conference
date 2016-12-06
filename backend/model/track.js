@@ -20,7 +20,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'kind',
-        key: 'name'
+        key: 'name',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     }
   });

@@ -13,10 +13,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     trackid : {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "track",
-        key: 'id'
+        key: 'id',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     },
     starttime: {
@@ -32,7 +34,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       references: {
         model: 'person',
-        key: 'id'
+        key: 'id',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }
     }
   });
