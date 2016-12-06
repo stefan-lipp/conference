@@ -14,7 +14,7 @@ subroute.install();
 const app = express();
 
 models.sequelize.sync().then(function() {
-
+console.log("model is synced");
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
