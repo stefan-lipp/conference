@@ -10,10 +10,12 @@ const auth = require('./routes/auth');
 
 const models = require('./model/index');
 
+var forceSync = process.env.FORCESYNC || false;
+
 subroute.install();
 const app = express();
 
-models.sequelize.sync().then(function() {
+models.sequelize.sync({force:forceSync}).then(function() {
 console.log("model is synced");
 app.use(logger('dev'));
 app.use(bodyParser.json());
