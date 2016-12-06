@@ -2825,7 +2825,7 @@
 							"containerExtending": false,
 							"left": 176,
 							"top": 144,
-							"width": 220,
+							"width": 128.2275390625,
 							"height": 145,
 							"autoResize": false,
 							"text": "Enum: kind\n-------------------------\n* Talk\n* Demo\n* Poster Session\n* Workshop\n* Tutorial\n* Break\n* Other",
