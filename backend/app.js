@@ -15,6 +15,9 @@ var forceSync = process.env.FORCESYNC || false;
 subroute.install();
 const app = express();
 
+if(forceSync) {
+  console.log("rebuild Database");
+}
 models.sequelize.sync({force:forceSync}).then(function() {
 console.log("model is synced");
 app.use(logger('dev'));
