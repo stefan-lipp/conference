@@ -9,6 +9,16 @@ module.exports = function(sequelize, DataTypes) {
     size: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    conferenceid: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'conference',
+        key: 'id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }
     }
   });
   return Room;
