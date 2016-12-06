@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
 
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -22,12 +22,14 @@ import {
   AuthService,
   ApiService,
   ApiMapperService,
+  EventService,
 } from './services';
 
 // Components
 import {
-  EventsComponent,
+  EventListComponent,
   NavigationComponent,
+  EventOverviewComponent,
   LoginComponent,
   RegisterComponent,
 } from './components';
@@ -54,9 +56,10 @@ type StoreType = {
   declarations: [
     AppComponent,
     NavigationComponent,
-    EventsComponent,
+    EventListComponent,
     LoginComponent,
     RegisterComponent,
+    EventOverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ type StoreType = {
     AuthService,
     ApiService,
     ApiMapperService,
+    EventService,
   ],
 })
 export class AppModule {
