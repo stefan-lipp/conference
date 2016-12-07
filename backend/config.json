@@ -1,0 +1,4 @@
+{
+  "jwtSecret": "jwttokenTODO",
+  "jwtExpirationTime": "2 days"
+}

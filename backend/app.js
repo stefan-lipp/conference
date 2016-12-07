@@ -12,12 +12,12 @@ const auth = require('./routes/auth');
 
 const models = require('./model/index');
 
-var forceSync = process.env.FORCESYNC || false;
+var forceSync = process.env.FORCESYNC || 'false';
 
 subroute.install();
 const app = express();
 
-if(forceSync) {
+if(forceSync==='true') {
   console.log("rebuild Database");
 }
 models.sequelize.sync({force:forceSync}).then(function() {
