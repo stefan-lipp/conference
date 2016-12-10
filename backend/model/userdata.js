@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('userdata',{
+  const UserData = sequelize.define('userdata',{
     personid: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -20,5 +20,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     }
+  }, {
+    classMethods: {
+      associate: (models) => {
+        UserData.belongsTo(models.person, { foreignKey: 'personid'});
+        UserData.hasOne(models.admin, { foreignKey: 'userdataid' });
+      },
+    },
   });
+  return UserData;
 };

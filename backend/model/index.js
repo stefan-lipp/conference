@@ -22,7 +22,7 @@ var db = {};
 fs
   .readdirSync(__dirname)
   .filter(function(file) {
-    return (file.indexOf(".")!==0)&&(file!=="index.js");
+    return (file.indexOf('.') !== 0 && file !== 'index.js');
   })
   .forEach(function(file) {
     var model = sequelize.import(path.join(__dirname, file));
@@ -31,5 +31,13 @@ fs
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+Object.keys(db).forEach(function(modelName) {
+  let model = db[modelName];
+  if ('associate' in model && typeof model['associate'] === 'function') {
+    model.associate(db);
+  }
+});
+
 
 module.exports = db;
