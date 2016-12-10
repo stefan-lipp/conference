@@ -2,17 +2,17 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 
 const JWT_ERRORS = {
-  INVALID_TOKEN: 'INVALID_TOKEN'
-}
+  INVALID_TOKEN: 'INVALID_TOKEN',
+};
 
 // Middleware function to verify token
-function verifyJwt(req, res, next) {
+function verifyJwt (req, res, next) {
 
   // Token either in request body, query parameter or x-access-token header
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
   if (token) {
-    jwt.verify(token, config.jwtSecret, function(err, decoded) {
+    jwt.verify(token, config.jwtSecret, (err, decoded) => {
       if (err) {
         return res.json({
           error: true,

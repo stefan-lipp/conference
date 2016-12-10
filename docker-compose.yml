@@ -1,6 +1,6 @@
 version: '2'
 
-volumes: 
+volumes:
   psdata:
 
 services:
@@ -10,7 +10,9 @@ services:
       context: .docker-images/database
     expose:
       - 5432
-    volumes: 
+    ports:
+      - "54321:5432"
+    volumes:
       - psdata:/var/lib/postgressql/data
     restart: always
 
@@ -20,15 +22,15 @@ services:
       context: .docker-images/backend/
     environment:
       PORT: "3000"
-      ENV: "dev"
+      ENV: "development"
     expose:
       - 3000
     volumes:
       - ./backend:/usr/src/app
-    restart: alyways
+    restart: always
     links:
       - postgres
-    depends_on: 
+    depends_on:
       - postgres
 
   webserver:
