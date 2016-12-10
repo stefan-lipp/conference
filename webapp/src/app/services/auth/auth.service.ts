@@ -72,7 +72,7 @@ export class AuthService {
     registerData: { email: string, password: string, passwordConfirmation: string },
   ): Observable<any> {
     return this.http.post(
-      API_ROUTES.register,
+      API_ROUTES.auth.register,
       this.apiMapper.registerDataLocalToApi(registerData)
     );
   }
@@ -85,7 +85,7 @@ export class AuthService {
    * @return {Observable<any>}
    */
   public login (loginData: { email: string, password: string }): Observable<any> {
-    return this.http.post(API_ROUTES.login, loginData)
+    return this.http.post(API_ROUTES.auth.login, loginData)
       .map(AuthService.refreshToken);
   }
 

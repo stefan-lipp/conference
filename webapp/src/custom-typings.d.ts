@@ -121,3 +121,13 @@ interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeRequireFunction extends Es6PromiseLoader  {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+
+
+
+interface PaperCreationData {
+  title: string;
+  abstract?: string;
+  url?: string;
+  tags?: string[];
+  keywords?: string[];
+}

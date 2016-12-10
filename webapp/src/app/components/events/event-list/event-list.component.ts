@@ -5,7 +5,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { Event } from '../../models/event.model';
+import { Event } from '../../../models/event.model';
 
 @Component({
   selector: 'conference-event-list',

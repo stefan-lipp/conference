@@ -1,0 +1,15 @@
+<h4>{{ title }}</h4>
+<ul>
+  <li *ngFor="let val of value; let i = index">
+    {{ val }}
+    <button type="button" (click)="remove($event, i)">x</button>
+  </li>
+</ul>
+<form (submit)="add($event, input)">
+  <input
+    (blur)="onTouched()"
+    type="text"
+    #input
+  >
+  <button type="submit" [disabled]="disabled">Add</button>
+</form>

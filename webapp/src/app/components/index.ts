@@ -1,4 +1,5 @@
-export * from './event-list';
+export * from './events';
+export * from './papers';
 export * from './navigation';
 export * from './auth';
-export * from './event-overview';
+export * from './ui-elements';

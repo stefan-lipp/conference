@@ -32,6 +32,8 @@ import {
   EventOverviewComponent,
   LoginComponent,
   RegisterComponent,
+  PaperCreationComponent,
+  ListInputComponent,
 } from './components';
 
 // Directives
@@ -60,6 +62,8 @@ type StoreType = {
     LoginComponent,
     RegisterComponent,
     EventOverviewComponent,
+    PaperCreationComponent,
+    ListInputComponent,
   ],
   imports: [
     BrowserModule,

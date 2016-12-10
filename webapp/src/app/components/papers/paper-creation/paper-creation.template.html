@@ -1,0 +1,36 @@
+<md-card>
+  <h2>Create new paper</h2>
+  <form [formGroup]="form" (submit)="create()">
+    <div>
+      <md-input
+        formControlName="title"
+        placeholder="Paper title"
+        required
+      ></md-input>
+    </div>
+    <div>
+      <textarea
+        formControlName="abstract"
+        placeholder="Abstract"
+      ></textarea>
+    </div>
+    <div>
+      <conference-list-input
+        formControlName="keywords"
+        title="Keywords"
+      ></conference-list-input>
+    </div>
+    <div>
+      <conference-list-input
+        formControlName="tags"
+        title="Tags"
+      ></conference-list-input>
+    </div>
+    <button
+      type="submit"
+      md-raised-button
+      color="accent"
+      [disabled]="form.invalid"
+    >Create</button>
+  </form>
+</md-card>

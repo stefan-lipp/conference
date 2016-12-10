@@ -4,8 +4,8 @@ import {
   Input,
 } from '@angular/core';
 
-import { Event } from '../../models';
-import { EventService } from '../../services';
+import { Event } from '../../../models';
+import { EventService } from '../../../services';
 
 @Component({
   selector: 'conference-event-overview',
