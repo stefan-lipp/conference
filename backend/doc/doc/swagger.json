@@ -1,0 +1,165 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Conference API",
+        "description": "Definition of the internal API for Conference.",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/api",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [ "Auth" ],
+                "summary": "Register a new User.",
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Email-address, name, and password for new user.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token for the user.",
+                        "schema": {
+                            "$ref": "#/definitions/Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [ "Auth" ],
+                "summary": "Login as an existng User.",
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Email-address and password for new user.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LoginData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token for the user.",
+                        "schema": {
+                            "$ref": "#/definitions/Token"
+                        }
+                    },
+                    "401": {
+                        "description": "Unknown user or bad password.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "RegistrationData": {
+            "type": "object",
+            "required": [
+                "email",
+                "name",
+                "password",
+                "password_confirmation"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email-address of the user."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the user."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password of the user."
+                },
+                "password_confirmation": {
+                    "type": "string",
+                    "description": "Confirmation of the password."
+                }
+            }
+        },
+        "LoginData": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email-address of the user."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password of the user."
+                }
+            }
+        },
+        "Token": {
+            "type": "object",
+            "required": [
+                "token"
+            ],
+            "properties": {
+                "token": {
+                    "type": "string",
+                    "description": "The signed JWT. (Contains the UUID for the user.)"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "error": {
+                    "type": "boolean"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

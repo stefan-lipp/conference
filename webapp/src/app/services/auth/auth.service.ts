@@ -69,7 +69,7 @@ export class AuthService {
    * @return {Observable<any>}
    */
   public register (
-    registerData: { email: string, password: string, passwordConfirmation: string },
+    registerData: { email: string, name: string, password: string, passwordConfirmation: string },
   ): Observable<any> {
     return this.http.post(
       API_ROUTES.register,

@@ -31,6 +31,8 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
 
+  app.use('/doc', express.static(path.join(__dirname, 'doc')));
+
   app.subroute('/api/auth', auth);
 
   app.use(jwtMiddleware);
