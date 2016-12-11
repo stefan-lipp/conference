@@ -86,7 +86,8 @@ export class AuthService {
    */
   public login (loginData: { email: string, password: string }): Observable<any> {
     return this.http.post(API_ROUTES.login, loginData)
-      .map(AuthService.refreshToken);
+      .map(AuthService.refreshToken)
+      .map(res => res.json());
   }
 
 }

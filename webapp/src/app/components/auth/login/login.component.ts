@@ -41,29 +41,30 @@ export class LoginComponent {
    */
   public onSubmit (data: { email: string, password: string }): void {
     this.authService.login(data).subscribe(
-      (res: Response) => {
+      (res: any) => {
         this.router.navigate([ '' ]);
       },
-      (res: Response) => {
+      (res: any) => {
+        const err = res.json();
         if (res.status === 401) {
           // 401 Unauthorized
-          this.globalErrors.push({
-            message: 'Username and/or password are incorrect.',
-          });
+          this.globalErrors = [ {
+            message: err.message,
+          } ];
           if (ENV === 'development') {
-            console.error(401, res);
+            console.error(res.status, err);
           }
         } else if (res.status === 404) {
           // 404 Not Found
-          this.globalErrors.push({
+          this.globalErrors = [ {
             message: 'Login is temporarily not available. Please try again at a later time.',
-          });
+          } ];
         } else {
-          this.globalErrors.push({
-            message: 'An error occured. Please try again at a later time.',
-          });
+          this.globalErrors = [ {
+            message: err.message,
+          } ];
           if (ENV === 'development') {
-            console.error(res.status, res);
+            console.error(res.status, err);
           }
         }
       },
