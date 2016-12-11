@@ -5,7 +5,7 @@ import { AuthHttp } from 'angular2-jwt';
 
 import { API_ROUTES } from '../api/routes';
 import { AuthService } from '../auth';
-import { Event }      from '../../models';
+import { Event } from '../../models';
 
 @Injectable()
 export class EventService {
@@ -30,6 +30,16 @@ export class EventService {
         .map(res => res.json());
     } else {
       return this.http.get(API_ROUTES.events.all)
+        .map(res => res.json());
+    }
+  }
+
+  public getEvent (eventId: number): Observable<Event> {
+    if (this.authService.loggedIn) {
+      return this.authHttp.get(API_ROUTES.events.single.replace(':eventId', eventId.toString(10)))
+        .map(res => res.json());
+    } else {
+      return this.http.get(API_ROUTES.events.single.replace(':eventId', eventId.toString(10)))
         .map(res => res.json());
     }
   }
