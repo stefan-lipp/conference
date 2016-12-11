@@ -21,6 +21,16 @@
 
       <label class="columns">
         <md-input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          class="column col-12"
+          [class.invalid]="form.controls['name'].dirty && form.controls['name'].invalid"
+        ></md-input>
+      </label>
+
+      <label class="columns">
+        <md-input
           type="password"
           placeholder="Password"
           formControlName="password"
