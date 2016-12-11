@@ -24,6 +24,7 @@ import {
   ApiService,
   ApiMapperService,
   EventService,
+  EventResolver,
 } from './services';
 
 // Components
@@ -34,6 +35,7 @@ import {
   LoginComponent,
   RegisterComponent,
   NoContentComponent,
+  EventViewComponent,
 } from './components';
 
 // Directives
@@ -63,6 +65,7 @@ type StoreType = {
     RegisterComponent,
     EventOverviewComponent,
     NoContentComponent,
+    EventViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,7 @@ type StoreType = {
     ApiService,
     ApiMapperService,
     EventService,
+    EventResolver,
   ],
 })
 export class AppModule {

@@ -44,7 +44,7 @@ export class LoginComponent {
       (res: any) => {
         this.router.navigate([ '' ]);
       },
-      (res: any) => {
+      (res: Response) => {
         const err = res.json();
         if (res.status === 401) {
           // 401 Unauthorized

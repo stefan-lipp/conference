@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>{{ event.title }}</h2>
+  <table class="metadata-table">
+    <tbody>
+      <tr *ngIf="event.duration">
+        <th>Duration:</th>
+        <td>{{ event.duration }}</td>
+      </tr>
+      <tr *ngIf="event.starttime">
+        <th>Starts:</th>
+        <td>{{ event.starttime }}</td>
+      </tr>
+      <tr *ngIf="event.endtime">
+        <th>Ends:</th>
+        <td>{{ event.endtime }}</td>
+      </tr>
+      <tr *ngIf="event.roomname">
+        <th>Room:</th>
+        <td>{{ event.roomname }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="event.paper" class="paper-info">
+    <ul class="paper-authors">
+      <li *ngFor="let author of event.paper.authors">{{ author }}</li>
+    </ul>
+    <div *ngIf="event.paper.abstract" class="abstract">
+      {{ event.paper.abstract }}
+    </div>
+  </div>
+</div>
