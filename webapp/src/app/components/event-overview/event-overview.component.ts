@@ -35,7 +35,7 @@ export class EventOverviewComponent implements OnInit {
    * @memberof OnInit
    */
   public ngOnInit () {
-    this.eventService.findAll().subscribe(events => this.events = events);
+    this.eventService.getAll().subscribe(events => this.events = events);
   }
 
   /** Setter for allEvents */

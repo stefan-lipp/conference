@@ -5,10 +5,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const subroute = require('express-subroute');
 
-const jwtMiddleware = require('./middleware/jwt.middleware');
+const jwtGuard = require('./middleware/jwt.guard');
+const jwtDecoder = require('./middleware/jwt.decoder');
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const eventsPublic = require('./routes/events.public');
 
 const models = require('./model/index');
 
@@ -30,12 +32,14 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
+  app.use(jwtDecoder);
 
   app.use('/doc', express.static(path.join(__dirname, 'doc')));
 
   app.subroute('/api/auth', auth);
 
-  app.use(jwtMiddleware);
+  app.subroute('/api/events', eventsPublic);
+  app.use(jwtGuard);
   app.subroute('/api', index);
 
   // catch 404 and forward to error handler

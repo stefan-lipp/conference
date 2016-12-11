@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http }       from '@angular/http';
-
+import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
+import { AuthHttp } from 'angular2-jwt';
 
-import { Event }      from '../../models/event.model';
-import { EVENTS }     from './mock-events';
+import { API_ROUTES } from '../api/routes';
+import { AuthService } from '../auth';
+import { Event }      from '../../models';
 
 @Injectable()
 export class EventService {
@@ -12,15 +13,25 @@ export class EventService {
   /**
    * Constructor for the event service.
    */
-  constructor(private http: Http) { }
+  constructor(
+    private authService: AuthService,
+    private authHttp: AuthHttp,
+    private http: Http,
+  ) { }
 
   /**
-   * Finds all events of the conference.
+   * Returns all events of the conference
    *
-   * @return An observable list of events.
+   * @return {Observable<Event[]>} An observable containing a list of all events
    */
-  public findAll(): Observable<Event[]> {
-    return Observable.of(EVENTS);
+  public getAll(): Observable<Event[]> {
+    if (this.authService.loggedIn) {
+      return this.authHttp.get(API_ROUTES.events.all)
+        .map(res => res.json());
+    } else {
+      return this.http.get(API_ROUTES.events.all)
+        .map(res => res.json());
+    }
   }
 
   /**
@@ -30,6 +41,7 @@ export class EventService {
    * @return void
    */
   public save(event: Event): void {
+    /*
     let existingEvent = EVENTS.find(elem => elem.id === event.id);
     if (existingEvent === undefined) {
       EVENTS.push(event);
@@ -37,6 +49,7 @@ export class EventService {
       let existingIndex = EVENTS.indexOf(existingEvent);
       EVENTS[existingIndex] = event;
     }
+    */
   }
 
   /**

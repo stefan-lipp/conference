@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('event',{
+  const Event = sequelize.define('event',{
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -77,5 +77,13 @@ module.exports = function(sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       }
     }
+  }, {
+    classMethods: {
+      associate: (models) => {
+        Event.belongsTo(models.paper, { foreignKey: 'paperid' });
+        Event.hasMany(models.favorite, { foreignKey: 'eventid' });
+      }
+    },
   });
+  return Event;
 };
