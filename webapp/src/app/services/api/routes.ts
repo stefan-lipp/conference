@@ -5,5 +5,6 @@ export const API_ROUTES = {
   login: `${API_BASE_URL}/auth/login`,
   events: {
     all: `${API_BASE_URL}/events`,
+    single: `${API_BASE_URL}/events/:eventId`,
   },
 };
