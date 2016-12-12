@@ -23,7 +23,6 @@ export class EventViewComponent implements OnInit {
   public ngOnInit (): void {
     console.info(this.route);
     this.route.data.subscribe((data: { event: Event }) => {
-      console.info(data);
       this.event = data.event;
     });
   }
