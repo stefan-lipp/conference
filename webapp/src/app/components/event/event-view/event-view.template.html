@@ -1,3 +1,4 @@
+<md-card>
 <div class="container">
   <h2>{{ event.title }}</h2>
   <table class="metadata-table">
@@ -20,12 +21,40 @@
       </tr>
     </tbody>
   </table>
-  <div *ngIf="event.paper" class="paper-info">
-    <ul class="paper-authors">
-      <li *ngFor="let author of event.paper.authors">{{ author }}</li>
-    </ul>
-    <div *ngIf="event.paper.abstract" class="abstract">
-      {{ event.paper.abstract }}
-    </div>
+  <div class="paperinfo" *ngIf="event.paper">
+    <table>
+      <tbody>
+        <tr> 
+          <th> Authors: </th>
+          <td>
+            <ul class="paper-authors">
+              <li *ngFor="let author of event.paper.authors">{{ author }}</li>
+            </ul>
+          </td>
+        </tr>
+        <tr *ngIf="event.paper.paperTitle">
+          <th>Paper:</th>
+          <td>{{ event.paper.paperTitle }}</td>
+        </tr>
+        <tr *ngIf="event.paper.link">
+          <th>Link:</th>
+          <td></td>
+        </tr>
+        <tr *ngIf="event.paper.abstract">
+          <th>Abstract:</th>
+          <td>{{ event.paper.abstract }}</td>
+        </tr>
+        <tr *ngIf="event.paper.keywords">
+          <th>Keywords:</th>
+          <td>{{ event.paper.keywords }}</td>
+        </tr>
+        <tr *ngIf="event.paper.tag">
+          <th>Tags:</th>
+          <td>{{ event.paper.tags }}</td>
+        </tr>
+        </tbody>
+      </table>
+   
   </div>
 </div>
+</md-card>
