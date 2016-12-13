@@ -1,3 +1,4 @@
+
 /**
  * Event model.
  */
@@ -7,6 +8,8 @@ export interface Event {
   duration: number;   // in minutes
   type: EventType;
   favoured: boolean;
+  paper?: Paper;
+  
 }
 
 /**
@@ -19,3 +22,20 @@ export enum EventType {
   Demo,
   Workshop
 }
+
+/**
+ * Paper model.
+ */
+export interface Paper {
+  id: string;
+  paperTitle: string;
+  authors: string[];
+  // optionals
+  keywords?: string; 
+  abstract?: string;
+  link?: string;
+  tag?: string;
+  
+}
+
+

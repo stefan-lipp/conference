@@ -10,6 +10,7 @@ import { Event } from '../../../models';
 @Component({
   selector: 'conference-event-view',
   templateUrl: './event-view.template.html',
+  styleUrls: [ './event-view.styles.scss' ],
 })
 export class EventViewComponent implements OnInit {
 
