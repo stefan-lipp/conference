@@ -1,0 +1,8 @@
+.search-bar {
+  background: #fff;
+
+  md-input, input {
+    width: calc(100% - 5rem);
+    margin: 0 .5rem;
+  }
+}

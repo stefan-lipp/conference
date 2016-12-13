@@ -1,6 +1,7 @@
 <div class="flex-container">
   <div *ngFor="let event of events" class="flex-item">
     <md-card>
+      <div *ngIf="event.favoured" class="bookmark-indicator"><md-icon>star</md-icon></div>
       <md-card-title>{{ event.title }}</md-card-title>
       <md-card-content>
         <dl>
@@ -17,17 +18,26 @@
         </dl>
       </md-card-content>
       <md-card-actions align="end">
-        <a [routerLink]="[ '/event', event.id ]">Details</a>
-        <i
-          *ngIf="event.favoured"
-          (click)="onFavouriteStateChange.emit([event, false])"
-          class="material-icons icon favoured"
-        >star</i>
-        <i
+        <a
+          md-button
+          color="accent"
+          [routerLink]="[ '/events', event.id ]"
+        >Details</a>
+        <button
           *ngIf="!event.favoured"
+          md-button
+          color="accent"
           (click)="onFavouriteStateChange.emit([event, true])"
-          class="material-icons icon"
-        >star_border</i>
+        >
+          {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+        </button>
+        <button
+          *ngIf="event.favoured"
+          md-button color="accent"
+          (click)="onFavouriteStateChange.emit([event, false])"
+        >
+          {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+        </button>
       </md-card-actions>
     </md-card>
   </div>

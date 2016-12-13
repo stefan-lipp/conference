@@ -10,6 +10,7 @@ import { EventService } from '../../services';
 @Component({
   selector: 'conference-event-overview',
   templateUrl: './event-overview.template.html',
+  styleUrls: [ './event-overview.style.scss' ],
 })
 export class EventOverviewComponent implements OnInit {
 
