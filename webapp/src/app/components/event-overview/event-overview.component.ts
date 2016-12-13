@@ -10,6 +10,7 @@ import { EventService } from '../../services';
 @Component({
   selector: 'conference-event-overview',
   templateUrl: './event-overview.template.html',
+  styleUrls: [ './event-overview.style.scss' ],
 })
 export class EventOverviewComponent implements OnInit {
 
@@ -35,7 +36,7 @@ export class EventOverviewComponent implements OnInit {
    * @memberof OnInit
    */
   public ngOnInit () {
-    this.eventService.findAll().subscribe(events => this.events = events);
+    this.eventService.getAll().subscribe(events => this.events = events);
   }
 
   /** Setter for allEvents */

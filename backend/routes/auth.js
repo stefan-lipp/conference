@@ -45,9 +45,16 @@ function authSubroutes (app) {
           bcrypt.compare(credentials.password, passwordHash, (err, valid) => {
             if (!err && valid) {
               // All good, create token
-              const token = jwt.sign({ 'isAdmin': Boolean(userInstance.admin) }, config.jwtSecret, {
-                expiresIn: config.jwtExpirationTime,
-              });
+              const token = jwt.sign(
+                {
+                  'isAdmin': Boolean(userInstance.admin),
+                  'personid': userInstance.personid,
+                },
+                config.jwtSecret,
+                {
+                  expiresIn: config.jwtExpirationTime,
+                }
+              );
 
               // Update user
               userInstance.token = token;

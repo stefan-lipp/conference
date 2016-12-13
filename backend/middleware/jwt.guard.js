@@ -1,13 +1,9 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
+const JWT_ERRORS = require('./jwt.errors');
 
-const JWT_ERRORS = {
-  INVALID_TOKEN: 'INVALID_TOKEN',
-};
-
-// Middleware function to verify token
-function verifyJwt (req, res, next) {
-
+// Middleware function to guard a route with JWT
+function guardJwt (req, res, next) {
   // Token either in request body, query parameter or x-access-token header
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -22,7 +18,6 @@ function verifyJwt (req, res, next) {
         });
       } else {
         // All good
-        req.decoded = decoded;
         next();
       }
     });
@@ -38,4 +33,4 @@ function verifyJwt (req, res, next) {
   }
 };
 
-module.exports = verifyJwt
+module.exports = guardJwt;
