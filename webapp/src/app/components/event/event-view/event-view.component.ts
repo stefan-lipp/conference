@@ -18,6 +18,7 @@ export class EventViewComponent implements OnInit {
   public event: Event;
 
   public showPaper: boolean = false;
+  public showLocation: boolean = false;
 
   constructor (
     private route: ActivatedRoute,
@@ -29,7 +30,27 @@ export class EventViewComponent implements OnInit {
     });*/
   }
 
+
+
+ /** Methods called from the html template to perform animation
+  * 
+  *  attention: showPaperinfo and showLocationinfo are clones. 
+  */
   public showPaperinfo (): void {
+    if (this.showPaper){
+      document.getElementById('paperinfo').classList.add('hide');
+    } else {
+      document.getElementById('paperinfo').classList.remove('hide');
+    }
     this.showPaper = !this.showPaper;
+  }
+
+  public showLocationinfo (): void {
+    if (this.showLocation){
+      document.getElementById('locationinfo').classList.add('hide');
+    } else {
+      document.getElementById('locationinfo').classList.remove('hide');
+    }
+    this.showLocation = !this.showLocation
   }
 }

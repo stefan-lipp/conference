@@ -9,10 +9,8 @@ import { EVENTS } from '../../../services//event/mock-events';
 @Component({
   selector: 'event-view-overlay',
   template: `
-       <conference-event-view [event]="event" ></conference-event-view>
-       <p>
-         <button md-button (click)="dialogRef.close(true)">Back</button>
-       </p>
+   <conference-event-view [event]="event" ></conference-event-view>
+   <button md-button class="btn" (click)="dialogRef.close(true)">Back</button>
    `,
  })
 
