@@ -60,11 +60,13 @@
 
     <md-card-actions *ngIf="event.room">
       <span class="bar_location" (click)="showLocationinfo()"> Location info </span>
-      <div class="locationinfo hide" id="locationinfo">
-        <b>Room:</b><i> {{ event.room }}</i>
-        <span (click)="drawCanvas()" >show map</span>
-        <canvas id="canvas" height="500" width="500"> room map </canvas>
-      </div>    
+      <div class="locationinfo hide" id="locationinfo" (click)="drawCanvas()">
+        <div>
+          <b>Room:</b><i> {{ event.room }}</i>
+        </div>
+        <canvas id="canvas" height="350" width="460" > room map </canvas>
+       </div>
+       <span > load map </span>
     </md-card-actions>
 
 </md-card>
