@@ -36,6 +36,7 @@ import {
   RegisterComponent,
   NoContentComponent,
   EventViewComponent,
+  OverlayComponent,
 } from './components';
 
 // Directives
@@ -66,6 +67,10 @@ type StoreType = {
     EventOverviewComponent,
     NoContentComponent,
     EventViewComponent,
+    OverlayComponent
+  ],
+  entryComponents: [
+    OverlayComponent,
   ],
   imports: [
     BrowserModule,
