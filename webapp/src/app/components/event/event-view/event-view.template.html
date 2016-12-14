@@ -24,10 +24,10 @@
   </table>
 </md-card-content>
 
-  <md-card-actions *ngIf="event.paper">
+  <md-card-actions  *ngIf="event.paper">
     <span class="bar_paper" (click)="showPaperinfo()"> Paper info </span>
-    <table *ngIf="showPaper" class="paperinfo">
-      <tbody>
+    <table class="paperinfo hide" id="paperinfo"  >
+      <tbody >
         <tr *ngIf="event.paper.paperTitle">
           <th>Paper:</th>
           <td>{{ event.paper.paperTitle }}</td>
@@ -61,8 +61,8 @@
     </md-card-actions>
 
     <md-card-actions *ngIf="event.room">
-      <span class="bar_location" (click)="showPaperinfo()"> Location info </span>
-      <div class="locationinfo" *ngIf="!showPaper">
+      <span class="bar_location" (click)="showLocationinfo()"> Location info </span>
+      <div class="locationinfo hide" id="locationinfo">
           <p>
             <md-icon>satellite</md-icon>
           </p>

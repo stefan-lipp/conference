@@ -1,8 +1,10 @@
 .paperinfo{
     border: thin solid dimgrey;
     background-color: lightblue; 
-    transition: all 1.25s ease-in;
 	  display: block;
+    opacity: 0.5;
+    max-height: 1000px;
+    transition: max-height 0.75s ease;
 }
 .bar_paper{
     display: block;
@@ -21,9 +23,16 @@
     text-align: center;
     color: white;
     background-color: indianred;
+    opacity: 0.5;
+    max-height: 1000px;
+    transition: max-height 0.75s ease;
 }
-md-card{
-  transition: width 2s;
+
+.hide {
+    transition: max-height 0.75s ease-out;
+    max-height: 0;
+    overflow: hidden;
 }
+
 
 

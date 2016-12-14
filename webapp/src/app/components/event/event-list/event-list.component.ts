@@ -33,8 +33,8 @@ export class EventListComponent  {
    
     let dialogRef = this.dialog.open(OverlayComponent, {
        disableClose: true,
+       
     });
-    dialogRef.afterClosed().subscribe( res => console.log(res));
   }
 
 }
