@@ -24,6 +24,10 @@
   <div class="paperinfo" *ngIf="event.paper">
     <table>
       <tbody>
+        <tr *ngIf="event.paper.paperTitle">
+          <th>Paper:</th>
+          <td>{{ event.paper.paperTitle }}</td>
+        </tr>
         <tr> 
           <th> Authors: </th>
           <td>
@@ -32,13 +36,9 @@
             </ul>
           </td>
         </tr>
-        <tr *ngIf="event.paper.paperTitle">
-          <th>Paper:</th>
-          <td>{{ event.paper.paperTitle }}</td>
-        </tr>
         <tr *ngIf="event.paper.link">
           <th>Link:</th>
-          <td></td>
+          <td>{{ event.paper.link }}</td>
         </tr>
         <tr *ngIf="event.paper.abstract">
           <th>Abstract:</th>
@@ -50,7 +50,7 @@
         </tr>
         <tr *ngIf="event.paper.tag">
           <th>Tags:</th>
-          <td>{{ event.paper.tags }}</td>
+          <td>{{ event.paper.tag }}</td>
         </tr>
         </tbody>
       </table>

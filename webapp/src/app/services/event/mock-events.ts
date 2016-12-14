@@ -10,11 +10,13 @@ export var EVENTS: Event[] = [
          abstract: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est',
          keywords: 'Databases, Mockups',
          link: 'http://www.loremipsum.de/',
-         authors: ['Dr. Stefan Riedmann', 'Markus Brunner','Thomas Schreier, PhD' ]
+         authors: ['Dr. Stefan Riedmann', 'Markus Brunner','Thomas Schreier, PhD' ],
+         tag: '# Hyper',
         },
     duration: 20,
     type: EventType.ResearchTalk,
     favoured: false,
+    starttime: 250,
   },
   {
     id: 'f8610e59-a700-4551-a6f2-4520e9bf7425',

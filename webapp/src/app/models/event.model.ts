@@ -9,6 +9,7 @@ export interface Event {
   type: EventType;
   favoured: boolean;
   paper?: Paper;
+  starttime?: number;
   
 }
 
