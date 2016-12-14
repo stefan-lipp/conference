@@ -11,9 +11,11 @@ const Favorite = DataBase.sequelize.models.favorite;
 
 function eventSubroutes (app) {
 
+  // `/events/`
   app.subroute('/', (app) => {
 
-    app.get(function(req, res, next) {
+    // GET retrieve list of all events
+    app.get((req, res, next) => {
       const personid = (req.decoded ? req.decoded.personid : null);
 
       Event.findAll({
@@ -23,9 +25,32 @@ function eventSubroutes (app) {
         ]
       }).then((events) => {
         res.json(events.map(TOMapper.toEventTO));
-      });
+      }).catch(err => res.status(500).json({
+        error: true,
+        success: false,
+        message: 'Unknown error',
+      }));
     });
 
+  });
+
+  // `/events/:eventId`
+  app.subroute('/:eventId', (app) => {
+
+    // GET retrieve single event
+    app.get((req, res) => {
+      const eventId = req.params.eventId;
+
+      Event.findById(eventId)
+        .then(event => {
+          res.json(TOMapper.toEventTO(event));
+        })
+        .catch(err => res.status(404).json({
+          error: true,
+          success: false,
+          message: 'Unknown event',
+        }));
+    });
   });
 }
 

@@ -88,6 +88,48 @@
                     }
                 }
             }
+        },
+        "/events": {
+            "get": {
+                "tags": [ "Events" ],
+                "summary": "Retrieve all events.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "List of events.",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "events/:eventId": {
+            "get": {
+                "tags": [ "Events" ],
+                "summary": "Retrieve a single events.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "List of events.",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -145,6 +187,32 @@
                     "type": "string",
                     "description": "The signed JWT. (Contains the UUID for the user.)"
                 }
+            }
+        },
+        "EventList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Event"
+            }
+        },
+        "Event": {
+            "type": "object",
+            "required": [
+                "id",
+                "title",
+                "duration"
+            ],
+            "properties": {
+                "id": { "type": "number" },
+                "title": { "type": "string" },
+                "paper": { "type": "object" },
+                "roomname": { "type": "string" },
+                "starttime": { "type": "string" },
+                "endtime": { "type": "string" },
+                "duration": { "type": "string" },
+                "maxsize": { "type": "number" },
+                "kind": { "type": "string" },
+                "favoured": { "type": "boolean" }
             }
         },
         "Error": {
