@@ -21,7 +21,7 @@
         <a
           md-button
           color="accent"
-          [routerLink]="[ '/events', event.id ]"
+          (click)="displayEventview(event)"
         >Details</a>
         <button
           *ngIf="!event.favoured"
