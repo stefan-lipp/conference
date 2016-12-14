@@ -1,5 +1,13 @@
 <nav>
   <md-toolbar color="primary">
     <span class="toolbar-title toolbar-fill-remaining">Conference Tool</span>
+
+      <md-menu x-position="before" #menu="mdMenu">
+        <button md-menu-item routerLink="/my-schedule" routerLinkActive="active"> My Schedule </button>
+      </md-menu>
+
+      <button md-icon-button [md-menu-trigger-for]="menu">
+        <i class="material-icons">more_vert</i>
+      </button>
   </md-toolbar>
 </nav>
