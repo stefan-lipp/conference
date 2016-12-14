@@ -11,7 +11,7 @@ export interface Event {
   paper?: Paper;
   starttime?: number;
   room?: string;
-  
+  speaker?: string;
 }
 
 /**

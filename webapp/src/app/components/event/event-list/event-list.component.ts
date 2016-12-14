@@ -5,7 +5,9 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { Event } from '../../models/event.model';
+import { Event } from '../../../models/event.model';
+//mocking
+import { EVENTS } from '../../../services//event/mock-events';
 
 import { OverlayComponent } from '../event-view/event-view-overlay.component';
 import { MdDialog } from '@angular/material';
@@ -28,13 +30,19 @@ export class EventListComponent  {
   @Input()
   public events: Event[] = [ ];
 
+ /** Method for creating the overlay component and passing parameter to it
+  * 
+  *  @param {Event} event event whose details will be shown
+  */
   public displayEventview (event: Event): void {
-    console.log("displayEventview reached");
-   
-    let dialogRef = this.dialog.open(OverlayComponent, {
-       disableClose: true,
-       
+    
+    const dialogRef = this.dialog.open(OverlayComponent, {
+       disableClose: false,
     });
+    // real: dialogRef.componentInstance.event = event;
+    /* mocking for layouting and stuff vvvv */ 
+    dialogRef.componentInstance.event = EVENTS[0]; 
+
   }
 
 }

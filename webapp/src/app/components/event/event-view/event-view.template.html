@@ -1,19 +1,21 @@
 <md-card>
   
 <md-card-title>{{ event.title }}</md-card-title>  
-<md-card-content>
-  <table class="metadata-table">
+<span  *ngIf="event.speaker">{{ event.speaker }}</span>
+<md-card-actions >
+  <table class="generalinfo">
+    <caption > {{ eventTypeString() }} </caption>
     <tbody>
       <tr *ngIf="event.duration">
         <th>Duration:</th>
         <td>{{ event.duration }}</td>
       </tr>
       <tr *ngIf="event.starttime">
-        <th>Starts:</th>
+        <th>Start Time:</th>
         <td>{{ event.starttime }}</td>
       </tr>
       <tr *ngIf="event.endtime">
-        <th>Ends:</th>
+        <th>End Time:</th>
         <td>{{ event.endtime }}</td>
       </tr>
       <tr *ngIf="event.room">
@@ -22,39 +24,35 @@
       </tr>
     </tbody>
   </table>
-</md-card-content>
+</md-card-actions>
 
   <md-card-actions  *ngIf="event.paper">
-    <span class="bar_paper" (click)="showPaperinfo()"> Paper info </span>
+    <span class="bar_paper" (click)="showPaperinfo()"> 
+      Paper info
+      </span>
     <table class="paperinfo hide" id="paperinfo"  >
-      <tbody >
-        <tr *ngIf="event.paper.paperTitle">
-          <th>Paper:</th>
-          <td>{{ event.paper.paperTitle }}</td>
-        </tr>
-        <tr> 
-          <th> Authors: </th>
-          <td> 
-            <ul class="paper-authors">
+      <caption>
+        <h2> {{ event.paper.paperTitle }}</h2>
+         <ul class="paper-authors">
               <li *ngFor="let author of event.paper.authors">{{ author }} </li>
-            </ul>
-          </td>
-        </tr>
-        <tr *ngIf="event.paper.link">
-          <th>Link:</th>
-          <td> <a>{{ event.paper.link }} </a></td>
+        </ul>
+      </caption>
+      <tbody >
+        <tr *ngIf="event.paper.tag">
+          <th>Tags:</th>
+          <td>{{ event.paper.tag }}</td>
         </tr>
           <tr *ngIf="event.paper.keywords">
           <th>Keywords:</th>
           <td>{{ event.paper.keywords }}</td>
         </tr>
-        <tr *ngIf="event.paper.tag">
-          <th>Tags:</th>
-          <td>{{ event.paper.tag }}</td>
-        </tr>
         <tr *ngIf="event.paper.abstract">
           <th>Abstract:</th>
           <td>{{ event.paper.abstract }}</td>
+        </tr>
+        <tr *ngIf="event.paper.link">
+          <th>Link:</th>
+          <td> <a href="http://{{ event.paper.link }}" target="_blank" >{{ event.paper.link }} </a></td>
         </tr>
         </tbody>
       </table>
@@ -63,10 +61,9 @@
     <md-card-actions *ngIf="event.room">
       <span class="bar_location" (click)="showLocationinfo()"> Location info </span>
       <div class="locationinfo hide" id="locationinfo">
-          <p>
-            <md-icon>satellite</md-icon>
-          </p>
-          <b>Room: {{ event.room }}</b>
+        <b>Room:</b><i> {{ event.room }}</i>
+        <span (click)="drawCanvas()" >show map</span>
+        <canvas id="canvas" height="500" width="500"> room map </canvas>
       </div>    
     </md-card-actions>
 

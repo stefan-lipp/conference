@@ -3,21 +3,24 @@ import { MdDialogRef } from '@angular/material';
 
 import { Event } from '../../../models/event.model';
 
-//mocking
-import { EVENTS } from '../../../services//event/mock-events';
+
 
 @Component({
   selector: 'event-view-overlay',
   template: `
    <conference-event-view [event]="event" ></conference-event-view>
-   <button md-button class="btn" (click)="dialogRef.close(true)">Back</button>
+   <p class="btn-wrapper">
+     <button md-button class="btn" (click)="dialogRef.close(true)">Back</button>
+   </p>
    `,
+   styleUrls: [ './overlay.styles.css' ]
  })
 
-
 export class OverlayComponent {
-  constructor(@Optional() public dialogRef: MdDialogRef<OverlayComponent>) { }
+  constructor(
+    @Optional() public dialogRef: MdDialogRef<OverlayComponent>) {
+      }
  
  
-  public event: Event = EVENTS[0];
+  public event: Event; 
 }
