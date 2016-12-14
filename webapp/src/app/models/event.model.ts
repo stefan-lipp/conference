@@ -10,6 +10,7 @@ export interface Event {
   favoured: boolean;
   paper?: Paper;
   starttime?: number;
+  room?: string;
   
 }
 

@@ -17,6 +17,7 @@ export var EVENTS: Event[] = [
     type: EventType.ResearchTalk,
     favoured: false,
     starttime: 250,
+    room: 'A107',
   },
   {
     id: 'f8610e59-a700-4551-a6f2-4520e9bf7425',

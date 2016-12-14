@@ -1,6 +1,6 @@
 <div class="flex-container">
   <div *ngFor="let event of events" class="flex-item">
-    <md-card>
+    <md-card (click)="displayEventview(event)">
       <div *ngIf="event.favoured" class="bookmark-indicator"><md-icon>star</md-icon></div>
       <md-card-title>{{ event.title }}</md-card-title>
       <md-card-content>

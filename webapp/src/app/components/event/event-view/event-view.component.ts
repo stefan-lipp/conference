@@ -17,14 +17,19 @@ export class EventViewComponent implements OnInit {
   @Input()
   public event: Event;
 
+  public showPaper: boolean = false;
+
   constructor (
     private route: ActivatedRoute,
   ) { }
 
   public ngOnInit (): void {
-    console.info(this.route);
-    this.route.data.subscribe((data: { event: Event }) => {
+ /*   this.route.data.subscribe((data: { event: Event }) => {
       this.event = data.event;
-    });
+    });*/
+  }
+
+  public showPaperinfo (): void {
+    this.showPaper = !this.showPaper;
   }
 }
