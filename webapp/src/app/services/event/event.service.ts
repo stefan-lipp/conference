@@ -77,6 +77,11 @@ export class EventService {
       Send authHttp request to an api url like 'api/events/{event.id}/favourite' with a
       request body containing true or false depending on 'event.favoured'
     */
+   if (event.favoured) {
+      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid',event.id),{});
+    } else {
+      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid',event.id));
+    }
   }
 
 }

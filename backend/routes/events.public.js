@@ -52,6 +52,37 @@ function eventSubroutes (app) {
         }));
     });
   });
+
+  app.subroute('/events/:eventid/favorite', (app) => {
+    app.put(function(req, res, next) {
+      const eventid = (req.decoded ? req.decoded.eventid : null);
+      const personid = (req.decoded ? req.decoded.userid: null);
+      console.log(personid);
+      if (eventid === null || personid === null) {
+         res.status(400).send();
+         return;
+      }
+      Favorite.create({ personid: personid, eventid: eventid}
+      ).then(function(fav) {
+        console.log(fav);
+        res.status(200).send();
+      });
+    });
+    app.delete(function(req, res, next) {
+      const eventid = (req.decoded ? req.decoded.eventid : null);
+      const personid = (req.decoded ? req.decoded.userid : null);
+      console.log(personid);
+      if (eventid === null || personid === null) {
+         res.status(400).send();
+         return;
+      }
+      Favorite.destroy({ personid: personid, eventid: eventid}
+      ).then(function(fav) {
+        console.log(fav);
+        res.status(200).send();
+      });
+    });
+  });
 }
 
 module.exports = eventSubroutes;
