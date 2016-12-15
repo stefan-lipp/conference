@@ -11,10 +11,8 @@ import { Event } from '../../../models';
   templateUrl: './event-view.template.html',
   styleUrls: [ './event-view.styles.scss' ],
 })
+
 export class EventViewComponent{
-
-
-
 
   @Input()
   public event: Event;
@@ -58,6 +56,10 @@ public eventTypeString (): string{
     this.showPaper = !this.showPaper;
   }
 
+ /** Methods called from the html template to perform animation
+  * 
+  *  attention: showPaperinfo and showLocationinfo are clones. 
+  */
   public showLocationinfo (): void {
     if (this.showLocation){
       document.getElementById('locationinfo').classList.add('hide');
@@ -79,8 +81,8 @@ public eventTypeString (): string{
     
     const canvas: any = document.getElementById('canvas');
     const context = canvas.getContext('2d');
-    context.font = "15px Arial";
-    context.fillText('reload image', 150,150);
+    context.font = "20px Arial";
+    context.fillText('load map', canvas.width / 2, canvas.height / 2);
     
     //image set up
     const img = new Image();
@@ -92,7 +94,5 @@ public eventTypeString (): string{
     const hint = new Image()
     hint.src = 'https://d30y9cdsu7xlg0.cloudfront.net/png/677417-200.png'
     context.drawImage(hint, room[0], room[1], 25 , 25);
-
-    
   }
 }

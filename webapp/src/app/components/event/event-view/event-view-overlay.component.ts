@@ -10,7 +10,7 @@ import { Event } from '../../../models/event.model';
   template: `
    <conference-event-view [event]="event" ></conference-event-view>
    <p class="btn-wrapper">
-     <button md-button class="btn" (click)="dialogRef.close(true)">Back</button>
+     <button md-button (click)="dialogRef.close(true)">Back</button>
    </p>
    `,
    styleUrls: [ './overlay.styles.css' ]
@@ -20,7 +20,6 @@ export class OverlayComponent {
   constructor(
     @Optional() public dialogRef: MdDialogRef<OverlayComponent>) {
       }
- 
- 
+  
   public event: Event; 
 }

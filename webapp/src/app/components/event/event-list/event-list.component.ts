@@ -39,9 +39,9 @@ export class EventListComponent  {
     const dialogRef = this.dialog.open(OverlayComponent, {
        disableClose: false,
     });
-    // real: dialogRef.componentInstance.event = event;
-    /* mocking for layouting and stuff vvvv */ 
-    dialogRef.componentInstance.event = EVENTS[0]; 
+     // real:
+      dialogRef.componentInstance.event = event;
+    // mocking for layouting and stuff: dialogRef.componentInstance.event = EVENTS[0]; 
 
   }
 
