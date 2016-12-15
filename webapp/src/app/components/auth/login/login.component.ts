@@ -5,6 +5,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Response } from '@angular/http';
 
 import { AuthService } from '../../../services';
 

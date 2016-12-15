@@ -71,15 +71,12 @@ export class EventService {
    * @return void
    */
   public updateFavourStatus(event: ConferenceEvent): void {
-    /*
-      Send authHttp request to an api url like 'api/events/{event.id}/favorite' with a
-      request body containing true or false depending on 'event.favoured'
-    */
     if (event.favoured) {
-      this.authHttp.put(API_ROUTES.events.favorite.replace(':eventid', event.id), {})
+      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { })
         .subscribe(_ => null);
     } else {
-      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id));
+      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id))
+        .subscribe(_ => null);
     }
   }
 }

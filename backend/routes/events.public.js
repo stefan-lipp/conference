@@ -54,37 +54,37 @@ function eventSubroutes (app) {
   });
 
   app.subroute('/:eventid/favorite', (app) => {
-    app.put(function(req, res, next) {
-      const eventid = (req.decoded ? req.params.eventid : null);
+    app.post(function(req, res, next) {
+      const eventid = (req.params ? req.params.eventid : null);
       const personid = (req.decoded ? req.decoded.personid: null);
-      console.log(req.decoded);
-      console.log(eventid);
-      if (eventid === null || personid === null) {
+      if (eventid == null || personid == null) {
          res.status(400).send();
          return;
       }
       Favorite.create({ personid: personid, eventid: eventid}
-      ).then(function(fav) {
-        console.log(fav);
-        res.status(204).send();
+      ).then((fav) => {
+        res.status(201).send();
       }).catch((err) => {
-         console.log(err);
+        if (process.env.ENV === 'development') {
+          console.log(err);
+        }
          res.status(422).send();
       });
     });
     app.delete(function(req, res, next) {
-      const eventid = (req.decoded ? req.decoded.eventid : null);
-      const personid = (req.decoded ? req.decoded.userid : null);
-      console.log(personid);
-      if (eventid === null || personid === null) {
+      const eventid = (req.params ? req.params.eventid : null);
+      const personid = (req.decoded ? req.decoded.personid : null);
+      if (eventid == null || personid == null) {
          res.status(400).send();
          return;
       }
-      Favorite.destroy({ personid: personid, eventid: eventid}
-      ).then(function(fav) {
-        console.log(fav);
+      Favorite.destroy({ where: {personid: personid, eventid: eventid} }
+      ).then((fav) => {
         res.status(204).send();
       }).catch((err) => {
+        if (process.env.ENV === 'development') {
+          console.log(err);
+        }
         res.status(410).send();
       });
     });

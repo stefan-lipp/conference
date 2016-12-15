@@ -89,6 +89,7 @@
                 }
             }
         },
+<<<<<<< HEAD
         "/events": {
             "get": {
                 "tags": [ "Events" ],
@@ -103,6 +104,52 @@
                     },
                     "500": {
                         "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/event/:eventid/favorite": {
+            "post": {
+                "tags": [ "Events" ],
+                "summary": "Favor this event",
+                "description": "",
+                "responses": {
+                    "201": {
+                        "description": "Event favored"
+                    },
+                    "400": {
+                        "description": "Input parameters are missing",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessible data sent",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [ "Events" ],
+                "summary": "Unfavor this event",
+                "description": "",
+                "responses": {
+                    "204": {
+                        "description": "Event un-favored"
+                    },
+                    "400": {
+                        "description": "Input parameters are missing",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "410": {
+                        "description": "Entry is not existing anymore",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
