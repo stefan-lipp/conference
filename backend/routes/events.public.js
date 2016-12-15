@@ -53,11 +53,12 @@ function eventSubroutes (app) {
     });
   });
 
-  app.subroute('/events/:eventid/favorite', (app) => {
+  app.subroute('/:eventid/favorite', (app) => {
     app.put(function(req, res, next) {
-      const eventid = (req.decoded ? req.decoded.eventid : null);
-      const personid = (req.decoded ? req.decoded.userid: null);
-      console.log(personid);
+      const eventid = (req.decoded ? req.params.eventid : null);
+      const personid = (req.decoded ? req.decoded.personid: null);
+      console.log(req.decoded);
+      console.log(eventid);
       if (eventid === null || personid === null) {
          res.status(400).send();
          return;
@@ -65,7 +66,10 @@ function eventSubroutes (app) {
       Favorite.create({ personid: personid, eventid: eventid}
       ).then(function(fav) {
         console.log(fav);
-        res.status(200).send();
+        res.status(204).send();
+      }).catch((err) => {
+         console.log(err);
+         res.status(422).send();
       });
     });
     app.delete(function(req, res, next) {
@@ -79,7 +83,9 @@ function eventSubroutes (app) {
       Favorite.destroy({ personid: personid, eventid: eventid}
       ).then(function(fav) {
         console.log(fav);
-        res.status(200).send();
+        res.status(204).send();
+      }).catch((err) => {
+        res.status(410).send();
       });
     });
   });

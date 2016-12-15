@@ -72,16 +72,14 @@ export class EventService {
    */
   public updateFavourStatus(event: ConferenceEvent): void {
     /*
-      TODO: Inform backend about updated favour status of event.
-
-      Send authHttp request to an api url like 'api/events/{event.id}/favourite' with a
+      Send authHttp request to an api url like 'api/events/{event.id}/favorite' with a
       request body containing true or false depending on 'event.favoured'
     */
-   if (event.favoured) {
-      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid',event.id),{});
+    if (event.favoured) {
+      this.authHttp.put(API_ROUTES.events.favorite.replace(':eventid', event.id), {})
+        .subscribe(_ => null);
     } else {
-      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid',event.id));
+      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id));
     }
   }
-
 }
