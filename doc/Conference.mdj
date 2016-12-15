@@ -2527,7 +2527,7 @@
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
-									"text": "personalschedule",
+									"text": "favorite",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": false
@@ -6452,7 +6452,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFYulfhHOAwqmo="
 					},
-					"name": "personalschedule",
+					"name": "favorite",
 					"columns": [
 						{
 							"_type": "ERDColumn",
