@@ -57,9 +57,13 @@ function eventSubroutes (app) {
     app.post(function(req, res, next) {
       const eventid = (req.params ? req.params.eventid : null);
       const personid = (req.decoded ? req.decoded.personid: null);
-      if (eventid == null || personid == null) {
-         res.status(400).send();
-         return;
+      if (personid == null) {
+        res.status(401).send();
+        return;
+      }
+      if (eventid == null) {
+        res.status(400).send();
+        return;
       }
       Favorite.create({ personid: personid, eventid: eventid}
       ).then((fav) => {
@@ -74,9 +78,13 @@ function eventSubroutes (app) {
     app.delete(function(req, res, next) {
       const eventid = (req.params ? req.params.eventid : null);
       const personid = (req.decoded ? req.decoded.personid : null);
-      if (eventid == null || personid == null) {
-         res.status(400).send();
-         return;
+      if (personid == null) {
+        res.status(401).send();
+        return;
+      }
+      if (eventid == null) {
+        res.status(400).send();
+        return;
       }
       Favorite.destroy({ where: {personid: personid, eventid: eventid} }
       ).then((fav) => {
