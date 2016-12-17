@@ -126,8 +126,8 @@
                             "$ref": "#/definitions/Error"
                         }
                     },
-                    "422": {
-                        "description": "Unprocessible data sent",
+                    "500": {
+                        "description": "Unhandled error",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
@@ -148,8 +148,8 @@
                             "$ref": "#/definitions/Error"
                         }
                     },
-                    "410": {
-                        "description": "Entry is not existing anymore",
+                    "404": {
+                        "description": "Event not found",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }

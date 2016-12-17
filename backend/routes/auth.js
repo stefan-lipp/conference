@@ -47,8 +47,8 @@ function authSubroutes (app) {
               // All good, create token
               const token = jwt.sign(
                 {
-                  'isAdmin': Boolean(userInstance.admin),
-                  'personid': userInstance.personid,
+                  isAdmin: Boolean(userInstance.admin),
+                  personId: userInstance.personid,
                 },
                 config.jwtSecret,
                 {
