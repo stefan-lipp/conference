@@ -54,7 +54,7 @@ function eventSubroutes (app) {
   });
 
   app.subroute('/:eventid/favorite', (app) => {
-    app.post(function(req, res, next) {
+    app.post((req, res, next) => {
       const eventid = (req.params ? req.params.eventid : null);
       const personid = (req.decoded ? req.decoded.personid: null);
       if (personid == null) {
@@ -70,12 +70,12 @@ function eventSubroutes (app) {
         res.status(201).send();
       }).catch((err) => {
         if (process.env.ENV === 'development') {
-          console.log(err);
+          console.error(err);
         }
-         res.status(422).send();
+        res.status(500).send();
       });
     });
-    app.delete(function(req, res, next) {
+    app.delete((req, res, next) => {
       const eventid = (req.params ? req.params.eventid : null);
       const personid = (req.decoded ? req.decoded.personid : null);
       if (personid == null) {
@@ -91,9 +91,9 @@ function eventSubroutes (app) {
         res.status(204).send();
       }).catch((err) => {
         if (process.env.ENV === 'development') {
-          console.log(err);
+          console.error(err);
         }
-        res.status(410).send();
+        res.status(404).send();
       });
     });
   });
