@@ -12,7 +12,7 @@ function decodeJwt (req, res, next) {
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
       if (err) {
         // Invalid token? Error
-        return res.json({
+        return res.status(401).json({
           error: true,
           success: false,
           type: JWT_ERRORS.INVALID_TOKEN,

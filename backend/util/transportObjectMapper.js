@@ -31,7 +31,7 @@ function toEventTO (eventInstance) {
     duration: eventInstance.duration, // TODO
     maxSize: eventInstance.maxsize,
     kind: eventInstance.kind,
-    favoured: Boolean(eventInstance.favorites && eventInstance.favorites.length),
+    favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),
   }
 }
 

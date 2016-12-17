@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 
@@ -16,13 +15,13 @@ function eventSubroutes (app) {
 
     // GET retrieve list of all events
     app.get((req, res, next) => {
-      const personid = (req.decoded ? req.decoded.personid : null);
+      const personId = (req.decoded ? req.decoded.personId : null);
 
       Event.findAll({
         include: [
           { model: Paper },
-          { model: Favorite, where: { personid: personid }, required: false },
-        ],
+          { model: Favorite, where: { personid: personId }, required: false },
+        ]
       }).then((events) => {
         res.json(events.map(TOMapper.toEventTO));
       }).catch(err => res.status(500).json({
@@ -53,50 +52,6 @@ function eventSubroutes (app) {
     });
   });
 
-  app.subroute('/:eventid/favorite', (app) => {
-    app.post((req, res, next) => {
-      const eventid = (req.params ? req.params.eventid : null);
-      const personid = (req.decoded ? req.decoded.personid: null);
-      if (personid == null) {
-        res.status(401).send();
-        return;
-      }
-      if (eventid == null) {
-        res.status(400).send();
-        return;
-      }
-      Favorite.create({ personid: personid, eventid: eventid}
-      ).then((fav) => {
-        res.status(201).send();
-      }).catch((err) => {
-        if (process.env.ENV === 'development') {
-          console.error(err);
-        }
-        res.status(500).send();
-      });
-    });
-    app.delete((req, res, next) => {
-      const eventid = (req.params ? req.params.eventid : null);
-      const personid = (req.decoded ? req.decoded.personid : null);
-      if (personid == null) {
-        res.status(401).send();
-        return;
-      }
-      if (eventid == null) {
-        res.status(400).send();
-        return;
-      }
-      Favorite.destroy({ where: {personid: personid, eventid: eventid} }
-      ).then((fav) => {
-        res.status(204).send();
-      }).catch((err) => {
-        if (process.env.ENV === 'development') {
-          console.error(err);
-        }
-        res.status(404).send();
-      });
-    });
-  });
 }
 
 module.exports = eventSubroutes;

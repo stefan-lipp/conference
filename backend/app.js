@@ -11,6 +11,7 @@ const jwtDecoder = require('./middleware/jwt.decoder');
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const eventsPublic = require('./routes/events.public');
+const events = require('./routes/events');
 
 const models = require('./model/index');
 
@@ -37,10 +38,11 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.use('/doc', express.static(path.join(__dirname, 'doc')));
 
   app.subroute('/api/auth', auth);
-
   app.subroute('/api/events', eventsPublic);
+
   app.use(jwtGuard);
   app.subroute('/api', index);
+  app.subroute('/api/events', events);
 
   // catch 404 and forward to error handler
   app.use((req, res, next) => {

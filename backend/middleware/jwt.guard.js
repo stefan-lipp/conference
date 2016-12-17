@@ -10,7 +10,7 @@ function guardJwt (req, res, next) {
   if (token) {
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
       if (err) {
-        return res.json({
+        return res.status(401).json({
           error: true,
           success: false,
           type: JWT_ERRORS.INVALID_TOKEN,
@@ -24,7 +24,7 @@ function guardJwt (req, res, next) {
 
   } else {
     // No token? return an error
-    return res.status(403).send({
+    return res.status(401).send({
         error: true,
         success: false,
         type: JWT_ERRORS.INVALID_TOKEN,
