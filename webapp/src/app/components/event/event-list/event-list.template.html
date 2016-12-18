@@ -5,14 +5,14 @@
     <dl>
       <dt *ngIf="event.room">Room:</dt>
         <dd *ngIf="event.room">{{ event.room }}</dd>
-      <dt *ngIf="event.starttime">Starts:</dt>
-        <dd *ngIf="event.starttime">{{ event.starttime }}</dd>
+      <dt *ngIf="event.startTime">Starts:</dt>
+        <dd *ngIf="event.startTime">{{ event.startTime }}</dd>
       <dt *ngIf="event.endtime">Ends:</dt>
         <dd *ngIf="event.endtime">{{ event.endtime }}</dd>
       <dt>Duration:</dt>
         <dd>{{ event.duration }}</dd>
       <dt *ngIf="event.maxsize">Max. participants:</dt>
-        <dd *ngIf="event.maxsize">{{ event.maxsize }}</dd>
+        <dd *ngIf="event.maxsize">{{ event.maxSize }}</dd>
     </dl>
   </md-card-content>
   <md-card-actions align="end">

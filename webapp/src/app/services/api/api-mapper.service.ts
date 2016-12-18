@@ -22,7 +22,7 @@ export class ApiMapperService {
    * @return {ConferenceEvent} Local representation
    */
   public eventApiToLocal (data: any): ConferenceEvent {
-    data.room = data.roomname;
+    data.room = data.roomName;
     return new ConferenceEvent(data);
   }
 

@@ -25,11 +25,11 @@ function toEventTO (eventInstance) {
       eventInstance.alias ||
       '<untitled event>'),
     paper: toPaperTO(eventInstance.paper),
-    roomname: eventInstance.roomname,
-    starttime: moment(eventInstance.starttime).tz('Europe/Berlin').format('MM-DD-YYYY HH:mm'),
-    endtime: null, // TODO
+    roomName: eventInstance.roomname,
+    startTime: moment(eventInstance.starttime).tz('Europe/Berlin').format('MM-DD-YYYY HH:mm'),
+    endTime: null, // TODO
     duration: eventInstance.duration, // TODO
-    maxsize: eventInstance.maxsize,
+    maxSize: eventInstance.maxsize,
     kind: eventInstance.kind,
     favoured: Boolean(eventInstance.favorites && eventInstance.favorites.length),
   }

@@ -5,9 +5,9 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { ConferenceEvent } from '../../../models/event.model';
+import { ConferenceEvent } from '../../../models/conference-event.model';
 
-import { OverlayComponent } from '../event-view/event-view-overlay.component';
+import { EventViewOverlayComponent } from '../event-view/event-view-overlay.component';
 import { MdDialog } from '@angular/material';
 
 @Component({
@@ -34,7 +34,7 @@ export class EventListComponent  {
    * @param {Event} event event whose details will be shown
    */
   public displayEventview (event: ConferenceEvent): void {
-    const dialogRef = this.dialog.open(OverlayComponent, {
+    const dialogRef = this.dialog.open(EventViewOverlayComponent, {
        disableClose: false,
     });
 
