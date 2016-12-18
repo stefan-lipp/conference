@@ -1,0 +1,12 @@
+.paper-authors {
+    list-style-type: none;
+    margin: 1rem 0;
+    padding: 0 1rem;
+}
+
+.paper-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}

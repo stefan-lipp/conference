@@ -16,41 +16,11 @@ export class EventViewComponent {
   @Input()
   public event: ConferenceEvent;
 
-  public showPaper: boolean = false;
   public showLocation: boolean = false;
 
   constructor (
     private route: ActivatedRoute,
   ) { }
-
-  /**
-   * Methods called from the html template to perform animation
-   *
-   * attention: showPaperinfo and showLocationinfo are clones.
-   */
-  public showPaperinfo (): void {
-    if (this.showPaper){
-      document.getElementById('paperinfo').classList.add('hide');
-    } else {
-      document.getElementById('paperinfo').classList.remove('hide');
-    }
-    this.showPaper = !this.showPaper;
-  }
-
-  /** Methods called from the html template to perform animation
-   *
-   *  attention: showPaperinfo and showLocationinfo are clones.
-   */
-  public showLocationinfo (): void {
-    if (this.showLocation){
-      document.getElementById('locationinfo').classList.add('hide');
-    } else {
-      document.getElementById('locationinfo').classList.remove('hide');
-      this.drawCanvas();
-    }
-    this.showLocation = !this.showLocation;
-  }
-
 
   /**
    *  method to build the graphical location information
@@ -59,9 +29,10 @@ export class EventViewComponent {
    * TODO get drawing data according to event.room
    */
   public drawCanvas (): void {
+    this.showLocation = true;
 
-    const canvas: any = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
+    const canvas: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById('eventMapCanvas');
+    const context: CanvasRenderingContext2D = canvas.getContext('2d');
     context.font = '20px Arial';
     context.fillText('load map', canvas.width / 2, canvas.height / 2);
 
