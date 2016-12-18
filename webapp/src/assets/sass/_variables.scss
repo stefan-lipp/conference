@@ -1,0 +1,6 @@
+@import 'theme.scss';
+
+$primary: md-get($conference-app-theme, primary);
+
+$font-family: Roboto, sans-serif;
+$font-family-titles: $font-family;

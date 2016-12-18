@@ -67,7 +67,7 @@ type StoreType = {
     EventOverviewComponent,
     NoContentComponent,
     EventViewComponent,
-    OverlayComponent
+    OverlayComponent,
   ],
   entryComponents: [
     OverlayComponent,

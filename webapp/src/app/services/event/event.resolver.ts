@@ -7,17 +7,20 @@ import {
 import { Observable } from 'rxjs';
 
 import { EventService } from '../event';
-import { Event } from '../../models';
+import { ConferenceEvent } from '../../models';
 import { EVENTS } from './mock-events';
 
 @Injectable()
-export class EventResolver implements Resolve<Event> {
+export class EventResolver implements Resolve<ConferenceEvent> {
 
   constructor (
     private eventService: EventService,
   ) {}
 
-  public resolve (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Event> {
+  public resolve (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<ConferenceEvent> {
      return Observable.of(EVENTS[0]); // return this.eventService.getEvent(route.params['eventId']);
   }
 
