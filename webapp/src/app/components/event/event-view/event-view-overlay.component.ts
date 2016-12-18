@@ -1,9 +1,7 @@
 import { Component, Optional } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
-import { Event } from '../../../models/event.model';
-
-
+import { ConferenceEvent } from '../../../models/event.model';
 
 @Component({
   selector: 'event-view-overlay',
@@ -13,13 +11,14 @@ import { Event } from '../../../models/event.model';
      <button md-button (click)="dialogRef.close(true)">Back</button>
    </p>
    `,
-   styleUrls: [ './overlay.styles.css' ]
+   styleUrls: [ './overlay.styles.css' ],
  })
-
 export class OverlayComponent {
+
+  public event: ConferenceEvent;
+
   constructor(
-    @Optional() public dialogRef: MdDialogRef<OverlayComponent>) {
-      }
-  
-  public event: Event; 
+    @Optional() public dialogRef: MdDialogRef<OverlayComponent>,
+  ) { }
+
 }

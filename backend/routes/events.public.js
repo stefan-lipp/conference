@@ -22,7 +22,7 @@ function eventSubroutes (app) {
         include: [
           { model: Paper },
           { model: Favorite, where: { personid: personid }, required: false },
-        ]
+        ],
       }).then((events) => {
         res.json(events.map(TOMapper.toEventTO));
       }).catch(err => res.status(500).json({

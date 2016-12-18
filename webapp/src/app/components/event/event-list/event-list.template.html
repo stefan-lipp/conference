@@ -1,44 +1,40 @@
-<div class="flex-container">
-  <div *ngFor="let event of events" class="flex-item">
-    <md-card >
-      <div *ngIf="event.favoured" class="bookmark-indicator"><md-icon>star</md-icon></div>
-      <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
-      <md-card-content>
-        <dl>
-          <dt *ngIf="event.roomname">Room:</dt>
-            <dd *ngIf="event.roomname">{{ event.roomname }}</dd>
-          <dt *ngIf="event.starttime">Starts:</dt>
-            <dd *ngIf="event.starttime">{{ event.starttime }}</dd>
-          <dt *ngIf="event.endtime">Ends:</dt>
-            <dd *ngIf="event.endtime">{{ event.endtime }}</dd>
-          <dt>Duration:</dt>
-            <dd>{{ event.duration }}</dd>
-          <dt *ngIf="event.maxsize">Max. participants:</dt>
-            <dd *ngIf="event.maxsize">{{ event.maxsize }}</dd>
-        </dl>
-      </md-card-content>
-      <md-card-actions align="end">
-        <a
-          md-button
-          color="accent"
-          (click)="displayEventview(event)"
-        >Details</a>
-        <button
-          *ngIf="!event.favoured"
-          md-button
-          color="accent"
-          (click)="onFavouriteStateChange.emit([event, true])"
-        >
-          {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
-        </button>
-        <button
-          *ngIf="event.favoured"
-          md-button color="accent"
-          (click)="onFavouriteStateChange.emit([event, false])"
-        >
-          {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
-        </button>
-      </md-card-actions>
-    </md-card>
-  </div>
-</div>
+<md-card *ngFor="let event of events">
+  <div *ngIf="event.favoured" class="bookmark-indicator"><md-icon>star</md-icon></div>
+  <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
+  <md-card-content>
+    <dl>
+      <dt *ngIf="event.roomname">Room:</dt>
+        <dd *ngIf="event.roomname">{{ event.roomname }}</dd>
+      <dt *ngIf="event.starttime">Starts:</dt>
+        <dd *ngIf="event.starttime">{{ event.starttime }}</dd>
+      <dt *ngIf="event.endtime">Ends:</dt>
+        <dd *ngIf="event.endtime">{{ event.endtime }}</dd>
+      <dt>Duration:</dt>
+        <dd>{{ event.duration }}</dd>
+      <dt *ngIf="event.maxsize">Max. participants:</dt>
+        <dd *ngIf="event.maxsize">{{ event.maxsize }}</dd>
+    </dl>
+  </md-card-content>
+  <md-card-actions align="end">
+    <a
+      md-button
+      color="accent"
+      (click)="displayEventview(event)"
+    >Details</a>
+    <button
+      *ngIf="!event.favoured"
+      md-button
+      color="accent"
+      (click)="onFavouriteStateChange.emit([event, true])"
+    >
+      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+    </button>
+    <button
+      *ngIf="event.favoured"
+      md-button color="accent"
+      (click)="onFavouriteStateChange.emit([event, false])"
+    >
+      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+    </button>
+  </md-card-actions>
+</md-card>

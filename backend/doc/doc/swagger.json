@@ -117,9 +117,15 @@
                 "description": "",
                 "responses": {
                     "200": {
-                        "description": "List of events.",
+                        "description": "Data of the requested event.",
                         "schema": {
                             "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "404": {
+                        "description": "The requested event could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
                         }
                     },
                     "500": {

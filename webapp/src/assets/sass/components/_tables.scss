@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  &:nth-of-type(2n) {
+    background-color: md-color($md-grey, 200);
+  }
+}
+
+td, th {
+  padding: .5em 1em;
+  text-align: left;
+}

@@ -5,9 +5,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { Event } from '../../../models/event.model';
-//mocking
-import { EVENTS } from '../../../services//event/mock-events';
+import { ConferenceEvent } from '../../../models/event.model';
 
 import { OverlayComponent } from '../event-view/event-view-overlay.component';
 import { MdDialog } from '@angular/material';
@@ -19,30 +17,28 @@ import { MdDialog } from '@angular/material';
 })
 export class EventListComponent  {
 
-  constructor (
-    private dialog: MdDialog,
-  ){}
-
   @Output()
-  public onFavouriteStateChange: EventEmitter<[Event, boolean]> =
-    new EventEmitter<[Event, boolean]>();
+  public onFavouriteStateChange: EventEmitter<[ConferenceEvent, boolean]> =
+    new EventEmitter<[ConferenceEvent, boolean]>();
 
   @Input()
-  public events: Event[] = [ ];
+  public events: ConferenceEvent[] = [ ];
 
- /** Method for creating the overlay component and passing parameter to it
-  * 
-  *  @param {Event} event event whose details will be shown
-  */
-  public displayEventview (event: Event): void {
-    
+  constructor (
+    private dialog: MdDialog,
+  ) { }
+
+  /**
+   * Method for creating the overlay component and passing parameter to it
+   *
+   * @param {Event} event event whose details will be shown
+   */
+  public displayEventview (event: ConferenceEvent): void {
     const dialogRef = this.dialog.open(OverlayComponent, {
        disableClose: false,
     });
-     // real:
-      dialogRef.componentInstance.event = event;
-    // mocking for layouting and stuff: dialogRef.componentInstance.event = EVENTS[0]; 
 
+    dialogRef.componentInstance.event = event;
   }
 
 }

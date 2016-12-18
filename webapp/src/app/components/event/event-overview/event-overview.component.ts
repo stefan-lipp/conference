@@ -4,7 +4,7 @@ import {
   Input,
 } from '@angular/core';
 
-import { Event } from '../../../models';
+import { ConferenceEvent } from '../../../models';
 import { EventService } from '../../../services';
 
 @Component({
@@ -14,14 +14,16 @@ import { EventService } from '../../../services';
 })
 export class EventOverviewComponent implements OnInit {
 
+  public loading: boolean = true;
+
   /** Current filter query */
   public filterQuery: string = '';
 
   /** Subset of all events */
-  public selectedEvents: Event[] = [ ];
+  public selectedEvents: ConferenceEvent[] = [ ];
 
   /** List of all available events */
-  private allEvents: Event[] = [ ];
+  private allEvents: ConferenceEvent[] = [ ];
 
   /**
    * Constructor for the events component.
@@ -36,18 +38,21 @@ export class EventOverviewComponent implements OnInit {
    * @memberof OnInit
    */
   public ngOnInit () {
-    this.eventService.getAll().subscribe(events => this.events = events);
+    this.eventService.getAll().subscribe(events => {
+      this.events = events;
+      this.loading = false;
+    });
   }
 
   /** Setter for allEvents */
   @Input()
-  public set events (events: Event[]) {
+  public set events (events: ConferenceEvent[]) {
     this.allEvents = events;
     this.filter();
   }
 
   /** Getter for allEvents */
-  public get events (): Event[] {
+  public get events (): ConferenceEvent[] {
     return this.allEvents;
   }
 
@@ -66,7 +71,7 @@ export class EventOverviewComponent implements OnInit {
     }
   }
 
-  public setFavouriteState ([ event, state ]: [ Event, boolean ]) {
+  public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
     event.favoured = state;
     this.eventService.updateFavourStatus(event);
   }

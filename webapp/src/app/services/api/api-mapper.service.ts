@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { ConferenceEvent } from '../../models';
+
 @Injectable()
 export class ApiMapperService {
 
@@ -12,6 +14,15 @@ export class ApiMapperService {
       password: data.password,
       password_confirmation: data.passwordConfirmation,
     };
+  }
+
+  /**
+   * Transforms API representation of an Event to local representation
+   * @param {any} data API representation
+   * @return {ConferenceEvent} Local representation
+   */
+  public eventApiToLocal (data: any): ConferenceEvent {
+    return new ConferenceEvent(data);
   }
 
 }
