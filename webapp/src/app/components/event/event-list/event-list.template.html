@@ -3,8 +3,8 @@
   <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
   <md-card-content>
     <dl>
-      <dt *ngIf="event.roomname">Room:</dt>
-        <dd *ngIf="event.roomname">{{ event.roomname }}</dd>
+      <dt *ngIf="event.room">Room:</dt>
+        <dd *ngIf="event.room">{{ event.room }}</dd>
       <dt *ngIf="event.starttime">Starts:</dt>
         <dd *ngIf="event.starttime">{{ event.starttime }}</dd>
       <dt *ngIf="event.endtime">Ends:</dt>
