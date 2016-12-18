@@ -29,15 +29,16 @@ import {
 
 // Components
 import {
+  CalendarComponent,
   EventListComponent,
-  NavigationComponent,
   EventOverviewComponent,
-  LoginComponent,
-  RegisterComponent,
-  MyScheduleComponent,
-  NoContentComponent,
   EventViewComponent,
   EventViewOverlayComponent,
+  LoginComponent,
+  MyScheduleComponent,
+  NavigationComponent,
+  NoContentComponent,
+  RegisterComponent,
 } from './components';
 
 // Directives
@@ -61,15 +62,17 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    NavigationComponent,
+    CalendarComponent,
     EventListComponent,
-    LoginComponent,
-    RegisterComponent,
     EventOverviewComponent,
     MyScheduleComponent,
     NoContentComponent,
     EventViewComponent,
     EventViewOverlayComponent,
+    LoginComponent,
+    NavigationComponent,
+    NoContentComponent,
+    RegisterComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -77,10 +80,10 @@ type StoreType = {
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: false }),
     MaterialModule.forRoot(),
+    ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES, { useHash: false }),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
