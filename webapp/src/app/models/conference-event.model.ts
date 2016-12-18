@@ -13,9 +13,10 @@ export class ConferenceEvent {
   public type: EventType;
   public favoured: boolean;
   public paper?: Paper;
-  public starttime?: number;
+  public startTime?: number;
   public room?: string;
   public speaker?: string;
+  public maxSize?: number;
 
   constructor (data: any) {
     _.merge(this, data);

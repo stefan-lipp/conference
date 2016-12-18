@@ -212,11 +212,11 @@
                 "id": { "type": "number" },
                 "title": { "type": "string" },
                 "paper": { "type": "object" },
-                "roomname": { "type": "string" },
-                "starttime": { "type": "string" },
-                "endtime": { "type": "string" },
+                "roomName": { "type": "string" },
+                "startTime": { "type": "string" },
+                "endTime": { "type": "string" },
                 "duration": { "type": "string" },
-                "maxsize": { "type": "number" },
+                "maxSize": { "type": "number" },
                 "kind": { "type": "string" },
                 "favoured": { "type": "boolean" }
             }
