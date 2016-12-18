@@ -1,17 +1,17 @@
 $breakpoints: (
-  md: 24em,
-  lg: 36em,
-  xl: 48em,
+    md: 24em,
+    lg: 36em,
+    xl: 48em,
 ) !default;
 
 @mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
-      @content;
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
     }
-  }
 
-  @else {
-    @warn "Invalid breakpoint: `#{$breakpoint}`. ";
-  }
+    @else {
+        @warn "Invalid breakpoint: `#{$breakpoint}`. ";
+    }
 }
