@@ -8,9 +8,9 @@ const Event = DataBase.sequelize.models.event;
 const Paper = DataBase.sequelize.models.paper;
 const Favorite = DataBase.sequelize.models.favorite;
 
-function eventSubroutes (app) {
+function favorsSubroutes (app) {
 
-  // `/events/`
+  // `/favor/`
   app.subroute('/', (app) => {
 
     // GET retrieve list of all events
@@ -20,7 +20,7 @@ function eventSubroutes (app) {
       Event.findAll({
         include: [
           { model: Paper },
-          { model: Favorite, where: { personid: personId }, required: false },
+          { model: Favorite, where: { personid: personId }, required: true },
         ]
       }).then((events) => {
          console.log(events.map(TOMapper.toEventTO)[0]);
@@ -34,25 +34,6 @@ function eventSubroutes (app) {
 
   });
 
-  // `/events/:eventId`
-  app.subroute('/:eventId', (app) => {
-
-    // GET retrieve single event
-    app.get((req, res) => {
-      const eventId = req.params.eventId;
-
-      Event.findById(eventId)
-        .then(event => {
-          res.json(TOMapper.toEventTO(event));
-        })
-        .catch(err => res.status(404).json({
-          error: true,
-          success: false,
-          message: 'Unknown event',
-        }));
-    });
-  });
-
 }
 
-module.exports = eventSubroutes;
+module.exports = favorsSubroutes;

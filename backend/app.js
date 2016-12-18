@@ -12,6 +12,7 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const eventsPublic = require('./routes/events.public');
 const events = require('./routes/events');
+const favors = require('./routes/favors');
 
 const models = require('./model/index');
 
@@ -43,6 +44,7 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.use(jwtGuard);
   app.subroute('/api', index);
   app.subroute('/api/events', events);
+  app.subroute('/api/favors', favors);
 
   // catch 404 and forward to error handler
   app.use((req, res, next) => {
