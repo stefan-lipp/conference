@@ -1,38 +1,38 @@
 conference-event-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-
-  md-card {
-    box-sizing: border-box;
-    width: calc(100% - 1em);
-    margin: .5em;
-    padding: 1em;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 
-    @include respond-to(md) {
-      width: inital;
-      flex: 1 0 20em;
+    md-card {
+        box-sizing: border-box;
+        width: calc(100% - 1em);
+        margin: .5em;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+
+        @include respond-to(md) {
+            width: inital;
+            flex: 1 0 20em;
+        }
+
+        md-card-actions:last-child {
+            padding: .5em;
+        }
     }
 
-    md-card-actions:last-child {
-      padding: .5em;
+    md-card-content {
+        flex: 1;
     }
-  }
 
-  md-card-content {
-    flex: 1;
-  }
-
-  md-card-title {
-    padding-right: 2rem;
-    padding-bottom: .5rem;
-    border-bottom: thin solid md-color($md-grey, 300);
-  }
+    md-card-title {
+        padding-right: 2rem;
+        padding-bottom: .5rem;
+        border-bottom: thin solid md-color($md-grey, 300);
+    }
 }
 
 conference-event-view {
-  background-color: #fff;
+    background-color: #fff;
 }

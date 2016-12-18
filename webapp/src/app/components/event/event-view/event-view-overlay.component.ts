@@ -1,5 +1,4 @@
-import { Component, Optional } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { Component } from '@angular/core';
 
 import { ConferenceEvent } from '../../../models/conference-event.model';
 
