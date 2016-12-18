@@ -5,17 +5,25 @@ export var EVENTS: ConferenceEvent[] = [
     id: '8ddbc173-1b71-462e-af3e-b9d40f722797',
     title: 'Kill the whale! Why Docker may cause problems',
     paper: {
-         id : 'sdf',
-         paperTitle: 'Advantages and disadvantages of dockerization!',
-         abstract: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+      id : 'sdf',
+      title: 'Advantages and disadvantages of dockerization!',
+      abstract: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 Stet clita kasd gubergren, no sea takimata sanctus est`,
-         keywords: 'Databases, Mockups',
-         link: 'www.loremipsum.de/',
-         authors: [ 'Dr. Stefan Riedmann', 'Markus Brunner', 'Thomas Schreier, PhD' ],
-         tag: '# Hyper',
+      keywords: 'Databases, Mockups',
+      link: 'http://www.loremipsum.de/',
+      authors: [
+        {
+          name: 'Dr. Stefan Riedmann',
+        }, {
+          name: 'Markus Brunner',
+        }, {
+          name: 'Thomas Schreier, PhD',
         },
+      ],
+      tag: '# Hyper',
+    },
     duration: 20,
     type: EventType.ResearchTalk,
     favoured: false,

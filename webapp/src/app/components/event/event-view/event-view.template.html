@@ -23,16 +23,35 @@
   </tbody>
 </table>
 
-<button *ngIf="event.room" md-button color="accent">Get directions</button>
+<div class="align-right">
+  <button *ngIf="event.room" md-button color="accent" (click)="drawCanvas()">Get directions</button>
+</div>
+<div [class.hidden]="!showLocation">
+  <div>
+    <b>Room:</b><i> {{ event.room }}</i>
+  </div>
+  <canvas id="eventMapCanvas" height="350" width="460">Your browser does not support canvas</canvas>
+</div>
 
 <!-- Area for Paper Information-->
 <div *ngIf="event.paper">
-  <h3>{{ event.paper.title }}</h3>
+  <div class="paper-title">
+    <h3>{{ event.paper.title }}</h3>
+    <a
+      *ngIf="event.paper.link"
+      md-button
+      color="accent"
+      [href]="event.paper.link"
+      target="_blank"
+    >
+      <md-icon>file_download</md-icon>
+      Download
+    </a>
+  </div>
+
   <ul class="paper-authors">
     <li *ngFor="let author of event.paper.authors">{{ author.name }}</li>
   </ul>
-
-  <a *ngIf="event.paper.link" [href]="event.paper.link" md-raised-button color="accent"><md-icon>file_download</md-icon>Download</a>
 
   <h5 *ngIf="event.paper.abstract">Abstract</h5>
   <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
