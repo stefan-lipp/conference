@@ -1,8 +1,8 @@
 import { inject, TestBed } from '@angular/core/testing';
 
 import { EventListComponent } from './event-list.component';
-import { EventService } from '../../services';
-import { EventServiceStub } from '../../../testing';
+import { EventService } from '../../../services';
+import { EventServiceStub } from '../../../../testing';
 
 describe('EventsComponent', () => {
 

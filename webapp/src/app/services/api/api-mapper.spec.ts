@@ -9,12 +9,14 @@ describe('ApiMapperService', () => {
         const INPUT = {
           email: 'test@example.org',
           password: 'abc123',
+          name: 'Max Mustermann',
           passwordConfirmation: '123abc',
         };
 
         const EXPECTATION = {
           email: 'test@example.org',
           password: 'abc123',
+          name: 'Max Mustermann',
           password_confirmation: '123abc',
         };
 

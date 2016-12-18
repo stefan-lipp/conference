@@ -1,0 +1,33 @@
+<div class="calendar-viewport-title">December 24</div>
+<div class="scroll-wrapper">
+  <div class="day-col">
+    <div class="day-background">
+      <div *ngFor="let h of hours" class="hour-row">
+        <span class="hour-text">{{ h }}</span>
+      </div>
+    </div>
+    <div
+      class="current-time"
+      [style.top]="timeToPercentage() + '%'"
+    ></div>
+    <div class="day-events">
+      <div
+        *ngFor="let track of tracks"
+        class="day-event-track"
+      >
+        <div
+          *ngFor="let event of track.events"
+          class="calendar-event"
+          [style.color]="track.color"
+          [style.backgroundColor]="track.backgroundColor"
+          [style.top]="timeToPercentage(event.startTime) + '%'"
+          [style.bottom]="(100 - timeToPercentage(event.endTime)) + '%'"
+          [style.left]="getLeftPercentage(event) + '%'"
+          [style.right]="getRightPercentage(event) + '%'"
+        >
+          <span class="calendar-event-title">{{ event.title }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
