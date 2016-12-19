@@ -183,14 +183,14 @@
                 }
             }
         },
-        "/favors": {
+        "/events/favorites": {
             "get": {
-                "tags": [ "Favors" ],
-                "summary": "Retrieve all personal events.",
+                "tags": [ "Events","Favorites" ],
+                "summary": "Retrieve all personal favorite events.",
                 "description": "",
                 "responses": {
                     "200": {
-                        "description": "List of all personal events.",
+                        "description": "List of all personal favorite events.",
                         "schema": {
                             "$ref": "#/definitions/EventList"
                         }
