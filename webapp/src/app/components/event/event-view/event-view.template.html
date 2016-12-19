@@ -19,14 +19,18 @@
     </tr>
     <tr *ngIf="event.room">
       <th>Room:</th>
-      <td>{{ event.room }}</td>
+      <td>
+        <span>
+        {{ event.room }}
+          <span class="align-right">
+            <button *ngIf="event.room" md-button color="accent" (click)="drawCanvas()">Get directions</button>
+          </span>
+        </span>
+      </td>
     </tr>
   </tbody>
 </table>
 
-<div class="align-right">
-  <button *ngIf="event.room" md-button color="accent" (click)="drawCanvas()">Get directions</button>
-</div>
 <div [class.hidden]="!showLocation">
   <div>
     <b>Room:</b><i> {{ event.room }}</i>
