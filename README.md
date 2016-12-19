@@ -2,7 +2,7 @@
 Conference tool project for the web database lecture.
 
 ## Motivation
-The is intended for use at [VLDB 2017](http://www.vldb.org/2017/) and potentially other conferences.
+The tool is intended for use at [VLDB 2017](http://www.vldb.org/2017/) and potentially other conferences.
 
 ## Programs that need to be installed
 - [Docker](http://www.docker.com)
