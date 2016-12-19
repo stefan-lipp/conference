@@ -1,5 +1,5 @@
 <md-card *ngFor="let event of events">
-  <div *ngIf="event.favoured" class="bookmark-indicator"><md-icon>star</md-icon></div>
+  <div *ngIf="event.favoured" class="favor-indicator"><md-icon>star</md-icon></div>
   <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
   <md-card-content>
     <dl>
