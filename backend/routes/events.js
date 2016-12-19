@@ -63,6 +63,30 @@ function eventSubroutes (app) {
     });
 
   });
+  
+  
+  app.subroute('/favorites', (app) => {
+
+    // GET retrieve list of all events
+    app.get((req, res, next) => {
+      const personId = (req.decoded ? req.decoded.personId : null);
+
+      Event.findAll({
+        include: [
+          { model: Paper },
+          { model: Favorite, where: { personid: personId }, required: true },
+        ]
+      }).then((events) => {
+         res.json(events.map(TOMapper.toEventTO));
+      }).catch((err) => {
+        if (process.env.ENV === 'development') {
+          console.error(err);
+        }
+        res.status(500).json(new Errors.InternalServerError());
+      });
+    });
+
+  });
 }
 
 module.exports = eventSubroutes;

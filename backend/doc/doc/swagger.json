@@ -89,7 +89,6 @@
                 }
             }
         },
-<<<<<<< HEAD
         "/events": {
             "get": {
                 "tags": [ "Events" ],
@@ -173,6 +172,27 @@
                         "description": "The requested event could not be found.",
                         "schema": {
                             "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/events/favorites": {
+            "get": {
+                "tags": [ "Events","Favorites" ],
+                "summary": "Retrieve all personal favorite events.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "List of all personal favorite events.",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
                         }
                     },
                     "500": {
