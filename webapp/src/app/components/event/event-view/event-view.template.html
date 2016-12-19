@@ -30,7 +30,24 @@
     </tr>
   </tbody>
 </table>
-
+<div class="align-right">
+  <button
+    *ngIf="!event.favoured"
+    md-button
+    color="accent"
+    (click)="toggleBookmark([event, true])"
+  >
+    {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+  </button>
+  <button
+    *ngIf="event.favoured"
+    md-raised-button 
+    color="accent"
+    (click)="toggleBookmark([event, false])"
+  >
+    {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+  </button>
+</div>
 <div [class.hidden]="!showLocation">
   <div>
     <b>Room:</b><i> {{ event.room }}</i>
@@ -61,4 +78,23 @@
   <h5 *ngIf="event.paper.abstract">Abstract</h5>
   <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
 
+</div>
+
+<div class="align-right">
+  <button
+    *ngIf="!event.favoured"
+    md-button
+    color="accent"
+    (click)="toggleBookmark([event, true])"
+  >
+    {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+  </button>
+  <button
+    *ngIf="event.favoured"
+    md-raised-button 
+    color="accent"
+    (click)="toggleBookmark([event, false])"
+  >
+    {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+  </button>
 </div>

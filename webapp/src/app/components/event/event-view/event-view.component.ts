@@ -1,6 +1,8 @@
 import {
   Component,
   Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,11 +18,22 @@ export class EventViewComponent {
   @Input()
   public event: ConferenceEvent;
 
+  @Output()
+  public onFavouriteStateChange: EventEmitter<[ConferenceEvent, boolean]> =
+    new EventEmitter<[ConferenceEvent, boolean]>();
+
   public showLocation: boolean = false;
 
   constructor (
     private route: ActivatedRoute,
   ) { }
+
+public toggleBookmark ( [event, state]: [ConferenceEvent, boolean]) {
+  this.onFavouriteStateChange.emit([event, state]);
+  event.favoured = state;
+}
+
+
 
   /**
    *  method to build the graphical location information
