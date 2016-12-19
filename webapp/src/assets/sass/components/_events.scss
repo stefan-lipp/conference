@@ -43,13 +43,13 @@ conference-event-view {
 .favor-indicator {
     position: absolute;
     right: .5rem;
-    top: -.25rem;
+    top: 0;
     padding: .5rem 0;
     background-color: map-get($md-red, 500);
     color: #fff;
     width: 2rem;
     box-sizing: border-box;
-    text-align: right;
+    text-align: center;
     box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
 
 
