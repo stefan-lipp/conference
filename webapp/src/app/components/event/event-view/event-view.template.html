@@ -35,7 +35,7 @@
     *ngIf="!event.favoured"
     md-raised-button 
     color="accent"
-    (click)="toggleBookmark([event, true])"
+    (click)="toggleBookmark(event, true)"
   >
     {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
   </button>
@@ -43,7 +43,7 @@
     *ngIf="event.favoured"
     md-raised-button 
     color="accent"
-    (click)="toggleBookmark([event, false])"
+    (click)="toggleBookmark(event, false)"
   >
     {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
   </button>
@@ -84,7 +84,7 @@
     *ngIf="!event.favoured"
     md-raised-button
     color="accent"
-    (click)="toggleBookmark([event, true])"
+    (click)="toggleBookmark(event, true)"
   >
     {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
   </button>
@@ -92,7 +92,7 @@
     *ngIf="event.favoured"
     md-raised-button 
     color="accent"
-    (click)="toggleBookmark([event, false])"
+    (click)="toggleBookmark(event, false)"
   >
     {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
   </button>

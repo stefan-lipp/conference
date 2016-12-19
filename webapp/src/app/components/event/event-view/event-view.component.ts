@@ -25,14 +25,14 @@ export class EventViewComponent {
   ) { }
 
  /**
-  *  method to toggle Status of the Event 
+  *  method to toggle Status of the Event and commit this to the api
+  * @param {ConferenceEvent} event event to be updated
+  * @param {boolean} state new bookmarking status
   */
-  public toggleBookmark ( [event, state]: [ConferenceEvent, boolean]) {
+  public toggleBookmark ( event: ConferenceEvent, state: boolean) {
     this.eventService.updateFavourStatus(event);
     event.favoured = state;
   }
-
-
 
   /**
    *  method to build the graphical location information
