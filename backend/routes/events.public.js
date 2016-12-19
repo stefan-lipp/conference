@@ -23,7 +23,7 @@ function eventSubroutes (app) {
           { model: Favorite, where: { personid: personId }, required: false },
         ]
       }).then((events) => {
-         res.json(events.map(TOMapper.toEventTO));
+        res.json(events.map(TOMapper.toEventTO));
       }).catch(err => res.status(500).json({
         error: true,
         success: false,
