@@ -77,13 +77,13 @@ function eventSubroutes (app) {
           { model: Favorite, where: { personid: personId }, required: true },
         ]
       }).then((events) => {
-         console.log(events.map(TOMapper.toEventTO)[0]);
          res.json(events.map(TOMapper.toEventTO));
-      }).catch(err => res.status(500).json({
-        error: true,
-        success: false,
-        message: 'Unknown error',
-      }));
+      }).catch((err) => {
+        if (process.env.ENV === 'development') {
+          console.error(err);
+        }
+        res.status(500).json(new Errors.InternalServerError());
+      });
     });
 
   });
