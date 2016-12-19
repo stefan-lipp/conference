@@ -1,12 +1,11 @@
 import {
   Component,
   Input,
-  Output,
-  EventEmitter,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ConferenceEvent } from '../../../models';
+import { EventService } from '../../../services';
 
 @Component({
   selector: 'conference-event-view',
@@ -18,20 +17,20 @@ export class EventViewComponent {
   @Input()
   public event: ConferenceEvent;
 
-  @Output()
-  public onFavouriteStateChange: EventEmitter<[ConferenceEvent, boolean]> =
-    new EventEmitter<[ConferenceEvent, boolean]>();
-
   public showLocation: boolean = false;
 
   constructor (
     private route: ActivatedRoute,
+    private eventService: EventService,
   ) { }
 
-public toggleBookmark ( [event, state]: [ConferenceEvent, boolean]) {
-  this.onFavouriteStateChange.emit([event, state]);
-  event.favoured = state;
-}
+ /**
+  *  method to toggle Status of the Event 
+  */
+  public toggleBookmark ( [event, state]: [ConferenceEvent, boolean]) {
+    this.eventService.updateFavourStatus(event);
+    event.favoured = state;
+  }
 
 
 

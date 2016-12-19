@@ -33,7 +33,7 @@
 <div class="align-right">
   <button
     *ngIf="!event.favoured"
-    md-button
+    md-raised-button 
     color="accent"
     (click)="toggleBookmark([event, true])"
   >
@@ -77,13 +77,12 @@
 
   <h5 *ngIf="event.paper.abstract">Abstract</h5>
   <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
-
 </div>
 
 <div class="align-right">
   <button
     *ngIf="!event.favoured"
-    md-button
+    md-raised-button
     color="accent"
     (click)="toggleBookmark([event, true])"
   >
