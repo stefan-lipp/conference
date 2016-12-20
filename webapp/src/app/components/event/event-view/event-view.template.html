@@ -1,4 +1,4 @@
-<div *ngIf="event.favoured" class="favor-indicator"><md-icon>star</md-icon></div>
+<div *ngIf="event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 <h2>{{ event.title }}</h2>
 <h3 *ngIf="event.speaker">{{ event.speaker }}</h3>
 <h4>{{ event.eventType }}</h4>
@@ -33,7 +33,7 @@
 
 <div class="align-right">
   <button
-    *ngIf="!event.favoured"
+    *ngIf="!event.favored"
     md-raised-button
     color="accent"
     (click)="setFavorState(event, true)"
@@ -41,7 +41,7 @@
     {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
   </button>
   <button
-    *ngIf="event.favoured"
+    *ngIf="event.favored"
     md-raised-button
     color="accent"
     (click)="setFavorState(event, false)"
@@ -86,18 +86,18 @@
   <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
   <div class="align-right">
     <button
-      *ngIf="!event.favoured"
+      *ngIf="!event.favored"
       md-raised-button
       color="accent"
-      (click)="setFavorState(event, true)"
+      (click)="setFavourState(event, true)"
     >
       {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
     </button>
     <button
-      *ngIf="event.favoured"
+      *ngIf="event.favored"
       md-raised-button
       color="accent"
-      (click)="setFavorState(event, false)"
+      (click)="setFavourState(event, false)"
     >
       {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
     </button>
