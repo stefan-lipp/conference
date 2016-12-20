@@ -33,10 +33,10 @@ export class ConferenceEvent {
       id: apiRepresentation.id,
       title: apiRepresentation.title,
       duration: apiRepresentation.duration,
-      type: -1, // TODO
       favored: apiRepresentation.favored,
       paper: apiRepresentation.paper,
       startTime: moment(apiRepresentation.startTime),
+      type: EventType[apiRepresentation.kind],
       room: apiRepresentation.roomName,
       speaker: 'N.N.', // TODO
       maxSize: apiRepresentation.maxSize,
@@ -49,11 +49,12 @@ export class ConferenceEvent {
 
   public get eventType (): string {
     switch (this.type) {
-      case EventType.ResearchTalk: return 'Research Talk';
-      case EventType.IndustryTalk: return 'Industry Talk';
+      case EventType.Research: return 'Research Talk';
+      case EventType.Industry: return 'Industry Talk';
       case EventType.Tutorial: return 'Tutorial';
       case EventType.Demo: return 'Demo';
       case EventType.Workshop: return 'Workshop';
+      case EventType.Entertainment: return 'Entertainment';
       default: return 'General Event';
     }
   }
@@ -64,11 +65,13 @@ export class ConferenceEvent {
  * Event type enumeration.
  */
 export enum EventType {
-  ResearchTalk,
-  IndustryTalk,
+  Research,
+  Industry,
   Tutorial,
   Demo,
   Workshop,
+  Keynote,
+  Entertainment
 }
 
 // TODO check with actual API
