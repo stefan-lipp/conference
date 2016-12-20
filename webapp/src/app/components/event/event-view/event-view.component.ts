@@ -5,6 +5,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { ConferenceEvent } from '../../../models';
+import { EventService } from '../../../services';
 
 @Component({
   selector: 'conference-event-view',
@@ -20,7 +21,18 @@ export class EventViewComponent {
 
   constructor (
     private route: ActivatedRoute,
+    private eventService: EventService,
   ) { }
+
+  /**
+   *  method to set favorite sate of an event and commit this to the api
+   * @param {ConferenceEvent} event event to be updated
+   * @param {boolean} state new bookmarking status
+   */
+  public setFavorState (event: ConferenceEvent, state: boolean) {
+    event.favoured = state;
+    this.eventService.updateFavourStatus(event);
+  }
 
   /**
    *  method to build the graphical location information
