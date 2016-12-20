@@ -53,6 +53,12 @@
     <li *ngFor="let author of event.paper.authors">{{ author.name }}</li>
   </ul>
 
+  <h5 *ngIf="event.paper.tag">Tag</h5>
+  <p *ngIf="event.paper.tag">{{ event.paper.tag }}</p>
+
+  <h5 *ngIf="event.paper.keywords">Keywords</h5>
+  <p *ngIf="event.paper.keywords">{{ event.paper.keywords }}</p>
+
   <h5 *ngIf="event.paper.abstract">Abstract</h5>
   <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
 
