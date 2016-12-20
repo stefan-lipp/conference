@@ -11,8 +11,8 @@
         <dd *ngIf="event.room">{{ event.room }}</dd>
       <dt *ngIf="event.startTime && event.startTime.isValid()">Starts:</dt>
         <dd *ngIf="event.startTime && event.startTime.isValid()">{{ event.startTime }}</dd>
-      <dt *ngIf="event.endtime">Ends:</dt>
-        <dd *ngIf="event.endtime">{{ event.endtime }}</dd>
+      <dt *ngIf="event.endTime && event.endTime.isValid()">Ends:</dt>
+        <dd *ngIf="event.endTime  && event.endTime.isValid()">{{ event.endTime }}</dd>
       <dt>Duration:</dt>
         <dd>{{ event.duration }}</dd>
       <dt *ngIf="event.maxsize">Max. participants:</dt>

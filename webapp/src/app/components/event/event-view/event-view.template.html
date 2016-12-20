@@ -13,9 +13,9 @@
       <th>Start Time:</th>
       <td>{{ event.starttime }}</td>
     </tr>
-    <tr *ngIf="event.endtime">
+    <tr *ngIf="event.endTime">
       <th>End Time:</th>
-      <td>{{ event.endtime }}</td>
+      <td>{{ event.endTime }}</td>
     </tr>
     <tr *ngIf="event.room">
       <th>Room:</th>
@@ -72,6 +72,8 @@
     </a>
   </div>
 
+  <h5 *ngIf="event.paper.authors && event.paper.authors.length==1">Author</h5>
+  <h5 *ngIf="event.paper.authors && event.paper.authors.length>1">Authors</h5>
   <ul class="paper-authors">
     <li *ngFor="let author of event.paper.authors">{{ author.name }}</li>
   </ul>
