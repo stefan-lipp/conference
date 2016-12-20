@@ -11,7 +11,7 @@ export class ConferenceEvent {
   public title: string;
   public duration: number;   // in minutes
   public type: EventType;
-  public favoured: boolean;
+  public favored: boolean;
   public paper?: Paper;
   public startTime?: number;
   public room?: string;
@@ -42,5 +42,5 @@ export enum EventType {
   IndustryTalk,
   Tutorial,
   Demo,
-  Workshop
+  Workshop,
 }

@@ -29,7 +29,7 @@ export class EventOverviewComponent implements OnInit {
    * Constructor for the events component.
    */
   constructor (
-    private eventService: EventService
+    private eventService: EventService,
   ) { }
 
   /**
@@ -72,7 +72,7 @@ export class EventOverviewComponent implements OnInit {
   }
 
   public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
-    event.favoured = state;
+    event.favored = state;
     this.eventService.updateFavourStatus(event);
   }
 }

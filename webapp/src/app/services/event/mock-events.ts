@@ -1,6 +1,6 @@
 import { ConferenceEvent, EventType } from '../../models';
 
-export var EVENTS: ConferenceEvent[] = [
+export const EVENTS: ConferenceEvent[] = [
   new ConferenceEvent({
     id: '8ddbc173-1b71-462e-af3e-b9d40f722797',
     title: 'Kill the whale! Why Docker may cause problems',
@@ -26,7 +26,7 @@ Stet clita kasd gubergren, no sea takimata sanctus est`,
     },
     duration: 20,
     type: EventType.ResearchTalk,
-    favoured: false,
+    favored: false,
     starttime: 1430,
     room: 'A107',
     speaker: 'Prof. A. Kemper',
@@ -36,20 +36,20 @@ Stet clita kasd gubergren, no sea takimata sanctus est`,
     title: 'Machine Learning in the Real World',
     duration: 90,
     type: EventType.Tutorial,
-    favoured: true,
+    favored: true,
   }),
   new ConferenceEvent({
     id: '236a3b0a-2e5f-48b7-ab5a-947591afe9ef',
     title: 'NLProv: Natural Language Provenance',
     duration: 45,
     type: EventType.Demo,
-    favoured: false,
+    favored: false,
   }),
   new ConferenceEvent({
     id: '0a8cad76-4145-401e-b6b2-944df71282ae',
     title: 'Parallel Local Graph Clustering',
     duration: 20,
     type: EventType.ResearchTalk,
-    favoured: false,
+    favored: false,
   }),
 ];

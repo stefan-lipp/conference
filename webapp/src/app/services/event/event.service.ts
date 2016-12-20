@@ -71,7 +71,7 @@ export class EventService {
    * @return void
    */
   public updateFavourStatus(event: ConferenceEvent): void {
-    if (event.favoured) {
+    if (event.favored) {
       this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { })
         .subscribe(_ => null);
     } else {
