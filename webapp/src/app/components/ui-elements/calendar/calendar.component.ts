@@ -151,6 +151,8 @@ export class CalendarComponent {
   ): boolean {
     const timeframeStart: moment.Moment = moment(pointOfReference).startOf(timeframe);
     const timeframeEnd: moment.Moment = moment(timeframeStart).add(1, timeframe);
-    return !(event.endTime <= timeframeStart || event.startTime >= timeframeEnd);
+    return event.startTime.isValid() &&
+      event.endTime.isValid() &&
+      !(event.endTime <= timeframeStart || event.startTime >= timeframeEnd);
   }
 }

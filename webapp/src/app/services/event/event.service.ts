@@ -8,8 +8,6 @@ import { ApiMapperService } from '../api';
 import { AuthService } from '../auth';
 import { ConferenceEvent } from '../../models';
 
-import { EVENTS } from './mock-events';
-
 @Injectable()
 export class EventService {
 

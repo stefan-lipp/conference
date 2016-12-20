@@ -31,7 +31,10 @@ export class MyScheduleComponent implements OnInit {
         backgroundColor: '#03a9f4',
         display: true,
         events: events
-          .filter(e => Boolean(e.startTime))
+          .filter(e =>
+            Boolean(e.startTime) && e.startTime.isValid() &&
+            Boolean(e.endTime) && e.endTime.isValid()
+          )
           .map(e => <CalendarEvent> Object({
             title: e.title,
             startTime: e.startTime,
