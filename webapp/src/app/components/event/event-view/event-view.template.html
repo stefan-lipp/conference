@@ -89,7 +89,7 @@
       *ngIf="!event.favored"
       md-raised-button
       color="accent"
-      (click)="setFavourState(event, true)"
+      (click)="setFavorState(event, true)"
     >
       {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
     </button>
@@ -97,7 +97,7 @@
       *ngIf="event.favored"
       md-raised-button
       color="accent"
-      (click)="setFavourState(event, false)"
+      (click)="setFavorState(event, false)"
     >
       {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
     </button>
