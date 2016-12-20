@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('paper',{
+  const Paper = sequelize.define('paper',{
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -36,5 +36,12 @@ module.exports = function(sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       }
     }
+  }, {
+    classMethods: {
+      associate: (models) => {
+        Paper.hasMany(models.author, { foreignKey: 'paperid' });
+      }
+    },
   });
+  return Paper;
 };
