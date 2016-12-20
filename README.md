@@ -36,7 +36,7 @@ You may also install the backends dependencies by running `npm install` in the `
 
 ### Backend API
 - [node-jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) for authentication and authorization.
-- [Sswagger UI](http://swagger.io/) for API endpoint documentation.
+- [Swagger UI](http://swagger.io/) for API endpoint documentation.
 
 
 ### Frontend
