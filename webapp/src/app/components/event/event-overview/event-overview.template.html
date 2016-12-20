@@ -10,14 +10,14 @@
   </md-input>
 </div>
 <md-tab-group>
-  <md-tab label="Calendar">
-    <conference-calendar></conference-calendar>
-  </md-tab>
   <md-tab label="List">
     <conference-event-list
       [events]="selectedEvents"
       (onFavouriteStateChange)="setFavouriteState($event)"
     ></conference-event-list>
     <md-spinner *ngIf="loading"></md-spinner>
+  </md-tab>
+  <md-tab label="Calendar">
+    <h2>NotYetImplemented</h2>
   </md-tab>
 </md-tab-group>

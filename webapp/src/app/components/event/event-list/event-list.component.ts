@@ -13,7 +13,6 @@ import { MdDialog } from '@angular/material';
 @Component({
   selector: 'conference-event-list',
   templateUrl: 'event-list.template.html',
-  styleUrls: [ 'event-list.style.scss' ],
 })
 export class EventListComponent  {
 
