@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import {
   Component,
   Input,
@@ -6,8 +7,8 @@ import {
 
 export interface CalendarEvent {
   title: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: moment.Moment;
+  endTime: moment.Moment;
 }
 
 export interface CalendarTrack {
@@ -25,34 +26,7 @@ export interface CalendarTrack {
 export class CalendarComponent {
 
   @Input()
-  public tracks: CalendarTrack[] = [ {
-    color: '#fff',
-    backgroundColor: '#03a9f4',
-    display: true,
-    events: [
-      {
-        title: 'event1',
-        startTime: new Date('Decenver 24, 2016 10:00:00'),
-        endTime: new Date('Decenver 24, 2016 12:00:00'),
-      },
-      {
-        title: 'event2',
-        startTime: new Date('Decenver 24, 2016 8:00:00'),
-        endTime: new Date('Decenver 24, 2016 9:00:00'),
-      },
-    ],
-  }, {
-    color: '#fff',
-    backgroundColor: '#019440',
-    display: true,
-    events: [
-      {
-        title: 'event3',
-        startTime: new Date('Decenver 24, 2016 9:00:00'),
-        endTime: new Date('Decenver 24, 2016 11:00:00'),
-      },
-    ],
-  } ];
+  public tracks: CalendarTrack[] = [ ];
 
   constructor (
     private elem: ElementRef,
@@ -78,9 +52,9 @@ export class CalendarComponent {
    * @param {Date} date Date to convert. Defaults to the current time
    * @return {number} Percentage of a full day (0-100)
    */
-  public timeToPercentage (date: Date = new Date()): number {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+  public timeToPercentage (date: moment.Moment = moment()): number {
+    const hours = date.hour();
+    const minutes = date.minute();
 
     return Math.floor((hours / 24 + minutes / (24 * 60)) * 10000) / 100;
   }
