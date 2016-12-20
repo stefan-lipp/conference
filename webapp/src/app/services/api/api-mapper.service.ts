@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { ConferenceEvent } from '../../models';
+import {
+  ConferenceEvent,
+  ApiConferenceEvent,
+} from '../../models';
 
 @Injectable()
 export class ApiMapperService {
@@ -18,20 +21,11 @@ export class ApiMapperService {
 
   /**
    * Transforms API representation of an Event to local representation
-   * @param {any} data API representation
+   * @param {ApiConferenceEvent} data API representation
    * @return {ConferenceEvent} Local representation
    */
-  public eventApiToLocal (data: any): ConferenceEvent {
-    if (data.paper){
-      if (data.paper.abstract){
-        const input: string = data.paper.abstract;
-        let front: string = input.slice(0, 9);
-        const rest: string = input.slice(9);
-        data.paper.abstract = front.replace('Abstract:', '') + rest;
-      }
-    }
-    data.room = data.roomName;
-    return new ConferenceEvent(data);
+  public eventApiToLocal (data: ApiConferenceEvent): ConferenceEvent {
+    return ConferenceEvent.fromAPI(data);
   }
 
 }

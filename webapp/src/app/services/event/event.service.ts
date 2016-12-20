@@ -8,6 +8,8 @@ import { ApiMapperService } from '../api';
 import { AuthService } from '../auth';
 import { ConferenceEvent } from '../../models';
 
+import { EVENTS } from './mock-events';
+
 @Injectable()
 export class EventService {
 
@@ -34,10 +36,15 @@ export class EventService {
    *
    * @return {Observable<Event[]>} An observable containing a list of all events
    */
-  public getAll(): Observable<ConferenceEvent[]> {
+  public getAll (): Observable<ConferenceEvent[]> {
     return this.httpService.get(API_ROUTES.events.all)
       .map(res => res.json())
       .map(list => list.map(this.apiMapperService.eventApiToLocal));
+  }
+
+  public getFavorites (): Observable<ConferenceEvent[]> {
+    // TODO make HTTP call to `API_BASE_URL/events/favorites`
+    return Observable.of(EVENTS);
   }
 
   public getEvent (eventId: number): Observable<ConferenceEvent> {

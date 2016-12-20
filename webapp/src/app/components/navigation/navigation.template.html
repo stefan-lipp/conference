@@ -3,7 +3,10 @@
     <span class="toolbar-title toolbar-fill-remaining">Conference Tool</span>
 
       <md-menu x-position="before" #menu="mdMenu">
-        <button md-menu-item routerLink="/my-schedule" routerLinkActive="active"> My Schedule </button>
+        <a md-menu-item routerLink="/events">Events</a>
+        <a md-menu-item routerLink="/my-schedule">My Schedule</a>
+        <a md-menu-item>Settings</a>
+        <a md-menu-item>Logout</a>
       </md-menu>
 
       <button md-icon-button [md-menu-trigger-for]="menu">
