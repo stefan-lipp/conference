@@ -15,7 +15,7 @@ function toPaperTO (paperInstance) {
   return {
     id: paperInstance.id,
     title: paperInstance.titel,
-    authors: paperInstance.authors.map((author) => toAuthorTO(author)),
+    authors: paperInstance.authors.map(toAuthorTO),
     keywords: paperInstance.keywords,
     abstract: paperInstance.abstract,
     link: paperInstance.link,
