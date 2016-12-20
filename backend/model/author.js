@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('author',{
+  const Author = sequelize.define('author',{
     paperid: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -22,5 +22,13 @@ module.exports = function(sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       }
     }
+  }, {
+    classMethods: {
+      associate: (models) => {
+        Author.belongsTo(models.paper, { foreignKey: 'paperid' });
+        Author.belongsTo(models.person, { foreignKey: 'personid' });
+      }
+    },
   });
+  return Author;
 };

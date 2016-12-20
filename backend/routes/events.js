@@ -10,6 +10,8 @@ const DataBase = require('../model/index');
 const Event = DataBase.sequelize.models.event;
 const Paper = DataBase.sequelize.models.paper;
 const Favorite = DataBase.sequelize.models.favorite;
+const Author = DataBase.sequelize.models.author;
+const Person = DataBase.sequelize.models.person;
 
 function eventSubroutes (app) {
 
@@ -22,7 +24,11 @@ function eventSubroutes (app) {
 
       Event.findAll({
         include: [
-          { model: Paper },
+          { model: Paper , include: [
+            { model: Author, required: false, include: [
+               { model: Person, required: false },
+            ]},
+          ]},
           { model: Favorite, where: { personid: personId }, required: false },
         ]
       }).then((events) => {
