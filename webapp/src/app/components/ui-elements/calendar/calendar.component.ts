@@ -28,6 +28,8 @@ export class CalendarComponent {
   @Input()
   public tracks: CalendarTrack[] = [ ];
 
+  public currentDay: moment.Moment = moment();
+
   constructor (
     private elem: ElementRef,
   ) {
@@ -39,6 +41,20 @@ export class CalendarComponent {
         currentTimeIndicator.scrollIntoView();
       }
     });
+  }
+
+  /**
+   * Changes the current day to the previous day.
+   */
+  public goToPreviousDay() {
+    this.currentDay.subtract(1, 'days');
+  }
+
+  /**
+   * Changes the current day to the next day.
+   */
+  public goToNextDay() {
+    this.currentDay.add(1, 'days');
   }
 
   /** @return {string[]} List of hours of the day (hh:00) */
@@ -94,4 +110,5 @@ export class CalendarComponent {
       (e: CalendarEvent) => !(e.endTime <= event.startTime || e.startTime >= event.endTime)
     );
   }
+
 }

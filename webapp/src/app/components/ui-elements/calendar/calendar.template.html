@@ -1,4 +1,8 @@
-<div class="calendar-viewport-title">December 21st</div>
+<div class="calendar-viewport-title">
+  <button md-button (click)="goToPreviousDay()"><i class="material-icons">navigate_before</i></button>
+  {{ currentDay.format("MMMM Do YYYY") }}
+  <button md-button (click)="goToNextDay()"><i class="material-icons">navigate_next</i></button>
+</div>
 <div class="scroll-wrapper">
   <div class="day-col">
     <div class="day-background">
