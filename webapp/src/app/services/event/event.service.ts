@@ -55,24 +55,6 @@ export class EventService {
   }
 
   /**
-   * Saves a new event or updates an existing one.
-   *
-   * @param {ConferenceEvent} event The event to save or update.
-   * @return void
-   */
-  public save(event: ConferenceEvent): void {
-    /*
-    let existingEvent = EVENTS.find(elem => elem.id === event.id);
-    if (existingEvent === undefined) {
-      EVENTS.push(event);
-    } else {
-      let existingIndex = EVENTS.indexOf(existingEvent);
-      EVENTS[existingIndex] = event;
-    }
-    */
-  }
-
-  /**
    * Updates the favour status of an event.
    *
    * @param {ConferenceEvent} event The event whose favour status to update.
