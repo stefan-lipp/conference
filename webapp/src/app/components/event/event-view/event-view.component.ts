@@ -30,7 +30,7 @@ export class EventViewComponent {
    * @param {boolean} state new bookmarking status
    */
   public setFavorState (event: ConferenceEvent, state: boolean) {
-    event.favoured = state;
+    event.favored = state;
     this.eventService.updateFavourStatus(event);
   }
 
