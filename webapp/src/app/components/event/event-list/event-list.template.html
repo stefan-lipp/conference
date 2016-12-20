@@ -5,10 +5,12 @@
   <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
   <md-card-content>
     <dl>
+      <dt *ngIf="event.paper && event.paper.keywords">Keywords:</dt>
+        <dd *ngIf="event.paper && event.paper.keywords">{{ event.paper.keywords }}</dd>
       <dt *ngIf="event.room">Room:</dt>
         <dd *ngIf="event.room">{{ event.room }}</dd>
-      <dt *ngIf="event.startTime">Starts:</dt>
-        <dd *ngIf="event.startTime">{{ event.startTime }}</dd>
+      <dt *ngIf="event.startTime && event.startTime.isValid()">Starts:</dt>
+        <dd *ngIf="event.startTime && event.startTime.isValid()">{{ event.startTime }}</dd>
       <dt *ngIf="event.endtime">Ends:</dt>
         <dd *ngIf="event.endtime">{{ event.endtime }}</dd>
       <dt>Duration:</dt>
