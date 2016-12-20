@@ -6,7 +6,7 @@ export const API_ROUTES = {
   events: {
     all: `${API_BASE_URL}/events`,
     single: `${API_BASE_URL}/events/:eventId`,
-    favorite: `${API_BASE_URL}/events/:eventid/favorite`,
+    favorite: `${API_BASE_URL}/events/favorites/:eventid`,
     favorites: `${API_BASE_URL}/events/favorites`,
   },
 };
