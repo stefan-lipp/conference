@@ -38,82 +38,6 @@ function eventSubroutes (app) {
     });
 
   });
-
-  // `/events/:eventId`
-  app.subroute('/:eventId', (app) => {
-
-    // GET retrieve single event
-    app.get((req, res) => {
-      const eventId = req.params.eventId;
-
-      Event.findById(eventId)
-        .then(event => {
-          res.json(TOMapper.toEventTO(event));
-        })
-        .catch(err => res.status(404).json({
-          error: true,
-          success: false,
-          message: 'Unknown event',
-        }));
-    });
-  });
-
-  app.subroute('/favorites/:eventId', (app) => {
-    app.use(jwtGuard);
-
-    app.post((req, res, next) => {
-      const eventId = (req.params && req.params.eventId);
-      const personId = (req.decoded && req.decoded.personId);
-
-      if (personId == null) {
-        res.status(401).json(new Errors.UnauthorizedError());
-        return;
-      }
-
-      if (eventId == null) {
-        res.status(400).send(); // TODO proper error
-        return;
-      }
-
-      Favorite.create(
-        { personid: personId, eventid: eventId }
-      ).then((fav) => {
-        res.status(201).send();
-      }).catch((err) => {
-        if (process.env.ENV === 'development') {
-          console.error(err);
-        }
-        res.status(500).json(new Errors.InternalServerError());
-      });
-    });
-
-    app.delete((req, res, next) => {
-      const eventId = (req.params && req.params.eventId);
-      const personId = (req.decoded && req.decoded.personId);
-
-      if (personId == null) {
-        res.status(401).json(new Errors.UnauthorizedError());
-        return;
-      }
-
-      if (eventId == null) {
-        res.status(400).send(); // TODO proper error
-        return;
-      }
-
-      Favorite.destroy(
-        { where: { personid: personId, eventid: eventId } }
-      ).then((fav) => {
-        res.status(204).send();
-      }).catch((err) => {
-        if (process.env.ENV === 'development') {
-          console.error(err);
-        }
-        res.status(404).json(new Errors.NotFoundError('No such event or not a favorite'));
-      });
-    });
-
-  });
   
   app.subroute('/favorites', (app) => {
     app.use(jwtGuard);
@@ -137,7 +61,84 @@ function eventSubroutes (app) {
       });
     });
 
+    app.subroute('/:eventId', (app) => {
+      app.use(jwtGuard);
+
+      app.post((req, res, next) => {
+        const eventId = (req.params && req.params.eventId);
+        const personId = (req.decoded && req.decoded.personId);
+
+        if (personId == null) {
+          res.status(401).json(new Errors.UnauthorizedError());
+          return;
+        }
+
+        if (eventId == null) {
+          res.status(400).send(); // TODO proper error
+          return;
+        }
+
+        Favorite.create(
+          { personid: personId, eventid: eventId }
+        ).then((fav) => {
+          res.status(201).send();
+        }).catch((err) => {
+          if (process.env.ENV === 'development') {
+            console.error(err);
+          }
+          res.status(500).json(new Errors.InternalServerError());
+        });
+      });
+
+      app.delete((req, res, next) => {
+        const eventId = (req.params && req.params.eventId);
+        const personId = (req.decoded && req.decoded.personId);
+
+        if (personId == null) {
+          res.status(401).json(new Errors.UnauthorizedError());
+          return;
+        }
+
+        if (eventId == null) {
+          res.status(400).send(); // TODO proper error
+          return;
+        }
+
+        Favorite.destroy(
+          { where: { personid: personId, eventid: eventId } }
+        ).then((fav) => {
+          res.status(204).send();
+        }).catch((err) => {
+          if (process.env.ENV === 'development') {
+            console.error(err);
+          }
+          res.status(404).json(new Errors.NotFoundError('No such event or not a favorite'));
+        });
+      });
+
+    });
+
   });
+
+  // `/events/:eventId`
+  app.subroute('/:eventId', (app) => {
+
+    // GET retrieve single event
+    app.get((req, res) => {
+      const eventId = req.params.eventId;
+
+      Event.findById(eventId)
+        .then(event => {
+          res.json(TOMapper.toEventTO(event));
+        })
+        .catch(err => res.status(404).json({
+          error: true,
+          success: false,
+          message: 'Unknown event',
+        }));
+    });
+  });
+
 }
 
 module.exports = eventSubroutes;
