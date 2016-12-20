@@ -28,7 +28,10 @@ function eventSubroutes (app) {
       }).then((events) => {
         res.json(events.map(TOMapper.toEventTO));
       }).catch(err => {
-        console.log(err);
+        if (process.env.ENV === 'development') {
+          console.error(err);
+        }
+
         res.status(500).json({
           error: true,
           success: false,
@@ -62,8 +65,6 @@ function eventSubroutes (app) {
     });
 
     app.subroute('/:eventId', (app) => {
-      app.use(jwtGuard);
-
       app.post((req, res, next) => {
         const eventId = (req.params && req.params.eventId);
         const personId = (req.decoded && req.decoded.personId);
