@@ -1,7 +1,7 @@
 <div class="calendar-viewport-title">
-  <button md-button (click)="goToPreviousDay()"><i class="material-icons">navigate_before</i></button>
-  {{ currentDay.format("MMMM Do YYYY") }}
-  <button md-button (click)="goToNextDay()"><i class="material-icons">navigate_next</i></button>
+  <button md-button (click)="goToPast()"><i class="material-icons">navigate_before</i></button>
+  {{ selectedDay.format("MMMM Do YYYY") }}
+  <button md-button (click)="goToFuture()"><i class="material-icons">navigate_next</i></button>
 </div>
 <div class="scroll-wrapper">
   <div class="day-col">
@@ -16,7 +16,7 @@
     ></div>
     <div class="day-events">
       <div
-        *ngFor="let track of tracks"
+        *ngFor="let track of visibleTracks"
         class="day-event-track"
       >
         <div

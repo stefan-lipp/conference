@@ -18,6 +18,9 @@ export interface CalendarTrack {
   events: CalendarEvent[];
 }
 
+/** Available timeframe sizes */
+type Timeframe = 'day' | 'week' | 'month';
+
 @Component({
   selector: 'conference-calendar',
   templateUrl: './calendar.template.html',
@@ -28,7 +31,9 @@ export class CalendarComponent {
   @Input()
   public tracks: CalendarTrack[] = [ ];
 
-  public currentDay: moment.Moment = moment();
+  public viewportTimeframe: Timeframe = 'day';
+
+  public selectedDay: moment.Moment = moment();
 
   constructor (
     private elem: ElementRef,
@@ -44,17 +49,35 @@ export class CalendarComponent {
   }
 
   /**
+   * Returns the tracks with only the events that should be visible in the current timeframe
+   *
+   * @return {CalendarTrack[]}
+   */
+  public get visibleTracks (): CalendarTrack[] {
+    return !this.tracks ? [ ] : this.tracks
+      .filter(t => t.display)
+      .map(t => Object({
+          color: t.color,
+          backgroundColor: t.backgroundColor,
+          display: t.display,
+          events: t.events.filter(e => this.inTimeframe(e)),
+        })
+      )
+      .filter(t => t.events.length > 0);
+  }
+
+  /**
    * Changes the current day to the previous day.
    */
-  public goToPreviousDay() {
-    this.currentDay.subtract(1, 'days');
+  public goToPast (amount: number = 1, unit: Timeframe = this.viewportTimeframe) {
+    this.selectedDay.subtract(amount, unit);
   }
 
   /**
    * Changes the current day to the next day.
    */
-  public goToNextDay() {
-    this.currentDay.add(1, 'days');
+  public goToFuture (amount: number = 1, unit: Timeframe = this.viewportTimeframe) {
+    this.selectedDay.add(amount, unit);
   }
 
   /** @return {string[]} List of hours of the day (hh:00) */
@@ -111,4 +134,23 @@ export class CalendarComponent {
     );
   }
 
+  /**
+   * Checks whether a given event is in a given timeframe
+   *
+   * @param {CalendarEvent} event Event to check for inclusion in a timeframe
+   * @param {Timeframe} timeframe Size of a given timeframe
+   * @param {moment.Moment} pointOfReference Reference point for the timeframe.
+   *    Note that the timeframe does not start at this point but at a timeframes proper start,
+   *    e.g. timeframe 'month' starts on the first of a month even if pointOfReference is the 21st.
+   * @return {boolean} True if event is in the timeframe, else otherwise
+   */
+  private inTimeframe (
+    event: CalendarEvent,
+    timeframe: Timeframe = this.viewportTimeframe,
+    pointOfReference: moment.Moment = this.selectedDay,
+  ): boolean {
+    const timeframeStart: moment.Moment = moment(pointOfReference).startOf(timeframe);
+    const timeframeEnd: moment.Moment = moment(timeframeStart).add(1, timeframe);
+    return !(event.endTime <= timeframeStart || event.startTime >= timeframeEnd);
+  }
 }

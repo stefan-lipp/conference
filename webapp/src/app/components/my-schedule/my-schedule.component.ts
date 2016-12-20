@@ -35,7 +35,7 @@ export class MyScheduleComponent implements OnInit {
           .map(e => <CalendarEvent> Object({
             title: e.title,
             startTime: e.startTime,
-            endTime: e.startTime.add(e.duration, 'minutes'),
+            endTime: e.endTime,
           })),
       } ];
     });

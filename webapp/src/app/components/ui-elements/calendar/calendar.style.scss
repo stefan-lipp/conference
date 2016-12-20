@@ -99,7 +99,8 @@
     position: absolute;
     left: 0;
     right: 0;
-    margin: 1px;
+    margin: 0 0 1px 1px;
+    border: 1px solid #fff;
     padding: .5rem;
     box-sizing: border-box;
 }
@@ -107,4 +108,7 @@
 .calendar-event-title {
     display: block;
     font-size: .8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

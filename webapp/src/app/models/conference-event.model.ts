@@ -15,6 +15,7 @@ export class ConferenceEvent {
   public favored: boolean;
   public paper?: Paper;
   public startTime?: moment.Moment;
+  public endTime?: moment.Moment;
   public room?: string;
   public speaker?: string;
   public maxSize?: number;
@@ -36,6 +37,7 @@ export class ConferenceEvent {
       favored: apiRepresentation.favored,
       paper: apiRepresentation.paper,
       startTime: moment(apiRepresentation.startTime),
+      endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],
       room: apiRepresentation.roomName,
       speaker: 'N.N.', // TODO
@@ -81,6 +83,7 @@ export interface ApiConferenceEvent {
   paper?: any;
   roomName?: string;
   startTime?: string;
+  endTime?: string;
   duration: string;
   maxSize?: string;
   kind?: string;

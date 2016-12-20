@@ -44,12 +44,17 @@ function toPersonTO (personInstance) {
  * Maps a instance of the Event database model to a Event transport object
  */
 function toEventTO (eventInstance) {
-  console.log(eventInstance.starttime, eventInstance.duration);
-  const parsedTime = moment(eventInstance.duration);
-  const startTime = eventInstance.starttime ? 
-    moment(eventInstance.starttime).tz('Europe/Berlin') : 
+  // duration comes in the format HH:mm:ss
+  const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d));
+  if (durationArr.length !== 3) {
+    throw 'Invalid duration format in event instance';
+  }
+  const duration = durationArr[0] * 60 + durationArr[1];
+
+  const startTime = eventInstance.starttime ?
+    moment(eventInstance.starttime).tz('Europe/Berlin') :
     null;
-  const duration = parsedTime.hours() * 60 + parsedTime.minutes();
+
   return {
     id: eventInstance.id,
     title: ((eventInstance.paper && eventInstance.paper.title) ||
@@ -57,7 +62,7 @@ function toEventTO (eventInstance) {
       '<untitled event>'),
     paper: toPaperTO(eventInstance.paper),
     roomName: eventInstance.roomname,
-    startTime: startTime ? starttime.format() : null,
+    startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes') : null,
     duration: duration,
     maxSize: eventInstance.maxsize,
