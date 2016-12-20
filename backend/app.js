@@ -10,7 +10,6 @@ const jwtDecoder = require('./middleware/jwt.decoder');
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
-const eventsPublic = require('./routes/events.public');
 const events = require('./routes/events');
 
 const models = require('./model/index');
@@ -37,11 +36,8 @@ models.sequelize.sync({ force: forceSync }).then(() => {
 
   app.use('/doc', express.static(path.join(__dirname, 'doc')));
 
-  app.subroute('/api/auth', auth);
-  app.subroute('/api/events', eventsPublic);
-
-  app.use(jwtGuard);
   app.subroute('/api', index);
+  app.subroute('/api/auth', auth);
   app.subroute('/api/events', events);
 
   // catch 404 and forward to error handler
@@ -53,6 +49,10 @@ models.sequelize.sync({ force: forceSync }).then(() => {
 
   // error handler
   app.use((err, req, res, next) => {
+    if (process.env.ENV === 'development') {
+      console.error(err);
+    }
+
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = (req.app.get('env') === 'development' ? err : { });
@@ -63,7 +63,6 @@ models.sequelize.sync({ force: forceSync }).then(() => {
       error: err,
     });
   });
-
 });
 
 module.exports = app;
