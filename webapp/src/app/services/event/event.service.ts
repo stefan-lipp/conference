@@ -43,8 +43,9 @@ export class EventService {
   }
 
   public getFavorites (): Observable<ConferenceEvent[]> {
-    // TODO make HTTP call to `API_BASE_URL/events/favorites`
-    return Observable.of(EVENTS);
+    return this.httpService.get(API_ROUTES.events.favorites)
+      .map(res => res.json())
+      .map(list => list.map(this.apiMapperService.eventApiToLocal));
   }
 
   public getEvent (eventId: number): Observable<ConferenceEvent> {
