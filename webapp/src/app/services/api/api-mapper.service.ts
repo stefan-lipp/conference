@@ -22,6 +22,14 @@ export class ApiMapperService {
    * @return {ConferenceEvent} Local representation
    */
   public eventApiToLocal (data: any): ConferenceEvent {
+    if (data.paper){
+      if (data.paper.abstract){
+        const input: string = data.paper.abstract;
+        let front: string = input.slice(0, 9);
+        const rest: string = input.slice(9);
+        data.paper.abstract = front.replace('Abstract:', '') + rest;
+      }
+    }
     data.room = data.roomName;
     return new ConferenceEvent(data);
   }
