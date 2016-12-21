@@ -1,0 +1,34 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-titles;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    line-height: 1.5;
+    text-align: justify;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+.align-right {
+    text-align: right;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-center {
+    text-align: center;
+}

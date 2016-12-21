@@ -1,0 +1,107 @@
+<div *ngIf="event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+<h2>{{ event.title }}</h2>
+<h3 *ngIf="event.speaker">{{ event.speaker }}</h3>
+<h4>{{ event.eventType }}</h4>
+
+<table class="general-info">
+  <tbody>
+    <tr *ngIf="event.duration">
+      <th>Duration:</th>
+      <td>{{ event.duration }}</td>
+    </tr>
+    <tr *ngIf="event.starttime">
+      <th>Start Time:</th>
+      <td>{{ event.starttime }}</td>
+    </tr>
+    <tr *ngIf="event.endTime">
+      <th>End Time:</th>
+      <td>{{ event.endTime }}</td>
+    </tr>
+    <tr *ngIf="event.room">
+      <th>Room:</th>
+      <td>
+        <span>
+          {{ event.room }}
+          <span class="align-right">
+            <button *ngIf="event.room" md-button color="accent" (click)="drawCanvas()">Get directions</button>
+          </span>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="align-right">
+  <button
+    *ngIf="!event.favored"
+    md-raised-button
+    color="accent"
+    (click)="setFavorState(event, true)"
+  >
+    {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+  </button>
+  <button
+    *ngIf="event.favored"
+    md-raised-button
+    color="accent"
+    (click)="setFavorState(event, false)"
+  >
+    {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+  </button>
+</div>
+<div [class.hidden]="!showLocation">
+  <div>
+    <b>Room:</b><i> {{ event.room }}</i>
+  </div>
+  <canvas id="eventMapCanvas" height="350" width="460">Your browser does not support canvas</canvas>
+</div>
+
+<!-- Area for Paper Information-->
+<div *ngIf="event.paper">
+  <div class="paper-title">
+    <h3>{{ event.paper.title }}</h3>
+    <a
+      *ngIf="event.paper.link"
+      md-button
+      color="accent"
+      [href]="event.paper.link"
+      target="_blank"
+    >
+      <md-icon>file_download</md-icon>
+      Download
+    </a>
+  </div>
+
+  <h5 *ngIf="event.paper.authors && event.paper.authors.length==1">Author</h5>
+  <h5 *ngIf="event.paper.authors && event.paper.authors.length>1">Authors</h5>
+  <ul class="paper-authors">
+    <li *ngFor="let author of event.paper.authors">{{ author.name }}</li>
+  </ul>
+
+  <h5 *ngIf="event.paper.tag">Tag</h5>
+  <p *ngIf="event.paper.tag">{{ event.paper.tag }}</p>
+
+  <h5 *ngIf="event.paper.keywords">Keywords</h5>
+  <p *ngIf="event.paper.keywords">{{ event.paper.keywords }}</p>
+
+  <h5 *ngIf="event.paper.abstract">Abstract</h5>
+  <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
+  <div class="align-right">
+    <button
+      *ngIf="!event.favored"
+      md-raised-button
+      color="accent"
+      (click)="setFavorState(event, true)"
+    >
+      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+    </button>
+    <button
+      *ngIf="event.favored"
+      md-raised-button
+      color="accent"
+      (click)="setFavorState(event, false)"
+    >
+      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+    </button>
+  </div>
+</div>

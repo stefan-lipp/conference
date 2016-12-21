@@ -1,0 +1,12 @@
+@import 'variables';
+@import 'breakpoints';
+@import 'material/index';
+@import 'general';
+@import 'components/index';
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eee;
+    font-family: $font-family;
+}

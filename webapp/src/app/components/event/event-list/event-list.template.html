@@ -1,0 +1,40 @@
+<md-card *ngFor="let event of events">
+
+  <div *ngIf="event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+
+  <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
+  <md-card-content>
+    <dl>
+      <dt *ngIf="event.paper && event.paper.keywords">Keywords:</dt>
+        <dd *ngIf="event.paper && event.paper.keywords">{{ event.paper.keywords }}</dd>
+      <dt *ngIf="event.room">Room:</dt>
+        <dd *ngIf="event.room">{{ event.room }}</dd>
+      <dt *ngIf="event.startTime && event.startTime.isValid()">Starts:</dt>
+        <dd *ngIf="event.startTime && event.startTime.isValid()">{{ formatTime(event.startTime) }}</dd>
+      <dt *ngIf="event.endTime && event.endTime.isValid()">Ends:</dt>
+        <dd *ngIf="event.endTime  && event.endTime.isValid()">{{ formatTime(event.endTime) }}</dd>
+    </dl>
+  </md-card-content>
+  <md-card-actions align="end">
+    <a
+      md-button
+      color="accent"
+      (click)="displayEventview(event)"
+    >Details</a>
+    <button
+      *ngIf="!event.favored"
+      md-button
+      color="accent"
+      (click)="onFavouriteStateChange.emit([event, true])"
+    >
+      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+    </button>
+    <button
+      *ngIf="event.favored"
+      md-button color="accent"
+      (click)="onFavouriteStateChange.emit([event, false])"
+    >
+      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+    </button>
+  </md-card-actions>
+</md-card>

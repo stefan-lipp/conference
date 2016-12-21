@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+tr {
+    border-bottom: thin solid md-color($md-grey, 500);
+
+    &:first-of-type {
+        border-top: thin solid md-color($md-grey, 500);
+    }
+
+    &:hover {
+        background-color: md-color($md-grey, 200);
+    }
+}
+
+td, th {
+    padding: 1em;
+    text-align: left;
+}
+
+th {
+    font-weight: normal;
+    color: md-color($md-grey, 800);
+}

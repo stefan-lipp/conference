@@ -1,0 +1,60 @@
+<div class="container-wrapper">
+  <md-card class="container">
+    <form [formGroup]="form" class="login-form" (submit)="onSubmit(form.value)">
+      <label class="columns">
+        <md-input
+          type="email"
+          placeholder="E-mail address"
+          formControlName="email"
+          class="column col-12"
+          [class.invalid]="form.controls['email'].dirty && form.controls['email'].invalid"
+        ></md-input>
+        <ul
+          *ngIf="form.controls['email'].dirty && form.controls['email'].errors"
+          class="form-error"
+        >
+          <li *ngIf="form.controls['email'].errors.required">
+            Email is required.
+          </li>
+        </ul>
+      </label>
+
+      <label class="columns">
+        <md-input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          class="column col-12"
+          [class.invalid]="form.controls['password'].dirty && form.controls['password'].invalid"
+        ></md-input>
+        <ul
+          *ngIf="form.controls['password'].dirty && form.controls['password'].errors"
+          class="form-error"
+        >
+          <li *ngIf="form.controls['password'].errors.required">
+            Password is required.
+          </li>
+        </ul>
+      </label>
+
+      <ul
+        *ngIf="globalErrors.length"
+        class="columns form-error"
+      >
+        <li *ngFor="let error of globalErrors">
+          {{ error.message }}
+        </li>
+      </ul>
+
+      <div class="columns">
+        <button
+          class="col col-12 col-portrait-6 col-portrait-push-6"
+          md-raised-button
+          color="accent"
+          type="submit"
+          [disabled]="form.invalid"
+        >Login</button>
+      </div>
+    </form>
+  </md-card>
+</div>
