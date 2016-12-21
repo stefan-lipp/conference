@@ -6,6 +6,10 @@ import {
 
 import { ConferenceEvent } from '../../../models';
 import { EventService } from '../../../services';
+import {
+  CalendarEvent,
+  CalendarTrack,
+} from '../../ui-elements/calendar';
 
 @Component({
   selector: 'conference-event-overview',
@@ -54,6 +58,26 @@ export class EventOverviewComponent implements OnInit {
   /** Getter for allEvents */
   public get events (): ConferenceEvent[] {
     return this.allEvents;
+  }
+
+  /** @return Calendar Track representation of the events */
+  public get tracks (): CalendarTrack[] {
+    // TODO convert events into calendar tracks
+    return [ {
+        color: '#fff',
+        backgroundColor: '#03a9f4',
+        isDisplayed: true,
+        events: this.events
+          .filter(e =>
+            Boolean(e.startTime) && e.startTime.isValid() &&
+            Boolean(e.endTime) && e.endTime.isValid()
+          )
+          .map(e => <CalendarEvent> Object({
+            title: e.title,
+            startTime: e.startTime,
+            endTime: e.endTime,
+          })),
+      } ];
   }
 
   /**

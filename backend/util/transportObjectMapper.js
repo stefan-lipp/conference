@@ -15,7 +15,7 @@ function toPaperTO (paperInstance) {
   return {
     id: paperInstance.id,
     title: paperInstance.titel,
-    authors: paperInstance.authors.map(toAuthorTO),
+    authors: (paperInstance.authors || [ ]).map(toAuthorTO),
     keywords: paperInstance.keywords,
     abstract: paperInstance.abstract,
     link: paperInstance.link,
@@ -44,6 +44,17 @@ function toPersonTO (personInstance) {
  * Maps a instance of the Event database model to a Event transport object
  */
 function toEventTO (eventInstance) {
+  // duration comes in the format HH:mm:ss
+  const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d));
+  if (durationArr.length !== 3) {
+    throw 'Invalid duration format in event instance';
+  }
+  const duration = durationArr[0] * 60 + durationArr[1];
+
+  const startTime = eventInstance.starttime ?
+    moment(eventInstance.starttime).tz('Europe/Berlin') :
+    null;
+
   return {
     id: eventInstance.id,
     title: ((eventInstance.paper && eventInstance.paper.title) ||
@@ -51,9 +62,9 @@ function toEventTO (eventInstance) {
       '<untitled event>'),
     paper: toPaperTO(eventInstance.paper),
     roomName: eventInstance.roomname,
-    startTime: moment(eventInstance.starttime).tz('Europe/Berlin').format('MM-DD-YYYY HH:mm'),
-    endTime: null, // TODO
-    duration: eventInstance.duration, // TODO
+    startTime: startTime ? startTime.format() : null,
+    endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
+    duration: duration,
     maxSize: eventInstance.maxsize,
     kind: eventInstance.kind,
     favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),

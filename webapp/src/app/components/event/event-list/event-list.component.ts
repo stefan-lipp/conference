@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 import {
   Component,
   Input,
@@ -38,6 +40,10 @@ export class EventListComponent  {
     });
 
     dialogRef.componentInstance.event = event;
+  }
+
+  public formatTime (time: moment.Moment): string {
+    return time.format('MMM Do, HH:mm');
   }
 
 }
