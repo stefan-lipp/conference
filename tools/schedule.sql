@@ -1,2 +1,2 @@
-﻿UPDATE event as e set starttime = ts.start from scheduler_helper ts where ts.eventid=e.id;
-UPDATE event as e set roomname = r.roomname from roomer_helper r where r.eventid=e.id;
+UPDATE event AS e SET starttime = ts.start FROM scheduler_helper ts WHERE ts.eventid=e.id;
+UPDATE event AS e SET roomname = r.roomname from roomer_helper r WHERE r.eventid=e.id;
