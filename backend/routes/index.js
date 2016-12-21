@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
-
+/**
+ * Subroutes under /
+ */
 function apiSubroutes (app) {
 
-  app.subroute('/', (app) => {
+  app.subroute('/', (subrouteApp) => {
 
-    app.get(function(req, res, next) {
+    subrouteApp.get((req, res) => {
       res.json({
         success: true,
         env: process.env.ENV,

@@ -1,28 +1,28 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('conference',{
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define('conference', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    fromdate: {
+    fromDate: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,
     },
-    untildate: {
+    untilDate: {
       type: DataTypes.DATEONLY,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   });
 };

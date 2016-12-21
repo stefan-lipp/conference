@@ -1,88 +1,88 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
-  const Event = sequelize.define('event',{
+module.exports = function (sequelize, DataTypes) {
+  const Event = sequelize.define('event', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
-    sessionid: {
+    sessionId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: "session",
-        key: "id",
+        model: 'session',
+        key: 'id',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-      }
+      },
     },
-    paperid: {
+    paperId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: "paper",
-        key: "id",
+        model: 'paper',
+        key: 'id',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-      }
+      },
     },
     roomname: {
       type: DataTypes.STRING,
       allowNull: true,
       references: {
-        model: "room",
-        key: "name",
+        model: 'room',
+        key: 'name',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-      }
+      },
     },
     alias: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     duration: {
       type: DataTypes.TIME,
-      allowNull: false
+      allowNull: false,
     },
-    starttime: {
+    startTime: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     kind: {
       type: DataTypes.STRING,
       allowNull: true,
-      references:{
-        model: "kind",
-        key: "name",
+      references: {
+        model: 'kind',
+        key: 'name',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-      }
+      },
     },
-    isexclusive: {
+    isExclusive: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
     },
-    maxsize: {
+    maxSize: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
-    conferenceid: {
+    conferenceId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "conference",
-        key: "id",
+        model: 'conference',
+        key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   }, {
     classMethods: {
       associate: (models) => {
-        Event.belongsTo(models.paper, { foreignKey: 'paperid' });
-        Event.hasMany(models.favorite, { foreignKey: 'eventid' });
-      }
+        Event.belongsTo(models.paper, { foreignKey: 'paperId' });
+        Event.hasMany(models.favorite, { foreignKey: 'eventId' });
+      },
     },
   });
   return Event;

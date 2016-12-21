@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('room', {
     name: {
       type: DataTypes.STRING,
-    primaryKey: true
+      primaryKey: true,
     },
     size: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
-    conferenceid: {
+    conferenceId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -18,8 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   });
-  return Room;
 };
