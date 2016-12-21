@@ -1,0 +1,1 @@
+﻿Update event set roomname = NULL, starttime = NULL;
