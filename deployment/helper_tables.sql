@@ -1,4 +1,4 @@
-CREATE TABLE schduler_helper_favoritestemp
+CREATE TABLE scheduler_helper_favoritestemp
 (
   personid uuid,
   eventid integer
