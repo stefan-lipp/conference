@@ -1,7 +1,10 @@
 import * as moment from 'moment';
 import * as _ from 'lodash';
 
-import { Paper } from './paper.model';
+import {
+  Paper,
+  ApiPaper,
+} from './paper.model';
 
 /**
  * Event model.
@@ -35,7 +38,7 @@ export class ConferenceEvent {
       title: apiRepresentation.title,
       duration: apiRepresentation.duration,
       favored: apiRepresentation.favored,
-      paper: apiRepresentation.paper,
+      paper: Paper.fromAPI(apiRepresentation.paper),
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],
@@ -80,7 +83,7 @@ export enum EventType {
 export interface ApiConferenceEvent {
   id: number;
   title: string;
-  paper?: any;
+  paper: ApiPaper;
   roomName?: string;
   startTime?: string;
   endTime?: string;
