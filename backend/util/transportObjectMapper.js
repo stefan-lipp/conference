@@ -63,7 +63,7 @@ function toEventTO (eventInstance) {
     paper: toPaperTO(eventInstance.paper),
     roomName: eventInstance.roomname,
     startTime: startTime ? startTime.format() : null,
-    endTime: startTime ? startTime.add(duration, 'minutes') : null,
+    endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
     duration: duration,
     maxSize: eventInstance.maxsize,
     kind: eventInstance.kind,

@@ -14,7 +14,7 @@ export interface CalendarEvent {
 export interface CalendarTrack {
   color: string;
   backgroundColor: string;
-  display: boolean;
+  isDisplayed: boolean;
   events: CalendarEvent[];
 }
 
@@ -54,29 +54,41 @@ export class CalendarComponent {
    * @return {CalendarTrack[]}
    */
   public get visibleTracks (): CalendarTrack[] {
-    return !this.tracks ? [ ] : this.tracks
-      .filter(t => t.display)
-      .map(t => Object({
-          color: t.color,
-          backgroundColor: t.backgroundColor,
-          display: t.display,
-          events: t.events.filter(e => this.inTimeframe(e)),
-        })
-      )
-      .filter(t => t.events.length > 0);
+    if (!this.tracks) {
+      return [ ];
+    } else {
+      return this.tracks
+        .filter(t => t.isDisplayed)
+        .map(t => Object({
+            color: t.color,
+            backgroundColor: t.backgroundColor,
+            display: t.isDisplayed,
+            events: t.events.filter(e => this.inTimeframe(e)),
+          })
+        )
+        .filter(t => t.events.length > 0);
+    }
   }
 
   /**
-   * Changes the current day to the previous day.
+   * Moves the current timeframe-viewport a given amount of timeframe to the past
+   *
+   * @param {number} amount Number of timeframes to step into the past
+   * @param {TimeFrame} unit Type/size of timeframe step
+   * @return {void}
    */
-  public goToPast (amount: number = 1, unit: Timeframe = this.viewportTimeframe) {
+  public goToPast (amount: number = 1, unit: Timeframe = this.viewportTimeframe): void {
     this.selectedDay.subtract(amount, unit);
   }
 
   /**
-   * Changes the current day to the next day.
+   * Moves the current timeframe-viewport one timeframe to the future
+   *
+   * @param {number} amount Number of timeframes to step into the past
+   * @param {TimeFrame} unit Type/size of timeframe step
+   * @return {void}
    */
-  public goToFuture (amount: number = 1, unit: Timeframe = this.viewportTimeframe) {
+  public goToFuture (amount: number = 1, unit: Timeframe = this.viewportTimeframe): void {
     this.selectedDay.add(amount, unit);
   }
 

@@ -29,7 +29,7 @@ export class MyScheduleComponent implements OnInit {
       this.tracks = [ {
         color: '#fff',
         backgroundColor: '#03a9f4',
-        display: true,
+        isDisplayed: true,
         events: events
           .filter(e =>
             Boolean(e.startTime) && e.startTime.isValid() &&

@@ -60,11 +60,13 @@ export class EventOverviewComponent implements OnInit {
     return this.allEvents;
   }
 
+  /** @return Calendar Track representation of the events */
   public get tracks (): CalendarTrack[] {
+    // TODO convert events into calendar tracks
     return [ {
         color: '#fff',
         backgroundColor: '#03a9f4',
-        display: true,
+        isDisplayed: true,
         events: this.events
           .filter(e =>
             Boolean(e.startTime) && e.startTime.isValid() &&
