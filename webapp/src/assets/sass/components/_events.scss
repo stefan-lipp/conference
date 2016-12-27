@@ -66,6 +66,10 @@ conference-event-view {
       transform: scale(.5) translate(50%, -50%);
     }
 
+    &.favor-indicator--sm {
+      transform: scale(.5) translate(50%, -50%);
+    }
+
     &::before, &::after {
         display: block;
         position: absolute;

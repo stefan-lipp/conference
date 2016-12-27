@@ -1,11 +1,7 @@
-conference-calendar, conference-session-calendar {
+conference-event-calendar {
     background: #fff;
     display: block;
     position: relative;
-}
-
-conference-calendar {
-    height: 100%;
 }
 
 .scroll-wrapper {
@@ -111,6 +107,7 @@ conference-calendar {
 .calendar-event-title,
 .calendar-event-time {
     display: block;
+    font-size: .5rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -33,6 +33,7 @@ import {
 // Components
 import {
   CalendarComponent,
+  EventCalendarComponent,
   EventListComponent,
   EventOverviewComponent,
   EventViewComponent,
@@ -70,6 +71,7 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
+    EventCalendarComponent,
     CalendarComponent,
     EventListComponent,
     EventOverviewComponent,
