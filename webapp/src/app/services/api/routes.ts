@@ -9,4 +9,7 @@ export const API_ROUTES = {
     favorite: `${API_BASE_URL}/events/favorites/:eventid`,
     favorites: `${API_BASE_URL}/events/favorites`,
   },
+  person: {
+    byId: `${API_BASE_URL}/persons/:personId`,
+  },
 };

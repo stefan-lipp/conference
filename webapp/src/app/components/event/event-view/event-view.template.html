@@ -75,7 +75,7 @@
   <h5 *ngIf="event.paper.authors && event.paper.authors.length==1">Author</h5>
   <h5 *ngIf="event.paper.authors && event.paper.authors.length>1">Authors</h5>
   <ul class="paper-authors">
-    <li *ngFor="let author of event.paper.authors">{{ author.name }}</li>
+    <li *ngFor="let author of event.paper.authors"><a routerLink="{{'/person/'+author.id}}">{{ author.name }}</a></li>
   </ul>
 
   <h5 *ngIf="event.paper.tag">Tag</h5>

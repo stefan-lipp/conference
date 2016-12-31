@@ -1,0 +1,33 @@
+<md-card>
+  <md-card-title>
+    <h2>{{ person.name }}</h2>
+  </md-card-title>
+  <md-card-content>
+    <dl>
+      <dt> Email: </dt><dd>{{ person.email }}</dd>
+    <dt *ngIf="person.website"> Website: </dt><dd *ngIf="person.website">{{ person.website }}</dd>
+    </dl>
+  </md-card-content>
+</md-card>
+<md-card>
+  <md-card-title>
+    Papers
+  </md-card-title>
+  <md-card-content>
+    <dl>
+      <dt> Email: </dt>
+        <dd>{{ person.email }}</dd>
+    </dl>
+  </md-card-content>
+</md-card>
+<md-card>
+  <md-card-title>
+    Talks
+  </md-card-title>
+  <md-card-content>
+    <dl>
+      <dt> Email: </dt>
+        <dd>{{ person.email }}</dd>
+    </dl>
+  </md-card-content>
+</md-card>

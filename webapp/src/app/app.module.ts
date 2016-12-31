@@ -25,6 +25,8 @@ import {
   ApiMapperService,
   EventService,
   EventResolver,
+  PersonService,
+  PersonResolver,
 } from './services';
 
 // Components
@@ -38,6 +40,7 @@ import {
   MyScheduleComponent,
   NavigationComponent,
   NoContentComponent,
+  PersonViewComponent,
   RegisterComponent,
 } from './components';
 
@@ -72,6 +75,7 @@ type StoreType = {
     LoginComponent,
     NavigationComponent,
     NoContentComponent,
+    PersonViewComponent,
     RegisterComponent,
   ],
   entryComponents: [
@@ -97,6 +101,8 @@ type StoreType = {
     ApiMapperService,
     EventService,
     EventResolver,
+    PersonService,
+    PersonResolver,
   ],
 })
 export class AppModule {

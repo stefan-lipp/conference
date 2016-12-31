@@ -35,6 +35,7 @@ function toAuthorTO (authorInstance) {
  */
 function toPersonTO (personInstance) {
   return {
+    id: personInstance.id,
     name: personInstance.name,
     email: personInstance.email,
   };
@@ -72,6 +73,7 @@ function toEventTO (eventInstance) {
 }
 
 module.exports = {
-  toPaperTO: toPaperTO,
   toEventTO: toEventTO,
+  toPaperTO: toPaperTO,
+  toPersonTO: toPersonTO,
 };
