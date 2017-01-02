@@ -34,4 +34,5 @@ function personSubroutes (app) {
     });
   });
 
+}
 module.exports = personSubroutes;
