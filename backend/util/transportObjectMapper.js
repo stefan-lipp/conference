@@ -12,13 +12,13 @@ const moment = require('moment');
  * Maps a instance of the Paper database model to a Paper transport object
  */
 function toPaperTO (paperInstance) {
-  return {
+   return {
     id: paperInstance.id,
-    title: paperInstance.titel,
+    title: paperInstance.title,
     authors: (paperInstance.authors || [ ]).map(toAuthorTO),
     keywords: paperInstance.keywords,
     abstract: paperInstance.abstract,
-    link: paperInstance.link,
+    link: paperInstance.url,
     tag: paperInstance.tag,
   }
 }
@@ -61,7 +61,7 @@ function toEventTO (eventInstance) {
     title: ((eventInstance.paper && eventInstance.paper.title) ||
       eventInstance.alias ||
       '<untitled event>'),
-    paper: toPaperTO(eventInstance.paper),
+    paper: eventInstance.paper?toPaperTO(eventInstance.paper):null,
     roomName: eventInstance.roomname,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,

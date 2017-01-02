@@ -1,10 +1,17 @@
 import {
   Component,
   OnInit,
+  Input,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+} from '@angular/router';
 
-import { Person } from '../../../models';
+import {
+  Paper,
+  Person,
+  ConferenceEvent,
+} from '../../../models';
 import { PersonService } from '../../../services';
 
 @Component({
@@ -14,14 +21,27 @@ import { PersonService } from '../../../services';
 })
 export class PersonViewComponent implements OnInit {
 
+  @Input()
   public person: Person;
+  @Input()
+  public papers: Paper[];
+  @Input()
+  public talks: ConferenceEvent[];
 
   constructor (
     private route: ActivatedRoute,
     private personService: PersonService,
-  ) { }
+  ) {
+    this.route.data.subscribe(data => {
+      this.person = data['person'];
+      this.papers = data['papers'];
+      this.talks = data['talks'];
+    });
+  }
 
   ngOnInit() {
     this.person = this.route.snapshot.data['person'];
+    this.papers = this.route.snapshot.data['papers'];
+    this.talks = this.route.snapshot.data['talks'];
   }
 }

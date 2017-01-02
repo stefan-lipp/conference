@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('speaker',{
+  const Speaker = sequelize.define('speaker',{
     eventid: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -22,5 +22,10 @@ module.exports = function(sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       }
     }
+  }, {
+    classMethods: {
+      associate: (models) => Speaker.belongsTo(models.event, { foreignKey: 'eventid' }),
+    },
   });
+  return Speaker;
 };

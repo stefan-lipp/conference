@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
 
 import { PersonViewComponent } from './person-view';
-import { PersonResolver } from '../../services';
+import {
+  PersonResolver,
+  PaperByAuthorResolver,
+  EventBySpeakerResolver,
+} from '../../services';
 
 
 export const PERSON_ROUTES: Routes = [
@@ -10,6 +14,8 @@ export const PERSON_ROUTES: Routes = [
     component: PersonViewComponent,
     resolve: {
       person: PersonResolver,
+      papers: PaperByAuthorResolver,
+      talks: EventBySpeakerResolver,
     },
   },
 ];

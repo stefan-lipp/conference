@@ -32,7 +32,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     classMethods: {
-      associate: (models) => Person.hasMany(models.author, { foreignKey: 'personid' }),
+      associate: (models) => {
+        Person.hasMany(models.author, { foreignKey: 'personid' });
+      }
     },
   });
   return Person;
