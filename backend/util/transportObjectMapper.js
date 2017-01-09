@@ -45,9 +45,10 @@ function toPaperTO (paperInstance) {
  */
 function toEventTO (eventInstance) {
   // Duration comes in the format HH:mm:ss
-  const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d));
-  if (durationArr.length !== 3) {
-    throw 'Invalid duration format in event instance';
+  const DURATION_NUM_BLOCK_COUNT = 3;
+  const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d, 10));
+  if (durationArr.length !== DURATION_NUM_BLOCK_COUNT) {
+    throw new Error('Invalid duration format in event instance');
   }
   const duration = (durationArr[0] * 60) + durationArr[1];
 

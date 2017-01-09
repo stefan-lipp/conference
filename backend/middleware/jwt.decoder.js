@@ -18,13 +18,11 @@ function decodeJwt (req, res, next) {
           type: JWT_ERRORS.INVALID_TOKEN,
           message: 'Invalid token.',
         });
-      } else {
-        // All good
-        req.decoded = decoded;
-        return next();
       }
+      // All good
+      req.decoded = decoded;
+      return next();
     });
-
   } else {
     // No token? Move on
     return next();

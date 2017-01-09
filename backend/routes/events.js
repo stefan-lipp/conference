@@ -77,12 +77,12 @@ function eventSubroutes (app) {
         const eventId = (req.params && req.params.eventId);
         const personId = (req.decoded && req.decoded.personId);
 
-        if (personId == null) {
+        if (!personId) {
           res.status(401).json(new Errors.UnauthorizedError());
           return;
         }
 
-        if (eventId == null) {
+        if (!eventId) {
           // TODO proper error
           res.status(400).send();
           return;
@@ -104,12 +104,12 @@ function eventSubroutes (app) {
         const eventId = (req.params && req.params.eventId);
         const personId = (req.decoded && req.decoded.personId);
 
-        if (personId == null) {
+        if (!personId) {
           res.status(401).json(new Errors.UnauthorizedError());
           return;
         }
 
-        if (eventId == null) {
+        if (!eventId) {
           // TODO proper error
           res.status(400).send();
           return;

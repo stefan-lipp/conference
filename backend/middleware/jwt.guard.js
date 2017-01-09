@@ -16,10 +16,9 @@ function guardJwt (req, res, next) {
           type: JWT_ERRORS.INVALID_TOKEN,
           message: 'Invalid token.',
         });
-      } else {
-        // All good
-        return next();
       }
+      // All good
+      return next();
     });
 
   } else {
