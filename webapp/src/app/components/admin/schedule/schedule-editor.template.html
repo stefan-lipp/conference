@@ -1,0 +1,40 @@
+<div class="wrapper columns col-gapless">
+  <div class="column col-3 rows">
+    <div class="track-list row row-6">
+      <h4>Tracks</h4>
+      <ul>
+        <li
+          *ngFor="let track of tracks"
+          [style.background-color]="track.backgroundColor"
+          [style.color]="track.color"
+          [class.active]="selectedTrack === track"
+          (click)="selectTrack(track)"
+          class="track"
+        >{{ track.name }}</li>
+      </ul>
+      <button
+        class="new-track-button"
+        (click)="addTrack()"
+      ><md-icon>add</md-icon></button>
+    </div>
+    <div class="track-editor row row-6">
+      <div *ngIf="selectedTrack">
+        <conference-track-editor [track]="selectedTrack"></conference-track-editor>
+        <button
+          md-button
+          class="col-6 col-push-6 delete-track-button"
+          (click)="deleteTrack(track)"
+        >
+          <md-icon>delete</md-icon>
+          Delete Track
+        </button>
+      </div>
+      <div *ngIf="!selectedTrack" class="empty">
+        Select a track above
+      </div>
+    </div>
+  </div>
+  <div class="calendar column col-9">
+    <conference-calendar></conference-calendar>
+  </div>
+</div>

@@ -14,7 +14,7 @@ conference-event-list {
         display: flex;
         flex-direction: column;
 
-        @include respond-to(md) {
+        @include breakpoint(md) {
             width: inital;
             flex: 1 0 20em;
         }

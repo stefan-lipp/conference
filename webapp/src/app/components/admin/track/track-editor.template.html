@@ -1,0 +1,31 @@
+<div *ngIf="!track">
+  No track selected
+</div>
+<div *ngIf="track">
+  <form>
+    <label>
+      Track Name:
+      <input
+        type="text"
+        [(ngModel)]="track.name"
+        name="name"
+      >
+    </label>
+    <label>
+      Background Colour:
+      <input
+        type="color"
+        [(ngModel)]="track.backgroundColor"
+        name="backgroundColor"
+      >
+    </label>
+    <label>
+      Foreground Colour:
+      <input
+        type="color"
+        [(ngModel)]="track.color"
+        name="color"
+      >
+    </label>
+  </form>
+</div>

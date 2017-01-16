@@ -20,6 +20,8 @@ import { AppState, InternalStateType } from './app.service';
 
 // Services
 import {
+  AdminGuard,
+  AuthGuard,
   AuthService,
   ApiService,
   ApiMapperService,
@@ -39,6 +41,8 @@ import {
   NavigationComponent,
   NoContentComponent,
   RegisterComponent,
+  ScheduleEditorComponent,
+  TrackEditorComponent,
 } from './components';
 
 // Directives
@@ -73,6 +77,8 @@ type StoreType = {
     NavigationComponent,
     NoContentComponent,
     RegisterComponent,
+    ScheduleEditorComponent,
+    TrackEditorComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -92,6 +98,8 @@ type StoreType = {
       headerName: 'x-access-token',
       noTokenScheme: true,
     }),
+    AdminGuard,
+    AuthGuard,
     AuthService,
     ApiService,
     ApiMapperService,
