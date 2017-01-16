@@ -6,7 +6,8 @@
   <md-card-content>
     <div *ngIf="event.paper">
       <span class="paper-author" *ngFor="let author of event.paper.authors">
-        {{ author.name }} ({{ author.institution }})
+        <span class="author-name">{{ author.name }}</span>
+        <span class="author-institution" *ngIf="author.institution">({{ author.institution }})</span>
       </span>
     </div>
     <dl>

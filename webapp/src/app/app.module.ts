@@ -40,6 +40,7 @@ import {
   NavigationComponent,
   NoContentComponent,
   RegisterComponent,
+  SessionCalendarComponent,
   SessionListComponent,
   SessionOverviewComponent,
 } from './components';
@@ -76,6 +77,7 @@ type StoreType = {
     NavigationComponent,
     NoContentComponent,
     RegisterComponent,
+    SessionCalendarComponent,
     SessionListComponent,
     SessionOverviewComponent,
   ],

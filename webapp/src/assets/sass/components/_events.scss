@@ -52,6 +52,9 @@ conference-event-view {
     text-align: center;
     box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
 
+    &.favor-indicator--sm {
+      transform: scale(.5) translate(50%, -50%);
+    }
 
     &::before, &::after {
         display: block;

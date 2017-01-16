@@ -36,7 +36,14 @@ export class SessionService {
    */
   public getAll (): Observable<ConferenceSession[]> {
     return this.httpService.get(API_ROUTES.sessions.all)
-      .map(res => res.json().map(ConferenceSession.fromAPI));
+      .map(res => res.json())
+      .map(list => list.map(this.apiMapperService.sessionApiToLocal));
+  }
+
+  public getFavorites (): Observable<ConferenceSession[]> {
+    return this.httpService.get(API_ROUTES.sessions.all)
+      .map(res => res.json())
+      .map(list => list.map(this.apiMapperService.sessionApiToLocal));
   }
 
 }

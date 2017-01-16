@@ -1,6 +1,6 @@
 <div class="calendar-viewport-title">
   <button md-button (click)="goToPast()"><i class="material-icons">navigate_before</i></button>
-  {{ selectedDay.format("MMMM Do YYYY") }}
+  <span>{{ selectedDay.format("MMMM Do YYYY") }}</span>
   <button md-button (click)="goToFuture()"><i class="material-icons">navigate_next</i></button>
 </div>
 <div class="scroll-wrapper">
@@ -29,7 +29,12 @@
           [style.left]="getLeftPercentage(event) + '%'"
           [style.right]="getRightPercentage(event) + '%'"
         >
-          <span class="calendar-event-title">{{ event.title }}</span>
+          <template
+            *ngIf="eventTemplate"
+            [ngTemplateOutlet]="eventTemplate"
+            [ngOutletContext]="{ $implicit: event }"
+          ></template>
+          <span *ngIf="!eventTemplate">{{ event.title }}</span>
         </div>
       </div>
     </div>

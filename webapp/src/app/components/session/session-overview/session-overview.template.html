@@ -18,8 +18,8 @@
     <md-spinner *ngIf="loading"></md-spinner>
   </md-tab>
   <md-tab label="Calendar">
-    <conference-calendar
-      [tracks]="tracks"
-    ></conference-calendar>
+    <conference-session-calendar
+      [sessions]="selectedSessions"
+    ></conference-session-calendar>
   </md-tab>
 </md-tab-group>
