@@ -6,12 +6,12 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { ConferenceEvent } from '../../../models/conference-event.model';
 import { AuthService } from '../../../services';
 
 import { EventViewOverlayComponent } from '../event-view/event-view-overlay.component';
-import { MdDialog } from '@angular/material';
 
 @Component({
   selector: 'conference-event-list',
@@ -27,6 +27,7 @@ export class EventListComponent  {
   public events: ConferenceEvent[] = [ ];
 
   constructor (
+    public authService: AuthService,
     private dialog: MdDialog,
     public authService: AuthService,
   ) { }
@@ -42,10 +43,6 @@ export class EventListComponent  {
     });
 
     dialogRef.componentInstance.event = event;
-  }
-
-  public formatTime (time: moment.Moment): string {
-    return time.format('MMM Do, HH:mm');
   }
 
 }

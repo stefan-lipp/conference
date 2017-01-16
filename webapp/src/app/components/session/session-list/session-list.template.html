@@ -1,0 +1,46 @@
+<md-card *ngFor="let session of sessions">
+
+  <div *ngIf="session.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+
+  <md-card-title>{{ session.title }}</md-card-title>
+  <md-card-content>
+    <dl>
+      <dt>Location:</dt>
+        <dd>{{ session.room }}</dd>
+      <dt>Starts:</dt>
+        <dd>{{ formatTime(session.startTime) }}</dd>
+      <dt>Ends:</dt>
+        <dd>{{ formatTime(session.endTime) }}</dd>
+      <dt>Session Chair:</dt>
+        <dd>{{ session.chair.name }}</dd>
+    </dl>
+    <ul class="paper-list">
+      <li *ngFor="let event of session.events">
+        <h5>{{ event.title }}</h5>
+        <div *ngIf="event.paper">
+          <span class="paper-author" *ngFor="let author of event.paper.authors">
+            <span class="author-name">{{ author.name }}</span>
+            <span class="author-institution" *ngIf="author.institution">({{ author.institution }})</span>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </md-card-content>
+  <md-card-actions align="end">
+    <button
+      *ngIf="authService.loggedIn && !session.favored"
+      md-button
+      color="accent"
+      (click)="onFavouriteStateChange.emit([session, true])"
+    >
+      Add to my schedule
+    </button>
+    <button
+      *ngIf="authService.loggedIn && session.favored"
+      md-button color="accent"
+      (click)="onFavouriteStateChange.emit([session, false])"
+    >
+      Remove from my schedule
+    </button>
+  </md-card-actions>
+</md-card>

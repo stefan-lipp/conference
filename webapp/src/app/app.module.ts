@@ -25,6 +25,7 @@ import {
   ApiMapperService,
   EventService,
   EventResolver,
+  SessionService,
 } from './services';
 
 // Components
@@ -39,6 +40,8 @@ import {
   NavigationComponent,
   NoContentComponent,
   RegisterComponent,
+  SessionListComponent,
+  SessionOverviewComponent,
 } from './components';
 
 // Directives
@@ -73,6 +76,8 @@ type StoreType = {
     NavigationComponent,
     NoContentComponent,
     RegisterComponent,
+    SessionListComponent,
+    SessionOverviewComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -97,6 +102,7 @@ type StoreType = {
     ApiMapperService,
     EventService,
     EventResolver,
+    SessionService,
   ],
 })
 export class AppModule {

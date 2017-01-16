@@ -4,15 +4,14 @@
 
   <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
   <md-card-content>
+    <div *ngIf="event.paper">
+      <span class="paper-author" *ngFor="let author of event.paper.authors">
+        {{ author.name }} ({{ author.institution }})
+      </span>
+    </div>
     <dl>
       <dt *ngIf="event.paper && event.paper.keywords">Keywords:</dt>
         <dd *ngIf="event.paper && event.paper.keywords">{{ event.paper.keywords }}</dd>
-      <dt *ngIf="event.room">Room:</dt>
-        <dd *ngIf="event.room">{{ event.room }}</dd>
-      <dt *ngIf="event.startTime && event.startTime.isValid()">Starts:</dt>
-        <dd *ngIf="event.startTime && event.startTime.isValid()">{{ formatTime(event.startTime) }}</dd>
-      <dt *ngIf="event.endTime && event.endTime.isValid()">Ends:</dt>
-        <dd *ngIf="event.endTime  && event.endTime.isValid()">{{ formatTime(event.endTime) }}</dd>
     </dl>
   </md-card-content>
   <md-card-actions align="end">

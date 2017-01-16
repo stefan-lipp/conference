@@ -10,8 +10,8 @@
           <a md-menu-item (click)="authService.logout('/events')">Logout</a>
         </span>
         <span *ngIf="!authService.loggedIn">
-          <a md-menu-item routerLink="/my-schedule">Schedule</a>
           <a md-menu-item routerLink="/login">Login</a>
+          <a md-menu-item routerLink="/register">Register</a>
         </span>
       </md-menu>
 

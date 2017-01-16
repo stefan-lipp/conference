@@ -13,6 +13,6 @@ export class ApiService {
     private http: Http,
     private authHttp: AuthHttp,
     private apiMapper: ApiMapperService,
-  ) {}
+  ) { }
 
 }

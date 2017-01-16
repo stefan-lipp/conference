@@ -1,0 +1,25 @@
+<div class="search-bar">
+  <md-input
+    #search
+    type="text"
+    placeholder="Search..."
+    floatingPlaceholder="false"
+    [(ngModel)]="filterQuery"
+    (input)="filter()"
+  >
+  </md-input>
+</div>
+<md-tab-group>
+  <md-tab label="List">
+    <conference-session-list
+      [sessions]="selectedSessions"
+      (onFavouriteStateChange)="setFavouriteState($event)"
+    ></conference-session-list>
+    <md-spinner *ngIf="loading"></md-spinner>
+  </md-tab>
+  <md-tab label="Calendar">
+    <conference-calendar
+      [tracks]="tracks"
+    ></conference-calendar>
+  </md-tab>
+</md-tab-group>
