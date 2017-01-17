@@ -14,6 +14,9 @@ export class Paper {
   public tag?: string;
 
   public static fromAPI (apiRepresentation: ApiPaper): Paper {
+    if (!apiRepresentation) {
+      return null;
+    }
     const keywordArray = apiRepresentation.keywords.split(',');
     return {
       id: apiRepresentation.id,

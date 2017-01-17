@@ -60,7 +60,7 @@ function toEventTO (eventInstance) {
     title: ((eventInstance.paper && eventInstance.paper.title) ||
       eventInstance.alias ||
       '<untitled event>'),
-    paper: toPaperTO(eventInstance.paper),
+    paper: eventInstance.paper ? toPaperTO(eventInstance.paper) : null,
     roomName: eventInstance.roomname,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
