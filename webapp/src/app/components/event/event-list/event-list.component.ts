@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { ConferenceEvent } from '../../../models/conference-event.model';
+import { AuthService } from '../../../services';
 
 import { EventViewOverlayComponent } from '../event-view/event-view-overlay.component';
 import { MdDialog } from '@angular/material';
@@ -27,6 +28,7 @@ export class EventListComponent  {
 
   constructor (
     private dialog: MdDialog,
+    public authService: AuthService,
   ) { }
 
   /**
