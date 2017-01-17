@@ -21,20 +21,22 @@
       color="accent"
       (click)="displayEventview(event)"
     >Details</a>
-    <button
-      *ngIf="!event.favored"
-      md-button
-      color="accent"
-      (click)="onFavouriteStateChange.emit([event, true])"
-    >
-      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
-    </button>
-    <button
-      *ngIf="event.favored"
-      md-button color="accent"
-      (click)="onFavouriteStateChange.emit([event, false])"
-    >
-      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
-    </button>
+    <span *ngIf="authService.loggedIn">
+      <button
+        *ngIf="!event.favored"
+        md-button
+        color="accent"
+        (click)="onFavouriteStateChange.emit([event, true])"
+      >
+        {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+      </button>
+      <button
+        *ngIf="event.favored"
+        md-button color="accent"
+        (click)="onFavouriteStateChange.emit([event, false])"
+      >
+        {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+      </button>
+    </span>
   </md-card-actions>
 </md-card>
