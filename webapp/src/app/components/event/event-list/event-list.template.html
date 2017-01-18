@@ -20,6 +20,7 @@
       md-button
       color="accent"
       (click)="displayEventview(event)"
+      [routerLink]="[ '/events', event.id ]"
     >Details</a>
     <span *ngIf="authService.loggedIn">
       <button
