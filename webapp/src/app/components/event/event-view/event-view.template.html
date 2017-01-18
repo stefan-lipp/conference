@@ -1,4 +1,4 @@
-<div *ngIf="event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+<div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 <h2>{{ event.title }}</h2>
 <h3 *ngIf="event.speaker">{{ event.speaker }}</h3>
 <h4>{{ event.eventType }}</h4>
@@ -32,22 +32,23 @@
 </table>
 
 <div class="align-right">
-  <button
-    *ngIf="!event.favored"
-    md-raised-button
-    color="accent"
-    (click)="setFavorState(event, true)"
-  >
-    {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
-  </button>
-  <button
-    *ngIf="event.favored"
-    md-raised-button
-    color="accent"
-    (click)="setFavorState(event, false)"
-  >
-    {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
-  </button>
+  <span *ngIf="authService.loggedIn">
+    <button
+      *ngIf="!event.favored"
+      md-button
+      color="accent"
+      (click)="onFavouriteStateChange.emit([event, true])"
+    >
+      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+    </button>
+    <button
+      *ngIf="event.favored"
+      md-button color="accent"
+      (click)="onFavouriteStateChange.emit([event, false])"
+    >
+      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+    </button>
+  </span>
 </div>
 <div [class.hidden]="!showLocation">
   <div>

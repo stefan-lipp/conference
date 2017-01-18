@@ -1,18 +1,19 @@
 import {
   Component,
   Input,
+  OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ConferenceEvent } from '../../../models';
-import { EventService } from '../../../services';
+import { EventService, AuthService } from '../../../services';
 
 @Component({
   selector: 'conference-event-view',
   templateUrl: './event-view.template.html',
   styleUrls: [ './event-view.styles.scss' ],
 })
-export class EventViewComponent {
+export class EventViewComponent implements OnInit {
 
   @Input()
   public event: ConferenceEvent;
@@ -22,7 +23,20 @@ export class EventViewComponent {
   constructor (
     private route: ActivatedRoute,
     private eventService: EventService,
+    public authService: AuthService,
   ) { }
+
+  /**
+   * Gets an event without paper via the Resolver
+   * and fetches Event (incl. Paper)
+   *
+   * @memberof OnInit
+   */
+  ngOnInit() {
+    this.event = this.route.snapshot.data['event'];
+    this.eventService.getAll()
+      .subscribe(evs => this.event = evs.filter(ev => ev.id === (this.event.id))[0]);
+}
 
   /**
    *  method to set favorite sate of an event and commit this to the api
