@@ -26,7 +26,22 @@ function toAuthorTO (authorInstance) {
 }
 
 /**
- * Maps a instance of the Paper database model to a Paper transport object
+ * Maps a instance of the Paper database model to a detailed Paper transport object
+ */
+function toPaperDetailTO (paperInstance) {
+  return {
+    id: paperInstance.id,
+    title: paperInstance.titel,
+    authors: (paperInstance.authors || [ ]).map(toAuthorTO),
+    keywords: paperInstance.keywords,
+    abstract: paperInstance.abstract,
+    link: paperInstance.link,
+    tag: paperInstance.tag,
+  };
+}
+
+/**
+ * Maps a instance of the Paper database model to a simple Paper transport object
  */
 function toPaperTO (paperInstance) {
   return {
@@ -41,9 +56,9 @@ function toPaperTO (paperInstance) {
 }
 
 /**
- * Maps a instance of the Event database model to a Event transport object
+ * Maps a instance of the Event database model to a detailed Event transport object
  */
-function toEventTO (eventInstance) {
+function toEventDetailTO (eventInstance) {
   // Duration comes in the format HH:mm:ss
   const DURATION_NUM_BLOCK_COUNT = 3;
   const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d, 10));
@@ -61,7 +76,7 @@ function toEventTO (eventInstance) {
     title: ((eventInstance.paper && eventInstance.paper.title) ||
       eventInstance.alias ||
       '<untitled event>'),
-    paper: eventInstance.paper ? toPaperTO(eventInstance.paper) : null,
+    paper: eventInstance.paper ? toPaperDetailTO(eventInstance.paper) : null,
     roomName: eventInstance.roomName,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
@@ -72,7 +87,30 @@ function toEventTO (eventInstance) {
   };
 }
 
+/**
+ * Maps a instance of the Event database model to a simple Event transport object
+ */
+function toEventTO (eventInstance) {
+  // Duration comes in the format HH:mm:ss
+  const DURATION_NUM_BLOCK_COUNT = 3;
+  const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d, 10));
+  if (durationArr.length !== DURATION_NUM_BLOCK_COUNT) {
+    throw new Error('Invalid duration format in event instance');
+  }
+  const duration = (durationArr[0] * 60) + durationArr[1];
+
+  return {
+    id: eventInstance.id,
+    title: ((eventInstance.paper && eventInstance.paper.title) ||
+      eventInstance.alias ||
+      '<untitled event>'),
+    paper: toPaperTO(eventInstance.paper),
+    duration: duration,
+    favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),
+  };
+}
+
 module.exports = {
-  toPaperTO: toPaperTO,
   toEventTO: toEventTO,
+  toEventDetailTO: toEventDetailTO,
 };

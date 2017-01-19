@@ -20,7 +20,7 @@ export class EventResolver implements Resolve<ConferenceEvent> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<ConferenceEvent> {
-     return this.eventService.getEvent(route.params['eventId']);
+    return this.eventService.getEvent(route.params['eventId']);
   }
 
 }

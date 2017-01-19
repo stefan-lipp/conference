@@ -16,6 +16,13 @@ export const EVENT_ROUTES: Routes = [
           event: EventResolver,
         },
       },
+      {
+        path: ':eventId/:eventName',
+        component: EventViewComponent,
+        resolve: {
+          event: EventResolver,
+        },
+      },
     ],
   },
 ];

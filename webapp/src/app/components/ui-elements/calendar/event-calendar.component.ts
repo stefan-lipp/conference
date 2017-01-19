@@ -9,7 +9,6 @@ import {
 } from './calendar.component';
 import { ConferenceEvent } from '../../../models';
 
-
 /** Calendar component specifically for ConferenceEvent */
 @Component({
   selector: 'conference-event-calendar',
@@ -38,7 +37,9 @@ export class EventCalendarComponent {
             startTime: e.startTime,
             endTime: e.endTime,
             meta: {
+              id: e.id,
               favored: e.favored,
+              href: `/events/${e.id}/${e.urlEncodedTitle}`,
             },
           })),
       } ];

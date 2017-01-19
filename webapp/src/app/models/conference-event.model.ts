@@ -17,8 +17,6 @@ export class ConferenceEvent {
   public type: EventType;
   public favored: boolean;
   public paper?: Paper;
-  public startTime?: moment.Moment;
-  public endTime?: moment.Moment;
   public room?: string;
   public speaker?: string;
   public maxSize?: number;
@@ -39,14 +37,13 @@ export class ConferenceEvent {
       duration: apiRepresentation.duration,
       favored: apiRepresentation.favored,
       paper: Paper.fromAPI(apiRepresentation.paper),
-      startTime: moment(apiRepresentation.startTime),
-      endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],
       room: apiRepresentation.roomName,
       speaker: 'N.N.', // TODO
       maxSize: apiRepresentation.maxSize,
     });
   }
+
 
   constructor (data: any) {
     _.merge(this, data);
@@ -62,6 +59,10 @@ export class ConferenceEvent {
       case EventType.Entertainment: return 'Entertainment';
       default: return 'General Event';
     }
+  }
+
+  public get urlEncodedTitle (): string {
+    return this.title.replace(/[^A-Za-z0-9-]/g, ' ').trim().replace(/ /g, '-');
   }
 
 }
@@ -85,8 +86,6 @@ export interface ApiConferenceEvent {
   title: string;
   paper: ApiPaper;
   roomName?: string;
-  startTime?: string;
-  endTime?: string;
   duration: string;
   maxSize?: string;
   kind?: string;
