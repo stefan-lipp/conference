@@ -12,6 +12,9 @@ export const API_ROUTES = {
   sessions: {
     all: `${API_BASE_URL}/sessions`,
     single: `${API_BASE_URL}/sessions/:sessionId`,
-    favorite: ``,
+    favorites: {
+      get: `${API_BASE_URL}/sessions/favorites`,
+      update: `${API_BASE_URL}/sessions/favorites/:sessionId`,
+    },
   },
 };

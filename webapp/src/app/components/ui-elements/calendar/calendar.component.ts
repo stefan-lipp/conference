@@ -39,6 +39,7 @@ export class CalendarComponent {
 
   public viewportTimeframe: Timeframe = 'day';
 
+  @Input()
   public selectedDay: moment.Moment = moment();
 
   constructor (

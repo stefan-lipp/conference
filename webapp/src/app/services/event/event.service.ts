@@ -6,7 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { API_ROUTES } from '../api/routes';
 import { ApiMapperService } from '../api';
 import { AuthService } from '../auth';
-import { ConferenceEvent } from '../../models';
+import { ConferenceEvent } from 'app/models';
 
 @Injectable()
 export class EventService {

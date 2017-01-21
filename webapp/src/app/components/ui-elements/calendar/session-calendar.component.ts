@@ -2,13 +2,14 @@ import * as moment from 'moment';
 import {
   Component,
   Input,
+  OnInit,
 } from '@angular/core';
 import {
   CalendarEvent,
   CalendarTrack,
 } from './calendar.component';
-import { ConferenceSession } from '../../../models';
-
+import { ConferenceSession } from 'app/models';
+import { AppService } from 'app/services';
 
 /** Calendar component specifically for ConferenceSession */
 @Component({
@@ -16,10 +17,24 @@ import { ConferenceSession } from '../../../models';
   templateUrl: './session-calendar.template.html',
   styleUrls: [ './session-calendar.style.scss' ],
 })
-export class SessionCalendarComponent {
+export class SessionCalendarComponent implements OnInit {
 
   @Input()
   public sessions: ConferenceSession[] = [ ];
+
+  public selectedDay: moment.Moment = moment();
+
+  constructor (
+    private appService: AppService,
+  ) { }
+
+  public ngOnInit () {
+    if (this.selectedDay < this.appService.metadata.starts) {
+      this.selectedDay = this.appService.metadata.starts;
+    } else if (this.selectedDay > this.appService.metadata.ends) {
+      this.selectedDay = this.appService.metadata.starts;
+    }
+  }
 
   /** @return Calendar Track representation of the sessions */
   public get tracks (): CalendarTrack[] {

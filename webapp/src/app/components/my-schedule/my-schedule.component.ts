@@ -3,8 +3,8 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { SessionService } from '../../services';
-import { ConferenceSession } from '../../models';
+import { SessionService } from 'app/services';
+import { ConferenceSession } from 'app/models';
 
 @Component({
   selector: 'conference-my-schedule',

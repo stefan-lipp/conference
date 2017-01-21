@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
@@ -31,7 +32,11 @@ export class ApiService {
    * @TODO
    */
   public getMeta (): Observable<any> {
-    return Observable.of({ scheduled: true });
+    return Observable.of({
+      starts: moment('2016-12-20T00:00:00.000Z'),
+      ends: moment('2016-12-24T00:00:00.000Z'),
+      scheduled: true,
+    });
   }
 
 }
