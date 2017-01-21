@@ -27,7 +27,6 @@ export class EventListComponent  {
   constructor (
     public authService: AuthService,
     private dialog: MdDialog,
-    public authService: AuthService,
   ) { }
 
   /**

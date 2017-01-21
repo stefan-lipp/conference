@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        SessionModel.hasMany(models.event, { foreignKey: 'sessionid' });
+        SessionModel.hasMany(models.event, { foreignKey: 'sessionId' });
       },
     },
   });

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services';
-
-import { AuthService } from '../../services';
+import { AuthService } from 'app/services';
 
 @Component({
   selector: 'conference-navigation',
