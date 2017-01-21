@@ -9,6 +9,23 @@
 const moment = require('moment');
 
 /**
+ * Maps a instance of the Person database model to a Person transport object
+ */
+function toPersonTO (personInstance) {
+  return {
+    name: personInstance.name,
+    email: personInstance.email,
+  };
+}
+
+/**
+ * Maps a instance of the Author database model to a Author transport object
+ */
+function toAuthorTO (authorInstance) {
+  return toPersonTO(authorInstance.person);
+}
+
+/**
  * Maps a instance of the Paper database model to a Paper transport object
  */
 function toPaperTO (paperInstance) {
@@ -20,23 +37,6 @@ function toPaperTO (paperInstance) {
     abstract: paperInstance.abstract,
     link: paperInstance.link,
     tag: paperInstance.tag,
-  }
-}
-
-/**
- * Maps a instance of the Author database model to a Author transport object
- */
-function toAuthorTO (authorInstance) {
-  return toPersonTO(authorInstance.person);
-}
-
-/**
- * Maps a instance of the Person database model to a Person transport object
- */
-function toPersonTO (personInstance) {
-  return {
-    name: personInstance.name,
-    email: personInstance.email,
   };
 }
 
@@ -44,12 +44,13 @@ function toPersonTO (personInstance) {
  * Maps a instance of the Event database model to a Event transport object
  */
 function toEventTO (eventInstance) {
-  // duration comes in the format HH:mm:ss
-  const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d));
-  if (durationArr.length !== 3) {
-    throw 'Invalid duration format in event instance';
+  // Duration comes in the format HH:mm:ss
+  const DURATION_NUM_BLOCK_COUNT = 3;
+  const durationArr = eventInstance.duration.match(/[^:]+/g).map(d => parseInt(d, 10));
+  if (durationArr.length !== DURATION_NUM_BLOCK_COUNT) {
+    throw new Error('Invalid duration format in event instance');
   }
-  const duration = durationArr[0] * 60 + durationArr[1];
+  const duration = (durationArr[0] * 60) + durationArr[1];
 
   const startTime = eventInstance.starttime ?
     moment(eventInstance.starttime).tz('Europe/Berlin') :
@@ -68,7 +69,7 @@ function toEventTO (eventInstance) {
     maxSize: eventInstance.maxsize,
     kind: eventInstance.kind,
     favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),
-  }
+  };
 }
 
 module.exports = {

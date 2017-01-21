@@ -1,46 +1,46 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
-  const Paper = sequelize.define('paper',{
+module.exports = function (sequelize, DataTypes) {
+  const Paper = sequelize.define('paper', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     keywords: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     abstract: {
       type: DataTypes.TEXT,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     url: {
       type: DataTypes.STRING,
       allowNull: true,
-      unique: true
+      unique: true,
     },
-    tag : {
+    tag: {
       type: DataTypes.STRING,
       allowNull: true,
       references: {
-        model: "tag",
+        model: 'tag',
         key: 'name',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   }, {
     classMethods: {
       associate: (models) => {
-        Paper.hasMany(models.author, { foreignKey: 'paperid' });
-      }
+        Paper.hasMany(models.author, { foreignKey: 'paperId' });
+      },
     },
   });
   return Paper;

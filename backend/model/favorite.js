@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Favorite = sequelize.define('favorite', {
-    eventid: {
+    eventId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       references: {
@@ -10,20 +10,20 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
+      },
     },
-    personid: {
+    personId: {
       type: DataTypes.UUID,
       primaryKey: true,
       references: {
         model: 'person',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   }, {
     classMethods: {
-      associate: (models) => Favorite.belongsTo(models.event, { foreignKey: 'eventid' }),
+      associate: (models) => Favorite.belongsTo(models.event, { foreignKey: 'eventId' }),
     },
   });
   return Favorite;

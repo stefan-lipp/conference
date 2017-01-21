@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('personalschedule',{
-    eventid: {
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define('personalschedule', {
+    eventId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       references: {
@@ -10,9 +10,9 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
+      },
     },
-    personid: {
+    personId: {
       type: DataTypes.UUID,
       primaryKey: true,
       references: {
@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   });
 };

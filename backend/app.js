@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const subroute = require('express-subroute');
 
-const jwtGuard = require('./middleware/jwt.guard');
 const jwtDecoder = require('./middleware/jwt.decoder');
 
 const index = require('./routes/index');
@@ -40,24 +39,24 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.subroute('/api/auth', auth);
   app.subroute('/api/events', events);
 
-  // catch 404 and forward to error handler
+  // Catch 404 and forward to error handler
   app.use((req, res, next) => {
-    var err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
   });
 
-  // error handler
-  app.use((err, req, res, next) => {
+  // Error handler
+  app.use((err, req, res) => {
     if (process.env.ENV === 'development') {
       console.error(err);
     }
 
-    // set locals, only providing error in development
+    // Set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = (req.app.get('env') === 'development' ? err : { });
 
-    // render the error page
+    // Render the error page
     res.status(err.status || 500);
     res.json({
       error: err,

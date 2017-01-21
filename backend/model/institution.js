@@ -1,22 +1,22 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('institution',{
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define('institution', {
     id: {
       type: DataTypes.UUID,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     details: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: true,
     },
-    iconurl: {
+    iconUrl: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+    },
   });
 };

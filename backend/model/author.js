@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
-  const Author = sequelize.define('author',{
-    paperid: {
+module.exports = function (sequelize, DataTypes) {
+  const Author = sequelize.define('author', {
+    paperId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       references: {
@@ -10,9 +10,9 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
+      },
     },
-    personid: {
+    personId: {
       type: DataTypes.UUID,
       primaryKey: true,
       references: {
@@ -20,14 +20,14 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   }, {
     classMethods: {
       associate: (models) => {
-        Author.belongsTo(models.paper, { foreignKey: 'paperid' });
-        Author.belongsTo(models.person, { foreignKey: 'personid' });
-      }
+        Author.belongsTo(models.paper, { foreignKey: 'paperId' });
+        Author.belongsTo(models.person, { foreignKey: 'personId' });
+      },
     },
   });
   return Author;
