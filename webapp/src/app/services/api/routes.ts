@@ -10,8 +10,8 @@ export const API_ROUTES = {
     favorites: `${API_BASE_URL}/events/favorites`,
   },
   sessions: {
-    all: '/assets/mock/sessions.json',
-    single: '/assets/mock/session.json',
+    all: `${API_BASE_URL}/sessions`,
+    single: `${API_BASE_URL}/sessions/:sessionId`,
     favorite: ``,
   },
 };

@@ -1,5 +1,5 @@
 <div *ngIf="session.favored" class="favor-indicator"><md-icon>star</md-icon></div>
-<h2>{{ session.title }}</h2>
+<h2>{{ session.name }}</h2>
 
 <dl>
   <dt>Location:</dt>
@@ -9,12 +9,17 @@
   <dt>Ends:</dt>
     <dd>{{ formatTime(session.endTime) }}</dd>
   <dt>Session Chair:</dt>
-    <dd>{{ session.chair.name }}</dd>
+    <dd>{{ session.chair?.name }}</dd>
 </dl>
 
 <ul class="paper-list">
   <li *ngFor="let event of session.events">
-    <h5>{{ event.title }}</h5>
+    <h5>
+      <a
+        [routerLink]="[ '/events', event.id ]"
+        [href]="'/events/' + event.id"
+      >{{ event.title }}</a>
+    </h5>
     <div *ngIf="event.paper">
       <span class="paper-author" *ngFor="let author of event.paper.authors">
         <span class="author-name">{{ author.name }}</span>

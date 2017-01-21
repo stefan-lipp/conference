@@ -4,10 +4,10 @@
 
   <md-card-title>
     <a
-      [routerLink]="[ '/sessions', session.id ]"
-      [href]="'/sessions/' + session.id"
+      [routerLink]="[ '/sessions', session.id, session.urlEncodedName ]"
+      [href]="'/sessions/' + session.id + '/' + session.urlEncodedName"
     >
-      {{ session.title }}
+      {{ session.name }}
     </a>
   </md-card-title>
   <md-card-content>
@@ -19,10 +19,10 @@
       <dt>Ends:</dt>
         <dd>{{ formatTime(session.endTime) }}</dd>
       <dt>Session Chair:</dt>
-        <dd>{{ session.chair.name }}</dd>
+        <dd>{{ session.chair?.name }}</dd>
     </dl>
     <ul class="paper-list">
-      <li *ngFor="let event of session.events">
+      <li *ngFor="let event of session.events.slice(0, 5)">
         <h5>{{ event.title }}</h5>
         <div *ngIf="event.paper">
           <span class="paper-author" *ngFor="let author of event.paper.authors">
@@ -31,7 +31,14 @@
           </span>
         </div>
       </li>
+
     </ul>
+    <a
+      [routerLink]="[ '/sessions', session.id ]"
+      [href]="'/sessions/' + session.id"
+      *ngIf="session.events.length > 5"
+    >And more</a>
+
   </md-card-content>
   <md-card-actions align="end">
     <button

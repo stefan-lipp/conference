@@ -34,7 +34,7 @@ export class SessionCalendarComponent {
             Boolean(s.endTime) && s.endTime.isValid()
           )
           .map(s => <CalendarEvent> Object({
-            title: s.title,
+            title: s.name,
             startTime: s.startTime,
             endTime: s.endTime,
             meta: {

@@ -16,6 +16,13 @@ export const SESSION_ROUTES: Routes = [
           session: SessionResolver,
         },
       },
+      {
+        path: ':sessionId/:sessionName',
+        component: SessionViewComponent,
+        resolve: {
+          session: SessionResolver,
+        },
+      },
     ],
   },
 ];

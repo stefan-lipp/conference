@@ -9,7 +9,7 @@ import { Person } from './person.model';
 
 export class ConferenceSession {
   public id: string;
-  public title: string;
+  public name: string;
   public chair: Person;
   public room: string;
   public events: ConferenceEvent[];
@@ -21,9 +21,10 @@ export class ConferenceSession {
 
   public static fromAPI (apiRepresentation: ApiConferenceSession): ConferenceSession {
     return new ConferenceSession({
-      title: apiRepresentation.title,
+      id: apiRepresentation.id.toString(10),
+      name: apiRepresentation.name,
       chair: apiRepresentation.chair,
-      room: apiRepresentation.room.name,
+      room: apiRepresentation.room ? apiRepresentation.room.name : null,
       events: apiRepresentation.events.map(ConferenceEvent.fromAPI),
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
@@ -34,10 +35,15 @@ export class ConferenceSession {
   constructor (data: any) {
     _.merge(this, data);
   }
+
+  public get urlEncodedName (): string {
+    return this.name.replace(/[^A-Za-z0-9-]/g, ' ').trim().replace(/ /g, '-').toLowerCase();
+  }
 }
 
 export interface ApiConferenceSession {
-  title: string;
+  id: number,
+  name: string;
   room: { name: string, size: number };
   chair: { id: string, name: string, institution: string, email: string };
   events: ApiConferenceEvent[];

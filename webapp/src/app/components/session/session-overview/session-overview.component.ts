@@ -64,7 +64,7 @@ export class SessionOverviewComponent implements OnInit {
   public filter (): void {
     if (this.filterQuery.length) {
       this.selectedSessions = this.sessions.filter(
-        session => session.title.toLowerCase().includes(this.filterQuery.toLowerCase())
+        session => session.name.toLowerCase().includes(this.filterQuery.toLowerCase())
       );
     } else {
       this.selectedSessions = this.sessions;
