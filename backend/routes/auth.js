@@ -46,7 +46,7 @@ function authSubroutes (app) {
               const token = jwt.sign(
                 {
                   isAdmin: Boolean(userInstance.admin),
-                  personId: userInstance.personid,
+                  personId: userInstance.personId,
                 },
                 config.jwtSecret,
                 {
@@ -158,7 +158,7 @@ function authSubroutes (app) {
 
               // Create userdata, update and save
               UserData.create({
-                personid: personInstance.id,
+                personId: personInstance.id,
                 password: hash,
                 token: token,
               }).then((instance) => {

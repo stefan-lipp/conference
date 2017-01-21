@@ -27,7 +27,7 @@ function eventSubroutes (app) {
                { model: Person, required: false },
             ] },
           ] },
-          { model: Favorite, where: { personid: personId }, required: false },
+          { model: Favorite, where: { personId: personId }, required: false },
         ],
       })
         .then((events) => {
@@ -58,7 +58,7 @@ function eventSubroutes (app) {
       Event.findAll({
         include: [
           { model: Paper },
-          { model: Favorite, where: { personid: personId }, required: true },
+          { model: Favorite, where: { personId: personId }, required: true },
         ],
       })
         .then((events) => {
@@ -88,7 +88,7 @@ function eventSubroutes (app) {
           return;
         }
 
-        Favorite.create({ personid: personId, eventid: eventId })
+        Favorite.create({ personId: personId, eventId: eventId })
           .then(() => {
             res.status(201).send();
           })
@@ -115,7 +115,7 @@ function eventSubroutes (app) {
           return;
         }
 
-        Favorite.destroy({ where: { personid: personId, eventid: eventId } })
+        Favorite.destroy({ where: { personId: personId, eventId: eventId } })
           .then(() => {
             res.status(204).send();
           })

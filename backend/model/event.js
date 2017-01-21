@@ -27,7 +27,7 @@ module.exports = function (sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       },
     },
-    roomname: {
+    roomName: {
       type: DataTypes.STRING,
       allowNull: true,
       references: {
