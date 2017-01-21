@@ -58,13 +58,11 @@ export class EventService {
    * @param {ConferenceEvent} event The event whose favour status to update.
    * @return void
    */
-  public updateFavourStatus(event: ConferenceEvent): any {
+  public updateFavourStatus(event: ConferenceEvent): Observable<any> {
     if (event.favored) {
-      return this.authHttp.post(API_ROUTES.events.favorite.replace(':eventId', event.id), { })
-        .subscribe(msg => console.info(msg), err => console.error(err));
+      return this.authHttp.post(API_ROUTES.events.favorite.replace(':eventId', event.id), { });
     } else {
-      return this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventId', event.id))
-        .subscribe(msg => console.info(msg), err => console.error(err));
+      return this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventId', event.id));
     }
   }
 }

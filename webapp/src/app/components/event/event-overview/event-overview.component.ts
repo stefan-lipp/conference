@@ -73,6 +73,6 @@ export class EventOverviewComponent implements OnInit {
 
   public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
     event.favored = state;
-    this.eventService.updateFavourStatus(event);
+    this.eventService.updateFavourStatus(event).subscribe(_ => null, err => console.error(err));
   }
 }

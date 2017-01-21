@@ -46,7 +46,7 @@ export class EventViewComponent implements OnInit {
    */
   public setFavorState (event: ConferenceEvent, state: boolean) {
     event.favored = state;
-    this.eventService.updateFavourStatus(event);
+    this.eventService.updateFavourStatus(event).subscribe(_ => null, err => console.error(err));
   }
 
   /**
