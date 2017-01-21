@@ -39,6 +39,16 @@ conference-event-view {
     background-color: #fff;
 }
 
+.paper-authors {
+    list-style-type: none;
+    padding: 0;
+    margin: .5rem 0;
+
+    .paper-author {
+        display: inline-block;
+        padding-right: .5rem;
+    }
+}
 
 .favor-indicator {
     position: absolute;

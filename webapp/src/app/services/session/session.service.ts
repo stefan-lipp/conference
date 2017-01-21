@@ -40,10 +40,25 @@ export class SessionService {
       .map(list => list.map(this.apiMapperService.sessionApiToLocal));
   }
 
+  public getSession (sessionId: string): Observable<ConferenceSession> {
+    return this.httpService.get(API_ROUTES.sessions.single.replace(':sessionId', sessionId))
+      .map(res => res.json())
+      .map(this.apiMapperService.sessionApiToLocal);
+  }
+
   public getFavorites (): Observable<ConferenceSession[]> {
     return this.httpService.get(API_ROUTES.sessions.all)
       .map(res => res.json())
       .map(list => list.map(this.apiMapperService.sessionApiToLocal));
+  }
+
+  public updateFavorStatus (session: ConferenceSession): Observable<any> {
+    if (session.favored) {
+      return this.authHttp
+        .post(API_ROUTES.sessions.favorite.replace(':sessionId', session.id), { });
+    } else {
+      return this.authHttp.delete(API_ROUTES.sessions.favorite.replace(':sessionId', session.id));
+    }
   }
 
 }

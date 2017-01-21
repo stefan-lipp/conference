@@ -23,10 +23,12 @@ import {
   AuthService,
   ApiService,
   ApiMapperService,
+  AppService,
   EventService,
   EventResolver,
+  SessionResolver,
   SessionService,
-} from './services';
+} from 'app/services';
 
 // Components
 import {
@@ -39,11 +41,13 @@ import {
   MyScheduleComponent,
   NavigationComponent,
   NoContentComponent,
+  OverviewComponent,
   RegisterComponent,
   SessionCalendarComponent,
   SessionListComponent,
   SessionOverviewComponent,
-} from './components';
+  SessionViewComponent,
+} from 'app/components';
 
 // Directives
 
@@ -76,10 +80,12 @@ type StoreType = {
     LoginComponent,
     NavigationComponent,
     NoContentComponent,
+    OverviewComponent,
     RegisterComponent,
     SessionCalendarComponent,
     SessionListComponent,
     SessionOverviewComponent,
+    SessionViewComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -99,11 +105,13 @@ type StoreType = {
       headerName: 'x-access-token',
       noTokenScheme: true,
     }),
-    AuthService,
     ApiService,
     ApiMapperService,
+    AppService,
+    AuthService,
     EventService,
     EventResolver,
+    SessionResolver,
     SessionService,
   ],
 })

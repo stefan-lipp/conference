@@ -8,7 +8,7 @@ import {
 import { Person } from './person.model';
 
 export class ConferenceSession {
-
+  public id: string;
   public title: string;
   public chair: Person;
   public room: string;

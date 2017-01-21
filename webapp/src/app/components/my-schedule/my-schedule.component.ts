@@ -3,8 +3,6 @@ import {
   OnInit,
 } from '@angular/core';
 
-import {
-} from '../ui-elements/calendar';
 import { SessionService } from '../../services';
 import { ConferenceSession } from '../../models';
 

@@ -8,7 +8,7 @@ import { ConferenceSession } from '../../../models';
 import { SessionService } from '../../../services';
 
 @Component({
-  selector: 'conference-event-overview',
+  selector: 'conference-session-overview',
   templateUrl: './session-overview.template.html',
   styleUrls: [ './session-overview.style.scss' ],
 })

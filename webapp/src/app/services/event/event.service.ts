@@ -60,10 +60,10 @@ export class EventService {
    */
   public updateFavourStatus(event: ConferenceEvent): void {
     if (event.favored) {
-      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { })
+      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventId', event.id), { })
         .subscribe(_ => null);
     } else {
-      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id))
+      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventId', event.id))
         .subscribe(_ => null);
     }
   }

@@ -2,7 +2,14 @@
 
   <div *ngIf="session.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
-  <md-card-title>{{ session.title }}</md-card-title>
+  <md-card-title>
+    <a
+      [routerLink]="[ '/sessions', session.id ]"
+      [href]="'/sessions/' + session.id"
+    >
+      {{ session.title }}
+    </a>
+  </md-card-title>
   <md-card-content>
     <dl>
       <dt>Location:</dt>
