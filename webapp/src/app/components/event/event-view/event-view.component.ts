@@ -5,8 +5,11 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ConferenceEvent } from '../../../models';
-import { EventService, AuthService } from '../../../services';
+import { ConferenceEvent } from 'app/models';
+import {
+  EventService,
+  AuthService,
+} from 'app/services';
 
 @Component({
   selector: 'conference-event-view',
@@ -32,11 +35,9 @@ export class EventViewComponent implements OnInit {
    *
    * @memberof OnInit
    */
-  ngOnInit() {
-    this.event = this.route.snapshot.data['event'];
-    this.eventService.getAll()
-      .subscribe(evs => this.event = evs.filter(ev => ev.id === (this.event.id))[0]);
-}
+  public ngOnInit() {
+    this.route.data.subscribe((data: { event: ConferenceEvent }) => this.event = data.event);
+  }
 
   /**
    *  method to set favorite sate of an event and commit this to the api
