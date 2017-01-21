@@ -137,16 +137,24 @@ function eventSubroutes (app) {
     // GET retrieve single event
     app.get((req, res) => {
       const eventId = req.params.eventId;
+      const personId = (req.decoded ? req.decoded.personId : null);
 
-      Event.findById(eventId)
-        .then(event => {
-          res.json(TOMapper.toEventTO(event));
-        })
-        .catch(() => res.status(404).json({
-          error: true,
-          success: false,
-          message: 'Unknown event',
-        }));
+      Event.findById(eventId, {
+        include: [
+          { model: Paper, include: [
+            { model: Author, required: false, include: [
+               { model: Person, required: false },
+            ] },
+          ] },
+          { model: Favorite, where: { personId: personId }, required: false },
+        ],
+      }).then(event => {
+        res.json(TOMapper.toEventTO(event));
+      }).catch(() => res.status(404).json({
+        error: true,
+        success: false,
+        message: 'Unknown event',
+      }));
     });
   });
 

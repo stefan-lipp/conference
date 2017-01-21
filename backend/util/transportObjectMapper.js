@@ -52,8 +52,8 @@ function toEventTO (eventInstance) {
   }
   const duration = (durationArr[0] * 60) + durationArr[1];
 
-  const startTime = eventInstance.starttime ?
-    moment(eventInstance.starttime).tz('Europe/Berlin') :
+  const startTime = eventInstance.startTime ?
+    moment(eventInstance.startTime).tz('Europe/Berlin') :
     null;
 
   return {
@@ -62,11 +62,11 @@ function toEventTO (eventInstance) {
       eventInstance.alias ||
       '<untitled event>'),
     paper: eventInstance.paper ? toPaperTO(eventInstance.paper) : null,
-    roomName: eventInstance.roomname,
+    roomName: eventInstance.roomName,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
     duration: duration,
-    maxSize: eventInstance.maxsize,
+    maxSize: eventInstance.maxSize,
     kind: eventInstance.kind,
     favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),
   };
