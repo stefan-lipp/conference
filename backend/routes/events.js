@@ -5,6 +5,7 @@ const Errors = require('../util/errors');
 
 const DataBase = require('../model/index');
 const Event = DataBase.sequelize.models.event;
+const Session = DataBase.sequelize.models.session;
 const Paper = DataBase.sequelize.models.paper;
 const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
@@ -28,6 +29,7 @@ function eventSubroutes (app) {
             ] },
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
+          { model: Session, require: false },
         ],
       })
         .then((events) => {
