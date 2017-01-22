@@ -19,7 +19,7 @@ import { PersonService } from '../../../services';
   templateUrl: './person-view.template.html',
   styleUrls: [ './person-view.styles.scss' ],
 })
-export class PersonViewComponent implements OnInit {
+export class PersonViewComponent {
 
   @Input()
   public person: Person;
@@ -32,16 +32,10 @@ export class PersonViewComponent implements OnInit {
     private route: ActivatedRoute,
     private personService: PersonService,
   ) {
-    this.route.data.subscribe(data => {
-      this.person = data['person'];
-      this.papers = data['papers'];
-      this.talks = data['talks'];
+    this.route.data.subscribe((data: { person: Person, papers: Paper[], talks: ConferenceEvent[] }) => {
+      this.person = data.person;
+      this.papers = data.papers;
+      this.talks = data.talks;
     });
-  }
-
-  ngOnInit() {
-    this.person = this.route.snapshot.data['person'];
-    this.papers = this.route.snapshot.data['papers'];
-    this.talks = this.route.snapshot.data['talks'];
   }
 }

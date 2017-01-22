@@ -5,7 +5,7 @@ export const API_ROUTES = {
   login: `${API_BASE_URL}/auth/login`,
   events: {
     all: `${API_BASE_URL}/events`,
-    bySpeaker: `${API_BASE_URL}/events/speaker/:personId`,
+    ofSpeaker: `${API_BASE_URL}/speaker/:personId/events`,
     single: `${API_BASE_URL}/events/:eventId`,
     favorite: `${API_BASE_URL}/events/favorites/:eventid`,
     favorites: `${API_BASE_URL}/events/favorites`,
@@ -14,6 +14,6 @@ export const API_ROUTES = {
     byId: `${API_BASE_URL}/persons/:personId`,
   },
   paper: {
-    byAuthor: `${API_BASE_URL}/papers/author/:personId`,
+    byAuthor: `${API_BASE_URL}/author/:personId/papers`,
   },
 };

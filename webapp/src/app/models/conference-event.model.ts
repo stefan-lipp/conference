@@ -38,7 +38,7 @@ export class ConferenceEvent {
       title: apiRepresentation.title,
       duration: apiRepresentation.duration,
       favored: apiRepresentation.favored,
-      paper: apiRepresentation.paper ? Paper.fromAPI(apiRepresentation.paper) : {},
+      paper: apiRepresentation.paper ? Paper.fromAPI(apiRepresentation.paper) : null,
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],

@@ -10,7 +10,7 @@ import { EventService } from '../event';
 import { ConferenceEvent } from '../../models';
 
 @Injectable()
-export class EventBySpeakerResolver implements Resolve<ConferenceEvent> {
+export class EventOfSpeakerResolver implements Resolve<ConferenceEvent> {
 
   constructor (
     private eventService: EventService,
@@ -20,7 +20,7 @@ export class EventBySpeakerResolver implements Resolve<ConferenceEvent> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<ConferenceEvent> {
-     return this.eventService.getEventBySpeaker(route.params['personId']);
+     return this.eventService.getEventOfSpeaker(route.params['personId']);
   }
 
 }

@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  const Speaker = sequelize.define('speaker',{
+  const Speaker = sequelize.define('speaker', {
     eventid: {
       type: DataTypes.INTEGER,
       primaryKey: true,

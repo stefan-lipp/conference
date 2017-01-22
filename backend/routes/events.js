@@ -49,33 +49,6 @@ function eventSubroutes (app) {
 
   });
 
-  app.subroute('/speaker/:personId', (app) => {
-    // GET retrieve list of all events
-    app.get((req, res, next) => {
-      const personId = (req.params && req.params.personId);
-
-      console.log(personId);
-      if (personId == null) {
-        res.status(400).send();
-        return;
-      }
-
-      Event.findAll({
-        include: [
-          { model: Paper }, // for title
-          { model: Speaker, where: { personid: personId }, required: true },
-        ]
-      }).then((events) => {
-         res.json(events.map(TOMapper.toEventTO));
-      }).catch((err) => {
-        if (process.env.ENV === 'development') {
-          console.error(err);
-        }
-        res.status(500).json(new Errors.InternalServerError());
-      });
-    });
-  });;
-
   app.subroute('/favorites', (app) => {
     app.use(jwtGuard);
 

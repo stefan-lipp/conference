@@ -4,7 +4,7 @@ import { PersonViewComponent } from './person-view';
 import {
   PersonResolver,
   PaperByAuthorResolver,
-  EventBySpeakerResolver,
+  EventOfSpeakerResolver,
 } from '../../services';
 
 
@@ -15,7 +15,7 @@ export const PERSON_ROUTES: Routes = [
     resolve: {
       person: PersonResolver,
       papers: PaperByAuthorResolver,
-      talks: EventBySpeakerResolver,
+      talks: EventOfSpeakerResolver,
     },
   },
 ];

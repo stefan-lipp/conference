@@ -12,12 +12,12 @@ export class Person {
   public details?: string;
 
   public static fromAPI (apiRepresentation: ApiPerson): Person {
-    return {
+    return new Person ({
       id: apiRepresentation.id,
       name: apiRepresentation.name,
       email: apiRepresentation.email,
       details: apiRepresentation.details,
-    };
+    });
   }
 
   constructor (data: any) {

@@ -1,3 +1,3 @@
 export * from './event.service';
 export * from './event.resolver';
-export * from './eventBySpeaker.resolver';
+export * from './eventOfSpeaker.resolver';

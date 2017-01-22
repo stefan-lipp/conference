@@ -204,7 +204,7 @@
                 }
             }
         },
-        "events/speaker/:personId": {
+        "/speaker/:personId/events": {
             "get": {
                 "tags": [ "Events" ],
                 "summary": "Retrieve events of a speaker.",
@@ -231,7 +231,7 @@
                 }
             }
         },
-        "papers/author/:personId": {
+        "/author/:personId/papers": {
             "get": {
                 "tags": [ "Papers" ],
                 "summary": "Retrieve papers of an author.",
