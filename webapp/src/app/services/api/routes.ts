@@ -9,4 +9,10 @@ export const API_ROUTES = {
     favorite: `${API_BASE_URL}/events/favorites/:eventid`,
     favorites: `${API_BASE_URL}/events/favorites`,
   },
+  tracks: {
+    all: `${API_BASE_URL}/tracks`,
+    create: `${API_BASE_URL}/tracks`,
+    update: `${API_BASE_URL}/tracks/:trackId`,
+    delete: `${API_BASE_URL}/tracks/:trackId`,
+  },
 };

@@ -23,7 +23,7 @@
         <button
           md-button
           class="col-6 col-push-6 delete-track-button"
-          (click)="deleteTrack(track)"
+          (click)="deleteTrack(selectedTrack)"
         >
           <md-icon>delete</md-icon>
           Delete Track
@@ -35,6 +35,11 @@
     </div>
   </div>
   <div class="calendar column col-9">
-    <conference-calendar></conference-calendar>
+    <conference-calendar
+      [tracks]="calendarTracks"
+      (mousedown)="dragStartHandler($event)"
+      (mousemove)="dragHandler($event)"
+      (mouseup)="dragEndHandler($event)"
+    ></conference-calendar>
   </div>
 </div>

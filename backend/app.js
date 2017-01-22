@@ -10,6 +10,7 @@ const jwtDecoder = require('./middleware/jwt.decoder');
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const events = require('./routes/events');
+const tracks = require('./routes/tracks');
 
 const models = require('./model/index');
 
@@ -38,6 +39,7 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.subroute('/api', index);
   app.subroute('/api/auth', auth);
   app.subroute('/api/events', events);
+  app.subroute('/api/tracks', tracks);
 
   // Catch 404 and forward to error handler
   app.use((req, res, next) => {

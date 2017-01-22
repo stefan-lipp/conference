@@ -8,6 +8,7 @@
       <input
         type="text"
         [(ngModel)]="track.name"
+        (change)="update()"
         name="name"
       >
     </label>
@@ -16,6 +17,7 @@
       <input
         type="color"
         [(ngModel)]="track.backgroundColor"
+        (change)="update()"
         name="backgroundColor"
       >
     </label>
@@ -24,6 +26,7 @@
       <input
         type="color"
         [(ngModel)]="track.color"
+        (change)="update()"
         name="color"
       >
     </label>

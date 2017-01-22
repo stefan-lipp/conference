@@ -27,6 +27,7 @@ import {
   ApiMapperService,
   EventService,
   EventResolver,
+  TrackService,
 } from './services';
 
 // Components
@@ -105,6 +106,7 @@ type StoreType = {
     ApiMapperService,
     EventService,
     EventResolver,
+    TrackService,
   ],
 })
 export class AppModule {

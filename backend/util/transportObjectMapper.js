@@ -9,7 +9,7 @@
 const moment = require('moment');
 
 /**
- * Maps a instance of the Person database model to a Person transport object
+ * Maps an instance of the Person database model to a Person transport object
  */
 function toPersonTO (personInstance) {
   return {
@@ -19,14 +19,14 @@ function toPersonTO (personInstance) {
 }
 
 /**
- * Maps a instance of the Author database model to a Author transport object
+ * Maps an instance of the Author database model to a Author transport object
  */
 function toAuthorTO (authorInstance) {
   return toPersonTO(authorInstance.person);
 }
 
 /**
- * Maps a instance of the Paper database model to a Paper transport object
+ * Maps an instance of the Paper database model to a Paper transport object
  */
 function toPaperTO (paperInstance) {
   return {
@@ -41,7 +41,7 @@ function toPaperTO (paperInstance) {
 }
 
 /**
- * Maps a instance of the Event database model to a Event transport object
+ * Maps an instance of the Event database model to a Event transport object
  */
 function toEventTO (eventInstance) {
   // Duration comes in the format HH:mm:ss
@@ -72,7 +72,27 @@ function toEventTO (eventInstance) {
   };
 }
 
+/** Maps an instance of the Track database model to a Track transport object */
+function toTrackTO (trackInstance) {
+  const TMP_RANDOM_OFFSET = 2;
+  const TMP_RANDOM_LENGTH = 4;
+  return {
+    id: trackInstance.id,
+    name: trackInstance.name,
+    kind: trackInstance.kind,
+    color: trackInstance.color,
+    backgroundColor: trackInstance.backgroundColor,
+    // TODO
+    slots: [ {
+      start: moment().add(Math.floor(Math.random() * TMP_RANDOM_OFFSET), 'hours').format(),
+      end: moment().add(TMP_RANDOM_OFFSET + Math.floor(Math.random() * TMP_RANDOM_LENGTH), 'hours')
+        .format(),
+    } ],
+  };
+}
+
 module.exports = {
   toPaperTO: toPaperTO,
   toEventTO: toEventTO,
+  toTrackTO: toTrackTO,
 };
