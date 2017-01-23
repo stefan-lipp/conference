@@ -4,6 +4,7 @@ module.exports = function (sequelize, DataTypes) {
   const UserData = sequelize.define('userdata', {
     personId: {
       type: DataTypes.UUID,
+      field: 'personid',
       primaryKey: true,
       references: {
         model: 'person',

@@ -4,6 +4,7 @@ module.exports = function (sequelize, DataTypes) {
   const Favorite = sequelize.define('favorite', {
     eventId: {
       type: DataTypes.INTEGER,
+      field: 'eventid',
       primaryKey: true,
       references: {
         model: 'event',
@@ -14,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     personId: {
       type: DataTypes.UUID,
+      field: 'personid',
       primaryKey: true,
       references: {
         model: 'person',

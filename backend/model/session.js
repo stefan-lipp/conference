@@ -24,11 +24,13 @@ module.exports = function (sequelize, DataTypes) {
     startTime: {
       // Timestamp
       type: DataTypes.DATE,
+      field: 'starttime',
       allowNull: false,
     },
     endTime: {
       // Timestamp
       type: DataTypes.DATE,
+      field: 'endtime',
       allowNull: false,
     },
     chair: {

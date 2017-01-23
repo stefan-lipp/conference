@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     institutionId: {
       type: DataTypes.UUID,
+      field: 'institutionid',
       allowNull: true,
       references: {
         model: 'institution',

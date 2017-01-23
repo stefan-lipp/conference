@@ -1,1 +1,1 @@
-﻿UPDATE event SET "roomName" = NULL, "startTime" = NULL;
+﻿UPDATE event SET roomname = NULL, starttime = NULL;

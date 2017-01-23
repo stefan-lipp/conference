@@ -9,6 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     sessionId: {
       type: DataTypes.INTEGER,
+      field: 'sessionid',
       allowNull: true,
       references: {
         model: 'session',
@@ -19,6 +20,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     paperId: {
       type: DataTypes.INTEGER,
+      field: 'paperid',
       allowNull: true,
       references: {
         model: 'paper',
@@ -29,6 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     roomName: {
       type: DataTypes.STRING,
+      field: 'roomname',
       allowNull: true,
       references: {
         model: 'room',
@@ -47,6 +50,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     startTime: {
       type: DataTypes.DATE,
+      field: 'starttime',
       allowNull: true,
     },
     kind: {
@@ -61,14 +65,17 @@ module.exports = function (sequelize, DataTypes) {
     },
     isExclusive: {
       type: DataTypes.BOOLEAN,
+      field: 'isexclusive',
       allowNull: false,
     },
     maxSize: {
       type: DataTypes.INTEGER,
+      field: 'maxsize',
       allowNull: true,
     },
     conferenceId: {
       type: DataTypes.INTEGER,
+      field: 'conferenceid',
       allowNull: false,
       references: {
         model: 'conference',
