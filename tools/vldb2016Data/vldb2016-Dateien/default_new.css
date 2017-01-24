@@ -1,0 +1,466 @@
+/*
+Design by Somebody in a Galaxy Far Far Away
+*/
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #FFFFFF;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #405060;
+	min-height: 100%;
+}
+
+h1, h2, h3 {
+	color: #301468;
+}
+
+h1 {
+	font-size: 125%;
+}
+
+h2 {
+	font-size: 115%;
+}
+
+h3 {
+	font-size: 100%;
+	font-weight: bold;
+}
+
+blockquote, ul, ol {
+	line-height: 180%;
+}
+
+p {
+    line-height: 130%;
+}
+
+blockquote, ul, ol {
+	margin-left: 3em;
+}
+
+a {
+	color: #345BA8;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.boxed, .boxed_folded {
+	margin-bottom: 10px;
+	margin-right: 10px;
+	border: 1px solid #E9EAEB;
+}
+
+.boxed_list {
+	width:110px;
+	height:153px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+
+	border: 1px solid #E9EAEB;
+	float: left;
+    
+}
+
+.boxed_list .title{
+	display:none;
+}
+
+.boxed_list {
+	font-size: 85%;
+}
+
+.boxed_folded .content{
+	display:none;
+}
+
+.content_details{
+	position:absolute;
+	top: -500px;
+	left: 0;
+	padding: 10px;
+	visibility: hidden;
+	border: 5px solid #E9EAEB;
+	text-align: left;
+	z-index: 100;
+	opacity: 0.9;
+	background-color:#F8F8F8;
+	width: 300px; 
+
+}
+
+.boxed_list:hover{
+	background-color: #E9EAEB;
+}
+
+/*.boxed_list:hover .content_details{
+	visibility:visible;
+}*/
+
+.boxed_list .content {
+	text-align:center;
+}
+
+.boxed_list .content .photo {
+	width: 90px;
+	margin: 10px;
+	margin-bottom: 5px;
+}
+
+.boxed .title, .boxed_folded .title {
+	padding: 5px 10px;
+	background: #F7F7F7;
+}
+
+.boxed_folded:hover .title {
+	background: #F0F0F0;
+}
+
+.boxed .content, .boxed_folded .content {
+	padding: 10px;
+}
+
+.photo {
+	float: left;
+	border: 1px solid #F0F0F0;
+	margin: 4px 10px 4px 0px;
+	width: 80px;
+}
+
+.content .person_details {
+	clear:both;
+}
+
+
+/* Page */
+
+#container {
+	height: auto;
+	padding: 10px;
+	padding-right: 0px;	
+}
+
+#page {
+	width: 830px;
+	height: 100%;
+	margin: 0 auto;
+	border-left: 1px solid #E9EAEB;
+	border-right: 1px solid #E9EAEB;
+}
+
+#content {
+    float: left;
+    height: auto;
+    width: 100%;
+}
+
+#sidebar {
+	float: left;
+	width: 195px;
+	height: 100%;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: #F7F7F7;
+	border: 1px solid #E9EAEB;
+}
+
+/* Header */
+
+#header {
+	float: none;
+	width: auto;
+}
+
+/* Logo */
+
+#logo {
+	width: 830px;
+	height: 150px;
+	background: url(images/logo.jpg) no-repeat left top;
+}
+
+#logo h1 {
+	padding: 10px 0 0 20px;
+	letter-spacing: -1px;
+	font-size: 250%;
+	font-weight: normal;
+}
+
+#logo h2 {
+	padding: 0px 0 0 20px;
+	font-size: 100%;
+}
+
+#logo h1 a {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+#logo h2 a {
+	text-decoration: underline;
+	color: #FFFFFF;
+}
+
+/* Menu */
+
+#menu {
+	float:inherit;
+	width: 100%;
+	background: #F7F7F7;
+}
+
+#menu ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#menu a, #menu h2 {
+
+display: block;
+border-bottom: 1px solid #E9EAEB;
+margin: 0;
+padding: 2px 3px 3px 15px;
+}
+
+#menu h2 {
+color: #fff;
+background: #B0C4DE;
+text-transform: uppercase;
+}
+
+#menu a {
+background: #F7F7F7;
+text-decoration: none;
+}
+
+#menu a:hover {
+	background: #BDD8E6;
+}
+
+#menu ul ul a {
+	background: #F0F8FA;
+}
+
+#menu li {position: relative;}
+
+#menu ul ul {
+position: absolute;
+top: 0;
+left: 100%;
+width: 100%;
+border: 1px solid #e2e2e4;
+border-bottom: 0px ;
+opacity: 0.9;
+}
+
+#menu ul ul a, #menu ul ul h2 {
+border-color: #e2e2e4;
+}
+
+div#menu ul ul,
+div#menu ul li:hover ul ul 
+{display: none;}
+
+div#menu ul li:hover ul,
+div#menu ul ul li:hover ul 
+{display: block;}
+
+/*That's for IE - fixing whitespaces around menu items*/
+#menu ul li {float: left; width: 100%;}
+#menu ul li a {height: 1%;}
+
+
+/* News */
+
+#news {
+	float:inherit;
+	margin-top: 10px;
+}
+
+#sidebar .title {
+	padding: 15px;
+}
+
+#sidebar .content {
+	padding: 0 15px;
+	font-size: 85%;
+}
+
+#news ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#news li {
+	margin-bottom: 15px;
+}
+
+/* Footer */
+
+#footer {
+	clear: both;
+	width: 100%;
+	margin-top: 10px;
+	padding: 5px 0;
+	background: #3364bc;
+	text-align: center;
+	font-size: 77%;
+	color: #FFFFFF;
+}
+
+#footer a {
+	color: #FFFFFF;
+}
+
+		td {
+			text-align: center;
+			border-top: 1px solid #777777;
+			border-left: 1px solid #777777;
+			padding: 2px 2px;
+			width: 10%;
+		}
+		table {
+			min-height: 100%;
+    			width: 100%;
+			border-bottom: 1px solid #777777;
+			border-right: 1px solid #777777;
+			page-break-inside: avoid;
+		}
+		.day {
+			background-color: #000000;
+			color: #FFFFFF;
+		}
+		.rooms, .rooms a {
+			background-color: #B3B3B3;
+			color: #000000;
+		}
+		.coffeebreak, .coffeebreak a {
+			background-color: #E6E6E6;
+			color: #000000;
+		}
+		.lunch, .lunch a {
+			background-color: #E6E6E6;
+			color: #000000;
+		}
+		.sessions, .sessions a {
+			background-color: #FFFFFF;
+			color: #000000;
+			white-space:nowrap;
+		}
+		.social, .social a {
+	        background-color: #CC0000;
+            color: #FFFFFF;
+		}
+        td.sessions {
+            text-align: center;
+        }
+		 td.rooms {
+            text-align: center;
+        }
+.booklet_paper, .booklet_paper_folded {
+	font-family: Arial;
+	font-size: 12px;
+	color: #000000;
+	margin-bottom: 10px;
+}
+.paper_title {
+	color: #000000;
+	font-size: 14px;
+}
+.paper_content {
+	background: #F0F0F0;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	overflow: hidden;
+	border-radius: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: justify;
+}
+.location {
+	color: #2CA9A9;
+	font-size: 14px;
+}
+.chair {
+	color: #006600;
+	font-size: 12px;
+	font-weight: normal;
+}
+.session {
+	color: #CA3200;
+	font-size: 14px;
+}
+.workshop_session, .workshop_session a {
+	background-color: #FABF8F;
+    color: #000000;
+}
+.panel_session, .panel_session a {
+	background-color: #66CCFF;
+    color: #000000;
+}
+.keynote_session, .keynote_session a {
+	background-color: #CC0000;
+    color: #FFFFFF;
+}
+.tutorial_session, .tutorial_session a {
+	background-color: #00AA00;
+    color: #000000;
+}
+.industry_session, .industry_session a {
+	background-color: #99FE00;
+    color: #000000;
+}
+.demo_session, .demo_session a {
+	background-color: #006666;
+    color: #FFFFFF;
+}
+.research_session, .research_session a {
+    background-color: #E9E400;
+    color: #000000;
+}
+.booklet_paper_folded .paper_content{
+	display:none;
+}
+.section {
+	font-weight: normal;
+	padding: 1px 4px;
+	color: #FFFFFF;
+	background: #d81921;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+.paper_controls {
+	width: 16px;
+	float: right;
+}
+
+.abstract{
+	display: none;
+    font-style: italic;
+    font-family: "Times New Roman";
+}
+
+.absBtn{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    font-size: 12px;
+    text-decoration:underline;
+    color: darkslategray;
+}
