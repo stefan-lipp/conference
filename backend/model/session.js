@@ -13,6 +13,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     trackId: {
       type: DataTypes.INTEGER,
+      field: 'trackid',
       allowNull: true,
       references: {
         model: 'track',
