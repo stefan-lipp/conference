@@ -18,10 +18,12 @@ module.exports = function (sequelize, DataTypes) {
     },
     fromDate: {
       type: DataTypes.DATEONLY,
+      field: 'fromdate',
       allowNull: false,
     },
     untilDate: {
       type: DataTypes.DATEONLY,
+      field: 'untildate',
       allowNull: false,
     },
   });
