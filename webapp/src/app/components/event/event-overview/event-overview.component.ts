@@ -6,10 +6,6 @@ import {
 
 import { ConferenceEvent } from '../../../models';
 import { EventService } from '../../../services';
-import {
-  CalendarEvent,
-  CalendarTrack,
-} from '../../ui-elements/calendar';
 
 @Component({
   selector: 'conference-event-overview',
@@ -60,26 +56,6 @@ export class EventOverviewComponent implements OnInit {
     return this.allEvents;
   }
 
-  /** @return Calendar Track representation of the events */
-  public get tracks (): CalendarTrack[] {
-    // TODO convert events into calendar tracks
-    return [ {
-        color: '#fff',
-        backgroundColor: '#03a9f4',
-        isDisplayed: true,
-        events: this.events
-          .filter(e =>
-            Boolean(e.startTime) && e.startTime.isValid() &&
-            Boolean(e.endTime) && e.endTime.isValid()
-          )
-          .map(e => <CalendarEvent> Object({
-            title: e.title,
-            startTime: e.startTime,
-            endTime: e.endTime,
-          })),
-      } ];
-  }
-
   /**
    * Sets selectedEvents to all Events from events whoose title contain filterQuery
    *
@@ -97,6 +73,6 @@ export class EventOverviewComponent implements OnInit {
 
   public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
     event.favored = state;
-    this.eventService.updateFavourStatus(event);
+    this.eventService.updateFavourStatus(event).subscribe(_ => null, err => console.error(err));
   }
 }

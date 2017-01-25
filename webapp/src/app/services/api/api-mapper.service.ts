@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import {
-  ConferenceEvent,
   ApiConferenceEvent,
+  ApiConferenceSession,
+  ConferenceEvent,
+  ConferenceSession,
 } from '../../models';
 
 @Injectable()
@@ -28,4 +30,7 @@ export class ApiMapperService {
     return ConferenceEvent.fromAPI(data);
   }
 
+  public sessionApiToLocal (data: ApiConferenceSession): ConferenceSession {
+    return ConferenceSession.fromAPI(data);
+  }
 }

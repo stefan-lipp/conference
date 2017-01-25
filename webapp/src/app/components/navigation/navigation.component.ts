@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services';
+import { AuthService } from 'app/services';
 
 @Component({
   selector: 'conference-navigation',
@@ -10,6 +10,6 @@ export class NavigationComponent {
 
   constructor (
     public authService: AuthService,
-  ) {}
+  ) { }
 
 }

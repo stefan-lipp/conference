@@ -4,15 +4,16 @@
 
   <md-card-title>{{ event.title }}</md-card-title>
   <md-card-content>
+    <ul class="paper-authors" *ngIf="event.paper">
+      <li class="paper-author" *ngFor="let author of event.paper.authors; let i = index">
+        <span class="author-name">{{ author.name }}</span>
+        <span class="author-institution" *ngIf="author.institution">({{ author.institution }})</span>
+        {{ (i < event.paper.authors.length - 1) ? ',' : '' }}
+      </li>
+    </ul>
     <dl>
       <dt *ngIf="event.paper && event.paper.keywords">Keywords:</dt>
         <dd *ngIf="event.paper && event.paper.keywords">{{ event.paper.keywords }}</dd>
-      <dt *ngIf="event.room">Room:</dt>
-        <dd *ngIf="event.room">{{ event.room }}</dd>
-      <dt *ngIf="event.startTime && event.startTime.isValid()">Starts:</dt>
-        <dd *ngIf="event.startTime && event.startTime.isValid()">{{ formatTime(event.startTime) }}</dd>
-      <dt *ngIf="event.endTime && event.endTime.isValid()">Ends:</dt>
-        <dd *ngIf="event.endTime  && event.endTime.isValid()">{{ formatTime(event.endTime) }}</dd>
     </dl>
   </md-card-content>
   <md-card-actions align="end">

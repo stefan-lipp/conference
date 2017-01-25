@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.search-bar {
+  background: #fff;
+
+  md-input, input {
+    width: calc(100% - 5rem);
+    margin: 0 .5rem;
+  }
+}
+
+conference-session-calendar {
+  height: calc(100vh - 10rem);
+  background-color: #fff;
+}

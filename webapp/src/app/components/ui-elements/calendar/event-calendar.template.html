@@ -1,0 +1,9 @@
+<conference-calendar [tracks]="tracks" [eventTemplate]="eventTemplate">
+  <template let-event #eventTemplate>
+    <span class="calendar-event-title">{{ event.title }}</span>
+    <span class="calendar-event-time">
+      {{ formatTime(event.startTime) }} - {{ formatTime(event.endTime) }}
+    </span>
+    <div *ngIf="event.meta.favored" class="favor-indicator favor-indicator--sm"><md-icon>star</md-icon></div>
+  </template>
+</conference-calendar>

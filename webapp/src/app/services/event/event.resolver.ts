@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { EventService } from '../event';
+import { EventService } from './event.service';
 import { ConferenceEvent } from '../../models';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class EventResolver implements Resolve<ConferenceEvent> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<ConferenceEvent> {
-     return this.eventService.getEvent(route.params['eventId']);
+    return this.eventService.getEvent(route.params['eventId']);
   }
 
 }

@@ -6,7 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { API_ROUTES } from '../api/routes';
 import { ApiMapperService } from '../api';
 import { AuthService } from '../auth';
-import { ConferenceEvent } from '../../models';
+import { ConferenceEvent } from 'app/models';
 
 @Injectable()
 export class EventService {
@@ -58,13 +58,11 @@ export class EventService {
    * @param {ConferenceEvent} event The event whose favour status to update.
    * @return void
    */
-  public updateFavourStatus(event: ConferenceEvent): void {
+  public updateFavourStatus(event: ConferenceEvent): Observable<any> {
     if (event.favored) {
-      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { })
-        .subscribe(_ => null);
+      return this.authHttp.post(API_ROUTES.events.favorite.replace(':eventId', event.id), { });
     } else {
-      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id))
-        .subscribe(_ => null);
+      return this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventId', event.id));
     }
   }
 }

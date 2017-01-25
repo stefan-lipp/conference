@@ -1,7 +1,13 @@
-/*
- * Angular 2 decorators and services
- */
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
+
+import {
+  ApiService,
+  AppService,
+} from 'app/services';
 
 /*
  * App Component
@@ -16,8 +22,17 @@ import { Component, ViewEncapsulation } from '@angular/core';
   ],
   templateUrl: 'app.template.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   public name: string = 'Conference Tool';
+
+  constructor (
+    private apiService: ApiService,
+    private appService: AppService,
+  ) { }
+
+  public ngOnInit () {
+    this.apiService.getMeta().subscribe(meta => this.appService.metadata = meta);
+  }
 
 }

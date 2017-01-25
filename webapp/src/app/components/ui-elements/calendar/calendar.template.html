@@ -1,6 +1,6 @@
 <div class="calendar-viewport-title">
   <button md-button (click)="goToPast()"><i class="material-icons">navigate_before</i></button>
-  {{ selectedDay.format("MMMM Do YYYY") }}
+  <span>{{ selectedDay.format("MMMM Do YYYY") }}</span>
   <button md-button (click)="goToFuture()"><i class="material-icons">navigate_next</i></button>
 </div>
 <div class="scroll-wrapper">
@@ -22,14 +22,36 @@
         <div
           *ngFor="let event of track.events"
           class="calendar-event"
-          [style.color]="track.color"
           [style.backgroundColor]="track.backgroundColor"
+          [style.color]="track.color"
           [style.top]="timeToPercentage(event.startTime) + '%'"
           [style.bottom]="(100 - timeToPercentage(event.endTime)) + '%'"
           [style.left]="getLeftPercentage(event) + '%'"
           [style.right]="getRightPercentage(event) + '%'"
         >
-          <span class="calendar-event-title">{{ event.title }}</span>
+          <a
+            *ngIf="event.meta.href"
+            [routerLink]="[ event.meta.href ]"
+            [style.color]="track.color"
+          >
+            <template
+              *ngIf="eventTemplate"
+              [ngTemplateOutlet]="eventTemplate"
+              [ngOutletContext]="{ $implicit: event }"
+            ></template>
+            <span *ngIf="!eventTemplate">{{ event.title }}</span>
+          </a>
+          <span
+            *ngIf="!event.meta.href"
+            [style.color]="track.color"
+          >
+            <template
+              *ngIf="eventTemplate"
+              [ngTemplateOutlet]="eventTemplate"
+              [ngOutletContext]="{ $implicit: event }"
+            ></template>
+            <span *ngIf="!eventTemplate">{{ event.title }}</span>
+          </span>
         </div>
       </div>
     </div>

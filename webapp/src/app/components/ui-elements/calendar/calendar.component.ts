@@ -1,14 +1,16 @@
 import * as moment from 'moment';
 import {
   Component,
-  Input,
   ElementRef,
+  Input,
+  TemplateRef,
 } from '@angular/core';
 
 export interface CalendarEvent {
   title: string;
   startTime: moment.Moment;
   endTime: moment.Moment;
+  meta?: Object;
 }
 
 export interface CalendarTrack {
@@ -19,25 +21,31 @@ export interface CalendarTrack {
 }
 
 /** Available timeframe sizes */
-type Timeframe = 'day' | 'week' | 'month';
+type Timeframe = 'day'; // TODO 'week', 'month'
 
+/** Generic calendar component */
 @Component({
   selector: 'conference-calendar',
   templateUrl: './calendar.template.html',
-  styleUrls: [ './calendar.style.scss' ],
 })
 export class CalendarComponent {
+
+  /** Template for displaying CalendarEvents */
+  @Input()
+  public eventTemplate: TemplateRef<any>;
 
   @Input()
   public tracks: CalendarTrack[] = [ ];
 
   public viewportTimeframe: Timeframe = 'day';
 
+  @Input()
   public selectedDay: moment.Moment = moment();
 
   constructor (
     private elem: ElementRef,
   ) {
+    // setTimeout ensures this is called after _everything_ else has been set up
     window.setTimeout(() => {
       const currentTimeIndicator: HTMLElement =
         this.elem.nativeElement.querySelector('.current-time');
@@ -73,8 +81,9 @@ export class CalendarComponent {
   /**
    * Moves the current timeframe-viewport a given amount of timeframe to the past
    *
-   * @param {number} amount Number of timeframes to step into the past
-   * @param {TimeFrame} unit Type/size of timeframe step
+   * @param {number} amount Number of timeframes to step into the past, defaults to 1
+   * @param {TimeFrame} unit Type/size of timeframe step, defaults to viewportTimeframe,
+   *    defaults to viewportTimeframe
    * @return {void}
    */
   public goToPast (amount: number = 1, unit: Timeframe = this.viewportTimeframe): void {
@@ -85,7 +94,7 @@ export class CalendarComponent {
    * Moves the current timeframe-viewport one timeframe to the future
    *
    * @param {number} amount Number of timeframes to step into the past
-   * @param {TimeFrame} unit Type/size of timeframe step
+   * @param {TimeFrame} unit Type/size of timeframe step, defaults to viewportTimeframe
    * @return {void}
    */
   public goToFuture (amount: number = 1, unit: Timeframe = this.viewportTimeframe): void {
@@ -100,7 +109,7 @@ export class CalendarComponent {
   /**
    * Converts a given time to the percentage of a full day.
    *
-   * @param {Date} date Date to convert. Defaults to the current time
+   * @param {Date} date Date to convert. Defaults to the current time, defaults to the current time
    * @return {number} Percentage of a full day (0-100)
    */
   public timeToPercentage (date: moment.Moment = moment()): number {
@@ -150,11 +159,12 @@ export class CalendarComponent {
    * Checks whether a given event is in a given timeframe
    *
    * @param {CalendarEvent} event Event to check for inclusion in a timeframe
-   * @param {Timeframe} timeframe Size of a given timeframe
+   * @param {Timeframe} timeframe Size of a given timeframe, defaults to viewportTimeframe
    * @param {moment.Moment} pointOfReference Reference point for the timeframe.
    *    Note that the timeframe does not start at this point but at a timeframes proper start,
    *    e.g. timeframe 'month' starts on the first of a month even if pointOfReference is the 21st.
-   * @return {boolean} True if event is in the timeframe, else otherwise
+   *    defaults to selectedDay
+   * @return {boolean} True if event is in the timeframe, false otherwise
    */
   private inTimeframe (
     event: CalendarEvent,

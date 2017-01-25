@@ -5,6 +5,7 @@ const Errors = require('../util/errors');
 
 const DataBase = require('../model/index');
 const Event = DataBase.sequelize.models.event;
+const Session = DataBase.sequelize.models.session;
 const Paper = DataBase.sequelize.models.paper;
 const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
@@ -28,6 +29,7 @@ function eventSubroutes (app) {
             ] },
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
+          { model: Session, require: false },
         ],
       })
         .then((events) => {
@@ -136,7 +138,7 @@ function eventSubroutes (app) {
 
     // GET retrieve single event
     app.get((req, res) => {
-      const eventId = req.params.eventId;
+      const eventId = parseInt(req.params.eventId, 10);
       const personId = (req.decoded ? req.decoded.personId : null);
 
       Event.findById(eventId, {
@@ -149,12 +151,17 @@ function eventSubroutes (app) {
           { model: Favorite, where: { personId: personId }, required: false },
         ],
       }).then(event => {
-        res.json(TOMapper.toEventTO(event));
-      }).catch(() => res.status(404).json({
-        error: true,
-        success: false,
-        message: 'Unknown event',
-      }));
+        res.json(TOMapper.toEventDetailTO(event));
+      }).catch(err => {
+        if (process.env.ENV === 'development') {
+          console.error(err);
+        }
+        res.status(404).json({
+          error: true,
+          success: false,
+          message: 'Unknown event',
+        });
+      });
     });
   });
 

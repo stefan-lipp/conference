@@ -4,14 +4,18 @@ import { NoContentComponent } from './components';
 import {
   EVENT_ROUTES,
   LOGIN_ROUTES,
-  REGISTER_ROUTES,
   MY_SCHEDULE_ROUTES,
-} from './components/';
+  OVERVIEW_ROUTES,
+  REGISTER_ROUTES,
+  SESSION_ROUTES,
+} from './components';
 
 export const ROUTES: Routes = [
   ...EVENT_ROUTES,
   ...LOGIN_ROUTES,
-  ...REGISTER_ROUTES,
   ...MY_SCHEDULE_ROUTES,
+  ...OVERVIEW_ROUTES,
+  ...REGISTER_ROUTES,
+  ...SESSION_ROUTES,
   { path: '**', component: NoContentComponent },
 ];

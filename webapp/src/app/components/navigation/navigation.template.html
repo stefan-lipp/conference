@@ -3,15 +3,15 @@
     <span class="toolbar-title toolbar-fill-remaining">Conference Tool</span>
 
       <md-menu x-position="before" #menu="mdMenu">
-        <a md-menu-item routerLink="/events">Events</a>
+        <a md-menu-item routerLink="/">Overview</a>
         <span *ngIf="authService.loggedIn">
           <a md-menu-item routerLink="/my-schedule">My Schedule</a>
           <a md-menu-item>Settings</a>
           <a md-menu-item (click)="authService.logout('/events')">Logout</a>
         </span>
         <span *ngIf="!authService.loggedIn">
-          <a md-menu-item routerLink="/my-schedule">Schedule</a>
           <a md-menu-item routerLink="/login">Login</a>
+          <a md-menu-item routerLink="/register">Register</a>
         </span>
       </md-menu>
 
