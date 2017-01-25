@@ -33,6 +33,9 @@ export class RegisterComponent {
         Validators.required,
         FormValidators.validateEmail,
       ]) ],
+      'name': [ '', Validators.compose([
+        Validators.required,
+      ]) ],
       'password': [ '', Validators.compose([
         Validators.required,
         Validators.minLength(MIN_PASSWORD_LENGTH),
@@ -53,7 +56,9 @@ export class RegisterComponent {
    * @param {{ email: string, password: string, passwordConfirmation: string }} data Form data
    * @return {void}
    */
-  public onSubmit (data: { email: string, password: string, passwordConfirmation: string }): void {
+  public onSubmit (
+    data: { email: string, name: string, password: string, passwordConfirmation: string }
+  ): void {
     if (this.form.valid) {
       this.authService.register(data).subscribe(res => {
         this.router.navigate([ 'login' ], { queryParams: { registerSuccess: true } });

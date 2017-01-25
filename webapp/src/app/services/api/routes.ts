@@ -8,4 +8,10 @@ export const API_ROUTES = {
   papers: {
     create: `${API_BASE_URL}/papers`,
   },
+  events: {
+    all: `${API_BASE_URL}/events`,
+    single: `${API_BASE_URL}/events/:eventId`,
+    favorite: `${API_BASE_URL}/events/favorites/:eventid`,
+    favorites: `${API_BASE_URL}/events/favorites`,
+  },
 };

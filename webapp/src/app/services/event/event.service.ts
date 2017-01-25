@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http }       from '@angular/http';
-
+import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
+import { AuthHttp } from 'angular2-jwt';
 
-import { Event }      from '../../models/event.model';
-import { EVENTS }     from './mock-events';
+import { API_ROUTES } from '../api/routes';
+import { ApiMapperService } from '../api';
+import { AuthService } from '../auth';
+import { ConferenceEvent } from '../../models';
 
 @Injectable()
 export class EventService {
@@ -12,46 +14,57 @@ export class EventService {
   /**
    * Constructor for the event service.
    */
-  constructor(private http: Http) { }
+  constructor(
+    private apiMapperService: ApiMapperService,
+    private authService: AuthService,
+    private authHttp: AuthHttp,
+    private http: Http,
+  ) { }
 
-  /**
-   * Finds all events of the conference.
-   *
-   * @return An observable list of events.
-   */
-  public findAll(): Observable<Event[]> {
-    return Observable.of(EVENTS);
+  private get httpService (): Http | AuthHttp {
+    if (this.authService.loggedIn) {
+      return this.authHttp;
+    } else {
+      return this.http;
+    }
   }
 
   /**
-   * Saves a new event or updates an existing one.
+   * Returns all events of the conference
    *
-   * @param {Event}: The event to save or update.
-   * @return void
+   * @return {Observable<Event[]>} An observable containing a list of all events
    */
-  public save(event: Event): void {
-    let existingEvent = EVENTS.find(elem => elem.id === event.id);
-    if (existingEvent === undefined) {
-      EVENTS.push(event);
-    } else {
-      let existingIndex = EVENTS.indexOf(existingEvent);
-      EVENTS[existingIndex] = event;
-    }
+  public getAll (): Observable<ConferenceEvent[]> {
+    return this.httpService.get(API_ROUTES.events.all)
+      .map(res => res.json())
+      .map(list => list.map(this.apiMapperService.eventApiToLocal));
+  }
+
+  public getFavorites (): Observable<ConferenceEvent[]> {
+    return this.httpService.get(API_ROUTES.events.favorites)
+      .map(res => res.json())
+      .map(list => list.map(this.apiMapperService.eventApiToLocal));
+  }
+
+  public getEvent (eventId: number): Observable<ConferenceEvent> {
+    return this.httpService.get(API_ROUTES.events.single.replace(':eventId', eventId.toString(10)))
+      .map(res => res.json())
+      .map(this.apiMapperService.eventApiToLocal);
   }
 
   /**
    * Updates the favour status of an event.
    *
-   * @param {Event} The event whose favour status to update.
+   * @param {ConferenceEvent} event The event whose favour status to update.
    * @return void
    */
-  public updateFavourStatus(event: Event): void {
-    /*
-      TODO: Inform backend about updated favour status of event.
-
-      Send authHttp request to an api url like 'api/events/{event.id}/favourite' with a
-      request body containing true or false depending on 'event.favoured'
-    */
+  public updateFavourStatus(event: ConferenceEvent): void {
+    if (event.favored) {
+      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { })
+        .subscribe(_ => null);
+    } else {
+      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id))
+        .subscribe(_ => null);
+    }
   }
-
 }

@@ -1,0 +1,306 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Conference API",
+        "description": "Definition of the internal API for Conference.",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/api",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [ "Auth" ],
+                "summary": "Register a new User.",
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Email-address, name, and password for new user.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token for the user.",
+                        "schema": {
+                            "$ref": "#/definitions/Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [ "Auth" ],
+                "summary": "Login as an existng User.",
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Email-address and password for new user.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LoginData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token for the user.",
+                        "schema": {
+                            "$ref": "#/definitions/Token"
+                        }
+                    },
+                    "401": {
+                        "description": "Unknown user or bad password.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "tags": [ "Events" ],
+                "summary": "Retrieve all events.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "List of events.",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/event/:eventid/favorite": {
+            "post": {
+                "tags": [ "Events" ],
+                "summary": "Favor this event",
+                "description": "",
+                "responses": {
+                    "201": {
+                        "description": "Event favored"
+                    },
+                    "400": {
+                        "description": "Input parameters are missing",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandled error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [ "Events" ],
+                "summary": "Unfavor this event",
+                "description": "",
+                "responses": {
+                    "204": {
+                        "description": "Event un-favored"
+                    },
+                    "400": {
+                        "description": "Input parameters are missing",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Event not found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "events/:eventId": {
+            "get": {
+                "tags": [ "Events" ],
+                "summary": "Retrieve a single events.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Data of the requested event.",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "404": {
+                        "description": "The requested event could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/events/favorites": {
+            "get": {
+                "tags": [ "Events","Favorites" ],
+                "summary": "Retrieve all personal favorite events.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "List of all personal favorite events.",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "RegistrationData": {
+            "type": "object",
+            "required": [
+                "email",
+                "name",
+                "password",
+                "password_confirmation"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email-address of the user."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the user."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password of the user."
+                },
+                "password_confirmation": {
+                    "type": "string",
+                    "description": "Confirmation of the password."
+                }
+            }
+        },
+        "LoginData": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email-address of the user."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password of the user."
+                }
+            }
+        },
+        "Token": {
+            "type": "object",
+            "required": [
+                "token"
+            ],
+            "properties": {
+                "token": {
+                    "type": "string",
+                    "description": "The signed JWT. (Contains the UUID for the user.)"
+                }
+            }
+        },
+        "EventList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Event"
+            }
+        },
+        "Event": {
+            "type": "object",
+            "required": [
+                "id",
+                "title",
+                "duration"
+            ],
+            "properties": {
+                "id": { "type": "number" },
+                "title": { "type": "string" },
+                "paper": { "type": "object" },
+                "roomName": { "type": "string" },
+                "startTime": { "type": "string" },
+                "endTime": { "type": "string" },
+                "duration": { "type": "string" },
+                "maxSize": { "type": "number" },
+                "kind": { "type": "string" },
+                "favoured": { "type": "boolean" }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "error": {
+                    "type": "boolean"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

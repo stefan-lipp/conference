@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
-import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { provideAuth } from 'angular2-jwt';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -23,14 +24,20 @@ import {
   ApiService,
   ApiMapperService,
   EventService,
+  EventResolver,
 } from './services';
 
 // Components
 import {
+  CalendarComponent,
   EventListComponent,
-  NavigationComponent,
   EventOverviewComponent,
+  EventViewComponent,
+  EventViewOverlayComponent,
   LoginComponent,
+  MyScheduleComponent,
+  NavigationComponent,
+  NoContentComponent,
   RegisterComponent,
   PaperCreationComponent,
   ListInputComponent,
@@ -57,30 +64,43 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    NavigationComponent,
+    CalendarComponent,
     EventListComponent,
-    LoginComponent,
-    RegisterComponent,
     EventOverviewComponent,
+    MyScheduleComponent,
+    NoContentComponent,
+    EventViewComponent,
+    EventViewOverlayComponent,
+    LoginComponent,
+    NavigationComponent,
+    NoContentComponent,
+    RegisterComponent,
     PaperCreationComponent,
     ListInputComponent,
+  ],
+  entryComponents: [
+    EventViewOverlayComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: false }),
     MaterialModule.forRoot(),
+    ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES, { useHash: false }),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    AUTH_PROVIDERS,
+    provideAuth({
+      headerName: 'x-access-token',
+      noTokenScheme: true,
+    }),
     AuthService,
     ApiService,
     ApiMapperService,
     EventService,
+    EventResolver,
   ],
 })
 export class AppModule {
