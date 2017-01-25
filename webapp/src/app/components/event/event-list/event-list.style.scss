@@ -1,0 +1,38 @@
+.eventTypeLabel {
+  font-size: .8em;
+  color: #555;
+  padding-bottom: 1rem;
+  border-bottom: thin solid #ddd;
+}
+
+.eventTitleLabel {
+  display: block;
+  font-size: 1.2em;
+  color: #111;
+  line-height: 140%;
+  margin-bottom: 6.1em;
+}
+
+.eventSpeakerSection {
+  position: absolute;
+  width: calc(100% - 2em);
+  bottom: 3.1em;
+  padding: 1em 0 .8em 0;
+  color: #555;
+  border-bottom: thin solid #ddd;
+}
+
+.speakerIcon {
+  float: left;
+}
+
+.speakerLabel {
+  display: block;
+  margin: 0 1em .2em 3em;
+}
+
+.favouriteButton {
+  position: absolute;
+  bottom: .2em;
+  right: 1em;
+}

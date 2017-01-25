@@ -8,7 +8,6 @@ conference-event-list {
 
     md-card {
         box-sizing: border-box;
-        width: calc(100% - 1em);
         margin: .5em;
         padding: 1em;
         display: flex;
@@ -16,33 +15,15 @@ conference-event-list {
 
         @include respond-to(md) {
             width: inital;
-            flex: 1 0 20em;
-        }
-
-        md-card-actions:last-child {
-            padding: .5em;
+            flex: 1 0 18em;
         }
     }
-
-    md-card-content {
-        flex: 1;
-    }
-
-    md-card-title {
-        padding-right: 2rem;
-        padding-bottom: .5rem;
-        border-bottom: thin solid md-color($md-grey, 300);
-    }
-}
-
-conference-event-view {
-    background-color: #fff;
 }
 
 
 .favor-indicator {
     position: absolute;
-    right: .5rem;
+    right: 1.5rem;
     top: 0;
     padding: .5rem 0;
     background-color: map-get($md-red, 500);
