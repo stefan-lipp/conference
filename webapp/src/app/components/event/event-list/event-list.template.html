@@ -1,7 +1,10 @@
+<a id="pageTop"></a>
+<a *ngIf="lastVisitedLink" href="{{ lastVisitedLink }}">
+  continue at last visited event
+</a>
 <md-card *ngFor="let event of events">
 
   <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
-
   <md-card-title>{{ event.title }}</md-card-title>
   <md-card-content>
     <dl>
@@ -41,3 +44,6 @@
     </span>
   </md-card-actions>
 </md-card>
+<div *ngIf="lastVisitedLink" class="info">
+  <a href="/events#pageTop">Go to top</a>
+</div>
