@@ -2,7 +2,7 @@
 
   <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
-  <md-card-title (click)="displayEventview(event)">{{ event.title }}</md-card-title>
+  <md-card-title>{{ event.title }}</md-card-title>
   <md-card-content>
     <dl>
       <dt *ngIf="event.paper && event.paper.keywords">Keywords:</dt>
@@ -19,9 +19,9 @@
     <a
       md-button
       color="accent"
-      (click)="displayEventview(event)"
       [routerLink]="[ '/events', event.id ]"
     >Details</a>
+     
     <span *ngIf="authService.loggedIn">
       <button
         *ngIf="!event.favored"
