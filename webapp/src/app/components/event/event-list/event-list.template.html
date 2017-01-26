@@ -1,6 +1,6 @@
 <a id="pageTop"></a>
 <a 
-  *ngIf="lastVisitedLink"
+  *ngIf="lastVisitedLink && events.length > 0"
   href="{{ lastVisitedLink }}"
   class="info"
 >
@@ -48,4 +48,4 @@
     </span>
   </md-card-actions>
 </md-card>
-<a href="/events#pageTop" class="info">Go to top</a>
+<a *ngIf="events.length > 0" href="/events#pageTop" class="info">Go to top</a>
