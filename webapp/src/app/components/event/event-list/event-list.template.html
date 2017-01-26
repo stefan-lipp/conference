@@ -5,21 +5,37 @@
 
   <md-card-title class="eventTypeLabel">{{ event.eventType }}</md-card-title>
   <md-card-content>
-    <span
-      class="eventTitleLabel"
-      [routerLink]="[ '/events', event.id ]"
-    >
-    {{ event.title }}</span>
+    <span class="eventTitleLabel">{{ event.title }}</span>
+
+    <div class="eventKeywordSection">
+      <span class="keywordLabel">Databases</span>
+      <span class="keywordLabel">Query Optimization</span>
+      <span class="keywordLabel">Something Cool</span>
+      <span class="keywordLabel">C++</span>
+      <span class="keywordLabel">Last Keyword</span>
+    </div>
 
     <div class="eventSpeakerSection">
       <md-icon class="speakerIcon">person_outline</md-icon>
-      <span class="speakerLabel">Speaker Name</span>
-      <span class="speakerLabel">University or Institution</span>
+      <div>
+        <span class="speakerLabel">Speaker Name</span>
+        <span class="speakerLabel">University or Institution</span>
+      </div>
     </div>
+  </md-card-content>
 
-    <button
+  <button
+    md-button
+    color="accent"
+    class="detailsButton"
+    [routerLink]="[ '/events', event.id ]"
+  >
+    Details
+  </button>
+
+  <button
       md-button
-      color="primary"
+      color="accent"
       class="favouriteButton"
       *ngIf="!event.favored"
       [disabled]="!authService.loggedIn"
@@ -29,7 +45,7 @@
     </button>
     <button
       md-button
-      color="primary"
+      color="accent"
       class="favouriteButton"
       *ngIf="event.favored"
       [disabled]="!authService.loggedIn"
@@ -37,6 +53,4 @@
     >
       {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
     </button>
-
-  </md-card-content>
 </md-card>
