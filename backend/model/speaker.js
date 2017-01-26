@@ -1,20 +1,22 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
-  const Speaker = sequelize.define('speaker', {
-    eventid: {
+module.exports = function (sequelize, DataTypes) {
+  const speaker = sequelize.define('speaker', {
+    eventId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      field: 'eventid',
       references: {
         model: 'event',
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
+      },
     },
-    personid: {
+    personId: {
       type: DataTypes.UUID,
       primaryKey: true,
+      field: 'personid',
       references: {
         model: 'person',
         key: 'id',
@@ -24,8 +26,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     classMethods: {
-      associate: (models) => Speaker.belongsTo(models.event, { foreignKey: 'eventid' }),
+      associate: (models) => speaker.belongsTo(models.event, { foreignKey: 'eventid' }),
     },
   });
-  return Speaker;
+  return speaker;
 };

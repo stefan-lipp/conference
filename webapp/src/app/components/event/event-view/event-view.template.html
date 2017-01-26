@@ -1,4 +1,10 @@
-<div *ngIf="event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+<div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+
+<div class="subtitle-area">
+  <a href="/events#{{ event.id }}" md-icon-button><md-icon>arrow_back</md-icon></a>
+  <h3>Event Details</h3>
+</div>
+
 <h2>{{ event.title }}</h2>
 <h3 *ngIf="event.speaker">{{ event.speaker }}</h3>
 <h4>{{ event.eventType }}</h4>
@@ -9,9 +15,9 @@
       <th>Duration:</th>
       <td>{{ event.duration }}</td>
     </tr>
-    <tr *ngIf="event.starttime">
+    <tr *ngIf="event.startTime">
       <th>Start Time:</th>
-      <td>{{ event.starttime }}</td>
+      <td>{{ event.startTime }}</td>
     </tr>
     <tr *ngIf="event.endTime">
       <th>End Time:</th>
@@ -32,22 +38,23 @@
 </table>
 
 <div class="align-right">
-  <button
-    *ngIf="!event.favored"
-    md-raised-button
-    color="accent"
-    (click)="setFavorState(event, true)"
-  >
-    {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
-  </button>
-  <button
-    *ngIf="event.favored"
-    md-raised-button
-    color="accent"
-    (click)="setFavorState(event, false)"
-  >
-    {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
-  </button>
+  <span *ngIf="authService.loggedIn">
+    <button
+      *ngIf="!event.favored"
+      md-button
+      color="accent"
+      (click)="setFavorState(event, true)"
+    >
+      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+    </button>
+    <button
+      *ngIf="event.favored"
+      md-button color="accent"
+      (click)="setFavorState(event, false)"
+    >
+      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+    </button>
+  </span>
 </div>
 <div [class.hidden]="!showLocation">
   <div>
@@ -86,7 +93,7 @@
 
   <h5 *ngIf="event.paper.abstract">Abstract</h5>
   <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
-  <div class="align-right">
+  <div *ngIf="authService.loggedIn" class="align-right">
     <button
       *ngIf="!event.favored"
       md-raised-button

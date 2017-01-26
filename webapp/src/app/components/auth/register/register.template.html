@@ -90,6 +90,13 @@
           type="submit"
           [disabled]="form.invalid"
         >Register</button>
+        <a
+          href="/login"
+          [routerLink]="[ '/login' ]"
+          class="col col-12 col-portrait-6 col-portrait-push-6"
+          md-button
+          color="accent"
+        >I am already registered</a>
       </div>
     </form>
   </md-card>

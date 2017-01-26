@@ -1,10 +1,7 @@
-const express = require('express');
-const router = express.Router();
 const config = require('../config');
 
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
-const subroute = require('express-subroute');
 const uuid = require('uuid');
 
 const DataBase = require('../model/index');
@@ -23,6 +20,7 @@ function validatePassword (password, passwordConfirmation) {
   return (password === passwordConfirmation);
 }
 
+/** Subroutes under /auth */
 function authSubroutes (app) {
   app.subroute('/login', (app) => {
     app.post((req, res) => {
@@ -35,8 +33,8 @@ function authSubroutes (app) {
       UserData.findOne({
         include: [
           { model: Person, where: { email: credentials.email } },
-          { model: Admin }
-        ]
+          { model: Admin },
+        ],
       }).then(userInstance => {
         if (userInstance) {
           const passwordHash = userInstance.password;
@@ -48,7 +46,7 @@ function authSubroutes (app) {
               const token = jwt.sign(
                 {
                   isAdmin: Boolean(userInstance.admin),
-                  personId: userInstance.personid,
+                  personId: userInstance.personId,
                 },
                 config.jwtSecret,
                 {
@@ -63,7 +61,7 @@ function authSubroutes (app) {
                   res
                     .status(200)
                     .json({
-                        token: token,
+                      token: token,
                     });
                 })
                 .catch((err) => {
@@ -139,7 +137,7 @@ function authSubroutes (app) {
             email: registrationData.email,
             details: '',
           },
-        }).spread((personInstance, created) => {
+        }).spread((personInstance) => {
           // Person found
           // Create password hash
           bcrypt.hash(registrationData.password, null, null, (err, hash) => {
@@ -160,7 +158,7 @@ function authSubroutes (app) {
 
               // Create userdata, update and save
               UserData.create({
-                personid: personInstance.id,
+                personId: personInstance.id,
                 password: hash,
                 token: token,
               }).then((instance) => {
@@ -168,6 +166,9 @@ function authSubroutes (app) {
                 res.json({ token: instance.token });
               }).catch((err) => {
                 // Error on creation of user data
+                if (process.env.ENV === 'development') {
+                  console.error(err);
+                }
                 res
                   .status(400)
                   .json({
@@ -181,6 +182,9 @@ function authSubroutes (app) {
 
         }).catch((err) => {
           // Could neither find nor create person
+          if (process.env.ENV === 'development') {
+            console.error(err);
+          }
           res
             .status(500)
             .json({

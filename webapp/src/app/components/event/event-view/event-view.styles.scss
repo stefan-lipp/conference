@@ -1,3 +1,10 @@
+:host {
+    display: block;
+    background-color: #fff;
+    position: relative;
+    padding: .5rem 1rem;
+}
+
 .paper-authors {
     list-style-type: none;
     margin: 1rem 0;
@@ -9,4 +16,17 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.subtitle-area {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 0 0;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+    }
 }

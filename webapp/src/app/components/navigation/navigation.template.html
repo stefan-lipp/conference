@@ -4,9 +4,15 @@
 
       <md-menu x-position="before" #menu="mdMenu">
         <a md-menu-item routerLink="/events">Events</a>
-        <a md-menu-item routerLink="/my-schedule">My Schedule</a>
-        <a md-menu-item>Settings</a>
-        <a md-menu-item>Logout</a>
+        <span *ngIf="authService.loggedIn">
+          <a md-menu-item routerLink="/my-schedule">My Schedule</a>
+          <a md-menu-item>Settings</a>
+          <a md-menu-item (click)="authService.logout('/events')">Logout</a>
+        </span>
+        <span *ngIf="!authService.loggedIn">
+          <a md-menu-item routerLink="/my-schedule">Schedule</a>
+          <a md-menu-item routerLink="/login">Login</a>
+        </span>
       </md-menu>
 
       <button md-icon-button [md-menu-trigger-for]="menu">

@@ -1,25 +1,25 @@
-"use strict";
+'use strict';
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('room', {
     name: {
       type: DataTypes.STRING,
-    primaryKey: true
+      primaryKey: true,
     },
     size: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
-    conferenceid: {
+    conferenceId: {
       type: DataTypes.INTEGER,
+      field: 'conferenceid',
       allowNull: false,
       references: {
         model: 'conference',
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   });
-  return Room;
 };

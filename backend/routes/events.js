@@ -1,6 +1,3 @@
-const express = require('express');
-const router = express.Router();
-
 const jwtGuard = require('../middleware/jwt.guard');
 
 const TOMapper = require('../util/transportObjectMapper');
@@ -14,37 +11,40 @@ const Paper = DataBase.sequelize.models.paper;
 const Person = DataBase.sequelize.models.person;
 const Speaker = DataBase.sequelize.models.speaker;
 
+/** Subroutes under /events */
 function eventSubroutes (app) {
 
   // `/events/`
   app.subroute('/', (app) => {
 
     // GET retrieve list of all events
-    app.get((req, res, next) => {
+    app.get((req, res) => {
       const personId = (req.decoded ? req.decoded.personId : null);
 
       Event.findAll({
         include: [
-          { model: Paper , include: [
+          { model: Paper, include: [
             { model: Author, required: false, include: [
                { model: Person, required: false },
-            ]},
-          ]},
-          { model: Favorite, where: { personid: personId }, required: false },
-        ]
-      }).then((events) => {
-        res.json(events.map(TOMapper.toEventTO));
-      }).catch(err => {
-        if (process.env.ENV === 'development') {
-          console.error(err);
-        }
+            ] },
+          ] },
+          { model: Favorite, where: { personId: personId }, required: false },
+        ],
+      })
+        .then((events) => {
+          res.json(events.map(TOMapper.toEventTO));
+        })
+        .catch(err => {
+          if (process.env.ENV === 'development') {
+            console.error(err);
+          }
 
-        res.status(500).json({
-          error: true,
-          success: false,
-          message: 'Unknown error',
-        }); 
-      });
+          res.status(500).json({
+            error: true,
+            success: false,
+            message: 'Unknown error',
+          });
+        });
     });
 
   });
@@ -53,75 +53,79 @@ function eventSubroutes (app) {
     app.use(jwtGuard);
 
     // GET retrieve list of all events
-    app.get((req, res, next) => {
+    app.get((req, res) => {
       const personId = (req.decoded ? req.decoded.personId : null);
 
       Event.findAll({
         include: [
           { model: Paper },
-          { model: Favorite, where: { personid: personId }, required: true },
-        ]
-      }).then((events) => {
-         res.json(events.map(TOMapper.toEventTO));
-      }).catch((err) => {
-        if (process.env.ENV === 'development') {
-          console.error(err);
-        }
-        res.status(500).json(new Errors.InternalServerError());
-      });
-    });
-
-    app.subroute('/:eventId', (app) => {
-      app.post((req, res, next) => {
-        const eventId = (req.params && req.params.eventId);
-        const personId = (req.decoded && req.decoded.personId);
-
-        if (personId == null) {
-          res.status(401).json(new Errors.UnauthorizedError());
-          return;
-        }
-
-        if (eventId == null) {
-          res.status(400).send(); // TODO proper error
-          return;
-        }
-
-        Favorite.create(
-          { personid: personId, eventid: eventId }
-        ).then((fav) => {
-          res.status(201).send();
-        }).catch((err) => {
+          { model: Favorite, where: { personId: personId }, required: true },
+        ],
+      })
+        .then((events) => {
+          res.json(events.map(TOMapper.toEventTO));
+        })
+        .catch((err) => {
           if (process.env.ENV === 'development') {
             console.error(err);
           }
           res.status(500).json(new Errors.InternalServerError());
         });
-      });
+    });
 
-      app.delete((req, res, next) => {
+    app.subroute('/:eventId', (app) => {
+      app.post((req, res) => {
         const eventId = (req.params && req.params.eventId);
         const personId = (req.decoded && req.decoded.personId);
 
-        if (personId == null) {
+        if (!personId) {
           res.status(401).json(new Errors.UnauthorizedError());
           return;
         }
 
-        if (eventId == null) {
-          res.status(400).send(); // TODO proper error
+        if (!eventId) {
+          // TODO proper error
+          res.status(400).send();
           return;
         }
 
-        Favorite.destroy(
-          { where: { personid: personId, eventid: eventId } }
-        ).then((fav) => {
-          res.status(204).send();
-        }).catch((err) => {
-          if (process.env.ENV === 'development') {
-            console.error(err);
-          }
-          res.status(404).json(new Errors.NotFoundError('No such event or not a favorite'));
-        });
+        Favorite.create({ personId: personId, eventId: eventId })
+          .then(() => {
+            res.status(201).send();
+          })
+          .catch((err) => {
+            if (process.env.ENV === 'development') {
+              console.error(err);
+            }
+            res.status(500).json(new Errors.InternalServerError());
+          });
+      });
+
+      app.delete((req, res) => {
+        const eventId = (req.params && req.params.eventId);
+        const personId = (req.decoded && req.decoded.personId);
+
+        if (!personId) {
+          res.status(401).json(new Errors.UnauthorizedError());
+          return;
+        }
+
+        if (!eventId) {
+          // TODO proper error
+          res.status(400).send();
+          return;
+        }
+
+        Favorite.destroy({ where: { personId: personId, eventId: eventId } })
+          .then(() => {
+            res.status(204).send();
+          })
+          .catch((err) => {
+            if (process.env.ENV === 'development') {
+              console.error(err);
+            }
+            res.status(404).json(new Errors.NotFoundError('No such event or not a favorite'));
+          });
       });
 
     });
@@ -133,21 +137,25 @@ function eventSubroutes (app) {
 
     // GET retrieve single event
     app.get((req, res) => {
-      const eventId = (req.params && req.params.eventId);
+      const eventId = req.params.eventId;
+      const personId = (req.decoded ? req.decoded.personId : null);
 
-      if (eventId == null) {
-        res.status(400).send(); // TODO proper error
-        return;
-      }
-      Event.findById(eventId)
-        .then(event => {
-          res.json(TOMapper.toEventTO(event));
-        })
-        .catch(err => res.status(404).json({
-          error: true,
-          success: false,
-          message: 'Unknown event',
-        }));
+      Event.findById(eventId, {
+        include: [
+          { model: Paper, include: [
+            { model: Author, required: false, include: [
+               { model: Person, required: false },
+            ] },
+          ] },
+          { model: Favorite, where: { personId: personId }, required: false },
+        ],
+      }).then(event => {
+        res.json(TOMapper.toEventTO(event));
+      }).catch(() => res.status(404).json({
+        error: true,
+        success: false,
+        message: 'Unknown event',
+      }));
     });
   });
 
