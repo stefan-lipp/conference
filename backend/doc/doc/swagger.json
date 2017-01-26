@@ -203,6 +203,87 @@
                     }
                 }
             }
+        },
+        "/speaker/:personId/events": {
+            "get": {
+                "tags": [ "Events" ],
+                "summary": "Retrieve events of a speaker.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Data of the requested event.",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    },
+                    "404": {
+                        "description": "The requested person could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/author/:personId/papers": {
+            "get": {
+                "tags": [ "Papers" ],
+                "summary": "Retrieve papers of an author.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Data of the requested author.",
+                        "schema": {
+                            "$ref": "#/definitions/PaperList"
+                        }
+                    },
+                    "404": {
+                        "description": "The requested person could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "persons/:personId": {
+            "get": {
+                "tags": [ "Persons" ],
+                "summary": "Retrieve person information.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Data of the requested person.",
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    },
+                    "404": {
+                        "description": "The requested person could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -286,6 +367,45 @@
                 "maxSize": { "type": "number" },
                 "kind": { "type": "string" },
                 "favoured": { "type": "boolean" }
+            }
+        },
+        "PaperList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Paper"
+            }
+        },
+        "Paper": {
+            "type": "object",
+            "required": [
+                "id",
+                "title",
+                "keywords",
+                "abstract"
+            ],
+            "properties": {
+                "id": { "type": "number" },
+                "title": { "type": "string" },
+                "authors": { "type": "array", "items": { "$ref": "#/definitions/Person" } },
+                "keywords": { "type": "string" },
+                "abstract": { "type": "string" },
+                "url": { "type": "string" },
+                "tag": { "type": "string" }
+            }
+        },
+        "Person": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "email"
+            ],
+            "properties": {
+                "id": { "type": "uuid" },
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "details": { "type": "string" },
+                "institutionId": { "type": "uuid" }
             }
         },
         "Error": {

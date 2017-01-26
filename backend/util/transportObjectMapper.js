@@ -13,6 +13,7 @@ const moment = require('moment');
  */
 function toPersonTO (personInstance) {
   return {
+    id: personInstance.id,
     name: personInstance.name,
     email: personInstance.email,
   };
@@ -62,7 +63,7 @@ function toEventTO (eventInstance) {
       eventInstance.alias ||
       '<untitled event>'),
     paper: eventInstance.paper ? toPaperTO(eventInstance.paper) : null,
-    roomName: eventInstance.roomName,
+    roomName: eventInstance.roomname,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
     duration: duration,
@@ -73,6 +74,7 @@ function toEventTO (eventInstance) {
 }
 
 module.exports = {
-  toPaperTO: toPaperTO,
   toEventTO: toEventTO,
+  toPaperTO: toPaperTO,
+  toPersonTO: toPersonTO,
 };
