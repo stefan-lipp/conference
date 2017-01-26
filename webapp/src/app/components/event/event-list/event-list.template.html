@@ -5,7 +5,11 @@
 
   <md-card-title class="eventTypeLabel">{{ event.eventType }}</md-card-title>
   <md-card-content>
-    <span class="eventTitleLabel">{{ event.title }}</span>
+    <span
+      class="eventTitleLabel"
+      [routerLink]="[ '/events', event.id ]"
+    >
+    {{ event.title }}</span>
 
     <div class="eventSpeakerSection">
       <md-icon class="speakerIcon">person_outline</md-icon>

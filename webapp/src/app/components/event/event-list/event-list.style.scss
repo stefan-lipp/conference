@@ -6,17 +6,18 @@
 }
 
 .eventTitleLabel {
+  cursor: pointer;
   display: block;
   font-size: 1.2em;
   color: #111;
   line-height: 140%;
-  margin-bottom: 6.1em;
+  margin-bottom: 5.5em;
 }
 
 .eventSpeakerSection {
   position: absolute;
   width: calc(100% - 2em);
-  bottom: 3.1em;
+  bottom: 3em;
   padding: 1em 0 .8em 0;
   color: #555;
   border-bottom: thin solid #ddd;
