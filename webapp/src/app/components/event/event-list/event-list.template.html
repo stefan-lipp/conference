@@ -1,18 +1,22 @@
-<md-card
-  *ngFor="let event of events">
+<md-card *ngFor="let event of events">
 
   <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
   <md-card-title class="eventTypeLabel">{{ event.eventType }}</md-card-title>
   <md-card-content>
-    <span class="eventTitleLabel">{{ event.title }}</span>
+    <span
+      class="eventTitleLabel"
+      [routerLink]="[ '/events', event.id ]"
+    >
+      {{ event.title }}
+    </span>
 
     <div class="eventKeywordSection">
       <span class="keywordLabel">Databases</span>
       <span class="keywordLabel">Query Optimization</span>
-      <span class="keywordLabel">Something Cool</span>
+      <span class="keywordLabel">Hyper</span>
       <span class="keywordLabel">C++</span>
-      <span class="keywordLabel">Last Keyword</span>
+      <span class="keywordLabel">Tableau</span>
     </div>
 
     <div class="eventSpeakerSection">

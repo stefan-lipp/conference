@@ -43,6 +43,9 @@ import {
 
 // Directives
 
+// Pipes
+import { EventFilterPipe } from './pipes';
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -73,6 +76,7 @@ type StoreType = {
     NavigationComponent,
     NoContentComponent,
     RegisterComponent,
+    EventFilterPipe,
   ],
   entryComponents: [
     EventViewOverlayComponent,

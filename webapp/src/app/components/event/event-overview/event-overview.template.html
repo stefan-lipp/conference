@@ -11,11 +11,15 @@
 </div>
 <md-tab-group>
   <md-tab label="List">
-    <conference-event-list
-      [events]="selectedEvents"
-      (onFavouriteStateChange)="setFavouriteState($event)"
-    ></conference-event-list>
     <md-spinner *ngIf="loading"></md-spinner>
+
+    <md-list *ngFor="let eventType of eventTypes">
+      <h3 md-subheader>{{ eventType }}s</h3>
+      <conference-event-list
+        [events]="selectedEvents | EventFilter: eventType"
+        (onFavouriteStateChange)="setFavouriteState($event)"
+      ></conference-event-list>
+    </md-list>
   </md-tab>
   <md-tab label="Calendar">
     <conference-calendar

@@ -7,11 +7,12 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { ConferenceEvent } from '../../../models/conference-event.model';
-import { AuthService } from '../../../services';
+import { MdDialog } from '@angular/material';
 
 import { EventViewOverlayComponent } from '../event-view/event-view-overlay.component';
-import { MdDialog } from '@angular/material';
+
+import { ConferenceEvent } from '../../../models/conference-event.model';
+import { AuthService } from '../../../services';
 
 @Component({
   selector: 'conference-event-list',
@@ -41,7 +42,6 @@ export class EventListComponent  {
     const dialogRef = this.dialog.open(EventViewOverlayComponent, {
        disableClose: false,
     });
-
     dialogRef.componentInstance.event = event;
   }
 

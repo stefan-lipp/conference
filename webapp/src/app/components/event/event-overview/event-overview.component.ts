@@ -4,7 +4,10 @@ import {
   Input,
 } from '@angular/core';
 
-import { ConferenceEvent } from '../../../models';
+import {
+  ConferenceEvent,
+  EventType,
+} from '../../../models';
 import { EventService } from '../../../services';
 import {
   CalendarEvent,
@@ -25,6 +28,10 @@ export class EventOverviewComponent implements OnInit {
 
   /** Subset of all events */
   public selectedEvents: ConferenceEvent[] = [ ];
+
+  public eventTypes: string[] = [
+    'Keynote', 'Research Talk', 'Industry Talk', 'Tutorial', 'Workshop', 'Demo',
+  ];
 
   /** List of all available events */
   private allEvents: ConferenceEvent[] = [ ];
@@ -99,4 +106,5 @@ export class EventOverviewComponent implements OnInit {
     event.favored = state;
     this.eventService.updateFavourStatus(event);
   }
+
 }
