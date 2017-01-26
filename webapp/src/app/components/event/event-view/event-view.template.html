@@ -1,7 +1,7 @@
 <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
 <div class="subtitle-area">
-  <a [routerLink]="[ '..' ]" md-icon-button><md-icon>arrow_back</md-icon></a>
+  <a href="/events#{{ event.id }}" md-icon-button><md-icon>arrow_back</md-icon></a>
   <h3>Event Details</h3>
 </div>
 
