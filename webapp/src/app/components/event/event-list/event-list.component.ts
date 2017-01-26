@@ -57,6 +57,4 @@ export class EventListComponent  {
   public formatTime (time: moment.Moment): string {
     return time.format('MMM Do, HH:mm');
   }
-
-
 }
