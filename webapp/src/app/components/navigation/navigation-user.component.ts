@@ -10,7 +10,7 @@ import { PersonService } from '../../services';
   template: `
     <button md-button>
       <i class="material-icons">person_outline</i>
-      {{ username }}
+      <span>{{ username }}</span>
     </button>
     `,
   styles: [`
@@ -20,8 +20,15 @@ import { PersonService } from '../../services';
       margin-right: 1em;
       padding: 0 .6em;
     }
-    i {
-      padding-right: .2em;
+
+    span {
+      padding-left: .2em;
+    }
+
+    @media only screen and (max-width: 500px) {
+       span {
+        display: none;
+      }
     }
     `],
 })
