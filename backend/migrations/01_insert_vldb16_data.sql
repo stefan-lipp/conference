@@ -298,6 +298,8 @@ INSERT INTO institution (id, name, details, iconurl) VALUES ('a92eb70e-3e0e-497a
 --
 -- Data for Name: keyword; Type: TABLE DATA; Schema: public; Owner: eliti
 --
+﻿INSERT INTO public.keyword ("name") VALUES (
+'Industry');
 INSERT INTO public.keyword ("name") VALUES (
 '-2');
 INSERT INTO public.keyword ("name") VALUES (
@@ -416,8 +418,6 @@ INSERT INTO public.keyword ("name") VALUES (
 'Hardware-Software');
 INSERT INTO public.keyword ("name") VALUES (
 'Platforms');
-INSERT INTO public.keyword ("name") VALUES (
-'Industrial');
 INSERT INTO public.keyword ("name") VALUES (
 'and');
 INSERT INTO public.keyword ("name") VALUES (
@@ -5816,15 +5816,28 @@ SELECT pg_catalog.setval('conference_id_seq', 1, false);
 -- Data for Name: kind; Type: TABLE DATA; Schema: public; Owner: eliti
 --
 
-INSERT INTO kind (name) VALUES ('Workshop');
-INSERT INTO kind (name) VALUES ('Tutorial');
-INSERT INTO kind (name) VALUES ('Conference');
-INSERT INTO kind (name) VALUES ('Keynote');
-INSERT INTO kind (name) VALUES ('Research');
-INSERT INTO kind (name) VALUES ('VLDB');
-INSERT INTO kind (name) VALUES ('Buse');
-INSERT INTO kind (name) VALUES ('Endowment');
-INSERT INTO kind (name) VALUES ('Entertainment');
+﻿INSERT INTO public.kind ("name") VALUES (
+'Workshop');
+INSERT INTO public.kind ("name") VALUES (
+'Tutorial');
+INSERT INTO public.kind ("name") VALUES (
+'Conference');
+INSERT INTO public.kind ("name") VALUES (
+'Keynote');
+INSERT INTO public.kind ("name") VALUES (
+'Research');
+INSERT INTO public.kind ("name") VALUES (
+'VLDB');
+INSERT INTO public.kind ("name") VALUES (
+'Buse');
+INSERT INTO public.kind ("name") VALUES (
+'Endowment');
+INSERT INTO public.kind ("name") VALUES (
+'Entertainment');
+INSERT INTO public.kind ("name") VALUES (
+'Demo');
+INSERT INTO public.kind ("name") VALUES (
+'Industry');
 
 
 --
@@ -5891,217 +5904,424 @@ INSERT INTO session (id, name, trackid, starttime, endtime, chair) VALUES (10000
 --
 -- Data for Name: event; Type: TABLE DATA; Schema: public; Owner: eliti
 --
-
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000000, 1000000000, 1000000000, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000001, 1000000000, 1000000001, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000002, 1000000000, 1000000002, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000003, 1000000000, 1000000003, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000004, 1000000000, 1000000004, 'Boardroom', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000005, 1000000002, 1000000005, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000006, 1000000002, 1000000006, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000007, 1000000004, 1000000007, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000008, 1000000005, 1000000008, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000009, 1000000006, 1000000009, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000010, 1000000006, 1000000010, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000011, 1000000006, 1000000011, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000012, 1000000006, 1000000012, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000013, 1000000006, 1000000013, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000014, 1000000006, 1000000014, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000015, 1000000006, 1000000015, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000016, 1000000006, 1000000016, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000017, 1000000006, 1000000017, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000018, 1000000006, 1000000018, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000019, 1000000006, 1000000019, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000020, 1000000006, 1000000020, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000021, 1000000006, 1000000021, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000022, 1000000006, 1000000022, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000023, 1000000006, 1000000023, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000024, 1000000006, 1000000024, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000025, 1000000006, 1000000025, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000026, 1000000006, 1000000026, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000027, 1000000006, 1000000027, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000028, 1000000006, 1000000028, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000029, 1000000006, 1000000029, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000030, 1000000006, 1000000030, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000031, 1000000006, 1000000031, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000032, 1000000006, 1000000032, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000033, 1000000006, 1000000033, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000034, 1000000006, 1000000034, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000035, 1000000006, 1000000035, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000036, 1000000006, 1000000036, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000037, 1000000006, 1000000037, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000038, 1000000006, 1000000038, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000039, 1000000007, 1000000039, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000040, 1000000007, 1000000040, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000041, 1000000007, 1000000041, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000042, 1000000007, 1000000042, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000043, 1000000007, 1000000043, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000044, 1000000007, 1000000044, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000045, 1000000007, 1000000045, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000046, 1000000007, 1000000046, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000047, 1000000007, 1000000047, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000048, 1000000007, 1000000048, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000049, 1000000007, 1000000049, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000050, 1000000007, 1000000050, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000051, 1000000007, 1000000051, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000052, 1000000007, 1000000052, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000053, 1000000007, 1000000053, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000054, 1000000007, 1000000054, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000055, 1000000007, 1000000055, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000056, 1000000007, 1000000056, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000057, 1000000007, 1000000057, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000058, 1000000007, 1000000058, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000059, 1000000007, 1000000059, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000060, 1000000007, 1000000060, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000061, 1000000007, 1000000061, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000062, 1000000007, 1000000062, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000063, 1000000007, 1000000063, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000064, 1000000007, 1000000064, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000065, 1000000007, 1000000065, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000066, 1000000007, 1000000066, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000067, 1000000007, 1000000067, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000068, 1000000007, 1000000068, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000069, 1000000008, 1000000069, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000070, 1000000008, 1000000070, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000071, 1000000008, 1000000071, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000072, 1000000008, 1000000072, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000073, 1000000008, 1000000073, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000074, 1000000008, 1000000074, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000075, 1000000008, 1000000075, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000076, 1000000008, 1000000076, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000077, 1000000008, 1000000077, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000078, 1000000008, 1000000078, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000079, 1000000008, 1000000079, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000080, 1000000008, 1000000080, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000081, 1000000008, 1000000081, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000082, 1000000008, 1000000082, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000083, 1000000008, 1000000083, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000084, 1000000008, 1000000084, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000085, 1000000008, 1000000085, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000086, 1000000008, 1000000086, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000087, 1000000008, 1000000087, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000088, 1000000008, 1000000088, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000089, 1000000008, 1000000089, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000090, 1000000008, 1000000090, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000091, 1000000008, 1000000091, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000092, 1000000008, 1000000092, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000093, 1000000008, 1000000093, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000094, 1000000008, 1000000094, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000095, 1000000008, 1000000095, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000096, 1000000010, 1000000096, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000097, 1000000011, 1000000097, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000098, 1000000011, 1000000098, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000099, 1000000011, 1000000099, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000100, 1000000011, 1000000100, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000101, 1000000011, 1000000101, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000102, 1000000011, 1000000102, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000103, 1000000011, 1000000103, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000104, 1000000011, 1000000104, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000105, 1000000011, 1000000105, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000106, 1000000011, 1000000106, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000107, 1000000011, 1000000107, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000108, 1000000011, 1000000108, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000109, 1000000011, 1000000109, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000110, 1000000011, 1000000110, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000111, 1000000011, 1000000111, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000112, 1000000011, 1000000112, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000113, 1000000011, 1000000113, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000114, 1000000012, 1000000114, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000115, 1000000012, 1000000115, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000116, 1000000012, 1000000116, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000117, 1000000012, 1000000117, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000118, 1000000012, 1000000118, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000119, 1000000012, 1000000119, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000120, 1000000012, 1000000120, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000121, 1000000012, 1000000121, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000122, 1000000012, 1000000122, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000123, 1000000012, 1000000123, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000124, 1000000012, 1000000124, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000125, 1000000012, 1000000125, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000126, 1000000012, 1000000126, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000127, 1000000012, 1000000127, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000128, 1000000012, 1000000128, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000129, 1000000012, 1000000129, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000130, 1000000012, 1000000130, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000131, 1000000012, 1000000131, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000132, 1000000012, 1000000132, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000133, 1000000012, 1000000133, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000134, 1000000013, 1000000134, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000135, 1000000013, 1000000135, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000136, 1000000013, 1000000136, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000137, 1000000013, 1000000137, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000138, 1000000013, 1000000138, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000139, 1000000013, 1000000139, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000140, 1000000013, 1000000140, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000141, 1000000013, 1000000141, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000142, 1000000013, 1000000142, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000143, 1000000013, 1000000143, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000144, 1000000013, 1000000144, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000145, 1000000013, 1000000145, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000146, 1000000013, 1000000146, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000147, 1000000013, 1000000147, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000148, 1000000013, 1000000148, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000149, 1000000013, 1000000149, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000150, 1000000016, 1000000150, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000151, 1000000016, 1000000151, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000152, 1000000016, 1000000152, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000153, 1000000016, 1000000153, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000154, 1000000016, 1000000154, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000155, 1000000016, 1000000155, 'Pearl', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000156, 1000000017, 1000000156, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000157, 1000000017, 1000000157, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000158, 1000000017, 1000000158, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000159, 1000000017, 1000000159, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000160, 1000000017, 1000000160, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000161, 1000000017, 1000000161, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000162, 1000000017, 1000000162, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000163, 1000000017, 1000000163, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000164, 1000000017, 1000000164, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000165, 1000000017, 1000000165, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000166, 1000000017, 1000000166, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000167, 1000000017, 1000000167, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000168, 1000000017, 1000000168, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000169, 1000000017, 1000000169, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000170, 1000000017, 1000000170, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000171, 1000000018, 1000000171, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000172, 1000000018, 1000000172, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000173, 1000000018, 1000000173, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000174, 1000000018, 1000000174, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000175, 1000000018, 1000000175, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000176, 1000000018, 1000000176, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000177, 1000000018, 1000000177, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000178, 1000000018, 1000000178, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000179, 1000000018, 1000000179, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000180, 1000000018, 1000000180, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000181, 1000000018, 1000000181, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000182, 1000000018, 1000000182, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000183, 1000000018, 1000000183, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000184, 1000000018, 1000000184, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000185, 1000000018, 1000000185, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000186, 1000000018, 1000000186, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000187, 1000000018, 1000000187, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000188, 1000000019, 1000000188, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000189, 1000000019, 1000000189, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000190, 1000000019, 1000000190, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000191, 1000000019, 1000000191, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000192, 1000000019, 1000000192, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000193, 1000000019, 1000000193, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000194, 1000000019, 1000000194, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000195, 1000000019, 1000000195, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000196, 1000000019, 1000000196, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000197, 1000000019, 1000000197, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000198, 1000000019, 1000000198, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000199, 1000000019, 1000000199, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000200, 1000000019, 1000000200, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000201, 1000000019, 1000000201, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000202, 1000000019, 1000000202, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000203, 1000000019, 1000000203, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000204, 1000000021, 1000000204, 'Pearl 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000205, 1000000021, 1000000205, 'Pearl 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000206, 1000000021, 1000000206, 'Royal 1', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000207, 1000000021, 1000000207, 'Royal 2', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-INSERT INTO event (id, sessionid, paperid, roomname, alias, duration, starttime, kind, isexclusive, maxsize, conferenceid) VALUES (1000000208, 1000000021, 1000000208, 'Maple', NULL, '00:15:00', NULL, NULL, false, NULL, 424242);
-
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000001,1000000000,1000000001,'Maple',NULL,'00:15:00','2016-12-24 09:00:00.000','Tutorial',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000002,1000000000,1000000002,'Royal 1',NULL,'00:15:00','2016-12-22 16:30:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000003,1000000000,1000000003,'Royal 2',NULL,'00:15:00','2016-12-24 10:30:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000124,1000000012,1000000124,'Pearl 2',NULL,'00:15:00','2016-12-22 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000125,1000000012,1000000125,'Pearl 2',NULL,'00:15:00','2016-12-24 11:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000126,1000000012,1000000126,'Pearl 2',NULL,'00:15:00','2016-12-24 12:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000038,1000000006,1000000038,'Maple',NULL,'00:15:00','2016-12-25 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000039,1000000007,1000000039,'Pearl 1',NULL,'00:15:00','2016-12-24 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000040,1000000007,1000000040,'Pearl 1',NULL,'00:15:00','2016-12-24 12:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000041,1000000007,1000000041,'Pearl 1',NULL,'00:15:00','2016-12-23 10:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000042,1000000007,1000000042,'Pearl 1',NULL,'00:15:00','2016-12-23 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000043,1000000007,1000000043,'Pearl 2',NULL,'00:15:00','2016-12-24 10:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000044,1000000007,1000000044,'Pearl 2',NULL,'00:15:00','2016-12-25 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000045,1000000007,1000000045,'Pearl 2',NULL,'00:15:00','2016-12-22 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000046,1000000007,1000000046,'Pearl 2',NULL,'00:15:00','2016-12-24 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000047,1000000007,1000000047,'Royal 1',NULL,'00:15:00','2016-12-23 17:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000048,1000000007,1000000048,'Royal 1',NULL,'00:15:00','2016-12-23 18:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000049,1000000007,1000000049,'Royal 1',NULL,'00:15:00','2016-12-22 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000050,1000000007,1000000050,'Royal 1',NULL,'00:15:00','2016-12-23 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000068,1000000007,1000000068,'Maple',NULL,'00:15:00','2016-12-24 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000069,1000000008,1000000069,'Pearl 1',NULL,'00:15:00','2016-12-23 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000070,1000000008,1000000070,'Pearl 1',NULL,'00:15:00','2016-12-23 10:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000071,1000000008,1000000071,'Pearl 1',NULL,'00:15:00','2016-12-22 11:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000072,1000000008,1000000072,'Pearl 1',NULL,'00:15:00','2016-12-24 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000073,1000000008,1000000073,'Pearl 2',NULL,'00:15:00','2016-12-24 16:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000074,1000000008,1000000074,'Pearl 2',NULL,'00:15:00','2016-12-22 12:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000075,1000000008,1000000075,'Pearl 2',NULL,'00:15:00','2016-12-22 17:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000076,1000000008,1000000076,'Royal 1',NULL,'00:15:00','2016-12-23 17:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000077,1000000008,1000000077,'Royal 1',NULL,'00:15:00','2016-12-25 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000078,1000000008,1000000078,'Royal 1',NULL,'00:15:00','2016-12-24 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000079,1000000008,1000000079,'Royal 1',NULL,'00:15:00','2016-12-23 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000095,1000000008,1000000095,'Maple',NULL,'00:15:00','2016-12-22 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000096,1000000010,1000000096,'Pearl',NULL,'00:15:00','2016-12-24 09:30:00.000','Keynote',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000097,1000000011,1000000097,'Pearl 1',NULL,'00:15:00','2016-12-22 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000098,1000000011,1000000098,'Pearl 1',NULL,'00:15:00','2016-12-22 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000099,1000000011,1000000099,'Pearl 1',NULL,'00:15:00','2016-12-23 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000100,1000000011,1000000100,'Pearl 1',NULL,'00:15:00','2016-12-23 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000101,1000000011,1000000101,'Pearl 2',NULL,'00:15:00','2016-12-22 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000102,1000000011,1000000102,'Pearl 2',NULL,'00:15:00','2016-12-24 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000103,1000000011,1000000103,'Pearl 2',NULL,'00:15:00','2016-12-22 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000104,1000000011,1000000104,'Pearl 2',NULL,'00:15:00','2016-12-22 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000105,1000000011,1000000105,'Royal 1',NULL,'00:15:00','2016-12-23 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000106,1000000011,1000000106,'Royal 1',NULL,'00:15:00','2016-12-24 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000107,1000000011,1000000107,'Royal 1',NULL,'00:15:00','2016-12-23 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000108,1000000011,1000000108,'Royal 1',NULL,'00:15:00','2016-12-24 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000113,1000000011,1000000113,'Maple',NULL,'00:15:00','2016-12-23 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000114,1000000012,1000000114,'Pearl 1',NULL,'00:15:00','2016-12-22 12:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000115,1000000012,1000000115,'Pearl 1',NULL,'00:15:00','2016-12-23 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000116,1000000012,1000000116,'Pearl 1',NULL,'00:15:00','2016-12-24 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000117,1000000012,1000000117,'Pearl 1',NULL,'00:15:00','2016-12-24 16:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000119,1000000012,1000000119,'Royal 1',NULL,'00:15:00','2016-12-24 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000120,1000000012,1000000120,'Royal 1',NULL,'00:15:00','2016-12-23 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000121,1000000012,1000000121,'Royal 1',NULL,'00:15:00','2016-12-23 17:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000131,1000000012,1000000131,'Maple',NULL,'00:15:00','2016-12-22 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000132,1000000012,1000000132,'Maple',NULL,'00:15:00','2016-12-25 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000133,1000000012,1000000133,'Maple',NULL,'00:15:00','2016-12-23 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000134,1000000013,1000000134,'Pearl 1',NULL,'00:15:00','2016-12-22 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000135,1000000013,1000000135,'Pearl 1',NULL,'00:15:00','2016-12-22 10:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000136,1000000013,1000000136,'Pearl 1',NULL,'00:15:00','2016-12-23 16:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000137,1000000013,1000000137,'Pearl 1',NULL,'00:15:00','2016-12-25 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000138,1000000013,1000000138,'Pearl 2',NULL,'00:15:00','2016-12-23 17:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000139,1000000013,1000000139,'Pearl 2',NULL,'00:15:00','2016-12-23 11:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000140,1000000013,1000000140,'Pearl 2',NULL,'00:15:00','2016-12-22 18:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000141,1000000013,1000000141,'Pearl 2',NULL,'00:15:00','2016-12-23 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000142,1000000013,1000000142,'Royal 1',NULL,'00:15:00','2016-12-23 12:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000143,1000000013,1000000143,'Royal 1',NULL,'00:15:00','2016-12-22 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000144,1000000013,1000000144,'Royal 1',NULL,'00:15:00','2016-12-22 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000149,1000000013,1000000149,'Maple',NULL,'00:15:00','2016-12-22 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000150,1000000016,1000000150,'Pearl',NULL,'00:15:00','2016-12-22 15:00:00.000','VLDB',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000151,1000000016,1000000151,'Pearl',NULL,'00:15:00','2016-12-22 14:00:00.000','VLDB',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000152,1000000016,1000000152,'Pearl',NULL,'00:15:00','2016-12-23 14:00:00.000','VLDB',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000153,1000000016,1000000153,'Pearl',NULL,'00:15:00','2016-12-22 11:00:00.000','VLDB',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000154,1000000016,1000000154,'Pearl',NULL,'00:15:00','2016-12-22 16:30:00.000','Endowment',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000155,1000000016,1000000155,'Pearl',NULL,'00:15:00','2016-12-24 12:30:00.000','Endowment',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000156,1000000017,1000000156,'Pearl 1',NULL,'00:15:00','2016-12-22 10:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000157,1000000017,1000000157,'Pearl 1',NULL,'00:15:00','2016-12-23 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000158,1000000017,1000000158,'Pearl 1',NULL,'00:15:00','2016-12-22 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000159,1000000017,1000000159,'Pearl 2',NULL,'00:15:00','2016-12-24 14:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000160,1000000017,1000000160,'Pearl 2',NULL,'00:15:00','2016-12-22 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000161,1000000017,1000000161,'Pearl 2',NULL,'00:15:00','2016-12-23 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000162,1000000017,1000000162,'Pearl 2',NULL,'00:15:00','2016-12-24 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000163,1000000017,1000000163,'Royal 1',NULL,'00:15:00','2016-12-23 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000164,1000000017,1000000164,'Royal 1',NULL,'00:15:00','2016-12-24 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000165,1000000017,1000000165,'Royal 1',NULL,'00:15:00','2016-12-23 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000166,1000000017,1000000166,'Royal 2',NULL,'00:15:00','2016-12-24 14:00:00.000','Tutorial',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000167,1000000017,1000000167,'Maple',NULL,'00:15:00','2016-12-23 17:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000168,1000000017,1000000168,'Maple',NULL,'00:15:00','2016-12-23 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000169,1000000017,1000000169,'Maple',NULL,'00:15:00','2016-12-23 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000170,1000000017,1000000170,'Maple',NULL,'00:15:00','2016-12-22 17:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000171,1000000018,1000000171,'Pearl 1',NULL,'00:15:00','2016-12-24 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000172,1000000018,1000000172,'Pearl 1',NULL,'00:15:00','2016-12-24 17:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000173,1000000018,1000000173,'Pearl 1',NULL,'00:15:00','2016-12-22 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000174,1000000018,1000000174,'Pearl 1',NULL,'00:15:00','2016-12-25 08:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000175,1000000018,1000000175,'Pearl 2',NULL,'00:15:00','2016-12-23 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000176,1000000018,1000000176,'Pearl 2',NULL,'00:15:00','2016-12-22 11:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000177,1000000018,1000000177,'Pearl 2',NULL,'00:15:00','2016-12-22 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000178,1000000018,1000000178,'Pearl 2',NULL,'00:15:00','2016-12-23 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000179,1000000018,1000000179,'Royal 1',NULL,'00:15:00','2016-12-25 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000180,1000000018,1000000180,'Royal 1',NULL,'00:15:00','2016-12-22 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000181,1000000018,1000000181,'Royal 1',NULL,'00:15:00','2016-12-24 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000182,1000000018,1000000182,'Royal 1',NULL,'00:15:00','2016-12-23 14:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000183,1000000018,1000000183,'Royal 2',NULL,'00:15:00','2016-12-23 18:00:00.000','Tutorial',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000184,1000000018,1000000184,'Maple',NULL,'00:15:00','2016-12-23 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000185,1000000018,1000000185,'Maple',NULL,'00:15:00','2016-12-23 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000187,1000000018,1000000187,'Maple',NULL,'00:15:00','2016-12-24 17:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000188,1000000019,1000000188,'Pearl 1',NULL,'00:15:00','2016-12-24 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000190,1000000019,1000000190,'Pearl 1',NULL,'00:15:00','2016-12-22 17:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000191,1000000019,1000000191,'Pearl 1',NULL,'00:15:00','2016-12-22 17:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000192,1000000019,1000000192,'Pearl 2',NULL,'00:15:00','2016-12-24 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000193,1000000019,1000000193,'Pearl 2',NULL,'00:15:00','2016-12-23 10:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000194,1000000019,1000000194,'Pearl 2',NULL,'00:15:00','2016-12-22 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000195,1000000019,1000000195,'Pearl 2',NULL,'00:15:00','2016-12-23 14:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000196,1000000019,1000000196,'Royal 1',NULL,'00:15:00','2016-12-24 18:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000197,1000000019,1000000197,'Royal 1',NULL,'00:15:00','2016-12-22 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000198,1000000019,1000000198,'Royal 1',NULL,'00:15:00','2016-12-24 11:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000199,1000000019,1000000199,'Royal 1',NULL,'00:15:00','2016-12-24 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000200,1000000019,1000000200,'Maple',NULL,'00:15:00','2016-12-22 14:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000186,1000000018,1000000186,'Maple',NULL,'00:15:00',NULL,'Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000189,1000000019,1000000189,'Pearl 1',NULL,'00:15:00',NULL,'Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000004,1000000000,1000000004,'Boardroom',NULL,'00:15:00','2016-12-24 11:30:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000005,1000000002,1000000005,'Pearl 1',NULL,'00:15:00','2016-12-22 08:30:00.000','Tutorial',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000006,1000000002,1000000006,'Maple',NULL,'00:15:00','2016-12-23 16:30:00.000','Tutorial',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000007,1000000004,1000000007,'Pearl',NULL,'00:15:00','2016-12-24 15:00:00.000','Conference',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000008,1000000005,1000000008,'Pearl',NULL,'00:15:00','2016-12-22 08:30:00.000','Keynote',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000009,1000000006,1000000009,'Pearl 1',NULL,'00:15:00','2016-12-22 17:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000010,1000000006,1000000010,'Pearl 1',NULL,'00:15:00','2016-12-22 08:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000011,1000000006,1000000011,'Pearl 1',NULL,'00:15:00','2016-12-23 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000012,1000000006,1000000012,'Pearl 1',NULL,'00:15:00','2016-12-23 15:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000013,1000000006,1000000013,'Pearl 2',NULL,'00:15:00','2016-12-24 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000014,1000000006,1000000014,'Pearl 2',NULL,'00:15:00','2016-12-24 18:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000015,1000000006,1000000015,'Pearl 2',NULL,'00:15:00','2016-12-23 12:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000016,1000000006,1000000016,'Pearl 2',NULL,'00:15:00','2016-12-23 10:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000017,1000000006,1000000017,'Royal 1',NULL,'00:15:00','2016-12-23 14:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000018,1000000006,1000000018,'Royal 1',NULL,'00:15:00','2016-12-22 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000019,1000000006,1000000019,'Royal 1',NULL,'00:15:00','2016-12-22 17:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000020,1000000006,1000000020,'Royal 1',NULL,'00:15:00','2016-12-24 12:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000000,1000000000,1000000000,'Pearl 1',NULL,'00:15:00','2016-12-23 17:00:00.000','Tutorial',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000147,1000000013,1000000147,'Royal 2',NULL,'00:15:00',NULL,'Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000021,1000000006,1000000021,'Royal 2',NULL,'00:15:00','2016-12-24 08:00:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000022,1000000006,1000000022,'Royal 2',NULL,'00:15:00','2016-12-22 09:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000023,1000000006,1000000023,'Royal 2',NULL,'00:15:00','2016-12-22 17:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000024,1000000006,1000000024,'Royal 2',NULL,'00:15:00','2016-12-23 15:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000025,1000000006,1000000025,'Maple',NULL,'00:15:00','2016-12-23 16:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000026,1000000006,1000000026,'Maple',NULL,'00:15:00','2016-12-23 11:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000027,1000000006,1000000027,'Maple',NULL,'00:15:00','2016-12-22 14:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000028,1000000006,1000000028,'Maple',NULL,'00:15:00','2016-12-23 12:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000029,1000000006,1000000029,'Maple',NULL,'00:15:00','2016-12-23 17:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000030,1000000006,1000000030,'Maple',NULL,'00:15:00','2016-12-22 18:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000031,1000000006,1000000031,'Maple',NULL,'00:15:00','2016-12-22 09:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000032,1000000006,1000000032,'Maple',NULL,'00:15:00','2016-12-22 14:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000033,1000000006,1000000033,'Maple',NULL,'00:15:00','2016-12-22 18:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000034,1000000006,1000000034,'Maple',NULL,'00:15:00','2016-12-24 14:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000035,1000000006,1000000035,'Maple',NULL,'00:15:00','2016-12-24 15:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000036,1000000006,1000000036,'Maple',NULL,'00:15:00','2016-12-23 17:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000037,1000000006,1000000037,'Maple',NULL,'00:15:00','2016-12-24 11:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000051,1000000007,1000000051,'Royal 2',NULL,'00:15:00','2016-12-23 14:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000052,1000000007,1000000052,'Royal 2',NULL,'00:15:00','2016-12-24 12:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000053,1000000007,1000000053,'Royal 2',NULL,'00:15:00','2016-12-24 16:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000054,1000000007,1000000054,'Royal 2',NULL,'00:15:00','2016-12-24 09:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000055,1000000007,1000000055,'Maple',NULL,'00:15:00','2016-12-25 08:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000056,1000000007,1000000056,'Maple',NULL,'00:15:00','2016-12-24 14:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000057,1000000007,1000000057,'Maple',NULL,'00:15:00','2016-12-22 18:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000058,1000000007,1000000058,'Maple',NULL,'00:15:00','2016-12-22 16:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000059,1000000007,1000000059,'Maple',NULL,'00:15:00','2016-12-24 11:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000060,1000000007,1000000060,'Maple',NULL,'00:15:00','2016-12-24 12:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000061,1000000007,1000000061,'Maple',NULL,'00:15:00','2016-12-22 11:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000062,1000000007,1000000062,'Maple',NULL,'00:15:00','2016-12-23 12:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000063,1000000007,1000000063,'Maple',NULL,'00:15:00','2016-12-24 08:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000064,1000000007,1000000064,'Maple',NULL,'00:15:00','2016-12-23 18:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000065,1000000007,1000000065,'Maple',NULL,'00:15:00','2016-12-22 11:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000066,1000000007,1000000066,'Maple',NULL,'00:15:00','2016-12-22 17:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000067,1000000007,1000000067,'Maple',NULL,'00:15:00','2016-12-22 11:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000080,1000000008,1000000080,'Royal 2',NULL,'00:15:00','2016-12-24 17:00:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000081,1000000008,1000000081,'Royal 2',NULL,'00:15:00','2016-12-23 11:00:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000082,1000000008,1000000082,'Royal 2',NULL,'00:15:00','2016-12-22 12:00:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000083,1000000008,1000000083,'Royal 2',NULL,'00:15:00','2016-12-22 08:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000084,1000000008,1000000084,'Maple',NULL,'00:15:00','2016-12-23 14:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000085,1000000008,1000000085,'Maple',NULL,'00:15:00','2016-12-25 09:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000086,1000000008,1000000086,'Maple',NULL,'00:15:00','2016-12-24 17:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000087,1000000008,1000000087,'Maple',NULL,'00:15:00','2016-12-24 18:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000088,1000000008,1000000088,'Maple',NULL,'00:15:00','2016-12-22 08:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000089,1000000008,1000000089,'Maple',NULL,'00:15:00','2016-12-23 11:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000090,1000000008,1000000090,'Maple',NULL,'00:15:00','2016-12-22 09:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000091,1000000008,1000000091,'Maple',NULL,'00:15:00','2016-12-23 08:30:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000092,1000000008,1000000092,'Maple',NULL,'00:15:00','2016-12-22 08:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000093,1000000008,1000000093,'Maple',NULL,'00:15:00','2016-12-24 17:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000094,1000000008,1000000094,'Maple',NULL,'00:15:00','2016-12-24 09:00:00.000','Demo',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000109,1000000011,1000000109,'Royal 2',NULL,'00:15:00','2016-12-24 10:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000110,1000000011,1000000110,'Royal 2',NULL,'00:15:00','2016-12-22 10:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000111,1000000011,1000000111,'Royal 2',NULL,'00:15:00','2016-12-23 12:00:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000112,1000000011,1000000112,'Royal 2',NULL,'00:15:00','2016-12-23 08:00:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000118,1000000012,1000000118,'Pearl 2',NULL,'00:15:00','2016-12-24 10:30:00.000',NULL,false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000145,1000000013,1000000145,'Royal 2',NULL,'00:15:00','2016-12-24 14:00:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000146,1000000013,1000000146,'Royal 2',NULL,'00:15:00','2016-12-24 17:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000148,1000000013,1000000148,'Royal 2',NULL,'00:15:00','2016-12-22 10:30:00.000','Industry',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000201,1000000019,1000000201,'Maple',NULL,'00:15:00','2016-12-23 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000202,1000000019,1000000202,'Maple',NULL,'00:15:00','2016-12-24 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000203,1000000019,1000000203,'Maple',NULL,'00:15:00','2016-12-23 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000204,1000000021,1000000204,'Pearl 1',NULL,'00:15:00','2016-12-23 18:00:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000205,1000000021,1000000205,'Pearl 2',NULL,'00:15:00','2016-12-23 09:30:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000206,1000000021,1000000206,'Royal 1',NULL,'00:15:00','2016-12-22 12:00:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000207,1000000021,1000000207,'Royal 2',NULL,'00:15:00','2016-12-23 11:30:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000208,1000000021,1000000208,'Maple',NULL,'00:15:00','2016-12-23 16:30:00.000','Workshop',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000122,1000000012,1000000122,'Royal 1',NULL,'00:15:00','2016-12-23 09:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000123,1000000012,1000000123,'Pearl 2',NULL,'00:15:00','2016-12-22 09:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000127,1000000012,1000000127,'Maple',NULL,'00:15:00','2016-12-24 11:00:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000128,1000000012,1000000128,'Maple',NULL,'00:15:00','2016-12-24 12:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000129,1000000012,1000000129,'Maple',NULL,'00:15:00','2016-12-22 15:30:00.000','Research',false,NULL,424242);
+INSERT INTO public.event (id,sessionid,paperid,roomname,alias,duration,starttime,kind,isexclusive,maxsize,conferenceid) VALUES (
+1000000130,1000000012,1000000130,'Maple',NULL,'00:15:00','2016-12-22 16:30:00.000','Research',false,NULL,424242);
 
 -- Data for Name: speaker; Type: TABLE DATA; Schema: public; Owner: eliti
 
