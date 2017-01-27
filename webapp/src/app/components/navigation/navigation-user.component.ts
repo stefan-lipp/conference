@@ -13,7 +13,7 @@ import { PersonService } from '../../services';
       <span>{{ username }}</span>
     </button>
     `,
-  styles: [`
+  styles: [ `
     button {
       border: thin solid #fff;
       border-radius: 1em;
@@ -30,7 +30,7 @@ import { PersonService } from '../../services';
         display: none;
       }
     }
-    `],
+    ` ],
 })
 export class NavigationUserComponent implements OnInit {
 

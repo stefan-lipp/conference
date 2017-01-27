@@ -2,6 +2,6 @@
     "database": "conference",
     "username": "eliti",
     "password": "ritter",
-    "host": "localhost",
+    "host": "postgres-db",
     "port": "5432"
 }
