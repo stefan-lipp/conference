@@ -100,7 +100,7 @@ export class EventOverviewComponent implements OnInit {
    */
   public filter (): void {
     if (this.filterQuery.length) {
-      const query=this.filterQuery.toLowerCase();
+      const query = this.filterQuery.toLowerCase();
       this.selectedEvents = this.events.filter(event => {
           return (event.title.toLowerCase().includes(query)) ||
             (
