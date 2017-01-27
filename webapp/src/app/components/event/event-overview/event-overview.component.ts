@@ -94,16 +94,16 @@ export class EventOverviewComponent implements OnInit {
           if (event.paper && event.paper.keywords) {
             event.paper.keywords.forEach(keyword => {
               if (keyword.toLowerCase().includes(this.filterQuery.toLowerCase())) {
-                this.selectedEvents.push(event)
+                this.selectedEvents.push(event);
               }
             });
           }
         });
        this.events.forEach(event => {
-          if (event.paper && event.paper.authors ) {
+          if (event.paper && event.paper.authors) {
             event.paper.authors.forEach(author => {
               if (author.name.toLowerCase().includes(this.filterQuery.toLowerCase())) {
-                this.selectedEvents.push(event)
+                this.selectedEvents.push(event);
               }
             });
           }
@@ -111,11 +111,11 @@ export class EventOverviewComponent implements OnInit {
        this.events.forEach(event => {
           if (event.speaker) {
               if (event.speaker.toLowerCase().includes(this.filterQuery.toLowerCase())) {
-                this.selectedEvents.push(event)
+                this.selectedEvents.push(event);
               }
           }
         });
-      this.selectedEvents= this.unify(this.selectedEvents);
+      this.selectedEvents = this.unify(this.selectedEvents);
     } else {
       this.selectedEvents = this.events;
     }
@@ -130,6 +130,12 @@ export class EventOverviewComponent implements OnInit {
  * eliminates duplicates of an array
  */
   private unify (events: ConferenceEvent[]): ConferenceEvent[] {
-    return events;
+    let unique: ConferenceEvent[] = [ ];
+    for (let i in events) {
+      if (unique.indexOf(events[i]) === -1) {
+        unique.push(events[i]);
+      }
+    }
+    return unique;
   }
 }
