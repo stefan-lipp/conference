@@ -24,5 +24,9 @@ module.exports = function (sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       },
     },
+    number: {
+      type: DataTypes.INTEGER,
+      nullable: false,
+    },
   });
 };

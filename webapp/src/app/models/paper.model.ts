@@ -7,8 +7,8 @@ export class Paper {
   public id: string;
   public title: string;
   public authors: string[];
+  public keywords: string[];
   // optionals
-  public keywords?: string[];
   public abstract?: string;
   public link?: string;
   public tag?: string;
@@ -17,12 +17,11 @@ export class Paper {
     if (!apiRepresentation) {
       return null;
     }
-    const keywordArray = apiRepresentation.keywords.split(',');
     return {
       id: apiRepresentation.id,
       title: apiRepresentation.title,
       authors: apiRepresentation.authors,
-      keywords: keywordArray,
+      keywords: apiRepresentation.keywords,
       abstract: apiRepresentation.abstract,
       link: apiRepresentation.link,
       tag: apiRepresentation.tag,
@@ -39,7 +38,7 @@ export interface ApiPaper {
   title: string;
   authors: string[];
   // optionals
-  keywords?: string;
+  keywords: string[];
   abstract?: string;
   link?: string;
   tag?: string;
