@@ -100,35 +100,36 @@ export class EventOverviewComponent implements OnInit {
    */
   public filter (): void {
     if (this.filterQuery.length) {
-      this.selectedEvents = this.events.filter(
-        event => event.title.toLowerCase().includes(this.filterQuery.toLowerCase())
+      const query=this.filterQuery.toLowerCase();
+      this.selectedEvents = this.events.filter(event => {
+          if (event.title.toLowerCase().includes(query)) {
+            return true;
+          }
+          if (event.paper) {
+            if (event.paper.keywords) {
+              if (event.paper.keywords.some(keyword => {
+                return keyword.toLowerCase().includes(query);
+              })) {
+                return true;
+              }
+            }
+            if (event.paper.authors) {
+              if (event.paper.authors.some(author => {
+                return author.name.toLowerCase().includes(query);
+              })) {
+                return true;
+              }
+            }
+          }
+          if (event.speakers) {
+            return event.speakers.some(speaker => {
+              return speaker.name.toLowerCase().includes(query) ||
+                (speaker.institution && speaker.institution.name.toLowerCase().includes(query));
+            });
+          }
+          return false;
+        }
       );
-      this.events.forEach(event => {
-          if (event.paper && event.paper.keywords) {
-            event.paper.keywords.forEach(keyword => {
-              if (keyword.toLowerCase().includes(this.filterQuery.toLowerCase())) {
-                this.selectedEvents.push(event);
-              }
-            });
-          }
-        });
-       this.events.forEach(event => {
-          if (event.paper && event.paper.authors) {
-            event.paper.authors.forEach(author => {
-              if (author.name.toLowerCase().includes(this.filterQuery.toLowerCase())) {
-                this.selectedEvents.push(event);
-              }
-            });
-          }
-        });
-       this.events.forEach(event => {
-          if (event.speaker) {
-              if (event.speaker.toLowerCase().includes(this.filterQuery.toLowerCase())) {
-                this.selectedEvents.push(event);
-              }
-          }
-        });
-      this.selectedEvents = this.unify(this.selectedEvents);
     } else {
       this.selectedEvents = this.events;
     }
@@ -139,16 +140,4 @@ export class EventOverviewComponent implements OnInit {
     this.eventService.updateFavourStatus(event);
   }
 
-  /**
-   * Eliminates duplicates of an array
-   */
-  private unify (events: ConferenceEvent[]): ConferenceEvent[] {
-    let unique: ConferenceEvent[] = [ ];
-    for (let i in events) {
-      if (unique.indexOf(events[i]) === -1) {
-        unique.push(events[i]);
-      }
-    }
-    return unique;
-  }
 }
