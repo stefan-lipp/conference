@@ -1,7 +1,7 @@
 <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
 <div class="subtitle-area">
-  <a [routerLink]="[ '..' ]" md-icon-button><md-icon>arrow_back</md-icon></a>
+  <a href="/events#{{ event.id }}" md-icon-button><md-icon>arrow_back</md-icon></a>
   <h3>Event Details</h3>
 </div>
 
@@ -82,7 +82,7 @@
   <h5 *ngIf="event.paper.authors && event.paper.authors.length==1">Author</h5>
   <h5 *ngIf="event.paper.authors && event.paper.authors.length>1">Authors</h5>
   <ul class="paper-authors">
-    <li *ngFor="let author of event.paper.authors">{{ author.name }}</li>
+    <li *ngFor="let author of event.paper.authors"><a [routerLink]="'/person/' + author.id">{{ author.name }}</a></li>
   </ul>
 
   <h5 *ngIf="event.paper.tag">Tag</h5>

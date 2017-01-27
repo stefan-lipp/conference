@@ -13,13 +13,26 @@
   <md-tab label="List">
     <md-spinner *ngIf="loading"></md-spinner>
 
+    <a id="pageTop"></a>
+    <a
+      *ngIf="lastVisitedLink && events.length > 0"
+      href="{{ lastVisitedLink }}"
+      class="info"
+    >
+      Continue at last visited event?
+    </a>
+
     <md-list *ngFor="let eventType of eventTypes">
       <h3 md-subheader>{{ eventType }}s</h3>
       <conference-event-list
+        #eventList
         [events]="selectedEvents | EventFilter: eventType"
         (onFavouriteStateChange)="setFavouriteState($event)"
       ></conference-event-list>
     </md-list>
+
+    <a *ngIf="selectedEvents.length > 0" href="/events#pageTop" class="info">Go to top</a>
+
   </md-tab>
   <md-tab label="Calendar">
     <conference-calendar

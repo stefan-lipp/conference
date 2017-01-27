@@ -1,0 +1,34 @@
+<md-card>
+  <md-card-title>
+    <h2>{{ person.name }}</h2>
+  </md-card-title>
+  <md-card-content>
+    <dl>
+      <dt> Email: </dt><dd>{{ person.email }}</dd>
+      <dt *ngIf="person.website"> Website: </dt><dd *ngIf="person.website">{{ person.website }}</dd>
+    </dl>
+  </md-card-content>
+</md-card>
+<md-card *ngIf="papers.length > 0">
+  <md-card-title>
+    Paper
+  </md-card-title>
+  <md-card-content>
+    <dl>
+      <span *ngFor="let paper of papers">
+        <dt> <a target="_blank" href="{{ paper.link }}"> {{ paper.title }}</a> </dt>
+        <dd> <span *ngFor="let author of paper.authors"><a [routerLink]="[ '/person', author.id ]">{{ author.name}}</a>&nbsp;</span></dd>
+      </span>
+    </dl>
+  </md-card-content>
+</md-card>
+<md-card *ngIf="talks.length > 0">
+  <md-card-title>
+    Talks
+  </md-card-title>
+  <md-card-content>
+    <ul>
+      <li *ngFor="let event of talks"><a routerLink="{{ '/events/' + event.id }}">{{ event.title }}</a></li> <!-- TODO show event component like in list !-->
+    </ul>
+  </md-card-content>
+</md-card>

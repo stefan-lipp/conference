@@ -6,6 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MdDialog } from '@angular/material';
 
@@ -30,6 +31,7 @@ export class EventListComponent  {
 
   constructor (
     private dialog: MdDialog,
+    private router: Router,
     public authService: AuthService,
   ) { }
 
@@ -48,5 +50,4 @@ export class EventListComponent  {
   public formatTime (time: moment.Moment): string {
     return time.format('MMM Do, HH:mm');
   }
-
 }

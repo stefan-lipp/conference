@@ -1,8 +1,9 @@
 <md-card *ngFor="let event of events">
-
+  <a id="{{ event.id }}"></a>
   <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
   <md-card-title class="eventTypeLabel">{{ event.eventType }}</md-card-title>
+
   <md-card-content>
     <span
       class="eventTitleLabel"

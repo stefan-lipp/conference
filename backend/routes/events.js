@@ -4,11 +4,12 @@ const TOMapper = require('../util/transportObjectMapper');
 const Errors = require('../util/errors');
 
 const DataBase = require('../model/index');
-const Event = DataBase.sequelize.models.event;
-const Paper = DataBase.sequelize.models.paper;
-const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
+const Event = DataBase.sequelize.models.event;
+const Favorite = DataBase.sequelize.models.favorite;
+const Paper = DataBase.sequelize.models.paper;
 const Person = DataBase.sequelize.models.person;
+const Speaker = DataBase.sequelize.models.speaker;
 
 /** Subroutes under /events */
 function eventSubroutes (app) {

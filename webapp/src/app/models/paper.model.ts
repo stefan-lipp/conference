@@ -1,12 +1,17 @@
 import * as _ from 'lodash';
 
+import {
+  Person,
+  ApiPerson,
+} from './person.model';
+
 /**
  * Paper model.
  */
 export class Paper {
   public id: string;
   public title: string;
-  public authors: string[];
+  public authors: Person[];
   // optionals
   public keywords?: string[];
   public abstract?: string;
@@ -21,7 +26,7 @@ export class Paper {
     return {
       id: apiRepresentation.id,
       title: apiRepresentation.title,
-      authors: apiRepresentation.authors,
+      authors: apiRepresentation.authors.map(Person.fromAPI),
       keywords: keywordArray,
       abstract: apiRepresentation.abstract,
       link: apiRepresentation.link,
@@ -37,7 +42,7 @@ export class Paper {
 export interface ApiPaper {
   id: string;
   title: string;
-  authors: string[];
+  authors: ApiPerson[];
   // optionals
   keywords?: string;
   abstract?: string;

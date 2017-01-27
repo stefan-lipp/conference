@@ -10,3 +10,17 @@
 conference-calendar {
   height: calc(100vh - 10rem);
 }
+
+.info {
+    min-height: 2em;
+    text-align: center;
+    color: #8e8e8e;
+    padding-top: 0.25em;
+    margin: 0;
+    width: 100%;
+    text-decoration: none;
+
+    &:hover {
+        background-color: #CFCFCF;
+    }
+}

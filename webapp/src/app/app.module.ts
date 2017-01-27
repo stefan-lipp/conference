@@ -25,6 +25,11 @@ import {
   ApiMapperService,
   EventService,
   EventResolver,
+  EventOfSpeakerResolver,
+  PaperService,
+  PaperByAuthorResolver,
+  PersonService,
+  PersonResolver,
 } from './services';
 
 // Components
@@ -37,7 +42,9 @@ import {
   LoginComponent,
   MyScheduleComponent,
   NavigationComponent,
+  NavigationUserComponent,
   NoContentComponent,
+  PersonViewComponent,
   RegisterComponent,
 } from './components';
 
@@ -74,7 +81,9 @@ type StoreType = {
     EventViewOverlayComponent,
     LoginComponent,
     NavigationComponent,
+    NavigationUserComponent,
     NoContentComponent,
+    PersonViewComponent,
     RegisterComponent,
     EventFilterPipe,
   ],
@@ -101,6 +110,11 @@ type StoreType = {
     ApiMapperService,
     EventService,
     EventResolver,
+    EventOfSpeakerResolver,
+    PaperService,
+    PaperByAuthorResolver,
+    PersonService,
+    PersonResolver,
   ],
 })
 export class AppModule {
