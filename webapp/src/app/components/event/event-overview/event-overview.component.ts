@@ -90,6 +90,32 @@ export class EventOverviewComponent implements OnInit {
       this.selectedEvents = this.events.filter(
         event => event.title.toLowerCase().includes(this.filterQuery.toLowerCase())
       );
+      this.events.forEach(event => {
+          if (event.paper && event.paper.keywords) {
+            event.paper.keywords.forEach(keyword => {
+              if (keyword.toLowerCase().includes(this.filterQuery.toLowerCase())) {
+                this.selectedEvents.push(event)
+              }
+            });
+          }
+        });
+       this.events.forEach(event => {
+          if (event.paper && event.paper.authors ) {
+            event.paper.authors.forEach(author => {
+              if (author.name.toLowerCase().includes(this.filterQuery.toLowerCase())) {
+                this.selectedEvents.push(event)
+              }
+            });
+          }
+        });
+       this.events.forEach(event => {
+          if (event.speaker) {
+              if (event.speaker.toLowerCase().includes(this.filterQuery.toLowerCase())) {
+                this.selectedEvents.push(event)
+              }
+          }
+        });
+      this.selectedEvents= this.unify(this.selectedEvents);
     } else {
       this.selectedEvents = this.events;
     }
@@ -98,5 +124,12 @@ export class EventOverviewComponent implements OnInit {
   public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
     event.favored = state;
     this.eventService.updateFavourStatus(event);
+  }
+
+/**
+ * eliminates duplicates of an array
+ */
+  private unify (events: ConferenceEvent[]): ConferenceEvent[] {
+    return events;
   }
 }
