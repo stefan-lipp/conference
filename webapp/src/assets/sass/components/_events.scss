@@ -8,11 +8,9 @@ conference-event-list {
 
     md-card {
         box-sizing: border-box;
-        max-width: 36em;
+        max-width: 28em;
         margin: .5em;
         padding: 1em;
-        display: flex;
-        flex-direction: column;
 
         @include respond-to(md) {
             width: inital;
