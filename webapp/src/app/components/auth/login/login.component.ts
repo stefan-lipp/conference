@@ -42,6 +42,7 @@ export class LoginComponent {
   public onSubmit (data: { email: string, password: string }): void {
     this.authService.login(data).subscribe(
       (res: any) => {
+        this.authService.username = res.username;
         this.router.navigate([ '' ]);
       },
       (res: Response) => {

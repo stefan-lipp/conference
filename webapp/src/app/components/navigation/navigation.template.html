@@ -2,9 +2,13 @@
   <md-toolbar color="primary">
     <span class="toolbar-title toolbar-fill-remaining">Conference Tool</span>
 
-    <button md-button class="loggedInUserButton">
+    <button
+      md-button
+      *ngIf="authService.loggedIn"
+      class="loggedInUserButton"
+    >
       <i class="material-icons">person_outline</i>
-      S.Cimander
+      {{ authService.username }}
     </button>
 
     <md-menu x-position="before" #menu="mdMenu">

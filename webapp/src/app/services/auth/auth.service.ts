@@ -10,6 +10,8 @@ import { ApiMapperService } from '../api/api-mapper.service';
 @Injectable()
 export class AuthService {
 
+  public username?: string;
+
   /**
    * Checks a given response for a new token and updates.
    *
@@ -59,6 +61,7 @@ export class AuthService {
     localStorage.removeItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
     localStorage.clear();
     sessionStorage.clear();
+    this.username = undefined;
     return this.router.navigateByUrl(url, extras);
   }
 
