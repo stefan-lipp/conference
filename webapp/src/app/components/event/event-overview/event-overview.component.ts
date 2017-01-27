@@ -4,10 +4,7 @@ import {
   Input,
 } from '@angular/core';
 
-import {
-  ConferenceEvent,
-  EventType,
-} from '../../../models';
+import { ConferenceEvent } from '../../../models';
 import { EventService } from '../../../services';
 import {
   CalendarEvent,
