@@ -29,17 +29,27 @@ function toAuthorTO (authorInstance) {
 /**
  * Maps a instance of the Paper database model to a Paper transport object
  */
+function toKeywordTO (keywordInstance) {
+  return keywordInstance.keyword;
+}
+
+/**
+ * Maps a instance of the Paper database model to a Paper transport object
+ */
 function toPaperTO (paperInstance) {
   return {
     id: paperInstance.id,
     title: paperInstance.titel,
-    authors: (paperInstance.authors || [ ]).map(toAuthorTO),
-    keywords: paperInstance.keywords,
+    authors: (paperInstance.authors || [ ])
+      .sort((a, b) => { return a.number - b.number; })
+      .map(toAuthorTO),
+    keywords: (paperInstance.keywords || []).map(toKeywordTO),
     abstract: paperInstance.abstract,
     link: paperInstance.link,
     tag: paperInstance.tag,
   };
 }
+
 
 /**
  * Maps a instance of the Event database model to a Event transport object

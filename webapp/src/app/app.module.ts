@@ -42,12 +42,16 @@ import {
   LoginComponent,
   MyScheduleComponent,
   NavigationComponent,
+  NavigationUserComponent,
   NoContentComponent,
   PersonViewComponent,
   RegisterComponent,
 } from './components';
 
 // Directives
+
+// Pipes
+import { EventFilterPipe } from './pipes';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -77,9 +81,11 @@ type StoreType = {
     EventViewOverlayComponent,
     LoginComponent,
     NavigationComponent,
+    NavigationUserComponent,
     NoContentComponent,
     PersonViewComponent,
     RegisterComponent,
+    EventFilterPipe,
   ],
   entryComponents: [
     EventViewOverlayComponent,

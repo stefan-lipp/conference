@@ -32,7 +32,7 @@ export class ConferenceEvent {
         apiRepresentation.paper.abstract = front.replace('Abstract:', '') + rest;
       }
     }
-
+    
     return new ConferenceEvent({
       id: apiRepresentation.id,
       title: apiRepresentation.title,
@@ -54,6 +54,7 @@ export class ConferenceEvent {
 
   public get eventType (): string {
     switch (this.type) {
+      case EventType.Keynote: return 'Keynote';
       case EventType.Research: return 'Research Talk';
       case EventType.Industry: return 'Industry Talk';
       case EventType.Tutorial: return 'Tutorial';

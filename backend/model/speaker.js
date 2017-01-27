@@ -28,6 +28,10 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: (models) => speaker.belongsTo(models.event, { foreignKey: 'eventid' }),
     },
+    number: {
+      type: DataTypes.INTEGER,
+      nullable: false,
+    },
   });
   return speaker;
 };

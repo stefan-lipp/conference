@@ -61,6 +61,7 @@ function authSubroutes (app) {
                   res
                     .status(200)
                     .json({
+                      username: userInstance.person.name,
                       token: token,
                     });
                 })

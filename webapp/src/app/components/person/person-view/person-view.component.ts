@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   Input,
 } from '@angular/core';
 import {
@@ -32,7 +31,8 @@ export class PersonViewComponent {
     private route: ActivatedRoute,
     private personService: PersonService,
   ) {
-    this.route.data.subscribe((data: { person: Person, papers: Paper[], talks: ConferenceEvent[] }) => {
+    this.route.data.subscribe(
+      (data: { person: Person, papers: Paper[], talks: ConferenceEvent[] }) => {
       this.person = data.person;
       this.papers = data.papers;
       this.talks = data.talks;
