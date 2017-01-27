@@ -9,6 +9,7 @@ const Paper = DataBase.sequelize.models.paper;
 const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
 const Person = DataBase.sequelize.models.person;
+const Speaker = DataBase.sequelize.models.speaker;
 const PaperKeyword = DataBase.sequelize.models.paperkeyword;
 
 /** Subroutes under /events */

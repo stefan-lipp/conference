@@ -6,6 +6,7 @@ import {
   LOGIN_ROUTES,
   REGISTER_ROUTES,
   MY_SCHEDULE_ROUTES,
+  PERSON_ROUTES,
 } from './components/';
 
 export const ROUTES: Routes = [
@@ -13,5 +14,6 @@ export const ROUTES: Routes = [
   ...LOGIN_ROUTES,
   ...REGISTER_ROUTES,
   ...MY_SCHEDULE_ROUTES,
+  ...PERSON_ROUTES,
   { path: '**', component: NoContentComponent },
 ];

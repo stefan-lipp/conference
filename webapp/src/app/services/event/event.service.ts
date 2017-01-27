@@ -52,6 +52,12 @@ export class EventService {
       .map(this.apiMapperService.eventApiToLocal);
   }
 
+  public getEventOfSpeaker (personId: string): Observable<ConferenceEvent> {
+    return this.httpService.get(API_ROUTES.events.ofSpeaker.replace(':personId', personId))
+      .map(res => res.json())
+      .map(list => list.map(this.apiMapperService.eventApiToLocal));
+  }
+
   /**
    * Updates the favour status of an event.
    *
