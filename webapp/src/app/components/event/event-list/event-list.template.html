@@ -21,8 +21,8 @@
     <div class="eventSpeakerSection">
       <md-icon class="speakerIcon">person_outline</md-icon>
       <div>
-        <span class="speakerLabel">Speaker Name</span>
-        <span class="speakerLabel">University or Institution</span>
+        <span *ngIf="event.speakers.length" class="speakerLabel">{{ event.speakers[0].name }}</span>
+        <span *ngIf="event.speakers.length && event.speakers[0].institution" class="speakerLabel">{{ event.speakers[0].institution.name }}</span>
       </div>
     </div>
   </md-card-content>

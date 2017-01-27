@@ -27,6 +27,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: (models) => speaker.belongsTo(models.event, { foreignKey: 'eventid' }),
+      associate: (models) => speaker.belongsTo(models.person, { foreignKey: 'personid' }),
     },
     number: {
       type: DataTypes.INTEGER,

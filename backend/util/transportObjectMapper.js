@@ -8,6 +8,19 @@
 /* @see http://momentjs.com */
 const moment = require('moment');
 
+
+/**
+ * Maps a instance of the Person database model to a Person transport object
+ */
+function toInstitutionTO (institutionInstance) {
+  return {
+    id: institutionInstance.id,
+    name: institutionInstance.name,
+    iconUrl: institutionInstance.iconUrl,
+  };
+}
+
+
 /**
  * Maps a instance of the Person database model to a Person transport object
  */
@@ -16,7 +29,15 @@ function toPersonTO (personInstance) {
     id: personInstance.id,
     name: personInstance.name,
     email: personInstance.email,
+    institution: personInstance.institution ? toInstitutionTO(personInstance.institution) : { },
   };
+}
+
+/**
+ * Maps a instance of the Speaker database model to a Speaker transport object
+ */
+function toSpeakerTO (speakerInstance) {
+  return toPersonTO(speakerInstance.person);
 }
 
 /**
@@ -73,6 +94,9 @@ function toEventTO (eventInstance) {
       eventInstance.alias ||
       '<untitled event>'),
     paper: eventInstance.paper ? toPaperTO(eventInstance.paper) : null,
+    speakers: (eventInstance.speakers || [ ])
+      .sort((a, b) => { return a.number - b.number; })
+      .map(toSpeakerTO),
     roomName: eventInstance.roomname,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,

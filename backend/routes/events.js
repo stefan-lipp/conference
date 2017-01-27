@@ -11,6 +11,7 @@ const Author = DataBase.sequelize.models.author;
 const Person = DataBase.sequelize.models.person;
 const Speaker = DataBase.sequelize.models.speaker;
 const PaperKeyword = DataBase.sequelize.models.paperkeyword;
+const Institution = DataBase.sequelize.models.institution;
 
 /** Subroutes under /events */
 function eventSubroutes (app) {
@@ -26,11 +27,16 @@ function eventSubroutes (app) {
         include: [
           { model: Paper, include: [
             { model: Author, required: false, include: [
-               { model: Person, required: false },
+              { model: Person, required: false },
             ] },
             { model: PaperKeyword, as: 'keywords', required: false },
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
+          { model: Speaker, required: false , include: [
+              { model: Person, required: false, include: [
+                { model: Institution, required: false },
+              ] }   
+            ] },
         ],
       })
         .then((events) => {

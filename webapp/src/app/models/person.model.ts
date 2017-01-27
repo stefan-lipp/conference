@@ -1,5 +1,8 @@
 import * as _ from 'lodash';
-
+import {
+  Institution,
+  ApiInstitution,
+} from './institution.model';
 /**
  * Person model.
  */
@@ -10,6 +13,7 @@ export class Person {
   public email: string;
   // optionals
   public details?: string;
+  public institution?: Institution;
 
   public static fromAPI (apiRepresentation: ApiPerson): Person {
     return new Person ({
@@ -17,6 +21,8 @@ export class Person {
       name: apiRepresentation.name,
       email: apiRepresentation.email,
       details: apiRepresentation.details,
+      institution: apiRepresentation.institution ?
+        Institution.fromAPI(apiRepresentation.institution) : null,
     });
   }
 
@@ -31,4 +37,5 @@ export interface ApiPerson {
   email: string;
   // optionals
   details?: string;
+  institution?: ApiInstitution;
 }
