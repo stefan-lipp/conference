@@ -8,16 +8,17 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ConferenceEvent } from '../../../models/conference-event.model';
-import { AuthService } from '../../../services';
+import { MdDialog } from '@angular/material';
 
 import { EventViewOverlayComponent } from '../event-view/event-view-overlay.component';
-import { MdDialog } from '@angular/material';
+
+import { ConferenceEvent } from '../../../models/conference-event.model';
+import { AuthService } from '../../../services';
 
 @Component({
   selector: 'conference-event-list',
   templateUrl: 'event-list.template.html',
-  styleUrls: [ 'event-list.styles.scss' ],
+  styleUrls: [ 'event-list.style.scss' ],
 })
 export class EventListComponent  {
 
@@ -28,18 +29,11 @@ export class EventListComponent  {
   @Input()
   public events: ConferenceEvent[] = [ ];
 
-  private lastVisitedLink: string;
-
   constructor (
     private dialog: MdDialog,
     private router: Router,
     public authService: AuthService,
-  ) {
-    let url = this.router.url;
-    if (url.includes('#')) {
-      this.lastVisitedLink = url;
-    }
-  }
+  ) { }
 
   /**
    * Method for creating the overlay component and passing parameter to it
@@ -50,7 +44,6 @@ export class EventListComponent  {
     const dialogRef = this.dialog.open(EventViewOverlayComponent, {
        disableClose: false,
     });
-
     dialogRef.componentInstance.event = event;
   }
 

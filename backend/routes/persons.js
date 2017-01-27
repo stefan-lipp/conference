@@ -6,12 +6,30 @@ const Errors = require('../util/errors');
 
 const DataBase = require('../model/index');
 const Author = DataBase.sequelize.models.author;
-const Event = DataBase.sequelize.models.event; 
+const Event = DataBase.sequelize.models.event;
 const Paper = DataBase.sequelize.models.paper;
 const Person = DataBase.sequelize.models.person;
 const Speaker = DataBase.sequelize.models.speaker;
 
 function personSubroutes (app) {
+
+  app.subroute('/persons', (app) => {
+
+    app.get((req, res) => {
+      const personId = (req.decoded ? req.decoded.personId : null);
+      console.log('Person ID: ' + personId);
+
+      Person.findById(personId)
+        .then(person => {
+          res.json(TOMapper.toPersonTO(person));
+        })
+        .catch(err => res.status(404).json({
+          error: true,
+          success: false,
+          message: 'Unknown person',
+        }));
+    });
+  });
 
   // `/persons/:personId`
   app.subroute('/persons/:personId', (app) => {
@@ -31,6 +49,8 @@ function personSubroutes (app) {
         }));
     });
   });
+
+
 
   app.subroute('/speaker/:personId/events', (app) => {
     // GET retrieve list of all events
@@ -88,7 +108,6 @@ function personSubroutes (app) {
       });
     });
   });
-
 
 }
 module.exports = personSubroutes;

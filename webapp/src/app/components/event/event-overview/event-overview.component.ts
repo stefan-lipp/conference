@@ -3,6 +3,7 @@ import {
   OnInit,
   Input,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ConferenceEvent } from '../../../models';
 import { EventService } from '../../../services';
@@ -26,15 +27,27 @@ export class EventOverviewComponent implements OnInit {
   /** Subset of all events */
   public selectedEvents: ConferenceEvent[] = [ ];
 
+  public eventTypes: string[] = [
+    'Keynote', 'Research Talk', 'Industry Talk', 'Tutorial', 'Workshop', 'Demo',
+  ];
+
   /** List of all available events */
   private allEvents: ConferenceEvent[] = [ ];
+
+  private lastVisitedLink: string;
 
   /**
    * Constructor for the events component.
    */
   constructor (
     private eventService: EventService,
-  ) { }
+    private router: Router,
+  ) {
+    let url = this.router.url;
+    if (url.includes('#')) {
+      this.lastVisitedLink = url;
+    }
+  }
 
   /**
    * Gets all events of the conference
@@ -99,4 +112,5 @@ export class EventOverviewComponent implements OnInit {
     event.favored = state;
     this.eventService.updateFavourStatus(event);
   }
+
 }
