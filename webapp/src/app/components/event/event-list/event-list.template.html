@@ -13,11 +13,9 @@
     </span>
 
     <div class="eventKeywordSection">
-      <span class="keywordLabel">Databases</span>
-      <span class="keywordLabel">Query Optimization</span>
-      <span class="keywordLabel">Hyper</span>
-      <span class="keywordLabel">C++</span>
-      <span class="keywordLabel">Tableau</span>
+      <span
+        *ngFor="let keyword of event.paper.keywords"
+        class="keywordLabel">{{ keyword }}</span>
     </div>
 
     <div class="eventSpeakerSection">
