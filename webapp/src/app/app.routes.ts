@@ -6,6 +6,7 @@ import {
   LOGIN_ROUTES,
   REGISTER_ROUTES,
   MY_SCHEDULE_ROUTES,
+  PAPER_ROUTES,
   PERSON_ROUTES,
 } from './components/';
 
@@ -15,5 +16,6 @@ export const ROUTES: Routes = [
   ...REGISTER_ROUTES,
   ...MY_SCHEDULE_ROUTES,
   ...PERSON_ROUTES,
+  ...PAPER_ROUTES,
   { path: '**', component: NoContentComponent },
 ];

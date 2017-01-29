@@ -1,0 +1,16 @@
+<div class="search-bar">
+  <md-input
+    #search
+    type="text"
+    placeholder="Search..."
+    floatingPlaceholder="false"
+    [(ngModel)]="filterQuery"
+    (input)="filter()"
+  >
+  </md-input>
+</div>
+
+<conference-paper-list
+  #paperList
+  [papers]="selectedPapers"
+></conference-paper-list>

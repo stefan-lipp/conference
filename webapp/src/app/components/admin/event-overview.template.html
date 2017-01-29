@@ -1,0 +1,22 @@
+<div class="search-bar">
+  <md-input
+    #search
+    type="text"
+    placeholder="Search..."
+    floatingPlaceholder="false"
+    [(ngModel)]="filterQuery"
+    (input)="filter()"
+  >
+  </md-input>
+</div>
+<md-tab-group>
+  <md-tab label="Papers">
+    <md-list *ngFor="let eventType of eventTypes">
+      <conference-event-list
+        #eventList
+        [events]="selectedEvents | EventFilter: eventType"
+        (onFavouriteStateChange)="setFavouriteState($event)"
+      ></conference-event-list>
+    </md-list>
+  </md-tab>
+</md-tab-group>

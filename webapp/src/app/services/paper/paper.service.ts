@@ -30,6 +30,28 @@ export class PaperService {
   }
 
   /**
+   * Returns a paper of the conference
+   *
+   * @return {Observable<Paper[]>} An observable containing the paper
+   */
+  public getAll (): Observable<Paper[]> {
+    return this.httpService.get(API_ROUTES.paper.all)
+      .map(res => res.json())
+      .map(list => list.map(Paper.fromAPI));
+  }
+
+  /**
+   * Returns a paper of the conference
+   *
+   * @return {Observable<Paper[]>} An observable containing the paper
+   */
+  public getPaper (paperId: number): Observable<Paper> {
+    return this.httpService.get(API_ROUTES.paper.single.replace(':paperId', paperId.toString(10)))
+      .map(res => res.json())
+      .map(Paper.fromAPI);
+  }
+
+  /**
    * Returns a paper by id
    *
    * @return {Observable<Paper[]>} An observable containing the paper

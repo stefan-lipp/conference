@@ -1,0 +1,22 @@
+.search-bar {
+  background: #fff;
+
+  md-input, input {
+    width: calc(100% - 5rem);
+    margin: 0 .5rem;
+  }
+}
+
+.info {
+    min-height: 2em;
+    text-align: center;
+    color: #8e8e8e;
+    padding-top: 0.25em;
+    margin: 0;
+    width: 100%;
+    text-decoration: none;
+
+    &:hover {
+        background-color: #CFCFCF;
+    }
+}

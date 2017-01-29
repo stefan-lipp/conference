@@ -33,7 +33,7 @@ function authSubroutes (app) {
       UserData.findOne({
         include: [
           { model: Person, where: { email: credentials.email } },
-          { model: Admin },
+          { model: Admin, required: false },
         ],
       }).then(userInstance => {
         if (userInstance) {
@@ -53,7 +53,6 @@ function authSubroutes (app) {
                   expiresIn: config.jwtExpirationTime,
                 }
               );
-
               // Update user
               userInstance.token = token;
               userInstance.save()

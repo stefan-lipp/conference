@@ -1,0 +1,28 @@
+<md-card *ngFor="let paper of papers">
+  <a id="{{ paper.id }}"></a>
+  <md-card-title class="eventTypeLabel">
+    <span
+      class="paperTitleLabel"
+      [routerLink]="[ '/papers', paper.id ]"
+    >
+    {{ paper.title }}
+    </span>
+  </md-card-title>
+
+  <md-card-content>
+    <div class="eventKeywordSection">
+      <span
+        *ngFor="let keyword of paper.keywords"
+        class="keywordLabel">{{ keyword }}</span>
+    </div>
+  </md-card-content>
+
+  <button
+    md-button
+    color="accent"
+    class="detailsButton"
+    [routerLink]="[ '/papers', paper.id ]"
+  >
+    Details
+  </button>
+</md-card>

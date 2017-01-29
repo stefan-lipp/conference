@@ -60,7 +60,7 @@ function toKeywordTO (keywordInstance) {
 function toPaperTO (paperInstance) {
   return {
     id: paperInstance.id,
-    title: paperInstance.titel,
+    title: paperInstance.title,
     authors: (paperInstance.authors || [ ])
       .sort((a, b) => { return a.number - b.number; })
       .map(toAuthorTO),
