@@ -94,7 +94,7 @@ export class EventOverviewComponent implements OnInit {
   }
 
   /**
-   * Sets selectedEvents to all Events from events matchin the filterQuery
+   * Sets selectedEvents to all Events from events matching the filterQuery
    *
    * @return {void}
    */
