@@ -22,12 +22,14 @@ module.exports = function (sequelize, DataTypes) {
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
-      }
-    }
+      },
+    },
   }, {
     classMethods: {
-      associate: (models) => speaker.belongsTo(models.event, { foreignKey: 'eventid' }),
-      associate: (models) => speaker.belongsTo(models.person, { foreignKey: 'personid' }),
+      associate: (models) => {
+        speaker.belongsTo(models.event, { foreignKey: 'eventid' });
+        speaker.belongsTo(models.person, { foreignKey: 'personid' });
+      },
     },
     number: {
       type: DataTypes.INTEGER,

@@ -14,6 +14,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    url: {
+      type: DataTypes.STRING,
+      field: 'iconurl',
+      allowNull: true,
+    },
     iconUrl: {
       type: DataTypes.STRING,
       field: 'iconurl',

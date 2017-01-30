@@ -31,12 +31,20 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    homepage: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    picture: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   }, {
     classMethods: {
       associate: (models) => {
         Person.belongsTo(models.institution, { foreignKey: 'institutionId' });
         Person.hasMany(models.author, { foreignKey: 'personId' });
-      }
+      },
     },
   });
   return Person;
