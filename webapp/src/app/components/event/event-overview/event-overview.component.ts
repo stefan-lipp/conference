@@ -94,15 +94,39 @@ export class EventOverviewComponent implements OnInit {
   }
 
   /**
-   * Sets selectedEvents to all Events from events whoose title contain filterQuery
+   * Sets selectedEvents to all Events from events matching the filterQuery
    *
    * @return {void}
    */
   public filter (): void {
     if (this.filterQuery.length) {
-      this.selectedEvents = this.events.filter(
-        event => event.title.toLowerCase().includes(this.filterQuery.toLowerCase())
-      );
+      const query = this.filterQuery.toLowerCase();
+      this.selectedEvents = this.events.filter(event => {
+          return (event.title.toLowerCase().includes(query)) ||
+            (
+              (event.speakers) && event.speakers.some(speaker => {
+                return speaker.name.toLowerCase().includes(query) ||
+                  (speaker.institution &&
+                    speaker.institution.name.toLowerCase().includes(query));
+              })
+            ) ||
+            (
+              (event.paper) && (
+                (
+                  (event.paper.keywords) &&
+                  (event.paper.keywords.some(keyword => {
+                    return keyword.toLowerCase().includes(query);
+                  }))
+                ) ||
+                (
+                  (event.paper.authors) &&
+                  (event.paper.authors.some(author => {
+                    return author.name.toLowerCase().includes(query);
+                  }))
+                )
+              )
+            );
+        });
     } else {
       this.selectedEvents = this.events;
     }
