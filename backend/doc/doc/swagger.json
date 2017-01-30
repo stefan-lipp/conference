@@ -258,6 +258,51 @@
                 }
             }
         },
+        "/papers": {
+            "post": {
+                "tags": [ "Papers" ],
+                "summary": "Insert a new",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authorization.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Paper Values",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Paper"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token for the user.",
+                        "schema": {
+                            "$ref": "#/definitions/Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "persons/:personId": {
             "get": {
                 "tags": [ "Persons" ],
@@ -387,10 +432,9 @@
                 "id": { "type": "number" },
                 "title": { "type": "string" },
                 "authors": { "type": "array", "items": { "$ref": "#/definitions/Person" } },
-                "keywords": { "type": "string" },
+                "keywords": { "type": "array", "items": { "type": "string" } },
                 "abstract": { "type": "string" },
-                "url": { "type": "string" },
-                "tag": { "type": "string" }
+                "url": { "type": "string" }
             }
         },
         "Person": {
@@ -401,11 +445,11 @@
                 "email"
             ],
             "properties": {
-                "id": { "type": "uuid" },
+                "id": { "type": "string" },
                 "name": { "type": "string" },
                 "email": { "type": "string" },
                 "details": { "type": "string" },
-                "institutionId": { "type": "uuid" }
+                "institutionId": { "type": "string" }
             }
         },
         "Error": {

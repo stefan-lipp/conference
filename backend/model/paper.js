@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: (models) => {
         Paper.hasMany(models.author, { foreignKey: 'paperId' });
-        Paper.hasMany(models.paperkeyword, { as: 'keywords', foreignKey: 'paperId' });
+        Paper.hasMany(models.paperkeyword, { as: 'keywords', foreignKey: 'paperid' });
       },
     },
   });
