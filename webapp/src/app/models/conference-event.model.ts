@@ -36,7 +36,7 @@ export class ConferenceEvent {
         apiRepresentation.paper.abstract = front.replace('Abstract:', '') + rest;
       }
     }
-
+    
     return new ConferenceEvent({
       id: apiRepresentation.id,
       title: apiRepresentation.title,

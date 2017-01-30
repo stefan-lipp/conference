@@ -15,8 +15,6 @@ export const API_ROUTES = {
     loggedIn: `${API_BASE_URL}/persons`,
   },
   paper: {
-    all: `${API_BASE_URL}/papers`,
-    single: `${API_BASE_URL}/papers/:paperId`,
     byAuthor: `${API_BASE_URL}/author/:personId/papers`,
   },
 };

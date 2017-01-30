@@ -47,15 +47,6 @@ export class AuthService {
   }
 
   /**
-   * Getter whether a user is admin
-   * @TODO
-   */
-  public get isAdminUser (): boolean {
-    return (new JwtHelper()).decodeToken(localStorage[AuthConfigConsts.DEFAULT_TOKEN_NAME])
-      .isAdmin;
-  }
-
-  /**
    * Logs the user out and navigates to a given page
    *
    * @see Router.navigateByUrl
