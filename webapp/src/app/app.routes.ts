@@ -3,6 +3,7 @@ import { NoContentComponent } from './components';
 
 import {
   EVENT_ROUTES,
+  SESSION_ROUTES,
   LOGIN_ROUTES,
   REGISTER_ROUTES,
   MY_SCHEDULE_ROUTES,
@@ -11,6 +12,7 @@ import {
 
 export const ROUTES: Routes = [
   ...EVENT_ROUTES,
+  ...SESSION_ROUTES,
   ...LOGIN_ROUTES,
   ...REGISTER_ROUTES,
   ...MY_SCHEDULE_ROUTES,

@@ -1,0 +1,10 @@
+
+<h1 md-title>{{ session.name }}</h1>
+
+<md-list *ngIf="session.events.length">
+  <h3 md-subheader>Session Events</h3>
+  <conference-event-list
+    [events]="session.events"
+    (onFavouriteStateChange)="setFavouriteState($event)"
+  ></conference-event-list>
+</md-list>
