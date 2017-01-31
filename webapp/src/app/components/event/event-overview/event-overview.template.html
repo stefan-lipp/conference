@@ -23,7 +23,7 @@
     </a>
 
     <md-list *ngFor="let eventType of eventTypes">
-      <h3 md-subheader>{{ eventType }}</h3>
+      <h3 md-subheader>{{ eventType }}s</h3>
       <conference-event-list
         [events]="selectedEvents | EventFilter: eventType"
         (onFavouriteStateChange)="setFavouriteState($event)"
