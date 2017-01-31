@@ -77,7 +77,7 @@ CREATE TABLE public.person (
 	email varchar(255) NULL,
 	details text NULL,
 	homepage varchar(255) NULL,
-	picture varchar(255) NULL,
+	pictureurl varchar(255) NULL,
 	CONSTRAINT person_email_key UNIQUE (email),
 	CONSTRAINT person_pkey PRIMARY KEY (id),
 	CONSTRAINT person_institutionid_fkey FOREIGN KEY (institutionid) REFERENCES public.institution(id)
