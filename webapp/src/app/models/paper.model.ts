@@ -1,14 +1,19 @@
 import * as _ from 'lodash';
 
+import {
+  Person,
+  ApiPerson,
+} from './person.model';
+
 /**
  * Paper model.
  */
 export class Paper {
   public id: string;
   public title: string;
-  public authors: string[];
+  public authors: Person[];
+  public keywords: string[];
   // optionals
-  public keywords?: string[];
   public abstract?: string;
   public link?: string;
   public tag?: string;
@@ -17,12 +22,11 @@ export class Paper {
     if (!apiRepresentation) {
       return null;
     }
-    const keywordArray = apiRepresentation.keywords.split(',');
     return {
       id: apiRepresentation.id,
       title: apiRepresentation.title,
-      authors: apiRepresentation.authors,
-      keywords: keywordArray,
+      authors: apiRepresentation.authors.map(Person.fromAPI),
+      keywords: apiRepresentation.keywords,
       abstract: apiRepresentation.abstract,
       link: apiRepresentation.link,
       tag: apiRepresentation.tag,
@@ -37,9 +41,9 @@ export class Paper {
 export interface ApiPaper {
   id: string;
   title: string;
-  authors: string[];
+  authors: ApiPerson[];
+  keywords: string[];
   // optionals
-  keywords?: string;
   abstract?: string;
   link?: string;
   tag?: string;

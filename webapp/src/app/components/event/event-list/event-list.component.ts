@@ -6,16 +6,19 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { MdDialog } from '@angular/material';
+
+import { EventViewOverlayComponent } from '../event-view/event-view-overlay.component';
 
 import { ConferenceEvent } from '../../../models/conference-event.model';
 import { AuthService } from '../../../services';
 
-import { EventViewOverlayComponent } from '../event-view/event-view-overlay.component';
-import { MdDialog } from '@angular/material';
-
 @Component({
   selector: 'conference-event-list',
   templateUrl: 'event-list.template.html',
+  styleUrls: [ 'event-list.style.scss' ],
 })
 export class EventListComponent  {
 
@@ -28,6 +31,7 @@ export class EventListComponent  {
 
   constructor (
     private dialog: MdDialog,
+    private router: Router,
     public authService: AuthService,
   ) { }
 
@@ -40,12 +44,10 @@ export class EventListComponent  {
     const dialogRef = this.dialog.open(EventViewOverlayComponent, {
        disableClose: false,
     });
-
     dialogRef.componentInstance.event = event;
   }
 
   public formatTime (time: moment.Moment): string {
     return time.format('MMM Do, HH:mm');
   }
-
 }

@@ -9,6 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     conferenceId: {
       type: DataTypes.INTEGER,
+      field: 'conferenceid',
       allowNull: true,
     },
     name: {
@@ -22,6 +23,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     backgroundColor: {
       type: DataTypes.STRING,
+      field: 'backgroundcolor',
       allowNull: false,
       defaultValue: '#dddddd',
     },

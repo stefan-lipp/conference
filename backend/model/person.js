@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     institutionId: {
       type: DataTypes.UUID,
+      field: 'institutionid',
       allowNull: true,
       references: {
         model: 'institution',
@@ -32,7 +33,10 @@ module.exports = function (sequelize, DataTypes) {
     },
   }, {
     classMethods: {
-      associate: (models) => Person.hasMany(models.author, { foreignKey: 'personId' }),
+      associate: (models) => {
+        Person.belongsTo(models.institution, { foreignKey: 'institutionId' });
+        Person.hasMany(models.author, { foreignKey: 'personId' });
+      }
     },
   });
   return Person;

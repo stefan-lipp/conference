@@ -9,31 +9,61 @@
 const moment = require('moment');
 
 /**
- * Maps an instance of the Person database model to a Person transport object
+ * Maps an instance of the Institution database model to a Person transport object
+ */
+function toInstitutionTO (institutionInstance) {
+  return {
+    id: institutionInstance.id,
+    name: institutionInstance.name,
+    iconUrl: institutionInstance.iconUrl,
+  };
+}
+
+
+/**
+ * Maps a instance of the Person database model to a Person transport object
  */
 function toPersonTO (personInstance) {
   return {
+    id: personInstance.id,
     name: personInstance.name,
     email: personInstance.email,
+    institution: personInstance.institution ? toInstitutionTO(personInstance.institution) : { },
   };
 }
 
 /**
- * Maps an instance of the Author database model to a Author transport object
+ * Maps a instance of the Speaker database model to a Speaker transport object
+ */
+function toSpeakerTO (speakerInstance) {
+  return toPersonTO(speakerInstance.person);
+}
+
+/**
+ * Maps a instance of the Author database model to a Author transport object
  */
 function toAuthorTO (authorInstance) {
   return toPersonTO(authorInstance.person);
 }
 
 /**
- * Maps an instance of the Paper database model to a Paper transport object
+ * Maps a instance of the Paper database model to a Paper transport object
+ */
+function toKeywordTO (keywordInstance) {
+  return keywordInstance.keyword;
+}
+
+/**
+ * Maps a instance of the Paper database model to a Paper transport object
  */
 function toPaperTO (paperInstance) {
   return {
     id: paperInstance.id,
     title: paperInstance.titel,
-    authors: (paperInstance.authors || [ ]).map(toAuthorTO),
-    keywords: paperInstance.keywords,
+    authors: (paperInstance.authors || [ ])
+      .sort((a, b) => { return a.number - b.number; })
+      .map(toAuthorTO),
+    keywords: (paperInstance.keywords || []).map(toKeywordTO),
     abstract: paperInstance.abstract,
     link: paperInstance.link,
     tag: paperInstance.tag,
@@ -62,7 +92,10 @@ function toEventTO (eventInstance) {
       eventInstance.alias ||
       '<untitled event>'),
     paper: eventInstance.paper ? toPaperTO(eventInstance.paper) : null,
-    roomName: eventInstance.roomName,
+    speakers: (eventInstance.speakers || [ ])
+      .sort((a, b) => { return a.number - b.number; })
+      .map(toSpeakerTO),
+    roomName: eventInstance.roomname,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
     duration: duration,
@@ -92,7 +125,8 @@ function toTrackTO (trackInstance) {
 }
 
 module.exports = {
-  toPaperTO: toPaperTO,
   toEventTO: toEventTO,
+  toPaperTO: toPaperTO,
+  toPersonTO: toPersonTO,
   toTrackTO: toTrackTO,
 };

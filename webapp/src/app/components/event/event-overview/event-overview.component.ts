@@ -3,6 +3,7 @@ import {
   OnInit,
   Input,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ConferenceEvent } from '../../../models';
 import { EventService } from '../../../services';
@@ -26,15 +27,27 @@ export class EventOverviewComponent implements OnInit {
   /** Subset of all events */
   public selectedEvents: ConferenceEvent[] = [ ];
 
+  public eventTypes: string[] = [
+    'Keynote', 'Research Talk', 'Industry Talk', 'Tutorial', 'Workshop', 'Demo',
+  ];
+
   /** List of all available events */
   private allEvents: ConferenceEvent[] = [ ];
+
+  private lastVisitedLink: string;
 
   /**
    * Constructor for the events component.
    */
   constructor (
     private eventService: EventService,
-  ) { }
+    private router: Router,
+  ) {
+    let url = this.router.url;
+    if (url.includes('#')) {
+      this.lastVisitedLink = url;
+    }
+  }
 
   /**
    * Gets all events of the conference
@@ -81,15 +94,39 @@ export class EventOverviewComponent implements OnInit {
   }
 
   /**
-   * Sets selectedEvents to all Events from events whoose title contain filterQuery
+   * Sets selectedEvents to all Events from events matching the filterQuery
    *
    * @return {void}
    */
   public filter (): void {
     if (this.filterQuery.length) {
-      this.selectedEvents = this.events.filter(
-        event => event.title.toLowerCase().includes(this.filterQuery.toLowerCase())
-      );
+      const query = this.filterQuery.toLowerCase();
+      this.selectedEvents = this.events.filter(event => {
+          return (event.title.toLowerCase().includes(query)) ||
+            (
+              (event.speakers) && event.speakers.some(speaker => {
+                return speaker.name.toLowerCase().includes(query) ||
+                  (speaker.institution &&
+                    speaker.institution.name.toLowerCase().includes(query));
+              })
+            ) ||
+            (
+              (event.paper) && (
+                (
+                  (event.paper.keywords) &&
+                  (event.paper.keywords.some(keyword => {
+                    return keyword.toLowerCase().includes(query);
+                  }))
+                ) ||
+                (
+                  (event.paper.authors) &&
+                  (event.paper.authors.some(author => {
+                    return author.name.toLowerCase().includes(query);
+                  }))
+                )
+              )
+            );
+        });
     } else {
       this.selectedEvents = this.events;
     }
@@ -99,4 +136,5 @@ export class EventOverviewComponent implements OnInit {
     event.favored = state;
     this.eventService.updateFavourStatus(event);
   }
+
 }

@@ -27,6 +27,11 @@ import {
   ApiMapperService,
   EventService,
   EventResolver,
+  EventOfSpeakerResolver,
+  PaperService,
+  PaperByAuthorResolver,
+  PersonService,
+  PersonResolver,
   TrackService,
 } from './services';
 
@@ -40,13 +45,18 @@ import {
   LoginComponent,
   MyScheduleComponent,
   NavigationComponent,
+  NavigationUserComponent,
   NoContentComponent,
+  PersonViewComponent,
   RegisterComponent,
   ScheduleEditorComponent,
   TrackEditorComponent,
 } from './components';
 
 // Directives
+
+// Pipes
+import { EventFilterPipe } from './pipes';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -76,8 +86,11 @@ type StoreType = {
     EventViewOverlayComponent,
     LoginComponent,
     NavigationComponent,
+    NavigationUserComponent,
     NoContentComponent,
+    PersonViewComponent,
     RegisterComponent,
+    EventFilterPipe,
     ScheduleEditorComponent,
     TrackEditorComponent,
   ],
@@ -106,6 +119,11 @@ type StoreType = {
     ApiMapperService,
     EventService,
     EventResolver,
+    EventOfSpeakerResolver,
+    PaperService,
+    PaperByAuthorResolver,
+    PersonService,
+    PersonResolver,
     TrackService,
   ],
 })

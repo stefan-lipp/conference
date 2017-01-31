@@ -5,6 +5,7 @@ module.exports = function (sequelize, DataTypes) {
     paperId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      field: 'paperid',
       references: {
         model: 'paper',
         key: 'id',
@@ -15,12 +16,17 @@ module.exports = function (sequelize, DataTypes) {
     personId: {
       type: DataTypes.UUID,
       primaryKey: true,
+      field: 'personid',
       references: {
         model: 'person',
         key: 'id',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
+    },
+    number: {
+      type: DataTypes.INTEGER,
+      nullable: false,
     },
   }, {
     classMethods: {

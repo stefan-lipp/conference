@@ -16,6 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     iconUrl: {
       type: DataTypes.STRING,
+      field: 'iconurl',
       allowNull: true,
     },
   });

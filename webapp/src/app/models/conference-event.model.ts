@@ -5,6 +5,10 @@ import {
   Paper,
   ApiPaper,
 } from './paper.model';
+import {
+  Person,
+  ApiPerson,
+} from './person.model';
 
 /**
  * Event model.
@@ -16,11 +20,11 @@ export class ConferenceEvent {
   public duration: number; // in minutes
   public type: EventType;
   public favored: boolean;
+  public speakers: Person[];
   public paper?: Paper;
   public startTime?: moment.Moment;
   public endTime?: moment.Moment;
   public room?: string;
-  public speaker?: string;
   public maxSize?: number;
 
   public static fromAPI (apiRepresentation: ApiConferenceEvent): ConferenceEvent {
@@ -38,12 +42,12 @@ export class ConferenceEvent {
       title: apiRepresentation.title,
       duration: apiRepresentation.duration,
       favored: apiRepresentation.favored,
-      paper: Paper.fromAPI(apiRepresentation.paper),
+      speakers: apiRepresentation.speakers.map(Person.fromAPI),
+      paper: apiRepresentation.paper ? Paper.fromAPI(apiRepresentation.paper) : null,
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],
       room: apiRepresentation.roomName,
-      speaker: 'N.N.', // TODO
       maxSize: apiRepresentation.maxSize,
     });
   }
@@ -54,6 +58,7 @@ export class ConferenceEvent {
 
   public get eventType (): string {
     switch (this.type) {
+      case EventType.Keynote: return 'Keynote';
       case EventType.Research: return 'Research Talk';
       case EventType.Industry: return 'Industry Talk';
       case EventType.Tutorial: return 'Tutorial';
@@ -84,11 +89,12 @@ export interface ApiConferenceEvent {
   id: number;
   title: string;
   paper: ApiPaper;
+  favored: boolean;
+  speakers: ApiPerson[];
   roomName?: string;
   startTime?: string;
   endTime?: string;
   duration: string;
   maxSize?: string;
   kind?: string;
-  favored: boolean;
 }

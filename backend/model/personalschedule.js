@@ -5,6 +5,7 @@ module.exports = function (sequelize, DataTypes) {
     eventId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      field: 'eventid',
       references: {
         model: 'event',
         key: 'id',
@@ -15,6 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     personId: {
       type: DataTypes.UUID,
       primaryKey: true,
+      field: 'personid',
       references: {
         model: 'person',
         key: 'id',
