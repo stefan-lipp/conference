@@ -9,6 +9,7 @@ const Paper = DataBase.sequelize.models.paper;
 const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
 const Person = DataBase.sequelize.models.person;
+const Session = DataBase.sequelize.models.session;
 const Speaker = DataBase.sequelize.models.speaker;
 const PaperKeyword = DataBase.sequelize.models.paperkeyword;
 const Institution = DataBase.sequelize.models.institution;
@@ -32,6 +33,7 @@ function eventSubroutes (app) {
             { model: PaperKeyword, as: 'keywords', required: false },
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
+          { model: Session, required: false },
           { model: Speaker, required: false , include: [
               { model: Person, required: false, include: [
                 { model: Institution, required: false },
@@ -147,7 +149,7 @@ function eventSubroutes (app) {
 
     // GET retrieve single event
     app.get((req, res) => {
-      const eventId = req.params.eventId;
+      const eventId = parseInt(req.params.eventId);
       const personId = (req.decoded ? req.decoded.personId : null);
 
       Event.findById(eventId, {

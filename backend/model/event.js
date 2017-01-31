@@ -88,6 +88,7 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: (models) => {
         Event.belongsTo(models.paper, { foreignKey: 'paperid' });
+        Event.belongsTo(models.session, { foreignKey: 'sessionid' });
         Event.hasMany(models.favorite, { foreignKey: 'eventid' });
         Event.hasMany(models.speaker, { foreignKey: 'eventid' });
       },

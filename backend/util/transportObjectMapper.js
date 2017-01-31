@@ -107,8 +107,32 @@ function toEventTO (eventInstance) {
   };
 }
 
+
+/** Maps a instance of the Session database model to a simple Session transport object */
+function toSessionTO (sessionInstance) {
+  return {
+    id: sessionInstance.id,
+    name: sessionInstance.name,
+    // TODO
+    track: {
+      id: null,
+      name: 'Dummy Track Name',
+      color: '#ffffff',
+      backgroundColor: '#03a9f4',
+    },
+    startTime: sessionInstance.startTime,
+    endTime: sessionInstance.endTime,
+    // TODO
+    room: null,
+    events: sessionInstance.events.map(toEventTO),
+    favored: sessionInstance.events.map(e => e.favored).includes(true),
+  };
+}
+
 module.exports = {
   toEventTO: toEventTO,
   toPaperTO: toPaperTO,
   toPersonTO: toPersonTO,
+  toSessionTO: toSessionTO,
 };
+
