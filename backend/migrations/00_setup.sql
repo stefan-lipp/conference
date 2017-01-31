@@ -76,7 +76,7 @@ CREATE TABLE public.person (
 	institutionid uuid NULL,
 	email varchar(255) NULL,
 	details text NULL,
-	hompage varchar(255) NULL,
+	homepage varchar(255) NULL,
 	picture varchar(255) NULL,
 	CONSTRAINT person_email_key UNIQUE (email),
 	CONSTRAINT person_pkey PRIMARY KEY (id),
