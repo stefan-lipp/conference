@@ -120,12 +120,11 @@ function toSessionTO (sessionInstance) {
       color: '#ffffff',
       backgroundColor: '#03a9f4',
     },
-    startTime: sessionInstance.startTime,
-    endTime: sessionInstance.endTime,
+    startTime: moment(), //sessionInstance.startTime,
+    endTime: moment().add(120,'m'), //sessionInstance.endTime,
     // TODO
     room: null,
     events: sessionInstance.events.map(toEventTO),
-    favored: sessionInstance.events.map(e => e.favored).includes(true),
   };
 }
 
