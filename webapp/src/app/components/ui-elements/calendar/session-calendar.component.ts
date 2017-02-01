@@ -23,10 +23,12 @@ export class SessionCalendarComponent implements OnInit {
 
   public selectedDay: moment.Moment = moment();
 
-  constructor () {}
+  constructor () 
+  { }
 
   public ngOnInit () {
     /*
+    TODO: get this working again.
     if (this.selectedDay < this.appService.metadata.starts) {
       this.selectedDay = this.appService.metadata.starts;
     } else if (this.selectedDay > this.appService.metadata.ends) {
