@@ -7,6 +7,7 @@ import {
 
 export interface CalendarEvent {
   title: string;
+  id: number;
   startTime: moment.Moment;
   endTime: moment.Moment;
 }
@@ -33,11 +34,13 @@ export class CalendarComponent {
 
   public viewportTimeframe: Timeframe = 'day';
 
+  @Input()
   public selectedDay: moment.Moment = moment();
 
   constructor (
     private elem: ElementRef,
   ) {
+    this.selectedDay = moment('2016-09-05');
     window.setTimeout(() => {
       const currentTimeIndicator: HTMLElement =
         this.elem.nativeElement.querySelector('.current-time');
@@ -47,6 +50,7 @@ export class CalendarComponent {
       }
     });
   }
+
 
   /**
    * Returns the tracks with only the events that should be visible in the current timeframe

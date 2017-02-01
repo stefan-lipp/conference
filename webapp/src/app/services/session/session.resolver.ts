@@ -7,7 +7,7 @@ import {
 
 import { Observable } from 'rxjs';
 
-import { SessionService } from '../session';
+import { SessionService } from '../session';
 import { ConferenceSession } from '../../models';
 
 @Injectable()

@@ -30,6 +30,7 @@ import {
   PaperByAuthorResolver,
   PersonService,
   PersonResolver,
+  SessionService,
 } from './services';
 
 // Components
@@ -46,6 +47,7 @@ import {
   NoContentComponent,
   PersonViewComponent,
   RegisterComponent,
+  SessionCalendarComponent,
 } from './components';
 
 // Directives
@@ -86,6 +88,7 @@ type StoreType = {
     PersonViewComponent,
     RegisterComponent,
     EventFilterPipe,
+    SessionCalendarComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -115,6 +118,7 @@ type StoreType = {
     PaperByAuthorResolver,
     PersonService,
     PersonResolver,
+    SessionService,
   ],
 })
 export class AppModule {
