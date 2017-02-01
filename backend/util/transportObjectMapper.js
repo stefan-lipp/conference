@@ -120,8 +120,8 @@ function toSessionTO (sessionInstance) {
       color: '#ffffff',
       backgroundColor: '#03a9f4',
     },
-    startTime: moment(sessionInstance.startTime), //sessionInstance.startTime,
-    endTime: moment(sessionInstance.endTime), //sessionInstance.endTime,
+    startTime: moment(sessionInstance.startTime),
+    endTime: moment(sessionInstance.endTime),
     // TODO
     room: null,
     events: sessionInstance.events.map(toEventTO),
