@@ -59,6 +59,7 @@ CREATE TABLE public.institution (
 	"name" varchar(255) NOT NULL,
 	details text NULL,
 	iconurl varchar(255) NULL,
+	url varchar(255) NULL,
 	CONSTRAINT institution_pkey PRIMARY KEY (id)
 )
 WITH (
@@ -75,6 +76,8 @@ CREATE TABLE public.person (
 	institutionid uuid NULL,
 	email varchar(255) NULL,
 	details text NULL,
+	homepage varchar(255) NULL,
+	pictureurl varchar(255) NULL,
 	CONSTRAINT person_email_key UNIQUE (email),
 	CONSTRAINT person_pkey PRIMARY KEY (id),
 	CONSTRAINT person_institutionid_fkey FOREIGN KEY (institutionid) REFERENCES public.institution(id)
@@ -143,6 +146,12 @@ CREATE TABLE public.event (
 WITH (
 	OIDS=FALSE
 );
+
+CREATE TABLE EventRessource (
+  eventid Integer REFERENCES event(id) ON DELETE CASCADE ON UPDATE CASCADE not null,
+  url TEXT not NULL
+);
+
 
 CREATE TABLE public.author (
 	paperid int4 NOT NULL,

@@ -10,6 +10,10 @@ export const API_ROUTES = {
     favorite: `${API_BASE_URL}/events/favorites/:eventid`,
     favorites: `${API_BASE_URL}/events/favorites`,
   },
+  sessions: {
+    all: `${API_BASE_URL}/sessions`,
+    single: `${API_BASE_URL}/sessions/:sessionId`,
+  },
   person: {
     byId: `${API_BASE_URL}/persons/:personId`,
     loggedIn: `${API_BASE_URL}/persons`,

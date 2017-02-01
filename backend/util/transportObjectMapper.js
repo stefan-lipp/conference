@@ -8,6 +8,7 @@
 /* @see http://momentjs.com */
 const moment = require('moment');
 
+
 /**
  * Maps an instance of the Institution database model to a Person transport object
  */
@@ -70,8 +71,9 @@ function toPaperTO (paperInstance) {
   };
 }
 
+
 /**
- * Maps an instance of the Event database model to a Event transport object
+ * Maps a instance of the Event database model to a Event transport object
  */
 function toEventTO (eventInstance) {
   // Duration comes in the format HH:mm:ss
@@ -105,6 +107,26 @@ function toEventTO (eventInstance) {
   };
 }
 
+/** Maps a instance of the Session database model to a simple Session transport object */
+function toSessionTO (sessionInstance) {
+  return {
+    id: sessionInstance.id,
+    name: sessionInstance.name,
+    // TODO
+    track: {
+      id: null,
+      name: 'Dummy Track Name',
+      color: '#ffffff',
+      backgroundColor: '#03a9f4',
+    },
+    startTime: moment(sessionInstance.startTime),
+    endTime: moment(sessionInstance.endTime),
+    // TODO
+    room: null,
+    events: sessionInstance.events.map(toEventTO),
+  };
+}
+
 /** Maps an instance of the Track database model to a Track transport object */
 function toTrackTO (trackInstance) {
   const TMP_RANDOM_OFFSET = 2;
@@ -128,5 +150,6 @@ module.exports = {
   toEventTO: toEventTO,
   toPaperTO: toPaperTO,
   toPersonTO: toPersonTO,
+  toSessionTO: toSessionTO,
   toTrackTO: toTrackTO,
 };
