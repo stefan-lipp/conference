@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('track', {
+  const Track = sequelize.define('track', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -37,5 +37,12 @@ module.exports = function (sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       },
     },
+  }, {
+    classMethods: {
+      associate: (models) => {
+        Track.belongsTo(models.kind, { foreignKey: 'kind', as: 'kindname' });
+      },
+    },
   });
+  return Track;
 };

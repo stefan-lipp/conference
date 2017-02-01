@@ -1,3 +1,6 @@
+import * as moment from 'moment';
+import 'moment-timezone';
+
 import {
   Component,
   OnInit,
@@ -9,8 +12,14 @@ import {
   CalendarEvent,
   CalendarTrack,
 } from '../../ui-elements';
-import { TrackService } from 'app/services';
-import { Track } from 'app/models';
+import {
+  TrackService,
+  SessionService,
+} from 'app/services';
+import {
+  Track,
+  ConferenceSession,
+} from 'app/models';
 
 @Component({
   selector: 'conference-schedule-admin',
@@ -23,6 +32,8 @@ export class ScheduleEditorComponent implements OnInit {
 
   public tracks: Track[] = [ ];
 
+  public sessions: ConferenceSession[] = [ ];
+
   @ViewChild(CalendarComponent)
   public calendar: CalendarComponent;
 
@@ -33,26 +44,28 @@ export class ScheduleEditorComponent implements OnInit {
 
   constructor (
     private trackService: TrackService,
+    private sessionService: SessionService,
   ) { }
 
   public ngOnInit () {
     this.trackService.getAll().subscribe((tracks: Track[]) => this.tracks = tracks);
+    this.sessionService.getAll().subscribe(
+      (sessions: ConferenceSession[]) => this.sessions = sessions
+    );
   }
 
   public get calendarTracks (): CalendarTrack[] {
-    return this.tracks.map(track => {
+    return this.sessions.map(s => {
       return <CalendarTrack> {
-        color: track.color,
-        backgroundColor: track.backgroundColor,
+        color: s.track.color,
+        backgroundColor: s.track.backgroundColor,
         isDisplayed: true,
-        events: (track.slots || [ ]).map(slot => {
-          return <CalendarEvent> {
-            title: track.name,
-            startTime: slot.start,
-            endTime: slot.end,
-          };
-        }),
-      };
+        events: [ <CalendarEvent> {
+            title: s.track.name,
+            startTime: s.startTime,
+            endTime: s.endTime,
+          } ],
+        };
     });
   }
 
@@ -61,8 +74,7 @@ export class ScheduleEditorComponent implements OnInit {
       name: `Track ${this.tracks.length + 1}`,
       backgroundColor: '#dddddd',
       color: `#333333`,
-      kind: 'ANY',
-      slots: [ ],
+      kind: `Track ${this.tracks.length + 1}`,
     };
 
     this.trackService.create(newTrack)
@@ -70,6 +82,37 @@ export class ScheduleEditorComponent implements OnInit {
         this.tracks.push(track);
         this.selectedTrack = track;
       });
+  }
+
+  public addSession ( name: string, start: string, end: string ): boolean {
+    try {
+      let startTime: moment.Moment = this.calendar.selectedDay.clone().startOf('day');
+      startTime = startTime.add(moment(start, 'HH:mm').hour(), 'hour');
+      startTime = startTime.add(moment(start, 'HH:mm').minute(), 'minute');
+      let endTime: moment.Moment = this.calendar.selectedDay.clone().startOf('day');
+      endTime = endTime.add(moment(end, 'HH:mm').hour(), 'hour');
+      endTime = endTime.add(moment(end, 'HH:mm').minute(), 'minute');
+
+      if (startTime >= endTime) {
+        return false;
+      }
+      const newSession: ConferenceSession = <ConferenceSession> {
+        id: null,
+        name: name,
+        events: [],
+        track: this.selectedTrack,
+        startTime: startTime,
+        endTime: endTime,
+      };
+      this.sessionService.create(newSession)
+        .subscribe((session: ConferenceSession) => {
+          this.sessions.push(session);
+          this.calendar.tracks = this.calendarTracks;
+        });
+    } catch (e) {
+      return false;
+    }
+    return true;
   }
 
   public selectTrack (track: Track): void {

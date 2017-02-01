@@ -6,6 +6,7 @@ const Errors = require('../util/errors');
 
 const DataBase = require('../model/index');
 const Track = DataBase.sequelize.models.track;
+const Kind = DataBase.sequelize.models.kind;
 
 /** Subroutes under /tracks */
 function trackSubroutes (app) {
@@ -18,6 +19,11 @@ function trackSubroutes (app) {
 
     // GET retrieve list of all tracks
     app.get((req, res) => {
+      if (!(req.decoded && req.decoded.isAdmin)) {
+        res.status(401).send();
+        return;
+      }
+      
       Track.findAll()
         .then((tracks) => {
           res.json(tracks.map(TOMapper.toTrackTO));
@@ -31,6 +37,11 @@ function trackSubroutes (app) {
     });
 
     app.post((req, res) => {
+      if (!(req.decoded && req.decoded.isAdmin)) {
+        res.status(401).send();
+        return;
+      }
+
       const track = {
         name: req.body.name,
         color: req.body.color,
@@ -38,7 +49,16 @@ function trackSubroutes (app) {
         kind: req.body.kind,
       };
 
-      Track.create(track)
+      Kind.findOrCreate({
+        where: { name: track.kind },
+        defaults: {name: track.kind },
+      }).spread((kindInstance) => {      
+        Track.create(track, {
+          include: [
+          {
+            model: Kind, as: 'kindname'
+          } ],
+        })
         .then(track => {
           res.json(TOMapper.toTrackTO(track));
         })
@@ -48,8 +68,8 @@ function trackSubroutes (app) {
           }
           res.status(500).json(new Errors.InternalServerError());
         });
+      });
     });
-
   });
 
   // `/tracks/:trackId`

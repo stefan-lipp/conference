@@ -12,6 +12,9 @@ export const API_ROUTES = {
   },
   sessions: {
     all: `${API_BASE_URL}/sessions`,
+    create: `${API_BASE_URL}/sessions`,
+    update: `${API_BASE_URL}/sessions/:sessionId`,
+    delete: `${API_BASE_URL}/sessions/:sessionId`,
     single: `${API_BASE_URL}/sessions/:sessionId`,
   },
   person: {

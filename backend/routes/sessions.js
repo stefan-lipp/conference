@@ -1,4 +1,5 @@
 const jwtGuard = require('../middleware/jwt.guard');
+const moment = require('moment');
 
 const TOMapper = require('../util/transportObjectMapper');
 const Errors = require('../util/errors');
@@ -13,6 +14,7 @@ const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
 const Person = DataBase.sequelize.models.person;
 const Speaker = DataBase.sequelize.models.speaker;
+const Track = DataBase.sequelize.models.track;
 
 /** Session routes */
 function sessionSubroutes (app) {
@@ -34,6 +36,7 @@ function sessionSubroutes (app) {
             ] },
             { model: Favorite, where: { personId: personId }, required: false },
           ] },
+        { model: Track, required: true },
         ],
       }).then((sessions) => {
         res.json(sessions.map(TOMapper.toSessionTO));
@@ -50,6 +53,40 @@ function sessionSubroutes (app) {
       });
     });
 
+    app.post((req, res) => {
+      if (!(req.decoded && req.decoded.isAdmin)) {
+        res.status(401).send();
+        return;
+      }
+
+      const session = {
+        name: req.body.name,
+        events: [],
+        trackid: req.body.track.id,
+        startTime: moment(req.body.startTime).tz('Europe/Berlin'),
+        endTime: moment(req.body.endTime).tz('Europe/Berlin'),
+      };
+      if (session.startTime >= session.enndTime) {
+        res.status(500).json(new Errors.InternalServerError());
+      }
+      console.log(session.startTime,session.endTime);
+
+      Session.create(session, {
+        fields: ['name','events','trackid','startTime','endTime'],
+        include: [ 
+          { model: Track },
+        ],
+      })
+      .then(track => {
+        res.json(TOMapper.toTrackTO(track));
+      })
+      .catch(err => {
+        if (process.env.ENV === 'development') {
+          console.error(err);
+        }
+        res.status(500).json(new Errors.InternalServerError());
+      });
+    });
   });
 
   app.subroute('/favorites', (app) => {
@@ -65,6 +102,7 @@ function sessionSubroutes (app) {
             { model: Paper },
             { model: Favorite, where: { personId: personId }, required: true },
           ] },
+        { model: Track, required: true },
         ],
       }).then((sessions) => {
         res.json(sessions.map(TOMapper.toSessionTO));
@@ -98,9 +136,10 @@ function sessionSubroutes (app) {
             { model: Speaker, required: false , include: [
               { model: Person, required: false, include: [
                 { model: Institution, required: false },
-              ] }   
+              ] }
             ] },
           ] },
+          { model: Track, required: true },
         ],
         order: [ [ 'startTime', 'ASC' ] ],
       }).then(session => {

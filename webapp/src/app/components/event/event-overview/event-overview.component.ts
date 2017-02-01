@@ -89,22 +89,22 @@ export class EventOverviewComponent implements OnInit {
   /** @return Calendar Track representation of the events */
   public get tracks (): CalendarTrack[] {
     // TODO convert events into calendar tracks
-    return [ {
-        color: '#fff',
-        backgroundColor: '#03a9f4',
-        isDisplayed: true,
-        events: this.allSessions
-          .filter(s =>
-            Boolean(s.startTime) && s.startTime.isValid() &&
-            Boolean(s.endTime) && s.endTime.isValid()
-          )
-          .map(s => <CalendarEvent> Object({
-            title: s.name,
-            id: s.id,
-            startTime: s.startTime,
-            endTime: s.endTime,
-          })),
-      } ];
+    return this.allSessions
+      .filter(s =>
+        Boolean(s.startTime) && s.startTime.isValid() &&
+        Boolean(s.endTime) && s.endTime.isValid()
+      )
+      .map(s => <CalendarTrack> {
+          color: s.track.color,
+          backgroundColor: s.track.backgroundColor,
+          isDisplayed: true,
+          events: [ <CalendarEvent> Object({
+              title: s.name,
+              id: s.id,
+              startTime: s.startTime,
+              endTime: s.endTime,
+            }) ],
+        });
   }
 
   /**

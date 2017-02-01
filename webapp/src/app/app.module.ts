@@ -94,6 +94,7 @@ type StoreType = {
     NoContentComponent,
     PersonViewComponent,
     RegisterComponent,
+    SessionViewComponent,
     ScheduleEditorComponent,
     TrackEditorComponent,
   ],

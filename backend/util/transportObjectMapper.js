@@ -112,13 +112,7 @@ function toSessionTO (sessionInstance) {
   return {
     id: sessionInstance.id,
     name: sessionInstance.name,
-    // TODO
-    track: {
-      id: null,
-      name: 'Dummy Track Name',
-      color: '#ffffff',
-      backgroundColor: '#03a9f4',
-    },
+    track: sessionInstance.track ? toTrackTO(sessionInstance.track) : null,
     startTime: moment(sessionInstance.startTime),
     endTime: moment(sessionInstance.endTime),
     // TODO
@@ -129,20 +123,12 @@ function toSessionTO (sessionInstance) {
 
 /** Maps an instance of the Track database model to a Track transport object */
 function toTrackTO (trackInstance) {
-  const TMP_RANDOM_OFFSET = 2;
-  const TMP_RANDOM_LENGTH = 4;
   return {
     id: trackInstance.id,
     name: trackInstance.name,
     kind: trackInstance.kind,
     color: trackInstance.color,
     backgroundColor: trackInstance.backgroundColor,
-    // TODO
-    slots: [ {
-      start: moment().add(Math.floor(Math.random() * TMP_RANDOM_OFFSET), 'hours').format(),
-      end: moment().add(TMP_RANDOM_OFFSET + Math.floor(Math.random() * TMP_RANDOM_LENGTH), 'hours')
-        .format(),
-    } ],
   };
 }
 

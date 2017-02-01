@@ -28,6 +28,13 @@
           <md-icon>delete</md-icon>
           Delete Track
         </button>
+        <md-input #inSessionName placeholder="session name" align="end"></md-input>
+        <md-input #inStartTime type="time" placeholder="start time" ></md-input>
+        <md-input #inEndTime type="time" placeholder="end time" ></md-input>
+        <button
+          class="new-track-button"
+          (click)="addSession(inSessionName.value,inStartTime.value,inEndTime.value)"
+        ><md-icon>add</md-icon> Session</button>
       </div>
       <div *ngIf="!selectedTrack" class="empty">
         Select a track above

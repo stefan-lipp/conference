@@ -48,6 +48,7 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: (models) => {
         SessionModel.hasMany(models.event, { foreignKey: 'sessionid' });
+        SessionModel.belongsTo(models.track, { foreignKey: 'trackid' });
       }
     }
   });
