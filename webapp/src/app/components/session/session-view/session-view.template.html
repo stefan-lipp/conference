@@ -1,5 +1,11 @@
 <div class="session-details-container">
   <md-card class="session-details-card">
+    <div class="subtitle-area">
+      <a href="/events#calender">
+        <md-icon>arrow_back</md-icon>
+        <h3>Calender</h3>
+      </a>
+    </div>
     <h3 md-title>{{ session.name }}</h3>
   </md-card>
   <div *ngIf="session.events.length" class="session-events-container">

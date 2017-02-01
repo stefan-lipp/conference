@@ -1,3 +1,17 @@
 .session-details-card {
     margin: 0 .5em;
 }
+
+.subtitle-area {
+    display: flex;
+    align-items: center;
+    color: #AAA;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #AAA;
+    }
+}
