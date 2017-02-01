@@ -5,8 +5,14 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ConferenceEvent } from '../../../models';
-import { EventService } from '../../../services';
+import {
+  ConferenceEvent,
+  ConferenceSession,
+} from '../../../models';
+import {
+  EventService,
+  SessionService,
+} from '../../../services';
 import {
   CalendarEvent,
   CalendarTrack,
@@ -34,6 +40,9 @@ export class EventOverviewComponent implements OnInit {
   /** List of all available events */
   private allEvents: ConferenceEvent[] = [ ];
 
+  /** List of all available sessions */
+  private allSessions: ConferenceSession[] = [ ];
+
   private lastVisitedLink: string;
 
   /**
@@ -41,6 +50,7 @@ export class EventOverviewComponent implements OnInit {
    */
   constructor (
     private eventService: EventService,
+    private sessionService: SessionService,
     private router: Router,
   ) {
     let url = this.router.url;
@@ -58,6 +68,9 @@ export class EventOverviewComponent implements OnInit {
     this.eventService.getAll().subscribe(events => {
       this.events = events;
       this.loading = false;
+    });
+    this.sessionService.getAll().subscribe(sessions => {
+      this.allSessions = sessions;
     });
   }
 
@@ -80,15 +93,16 @@ export class EventOverviewComponent implements OnInit {
         color: '#fff',
         backgroundColor: '#03a9f4',
         isDisplayed: true,
-        events: this.events
-          .filter(e =>
-            Boolean(e.startTime) && e.startTime.isValid() &&
-            Boolean(e.endTime) && e.endTime.isValid()
+        events: this.allSessions
+          .filter(s =>
+            Boolean(s.startTime) && s.startTime.isValid() &&
+            Boolean(s.endTime) && s.endTime.isValid()
           )
-          .map(e => <CalendarEvent> Object({
-            title: e.title,
-            startTime: e.startTime,
-            endTime: e.endTime,
+          .map(s => <CalendarEvent> Object({
+            title: s.name,
+            id: s.id,
+            startTime: s.startTime,
+            endTime: s.endTime,
           })),
       } ];
   }

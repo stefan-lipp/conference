@@ -28,6 +28,7 @@
           [style.bottom]="(100 - timeToPercentage(event.endTime)) + '%'"
           [style.left]="getLeftPercentage(event) + '%'"
           [style.right]="getRightPercentage(event) + '%'"
+          [routerLink]="[ '/sessions', event.id ]"
         >
           <span class="calendar-event-title">{{ event.title }}</span>
         </div>

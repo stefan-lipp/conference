@@ -107,8 +107,31 @@ function toEventTO (eventInstance) {
   };
 }
 
+
+/** Maps a instance of the Session database model to a simple Session transport object */
+function toSessionTO (sessionInstance) {
+  return {
+    id: sessionInstance.id,
+    name: sessionInstance.name,
+    // TODO
+    track: {
+      id: null,
+      name: 'Dummy Track Name',
+      color: '#ffffff',
+      backgroundColor: '#03a9f4',
+    },
+    startTime: moment(sessionInstance.startTime),
+    endTime: moment(sessionInstance.endTime),
+    // TODO
+    room: null,
+    events: sessionInstance.events.map(toEventTO),
+  };
+}
+
 module.exports = {
   toEventTO: toEventTO,
   toPaperTO: toPaperTO,
   toPersonTO: toPersonTO,
+  toSessionTO: toSessionTO,
 };
+

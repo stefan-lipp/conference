@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('session', {
+  const SessionModel = sequelize.define('session', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -44,5 +44,12 @@ module.exports = function (sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       },
     },
+  }, {
+    classMethods: {
+      associate: (models) => {
+        SessionModel.hasMany(models.event, { foreignKey: 'sessionid' });
+      }
+    }
   });
+  return SessionModel;
 };

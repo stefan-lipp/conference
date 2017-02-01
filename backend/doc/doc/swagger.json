@@ -211,6 +211,30 @@
                 "description": "",
                 "responses": {
                     "200": {
+                        "description": "Data of the requested event."
+                    },
+                    "404": {
+                        "description": "The requested person could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/sessions": {
+            "get": {
+                "tags": [ "Sessions" ],
+                "summary": "Retrieve events of a speaker.",
+                "description": "",
+                "responses": {
+                    "200": {
                         "description": "Data of the requested event.",
                         "schema": {
                             "$ref": "#/definitions/EventList"
