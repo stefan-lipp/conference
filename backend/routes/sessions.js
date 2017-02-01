@@ -5,11 +5,14 @@ const Errors = require('../util/errors');
 
 const DataBase = require('../model/index');
 const ConferenceEvent = DataBase.sequelize.models.event;
+const Institution = DataBase.sequelize.models.institution;
 const Session = DataBase.sequelize.models.session;
 const Paper = DataBase.sequelize.models.paper;
+const PaperKeyword = DataBase.sequelize.models.paperkeyword;
 const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
 const Person = DataBase.sequelize.models.person;
+const Speaker = DataBase.sequelize.models.speaker;
 
 /** Session routes */
 function sessionSubroutes (app) {
@@ -89,8 +92,14 @@ function sessionSubroutes (app) {
               { model: Author, required: false, include: [
                 { model: Person, required: false },
               ] },
+              { model: PaperKeyword, as: 'keywords', required: false },
             ] },
             { model: Favorite, where: { personId: personId }, required: false },
+            { model: Speaker, required: false , include: [
+              { model: Person, required: false, include: [
+                { model: Institution, required: false },
+              ] }   
+            ] },
           ] },
         ],
         order: [ [ 'startTime', 'ASC' ] ],
