@@ -60,14 +60,13 @@ function toKeywordTO (keywordInstance) {
 function toPaperTO (paperInstance) {
   return {
     id: paperInstance.id,
-    title: paperInstance.titel,
+    title: paperInstance.title,
     authors: (paperInstance.authors || [ ])
       .sort((a, b) => { return a.number - b.number; })
       .map(toAuthorTO),
     keywords: (paperInstance.keywords || []).map(toKeywordTO),
     abstract: paperInstance.abstract,
-    link: paperInstance.link,
-    tag: paperInstance.tag,
+    link: paperInstance.url,
   };
 }
 

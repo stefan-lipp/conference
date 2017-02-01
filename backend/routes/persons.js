@@ -66,10 +66,12 @@ function personSubroutes (app) {
       Event.findAll({
         include: [
           { model: Paper }, // for title
-          { model: Speaker, where: { personid: personId }, required: true },
+          { model: Speaker, where: { personid: personId }, required: true, include: [
+             { model: Person, required: true },
+          ] },
         ]
       }).then((events) => {
-         res.json(events.map(TOMapper.toEventTO));
+        res.json(events.map(TOMapper.toEventTO));
       }).catch((err) => {
         if (process.env.ENV === 'development') {
           console.error(err);
@@ -101,7 +103,7 @@ function personSubroutes (app) {
           { model: PaperKeyword, as: 'keywords', required: false },
         ]
       }).then((papers) => {
-         res.json(papers.map(TOMapper.toPaperTO));
+        res.json(papers.map(TOMapper.toPaperTO));
       }).catch((err) => {
         if (process.env.ENV === 'development') {
           console.error(err);
