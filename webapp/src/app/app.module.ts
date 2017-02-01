@@ -31,6 +31,7 @@ import {
   PersonService,
   PersonResolver,
   SessionService,
+  SessionResolver,
 } from './services';
 
 // Components
@@ -47,7 +48,7 @@ import {
   NoContentComponent,
   PersonViewComponent,
   RegisterComponent,
-  SessionCalendarComponent,
+  SessionViewComponent,
 } from './components';
 
 // Directives
@@ -77,18 +78,18 @@ type StoreType = {
     CalendarComponent,
     EventListComponent,
     EventOverviewComponent,
-    MyScheduleComponent,
-    NoContentComponent,
+    EventFilterPipe,
     EventViewComponent,
     EventViewOverlayComponent,
+    MyScheduleComponent,
+    NoContentComponent,
     LoginComponent,
     NavigationComponent,
     NavigationUserComponent,
     NoContentComponent,
     PersonViewComponent,
     RegisterComponent,
-    EventFilterPipe,
-    SessionCalendarComponent,
+    SessionViewComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -119,6 +120,7 @@ type StoreType = {
     PersonService,
     PersonResolver,
     SessionService,
+    SessionResolver,
   ],
 })
 export class AppModule {
