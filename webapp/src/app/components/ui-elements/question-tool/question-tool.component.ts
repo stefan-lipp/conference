@@ -5,7 +5,10 @@ import {
 import * as moment from 'moment';
 
 import { ConferenceEvent } from './../../../models';
-import { PersonService } from './../../../services';
+import {
+  PersonService,
+  ApiService,
+ } from './../../../services';
 
 /** question-tool component  */
 @Component({
@@ -17,23 +20,25 @@ export class QeustionToolComponent {
 
   @Input()
   public event: ConferenceEvent;
+  // TOOD replace by api call to retrieve comments
   public comments: [string, string, string][] = [
     ['Michael Schreier', 'Wed Feb 08 2017 14:06:30 GMT+0100', 'I do not understand this'],
-    ['Stefan Cimander', 'Wed Feb 08 2017 14:08:30 GMT+0100', 'Have you tried hyper?']
+    ['Stefan Cimander', 'Wed Feb 08 2017 14:08:30 GMT+0100', 'Have you tried hyper?'],
   ];
   private username: string;
-  private date: string;
-  private newComment: string = '';
+  private newComment: string;
 
   constructor (
-    private personService: PersonService )
+    private personService: PersonService,
+    private apiService: ApiService,
+  )
   {
     this.personService.getLoggedInPerson().subscribe(person =>
       this.username = person.name);
   }
 
   public onSubmit (): void {
-    if ( this.newComment) {
+    if (this.newComment) {
       const entry: [string, string, string] = [
         this.username,
         moment().toString(),
@@ -41,12 +46,8 @@ export class QeustionToolComponent {
       ];
       // TODO api call ().subscribe(_ => push to local comments data)
       this.comments.push(entry);
-
-      }
-
+      this.newComment = '';
     }
-    //move to submit method vv
-    this.date = moment().toString();
-    console.log(this.newComment);
   }
+
 }

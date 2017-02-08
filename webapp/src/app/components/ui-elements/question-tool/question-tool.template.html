@@ -13,12 +13,19 @@
 
     <textarea
      [(ngModel)]="newComment"
-     cols="50"
-     maxlength="144"
+     maxlength="1000"
      required
      rows="5"
-     placeholder="add your own question here"
+     placeholder="add your question here"
     >
     </textarea>
 
-    <button md-button color="primary" (click)="onSubmit()">show ngmodel</button>
+
+
+<button 
+ md-button 
+ color="primary" 
+ (click)="onSubmit()" 
+ class="submit-Btn"
+>Comment
+</button>
