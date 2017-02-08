@@ -1,13 +1,14 @@
 import {
   Component,
   Input,
+  OnInit,
 } from '@angular/core';
 import * as moment from 'moment';
 
 import { ConferenceEvent } from './../../../models';
 import {
   PersonService,
-  ApiService,
+  EventService,
  } from './../../../services';
 
 /** question-tool component  */
@@ -16,27 +17,37 @@ import {
   templateUrl: './question-tool.template.html',
   styleUrls: [ './question-tool.style.scss' ],
 })
-export class QeustionToolComponent {
+export class QeustionToolComponent implements OnInit{
 
   @Input()
   public event: ConferenceEvent;
-  // TOOD replace by api call to retrieve comments
-  public comments: [string, string, string][] = [
-    ['Michael Schreier', 'Wed Feb 08 2017 14:06:30 GMT+0100', 'I do not understand this'],
-    ['Stefan Cimander', 'Wed Feb 08 2017 14:08:30 GMT+0100', 'Have you tried hyper?'],
-  ];
+  public comments: [string, string, string][];
   private username: string;
   private newComment: string;
 
   constructor (
     private personService: PersonService,
-    private apiService: ApiService,
+    private eventService: EventService,
   )
   {
     this.personService.getLoggedInPerson().subscribe(person =>
       this.username = person.name);
   }
 
+  /**
+   * Gets the comments of the event
+   *
+   * @memberof OnInit
+   */
+  public ngOnInit () {
+    this.eventService.getComments(this.event.id).subscribe(comments =>
+      this.comments = comments);
+  }
+
+ /**
+  * method called when submit comment button is clicked
+  * adds comment + user data and calls api in order to persist changes
+  */
   public onSubmit (): void {
     if (this.newComment) {
       const entry: [string, string, string] = [
@@ -44,10 +55,10 @@ export class QeustionToolComponent {
         moment().toString(),
         this.newComment,
       ];
-      // TODO api call ().subscribe(_ => push to local comments data)
-      this.comments.push(entry);
-      this.newComment = '';
+      this.eventService.addComment(this.event.id, entry).subscribe(_ => {
+        this.comments.push(entry);
+        this.newComment = '';
+      });
     }
   }
-
 }
