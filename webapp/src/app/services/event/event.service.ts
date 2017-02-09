@@ -6,7 +6,10 @@ import { AuthHttp } from 'angular2-jwt';
 import { API_ROUTES } from '../api/routes';
 import { ApiMapperService } from '../api';
 import { AuthService } from '../auth';
-import { ConferenceEvent } from '../../models';
+import {
+  ConferenceEvent,
+  Comment,
+} from '../../models';
 
 @Injectable()
 export class EventService {
@@ -76,33 +79,41 @@ export class EventService {
 
  /** retrieves comments for a single event
   *   TODO update doc and code
-  * @return { Observable<[string, string, string] []> } that contains
-  * an array of tuple containing
-  * - person name, comment date, comment content
+  * @return { Observable<Comment []> }
   */
-  public getComments (eventId: string): Observable<[string, string, string][]> {
+  public getComments (eventId: string): Observable<Comment[]> {
     /* return this.httpService.get(API_ROUTES.events.comments
       .replace(':eventId', eventId))
       .map(res => res.json()); */
 
-      const mockedComments: [string, string, string][] = [
-        ['Michael Schreier', 'Wed Feb 08 2017 14:06:30 GMT+0100', 'I do not understand this'],
-        ['Stefan Cimander', 'Wed Feb 08 2017 14:08:30 GMT+0100', 'Have you tried hyper?'],
+      const mockedComments: Comment[] = [
+        {  timestamp: 'Wed Feb 08 2017 14:06:30 GMT+0100',
+           name: 'Michael Schreier',
+           content: 'I do not understand this',
+        },
+        {  timestamp: 'Wed Feb 08 2017 14:28:30 GMT+0100',
+           name: 'Stefan Cimander',
+           content: 'Have you tried hyper?',
+        },
       ];
       return Observable.of(mockedComments);
   }
- /** retrieves comments for a single event
-  *   TODO update doc and code
-  * @return { Observable<[string, string, string] []> } that contains
-  * an array of tuple containing
-  * - person name, comment date, comment content
+ /** posts comment for an event
+  * @param {string} eventId of the event 
+  * @param {string} user name of the commenting user
+  * @param {string} content the actual comment
+  *
+  * @return {Observable<string>} the comments timestamp as string
   */
-  public addComment (eventId: string, comment: [string, string, string] ): Observable<any> {
+  public addComment (eventId: string, user: string, content: string ): Observable<string> {
     /* return this.httpService.put(API_ROUTES.events.comments
-      .replace(':eventId', eventId), comment)
+      .replace(':eventId', eventId), {
+        name = user,
+        comment = content,
+      })
       .map(res => res.json()); */
 
-      return Observable.of('mockedCall');
+      return Observable.of('Wed Feb 08 2017 14:06:30 GMT+0100');
   }
 }
 
