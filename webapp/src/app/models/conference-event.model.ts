@@ -81,7 +81,7 @@ export enum EventType {
   Demo,
   Workshop,
   Keynote,
-  Entertainment
+  Entertainment,
 }
 
 // TODO check with actual API

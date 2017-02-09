@@ -3,9 +3,11 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import * as moment from 'moment';
 
-import { ConferenceEvent } from './../../../models';
+import {
+  ConferenceEvent,
+  Comment,
+} from './../../../models';
 import {
   PersonService,
   EventService,
@@ -21,7 +23,7 @@ export class QeustionToolComponent implements OnInit{
 
   @Input()
   public event: ConferenceEvent;
-  public comments: [string, string, string][];
+  public comments: Comment[];
   private username: string;
   private newComment: string;
 
@@ -50,13 +52,14 @@ export class QeustionToolComponent implements OnInit{
   */
   public onSubmit (): void {
     if (this.newComment) {
-      const entry: [string, string, string] = [
-        this.username,
-        moment().toString(),
-        this.newComment,
-      ];
-      this.eventService.addComment(this.event.id, entry).subscribe(_ => {
-        this.comments.push(entry);
+      this.eventService.addComment(this.event.id, this.username, this.newComment)
+        .subscribe(time => {
+          const newEntry: Comment = {
+            timestamp: time,
+            name: this.username,
+            content: this.newComment,
+          };
+        this.comments.push(newEntry);
         this.newComment = '';
       });
     }

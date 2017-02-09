@@ -1,9 +1,9 @@
 <md-list>
-  <h5>Comments on this paper:</h5>
+  <h5>Comments on this Event:</h5>
   <md-list-item *ngFor="let comment of comments">
-    <b md-line>{{ comment[0] }}</b>
-    <i md-line>{{ comment[1] }}</i>
-    <p md-line class="comment">{{ comment[2] }}</p>
+    <b md-line>{{ comment.name }}</b>
+    <i md-line>{{ comment.timestamp }}</i>
+    <p md-line class="comment">{{ comment.content }}</p>
   </md-list-item>
 </md-list>  
 <textarea
