@@ -152,6 +152,20 @@ CREATE TABLE EventRessource (
   url TEXT not NULL
 );
 
+CREATE TABLE public.eventcomment (
+	id SERIAL primary key,
+	eventid int4 NULL,
+	personid uuid NULL,
+	"comment" text NOT NULL,
+	"timestamp" timestamptz NOT NULL,
+	CONSTRAINT eventcomment_pkey PRIMARY KEY (id),
+	CONSTRAINT eventcomment_eventid_fkey FOREIGN KEY (eventid) REFERENCES public.event(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT eventcomment_personid_fkey FOREIGN KEY (personid) REFERENCES public.person(id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+WITH (
+	OIDS=FALSE
+);
+
 
 CREATE TABLE public.author (
 	paperid int4 NOT NULL,
