@@ -4,6 +4,9 @@ import {
   Input,
   ElementRef,
 } from '@angular/core';
+import {
+  Conference,
+} from '../../../models';
 
 export interface CalendarEvent {
   title: string;
@@ -37,10 +40,13 @@ export class CalendarComponent {
   @Input()
   public selectedDay: moment.Moment = moment();
 
+  public conference: Conference = new Conference();
+
   constructor (
     private elem: ElementRef,
   ) {
-    this.selectedDay = moment('2016-09-05');
+    this.selectedDay = (moment() > this.conference.startDate && moment() < this.conference.endDate)
+      ? moment() : this.conference.startDate;
     window.setTimeout(() => {
       const currentTimeIndicator: HTMLElement =
         this.elem.nativeElement.querySelector('.current-time');

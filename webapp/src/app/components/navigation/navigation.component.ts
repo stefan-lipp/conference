@@ -6,6 +6,9 @@ import {
   AuthService,
   PersonService,
 } from '../../services';
+import {
+  Conference,
+} from '../../models';
 
 @Component({
   selector: 'conference-navigation',
@@ -15,6 +18,7 @@ import {
 export class NavigationComponent implements OnInit {
 
   private username: string;
+  private conference: Conference = new Conference();
 
   constructor (
     private authService: AuthService,
