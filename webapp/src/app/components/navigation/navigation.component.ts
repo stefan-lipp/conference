@@ -6,9 +6,7 @@ import {
   AuthService,
   PersonService,
 } from '../../services';
-import {
-  Conference,
-} from '../../models';
+import { Conference } from '../../models';
 
 @Component({
   selector: 'conference-navigation',

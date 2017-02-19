@@ -4,9 +4,7 @@ import {
   Input,
   ElementRef,
 } from '@angular/core';
-import {
-  Conference,
-} from '../../../models';
+import { Conference } from '../../../models';
 
 export interface CalendarEvent {
   title: string;
