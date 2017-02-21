@@ -48,7 +48,7 @@ import {
   NoContentComponent,
   PersonViewComponent,
   RegisterComponent,
-  QeustionToolComponent,
+  QuestionToolComponent,
   SessionViewComponent,
 } from './components';
 
@@ -89,7 +89,7 @@ type StoreType = {
     NavigationUserComponent,
     NoContentComponent,
     PersonViewComponent,
-    QeustionToolComponent,
+    QuestionToolComponent,
     RegisterComponent,
     SessionViewComponent,
   ],
