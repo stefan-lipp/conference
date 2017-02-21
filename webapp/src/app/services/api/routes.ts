@@ -9,6 +9,7 @@ export const API_ROUTES = {
     single: `${API_BASE_URL}/events/:eventId`,
     favorite: `${API_BASE_URL}/events/favorites/:eventid`,
     favorites: `${API_BASE_URL}/events/favorites`,
+    comments: `${API_BASE_URL}/comments/events/:eventId`,
   },
   sessions: {
     all: `${API_BASE_URL}/sessions`,

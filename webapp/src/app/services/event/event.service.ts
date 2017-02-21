@@ -82,40 +82,22 @@ export class EventService {
   * @return { Observable<Comment []> }
   */
   public getComments (eventId: string): Observable<Comment[]> {
-    /* return this.httpService.get(API_ROUTES.events.comments
+    return this.httpService.get(API_ROUTES.events.comments
       .replace(':eventId', eventId))
-      .map(res => res.json()); */
-
-      const mockedComments: Comment[] = [
-        {  timestamp: 'Wed Feb 08 2017 14:06:30 GMT+0100',
-           name: 'Michael Schreier',
-           content: 'I do not understand this',
-        },
-        {  timestamp: 'Wed Feb 08 2017 14:28:30 GMT+0100',
-           name: 'Stefan Cimander',
-           content: 'Have you tried hyper?',
-        },
-      ];
-      return Observable.of(mockedComments);
+      .map(res => res.json())
+      .map(cs => cs.map(Comment.fromAPI));
   }
+
  /** posts comment for an event
   * @param {string} eventId of the event 
-  * @param {string} user name of the commenting user
-  * @param {string} content the actual comment
+  * @param {string} message the actual comments messsage
   *
-  * @return {Observable<string>} the comments timestamp as string
+  * @return {Observable<any>}
   */
-  public addComment (eventId: string, user: string, content: string ): Observable<string> {
-    /* return this.httpService.put(API_ROUTES.events.comments
+  public addComment (eventId: string, message: string ): Observable<any> {
+    return this.httpService.post(API_ROUTES.events.comments
       .replace(':eventId', eventId), {
-        name = user,
-        comment = content,
-      })
-      .map(res => res.json()); */
-
-      return Observable.of('Wed Feb 08 2017 14:06:30 GMT+0100');
+        comment: message,
+      });
   }
 }
-
-
-
