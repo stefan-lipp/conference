@@ -8,10 +8,7 @@ import {
   ConferenceEvent,
   Comment,
 } from './../../../models';
-import {
-  PersonService,
-  EventService,
- } from './../../../services';
+import { EventService } from './../../../services';
 
 /** question-tool component  */
 @Component({
@@ -19,22 +16,17 @@ import {
   templateUrl: './question-tool.template.html',
   styleUrls: [ './question-tool.style.scss' ],
 })
-export class QeustionToolComponent implements OnInit{
+export class QuestionToolComponent implements OnInit{
 
   @Input()
   public event: ConferenceEvent;
   public comments: Comment[];
-  private username: string;
   private newComment: string;
 
   constructor (
-    private personService: PersonService,
     private eventService: EventService,
   )
-  {
-    this.personService.getLoggedInPerson().subscribe(person =>
-      this.username = person.name);
-  }
+  {  }
 
   /**
    * Gets the comments of the event
@@ -52,12 +44,16 @@ export class QeustionToolComponent implements OnInit{
   */
   public onSubmit (): void {
     if (this.newComment) {
-      this.eventService.addComment(this.event.id, this.username, this.newComment)
-        .subscribe(time => {
+      this.eventService.addComment(this.event.id, this.newComment)
+        .subscribe(_ => {
           const newEntry: Comment = {
-            timestamp: time,
-            name: this.username,
-            content: this.newComment,
+            timestamp: 'just now',
+            person: {
+              name: 'You',
+              id: null,
+              email: '',
+            },
+            comment: this.newComment,
           };
         this.comments.push(newEntry);
         this.newComment = '';
