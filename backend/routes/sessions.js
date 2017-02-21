@@ -58,7 +58,6 @@ function sessionSubroutes (app) {
         res.status(401).send();
         return;
       }
-
       const session = {
         name: req.body.name,
         events: [],
@@ -66,7 +65,8 @@ function sessionSubroutes (app) {
         startTime: moment(req.body.startTime).tz('Europe/Berlin'),
         endTime: moment(req.body.endTime).tz('Europe/Berlin'),
       };
-      if (session.startTime >= session.enndTime) {
+      console.log(req.body,session);
+      if (session.startTime >= session.endTime) {
         res.status(500).json(new Errors.InternalServerError());
       }
       console.log(session.startTime,session.endTime);
@@ -77,8 +77,31 @@ function sessionSubroutes (app) {
           { model: Track },
         ],
       })
-      .then(track => {
-        res.json(TOMapper.toTrackTO(track));
+      .then(session => {
+        Session.findById(session.id, {
+          include: [
+            { model: ConferenceEvent, include: [
+              { model: Paper, include: [
+                { model: Author, required: false, include: [
+                  { model: Person, required: false },
+                ] },
+              ] },
+            ] },
+            { model: Track, required: true },
+          ],
+          order: [ [ 'startTime', 'ASC' ] ],
+        }).then(session => {
+          res.json(TOMapper.toSessionTO(session));
+        }).catch(err => {
+          if (process.env.ENV === 'development') {
+            console.error(err);
+          }
+          res.status(404).json({
+            error: true,
+            success: false,
+            message: 'Unknown session',
+          });
+        });
       })
       .catch(err => {
         if (process.env.ENV === 'development') {

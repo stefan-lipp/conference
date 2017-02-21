@@ -113,11 +113,11 @@ function toSessionTO (sessionInstance) {
     id: sessionInstance.id,
     name: sessionInstance.name,
     track: sessionInstance.track ? toTrackTO(sessionInstance.track) : null,
-    startTime: moment(sessionInstance.startTime),
-    endTime: moment(sessionInstance.endTime),
+    startTime: moment(sessionInstance.startTime).tz('Europe/Berlin'),
+    endTime: moment(sessionInstance.endTime).tz('Europe/Berlin'),
     // TODO
     room: null,
-    events: sessionInstance.events.map(toEventTO),
+    events: (sessionInstance.events || []).map(toEventTO),
   };
 }
 

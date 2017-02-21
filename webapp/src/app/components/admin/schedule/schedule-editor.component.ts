@@ -107,7 +107,7 @@ export class ScheduleEditorComponent implements OnInit {
       this.sessionService.create(newSession)
         .subscribe((session: ConferenceSession) => {
           this.sessions.push(session);
-          this.calendar.tracks = this.calendarTracks;
+          this.sessions = this.sessions.slice();
         });
     } catch (e) {
       return false;

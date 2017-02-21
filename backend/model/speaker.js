@@ -24,16 +24,16 @@ module.exports = function (sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       },
     },
+    number: {
+      type: DataTypes.INTEGER,
+      nullable: false,
+    },
   }, {
     classMethods: {
       associate: (models) => {
         speaker.belongsTo(models.event, { foreignKey: 'eventid' });
         speaker.belongsTo(models.person, { foreignKey: 'personid' });
       },
-    },
-    number: {
-      type: DataTypes.INTEGER,
-      nullable: false,
     },
   });
   return speaker;
