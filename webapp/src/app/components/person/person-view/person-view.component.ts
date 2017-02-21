@@ -20,11 +20,8 @@ import { PersonService } from '../../../services';
 })
 export class PersonViewComponent {
 
-  @Input()
   public person: Person;
-  @Input()
   public papers: Paper[];
-  @Input()
   public talks: ConferenceEvent[];
 
   constructor (

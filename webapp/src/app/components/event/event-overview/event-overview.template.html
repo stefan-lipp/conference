@@ -9,7 +9,7 @@
   >
   </md-input>
 </div>
-<md-tab-group>
+<md-tab-group [selectedIndex]="selectedTab">
   <md-tab label="List">
     <md-spinner *ngIf="loading"></md-spinner>
 

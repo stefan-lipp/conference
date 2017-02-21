@@ -26,6 +26,7 @@ import {
 export class EventOverviewComponent implements OnInit {
 
   public loading: boolean = true;
+  public selectedTab = 0;
 
   /** Current filter query */
   public filterQuery: string = '';
@@ -54,7 +55,9 @@ export class EventOverviewComponent implements OnInit {
     private router: Router,
   ) {
     let url = this.router.url;
-    if (url.includes('#')) {
+    if (url.includes('#calender')) {
+      this.selectedTab = 1;
+    } else if (url.includes('#')) {
       this.lastVisitedLink = url;
     }
   }
