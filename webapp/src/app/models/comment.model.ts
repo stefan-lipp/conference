@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
-import { Person } from './person.model';
 import * as moment from 'moment';
+import { Person } from './person.model';
 
 export class Comment {
 

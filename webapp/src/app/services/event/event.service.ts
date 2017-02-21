@@ -78,8 +78,8 @@ export class EventService {
   }
 
  /** retrieves comments for a single event
-  *   TODO update doc and code
-  * @return { Observable<Comment []> }
+  * @param {string} eventId Id of the event the comment is connected to
+  * @return {Observable<Comment[]>}
   */
   public getComments (eventId: string): Observable<Comment[]> {
     return this.httpService.get(API_ROUTES.events.comments
@@ -90,14 +90,14 @@ export class EventService {
 
  /** posts comment for an event
   * @param {string} eventId of the event 
-  * @param {string} message the actual comments messsage
+  * @param {string} comment the actual comments messsage
   *
   * @return {Observable<any>}
   */
-  public addComment (eventId: string, message: string ): Observable<any> {
+  public addComment (eventId: string, comment: string ): Observable<any> {
     return this.httpService.post(API_ROUTES.events.comments
       .replace(':eventId', eventId), {
-        comment: message,
+        comment: comment,
       });
   }
 }
