@@ -96,7 +96,6 @@
                 "description": "",
                 "responses": {
                     "200": {
-                        "description": "TODO"
                     },
                     "404": {
                         "description": "The requested event could not be found.",
@@ -141,7 +140,6 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "TODO"
                     },
                     "404": {
                         "description": "The requested event could not be found.",
