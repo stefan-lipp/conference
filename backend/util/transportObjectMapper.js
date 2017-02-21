@@ -106,6 +106,20 @@ function toEventTO (eventInstance) {
   };
 }
 
+/**
+ * Maps a instance of the Person database model to a Person transport object
+ */
+function toCommentTO (commentInstance) {
+  const timestamp = commentInstance.timestamp ?
+    moment(commentInstance.timestamp).tz('Europe/Berlin') :
+    null;
+  return {
+    person: commentInstance.person ? toPersonTO(commentInstance.person) : null,
+    timestamp: timestamp,
+    comment: commentInstance.comment,
+  };
+}
+
 
 /** Maps a instance of the Session database model to a simple Session transport object */
 function toSessionTO (sessionInstance) {
@@ -128,6 +142,7 @@ function toSessionTO (sessionInstance) {
 }
 
 module.exports = {
+  toCommentTO: toCommentTO,
   toEventTO: toEventTO,
   toPaperTO: toPaperTO,
   toPersonTO: toPersonTO,

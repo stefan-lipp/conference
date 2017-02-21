@@ -10,6 +10,7 @@ const jwtDecoder = require('./middleware/jwt.decoder');
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const events = require('./routes/events');
+const comments = require('./routes/comments');
 const persons = require('./routes/persons');
 const sessions = require('./routes/sessions');
 
@@ -39,6 +40,7 @@ models.sequelize.sync({ force: forceSync }).then(() => {
 
   app.subroute('/api', index);
   app.subroute('/api/auth', auth);
+  app.subroute('/api/comments', comments);
   app.subroute('/api/events', events);
   app.subroute('/api/sessions', sessions);
   app.subroute('/api', persons);
