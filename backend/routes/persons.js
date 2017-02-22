@@ -1,6 +1,3 @@
-const express = require('express');
-const router = express.Router();
-
 const TOMapper = require('../util/transportObjectMapper');
 const Errors = require('../util/errors');
 
@@ -12,19 +9,19 @@ const PaperKeyword = DataBase.sequelize.models.paperkeyword;
 const Person = DataBase.sequelize.models.person;
 const Speaker = DataBase.sequelize.models.speaker;
 
+/** Subroutes under / for persons */
 function personSubroutes (app) {
 
   app.subroute('/persons', (app) => {
 
     app.get((req, res) => {
       const personId = (req.decoded ? req.decoded.personId : null);
-      console.log('Person ID: ' + personId);
 
       Person.findById(personId)
         .then(person => {
           res.json(TOMapper.toPersonTO(person));
         })
-        .catch(err => res.status(404).json({
+        .catch(() => res.status(404).json({
           error: true,
           success: false,
           message: 'Unknown person',
@@ -43,7 +40,7 @@ function personSubroutes (app) {
         .then(person => {
           res.json(TOMapper.toPersonTO(person));
         })
-        .catch(err => res.status(404).json({
+        .catch(() => res.status(404).json({
           error: true,
           success: false,
           message: 'Unknown person',
@@ -51,25 +48,23 @@ function personSubroutes (app) {
     });
   });
 
-
-
   app.subroute('/speaker/:personId/events', (app) => {
     // GET retrieve list of all events
     app.get((req, res) => {
       const personId = (req.params && req.params.personId);
 
-      if (personId == null) {
+      if (!personId) {
         res.status(400).send();
         return;
       }
 
       Event.findAll({
         include: [
-          { model: Paper }, // for title
+          { model: Paper }, // title
           { model: Speaker, where: { personid: personId }, required: true, include: [
              { model: Person, required: true },
           ] },
-        ]
+        ],
       }).then((events) => {
         res.json(events.map(TOMapper.toEventTO));
       }).catch((err) => {
@@ -86,7 +81,7 @@ function personSubroutes (app) {
     app.get((req, res) => {
       const personId = (req.params && req.params.personId);
 
-      if (personId == null) {
+      if (!personId) {
         res.status(400).send();
         return;
       }
@@ -101,7 +96,7 @@ function personSubroutes (app) {
              { model: Person, required: true },
           ] },
           { model: PaperKeyword, as: 'keywords', required: false },
-        ]
+        ],
       }).then((papers) => {
         res.json(papers.map(TOMapper.toPaperTO));
       }).catch((err) => {

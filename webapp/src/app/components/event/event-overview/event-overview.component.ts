@@ -95,16 +95,16 @@ export class EventOverviewComponent implements OnInit {
         Boolean(s.endTime) && s.endTime.isValid()
       )
       .map(s => <CalendarTrack> {
-          color: s.track.color,
-          backgroundColor: s.track.backgroundColor,
-          isDisplayed: true,
-          events: [ <CalendarEvent> Object({
-              title: s.name,
-              id: s.id,
-              startTime: s.startTime,
-              endTime: s.endTime,
-            }) ],
-        });
+        color: s.track.color,
+        backgroundColor: s.track.backgroundColor,
+        isDisplayed: true,
+        events: [ <CalendarEvent> Object({
+            title: s.name,
+            id: s.id,
+            startTime: s.startTime,
+            endTime: s.endTime,
+          }) ],
+      });
   }
 
   /**

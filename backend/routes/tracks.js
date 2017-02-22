@@ -23,7 +23,7 @@ function trackSubroutes (app) {
         res.status(401).send();
         return;
       }
-      
+
       Track.findAll()
         .then((tracks) => {
           res.json(tracks.map(TOMapper.toTrackTO));
@@ -51,13 +51,12 @@ function trackSubroutes (app) {
 
       Kind.findOrCreate({
         where: { name: track.kind },
-        defaults: {name: track.kind },
-      }).spread((kindInstance) => {      
+        defaults: { name: track.kind },
+      }).spread(() => {
         Track.create(track, {
           include: [
-          {
-            model: Kind, as: 'kindname'
-          } ],
+            { model: Kind, as: 'kindname' },
+          ],
         })
         .then(track => {
           res.json(TOMapper.toTrackTO(track));

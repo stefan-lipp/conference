@@ -41,12 +41,17 @@ export class ScheduleEditorComponent implements OnInit {
 
   private ghost: HTMLDivElement = null;
 
-
+  /**
+   * Constructor for the scheduler-ui component.
+   */
   constructor (
     private trackService: TrackService,
     private sessionService: SessionService,
   ) { }
 
+  /**
+   * ngOnInit
+   */
   public ngOnInit () {
     this.trackService.getAll().subscribe((tracks: Track[]) => this.tracks = tracks);
     this.sessionService.getAll().subscribe(
@@ -54,6 +59,10 @@ export class ScheduleEditorComponent implements OnInit {
     );
   }
 
+
+  /**
+   * Get sessions for calendar 
+   */
   public get calendarTracks (): CalendarTrack[] {
     return this.sessions.map(s => {
       return <CalendarTrack> {
@@ -69,6 +78,9 @@ export class ScheduleEditorComponent implements OnInit {
     });
   }
 
+  /**
+   * Add Track 
+   */
   public addTrack (): void {
     const newTrack: Track = <Track> {
       name: `Track ${this.tracks.length + 1}`,
@@ -84,7 +96,10 @@ export class ScheduleEditorComponent implements OnInit {
       });
   }
 
-  public addSession ( name: string, start: string, end: string ): boolean {
+  /**
+   * Add Session 
+   */
+  public addSession (name: string, start: string, end: string): boolean {
     try {
       let startTime: moment.Moment = this.calendar.selectedDay.clone().startOf('day');
       startTime = startTime.add(moment(start, 'HH:mm').hour(), 'hour');
@@ -115,10 +130,16 @@ export class ScheduleEditorComponent implements OnInit {
     return true;
   }
 
+  /**
+   * select a track 
+   */
   public selectTrack (track: Track): void {
     this.selectedTrack = track;
   }
 
+  /**
+   * delete a track 
+   */
   public deleteTrack (track: Track): void {
     const index = this.tracks.indexOf(track);
 
@@ -134,6 +155,9 @@ export class ScheduleEditorComponent implements OnInit {
       .subscribe(() => this.tracks.splice(index, 1));
   }
 
+  /**
+   * Start drag & drop 
+   */
   public dragStartHandler (event: MouseEvent): void {
     if (this.selectedTrack) {
       const calendar = document.querySelector('conference-calendar .day-events');
@@ -166,6 +190,9 @@ export class ScheduleEditorComponent implements OnInit {
     }
   }
 
+  /**
+   * handle drag 
+   */
   public dragHandler (event: MouseEvent): void {
     if (this.ghost && this.ghost.parentElement) {
       const parentHeight = this.ghost.parentElement.getBoundingClientRect().height;
@@ -176,6 +203,9 @@ export class ScheduleEditorComponent implements OnInit {
     }
   }
 
+  /**
+   * End drag 
+   */
   public dragEndHandler (event: MouseEvent): void {
     if (this.selectedTrack && this.ghost) {
       const calendar = document.querySelector('conference-calendar .day-events');

@@ -34,11 +34,11 @@ function eventSubroutes (app) {
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
           { model: Session, required: false },
-          { model: Speaker, required: false , include: [
-              { model: Person, required: false, include: [
-                { model: Institution, required: false },
-              ] }   
+          { model: Speaker, required: false, include: [
+            { model: Person, required: false, include: [
+              { model: Institution, required: false },
             ] },
+          ] },
         ],
       })
         .then((events) => {
@@ -149,7 +149,7 @@ function eventSubroutes (app) {
 
     // GET retrieve single event
     app.get((req, res) => {
-      const eventId = parseInt(req.params.eventId);
+      const eventId = parseInt(req.params.eventId, 10);
       const personId = (req.decoded ? req.decoded.personId : null);
 
       Event.findById(eventId, {

@@ -55,7 +55,7 @@ function sessionSubroutes (app) {
 
     app.post((req, res) => {
       if (!(req.decoded && req.decoded.isAdmin)) {
-        res.status(401).send();
+        res.status(401).json(new Errors.UnauthorizedError());
         return;
       }
       const session = {
@@ -65,15 +65,13 @@ function sessionSubroutes (app) {
         startTime: moment(req.body.startTime).tz('Europe/Berlin'),
         endTime: moment(req.body.endTime).tz('Europe/Berlin'),
       };
-      console.log(req.body,session);
       if (session.startTime >= session.endTime) {
-        res.status(500).json(new Errors.InternalServerError());
+        res.status(400).send();
       }
-      console.log(session.startTime,session.endTime);
 
       Session.create(session, {
-        fields: ['name','events','trackid','startTime','endTime'],
-        include: [ 
+        fields: [ 'name', 'events', 'trackid', 'startTime', 'endTime' ],
+        include: [
           { model: Track },
         ],
       })
@@ -96,11 +94,7 @@ function sessionSubroutes (app) {
           if (process.env.ENV === 'development') {
             console.error(err);
           }
-          res.status(404).json({
-            error: true,
-            success: false,
-            message: 'Unknown session',
-          });
+          res.status(500).json(new Errors.InternalServerError());
         });
       })
       .catch(err => {
@@ -156,10 +150,10 @@ function sessionSubroutes (app) {
               { model: PaperKeyword, as: 'keywords', required: false },
             ] },
             { model: Favorite, where: { personId: personId }, required: false },
-            { model: Speaker, required: false , include: [
+            { model: Speaker, required: false, include: [
               { model: Person, required: false, include: [
                 { model: Institution, required: false },
-              ] }
+              ] },
             ] },
           ] },
           { model: Track, required: true },

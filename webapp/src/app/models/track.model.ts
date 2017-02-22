@@ -5,7 +5,7 @@ export class Track {
   public color: string;
   public backgroundColor: string;
 
-  public static fromApi (apiRepresentation): Track {
+  public static fromApi (apiRepresentation: ApiTrack): Track {
     return <Track> {
       id: apiRepresentation.id,
       name: apiRepresentation.name,

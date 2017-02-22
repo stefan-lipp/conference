@@ -60,7 +60,7 @@ function toKeywordTO (keywordInstance) {
 function toPaperTO (paperInstance) {
   return {
     id: paperInstance.id,
-    title: paperInstance.titel,
+    title: paperInstance.title,
     authors: (paperInstance.authors || [ ])
       .sort((a, b) => { return a.number - b.number; })
       .map(toAuthorTO),
@@ -107,6 +107,17 @@ function toEventTO (eventInstance) {
   };
 }
 
+/** Maps an instance of the Track database model to a Track transport object */
+function toTrackTO (trackInstance) {
+  return {
+    id: trackInstance.id,
+    name: trackInstance.name,
+    kind: trackInstance.kind,
+    color: trackInstance.color,
+    backgroundColor: trackInstance.backgroundColor,
+  };
+}
+
 /** Maps a instance of the Session database model to a simple Session transport object */
 function toSessionTO (sessionInstance) {
   return {
@@ -121,16 +132,6 @@ function toSessionTO (sessionInstance) {
   };
 }
 
-/** Maps an instance of the Track database model to a Track transport object */
-function toTrackTO (trackInstance) {
-  return {
-    id: trackInstance.id,
-    name: trackInstance.name,
-    kind: trackInstance.kind,
-    color: trackInstance.color,
-    backgroundColor: trackInstance.backgroundColor,
-  };
-}
 
 module.exports = {
   toEventTO: toEventTO,
