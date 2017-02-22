@@ -3,6 +3,7 @@ const jwtAdminGuard = require('../middleware/jwtAdmin.guard');
 
 const TOMapper = require('../util/transportObjectMapper');
 const Errors = require('../util/errors');
+const escape = require('../util/escape');
 
 const DataBase = require('../model/index');
 const Track = DataBase.sequelize.models.track;
@@ -43,10 +44,10 @@ function trackSubroutes (app) {
       }
 
       const track = {
-        name: req.body.name,
-        color: req.body.color,
-        backgroundColor: req.body.backgroundColor,
-        kind: req.body.kind,
+        name: escape(req.body.name),
+        color: escape(req.body.color),
+        backgroundColor: escape(req.body.backgroundColor),
+        kind: escape(req.body.kind),
       };
 
       Kind.findOrCreate({
@@ -88,30 +89,28 @@ function trackSubroutes (app) {
     app.put((req, res) => {
       const trackId = req.params.trackId;
 
-      Track.update(
-        {
-          id: req.body.id,
-          name: req.body.name,
-          color: req.body.color,
-          backgroundColor: req.body.backgroundColor,
-          kind: req.body.kind,
-        }, {
-          where: { id: trackId },
+      Track.update({
+        id: req.body.id,
+        name: req.body.name,
+        color: req.body.color,
+        backgroundColor: req.body.backgroundColor,
+        kind: req.body.kind,
+      }, {
+        where: { id: trackId },
+      })
+      .then(() => {
+        Track.findById(trackId)
+          .then(track => {
+            res.json(TOMapper.toTrackTO(track));
+          })
+          .catch(() => res.status(404).json(new Errors.InternalServerError()));
+      })
+      .catch(err => {
+        if (process.env.ENV === 'development') {
+          console.error(err);
         }
-      )
-        .then(() => {
-          Track.findById(trackId)
-            .then(track => {
-              res.json(TOMapper.toTrackTO(track));
-            })
-            .catch(() => res.status(404).json(new Errors.InternalServerError()));
-        })
-        .catch(err => {
-          if (process.env.ENV === 'development') {
-            console.error(err);
-          }
-          res.status(500).json(new Errors.InternalServerError(err.message || err));
-        });
+        res.status(500).json(new Errors.InternalServerError(err.message || err));
+      });
     });
 
     app.delete((req, res) => {

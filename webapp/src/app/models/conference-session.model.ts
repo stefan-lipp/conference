@@ -14,7 +14,7 @@ import {
 export class ConferenceSession {
   public id: string;
   public name: string;
-  public events: ConferenceEvent[];
+  public events: ConferenceEvent[ ];
   public track: Track;
 
   public startTime: moment.Moment;
@@ -24,14 +24,14 @@ export class ConferenceSession {
     return new ConferenceSession(
       apiRepresentation.id.toString(10),
       apiRepresentation.name,
-      (apiRepresentation.events || []).map(apiEvent => ConferenceEvent.fromAPI(apiEvent)),
+      (apiRepresentation.events || [ ]).map(apiEvent => ConferenceEvent.fromAPI(apiEvent)),
       Track.fromApi(apiRepresentation.track),
       moment(apiRepresentation.startTime),
       moment(apiRepresentation.endTime)
     );
   }
 
-  constructor(id: string, name: string, events: ConferenceEvent[], track: Track,
+  constructor(id: string, name: string, events: ConferenceEvent[ ], track: Track,
               startTime: moment.Moment, endTime: moment.Moment) {
     this.id = id;
     this.name = name;
@@ -46,7 +46,7 @@ export class ConferenceSession {
 export interface ApiConferenceSession {
   id: number;
   name: string;
-  events: ApiConferenceEvent[];
+  events: ApiConferenceEvent[ ];
   track: ApiTrack;
 
   startTime?: string;

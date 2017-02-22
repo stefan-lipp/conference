@@ -99,11 +99,11 @@ export class EventOverviewComponent implements OnInit {
         backgroundColor: s.track.backgroundColor,
         isDisplayed: true,
         events: [ <CalendarEvent> Object({
-            title: s.name,
-            id: s.id,
-            startTime: s.startTime,
-            endTime: s.endTime,
-          }) ],
+          title: s.name,
+          id: s.id,
+          startTime: s.startTime,
+          endTime: s.endTime,
+        }) ],
       });
   }
 

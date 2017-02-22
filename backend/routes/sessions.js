@@ -3,6 +3,8 @@ const moment = require('moment');
 
 const TOMapper = require('../util/transportObjectMapper');
 const Errors = require('../util/errors');
+const escape = require('../util/escape');
+
 
 const DataBase = require('../model/index');
 const ConferenceEvent = DataBase.sequelize.models.event;
@@ -59,11 +61,11 @@ function sessionSubroutes (app) {
         return;
       }
       const session = {
-        name: req.body.name,
+        name: escape(req.body.name),
         events: [],
-        trackid: req.body.track.id,
-        startTime: moment(req.body.startTime).tz('Europe/Berlin'),
-        endTime: moment(req.body.endTime).tz('Europe/Berlin'),
+        trackid: escape(req.body.track.id),
+        startTime: escape(moment(req.body.startTime).tz('Europe/Berlin')),
+        endTime: escape(moment(req.body.endTime).tz('Europe/Berlin')),
       };
       if (session.startTime >= session.endTime) {
         res.status(400).send();
