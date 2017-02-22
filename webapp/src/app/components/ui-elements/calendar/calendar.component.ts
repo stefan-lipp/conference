@@ -8,6 +8,7 @@ import { Conference } from '../../../models';
 
 export interface CalendarEvent {
   title: string;
+  subtitle: string;
   id: number;
   startTime: moment.Moment;
   endTime: moment.Moment;

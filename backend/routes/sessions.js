@@ -1,7 +1,10 @@
 const jwtGuard = require('../middleware/jwt.guard');
+const moment = require('moment');
 
 const TOMapper = require('../util/transportObjectMapper');
 const Errors = require('../util/errors');
+const escape = require('../util/escape');
+
 
 const DataBase = require('../model/index');
 const ConferenceEvent = DataBase.sequelize.models.event;
@@ -13,6 +16,7 @@ const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
 const Person = DataBase.sequelize.models.person;
 const Speaker = DataBase.sequelize.models.speaker;
+const Track = DataBase.sequelize.models.track;
 
 /** Session routes */
 function sessionSubroutes (app) {
@@ -34,6 +38,7 @@ function sessionSubroutes (app) {
             ] },
             { model: Favorite, where: { personId: personId }, required: false },
           ] },
+        { model: Track, required: true },
         ],
       }).then((sessions) => {
         res.json(sessions.map(TOMapper.toSessionTO));
@@ -50,6 +55,57 @@ function sessionSubroutes (app) {
       });
     });
 
+    app.post((req, res) => {
+      if (!(req.decoded && req.decoded.isAdmin)) {
+        res.status(401).json(new Errors.UnauthorizedError());
+        return;
+      }
+      const session = {
+        name: escape(req.body.name),
+        events: [],
+        trackid: escape(req.body.track.id),
+        startTime: escape(moment(req.body.startTime).tz('Europe/Berlin')),
+        endTime: escape(moment(req.body.endTime).tz('Europe/Berlin')),
+      };
+      if (session.startTime >= session.endTime) {
+        res.status(400).send();
+      }
+
+      Session.create(session, {
+        fields: [ 'name', 'events', 'trackid', 'startTime', 'endTime' ],
+        include: [
+          { model: Track },
+        ],
+      })
+      .then(session => {
+        Session.findById(session.id, {
+          include: [
+            { model: ConferenceEvent, include: [
+              { model: Paper, include: [
+                { model: Author, required: false, include: [
+                  { model: Person, required: false },
+                ] },
+              ] },
+            ] },
+            { model: Track, required: true },
+          ],
+          order: [ [ 'startTime', 'ASC' ] ],
+        }).then(session => {
+          res.json(TOMapper.toSessionTO(session));
+        }).catch(err => {
+          if (process.env.ENV === 'development') {
+            console.error(err);
+          }
+          res.status(500).json(new Errors.InternalServerError());
+        });
+      })
+      .catch(err => {
+        if (process.env.ENV === 'development') {
+          console.error(err);
+        }
+        res.status(500).json(new Errors.InternalServerError());
+      });
+    });
   });
 
   app.subroute('/favorites', (app) => {
@@ -65,6 +121,7 @@ function sessionSubroutes (app) {
             { model: Paper },
             { model: Favorite, where: { personId: personId }, required: true },
           ] },
+        { model: Track, required: true },
         ],
       }).then((sessions) => {
         res.json(sessions.map(TOMapper.toSessionTO));
@@ -95,12 +152,13 @@ function sessionSubroutes (app) {
               { model: PaperKeyword, as: 'keywords', required: false },
             ] },
             { model: Favorite, where: { personId: personId }, required: false },
-            { model: Speaker, required: false , include: [
+            { model: Speaker, required: false, include: [
               { model: Person, required: false, include: [
                 { model: Institution, required: false },
-              ] }   
+              ] },
             ] },
           ] },
+          { model: Track, required: true },
         ],
         order: [ [ 'startTime', 'ASC' ] ],
       }).then(session => {

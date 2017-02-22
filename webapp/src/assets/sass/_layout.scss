@@ -1,0 +1,157 @@
+$column-count: 12;
+$row-count: 12;
+$column-gap-h: 1rem;
+$column-gap-v: 1rem;
+
+@for $i from 1 through $column-count {
+    .col-#{$i} {
+        width: 100% * $i / $column-count;
+    }
+
+    .col-push-#{$i - 1} {
+        left: #{100% * ($i - 1) / $column-count};
+    }
+}
+
+@for $i from 1 through $row-count {
+    .row-#{$i} {
+        height: 100% * $i / $row-count;
+    }
+
+    .row-push-#{$i - 1} {
+        top: #{100% * ($i - 1) / $row-count};
+    }
+}
+
+// Grid with media queries
+@each $breakpoint, $media-query in $breakpoints {
+    @include breakpoint($breakpoint) {
+        @for $i from 1 through $column-count {
+            .col-#{$breakpoint}-#{$i} {
+                width: 100% * $i / $column-count;
+            }
+
+            .col-#{$breakpoint}-push-#{$i - 1} {
+                left: #{100% * ($i - 1) / $column-count};
+            }
+        }
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-top: 64px;
+}
+
+.container-wrapper {
+    background: color(background-base);
+
+    &.transparent {
+        background: transparent;
+    }
+
+    &.active {
+        background: color(divider);
+    }
+}
+
+
+.container {
+    margin: 0 auto;
+    @include clearfix();
+    width: 100%;
+}
+
+md-card.container {
+    box-sizing: border-box;
+    padding: 2em;
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: #{-$column-gap-h / 2};
+    margin-right: #{-$column-gap-h / 2};
+
+    &.col-gapless {
+        margin-left: 0;
+        margin-right: 0;
+
+        .column {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &.col-oneline {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+}
+
+.rows {
+    display: flex;
+    flex-wrap: wrap;
+
+    &.row-gapless {
+        margin-top: 0;
+        margin-bottom: 0;
+
+        .column {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.column, .row {
+    position: relative;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: #{$column-gap-h / 2};
+    padding-right: #{$column-gap-h / 2};
+
+    &.as-row {
+        flex-direction: row;
+    }
+}
+
+.row {
+    flex-direction: row;
+
+    &.as-col {
+        flex-direction: column;
+    }
+}
+
+
+.column--centered {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flex-spacer {
+    flex: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.align--end {
+    align-content: flex-end;
+    justify-content: flex-end;
+}
+
+.as-row {
+    flex-direction: row;
+}

@@ -10,5 +10,5 @@ export class Conference {
     this.name = config['name'];
     this.startDate = moment(config['startDate']);
     this.endDate = moment(config['endDate']);
-  };
+  }
 }

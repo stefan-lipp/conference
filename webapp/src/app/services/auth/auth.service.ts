@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Router, UrlTree, NavigationExtras } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tokenNotExpired, AuthHttp, AuthConfigConsts, JwtHelper } from 'angular2-jwt';
+import {
+  tokenNotExpired,
+  AuthHttp,
+  AuthConfigConsts,
+  JwtHelper,
+} from 'angular2-jwt';
 
 import { API_ROUTES } from '../api/routes';
 import { ApiMapperService } from '../api/api-mapper.service';
@@ -44,6 +49,12 @@ export class AuthService {
    */
   public get loggedIn () {
     return tokenNotExpired();
+  }
+
+  public get isAdmin (): boolean {
+    const token = localStorage.getItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
+    const tokenData = (new JwtHelper()).decodeToken(token);
+    return Boolean(tokenData.isAdmin);
   }
 
   /**

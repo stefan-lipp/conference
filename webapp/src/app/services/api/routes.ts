@@ -12,6 +12,9 @@ export const API_ROUTES = {
   },
   sessions: {
     all: `${API_BASE_URL}/sessions`,
+    create: `${API_BASE_URL}/sessions`,
+    update: `${API_BASE_URL}/sessions/:sessionId`,
+    delete: `${API_BASE_URL}/sessions/:sessionId`,
     single: `${API_BASE_URL}/sessions/:sessionId`,
   },
   person: {
@@ -20,5 +23,11 @@ export const API_ROUTES = {
   },
   paper: {
     byAuthor: `${API_BASE_URL}/author/:personId/papers`,
+  },
+  tracks: {
+    all: `${API_BASE_URL}/tracks`,
+    create: `${API_BASE_URL}/tracks`,
+    update: `${API_BASE_URL}/tracks/:trackId`,
+    delete: `${API_BASE_URL}/tracks/:trackId`,
   },
 };

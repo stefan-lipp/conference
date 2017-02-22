@@ -20,6 +20,8 @@ import { AppState, InternalStateType } from './app.service';
 
 // Services
 import {
+  AdminGuard,
+  AuthGuard,
   AuthService,
   ApiService,
   ApiMapperService,
@@ -32,6 +34,7 @@ import {
   PersonResolver,
   SessionService,
   SessionResolver,
+  TrackService,
 } from './services';
 
 // Components
@@ -49,6 +52,8 @@ import {
   PersonViewComponent,
   RegisterComponent,
   SessionViewComponent,
+  ScheduleEditorComponent,
+  TrackEditorComponent,
 } from './components';
 
 // Directives
@@ -90,6 +95,8 @@ type StoreType = {
     PersonViewComponent,
     RegisterComponent,
     SessionViewComponent,
+    ScheduleEditorComponent,
+    TrackEditorComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -109,6 +116,8 @@ type StoreType = {
       headerName: 'x-access-token',
       noTokenScheme: true,
     }),
+    AdminGuard,
+    AuthGuard,
     AuthService,
     ApiService,
     ApiMapperService,
@@ -121,6 +130,7 @@ type StoreType = {
     PersonResolver,
     SessionService,
     SessionResolver,
+    TrackService,
   ],
 })
 export class AppModule {

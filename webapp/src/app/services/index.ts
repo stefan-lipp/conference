@@ -4,3 +4,4 @@ export * from './event';
 export * from './paper';
 export * from './person';
 export * from './session';
+export * from './track';
