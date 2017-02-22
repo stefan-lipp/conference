@@ -44,6 +44,8 @@ CREATE TABLE public.track (
   conferenceid int4 NULL,
   "name" varchar(255) NULL,
   kind varchar(255) NOT NULL,
+  color TEXT NOT NULL DEFAULT '#333333',
+  backgroundColor TEXT NOT NULL DEFAULT '#dddddd',
   CONSTRAINT track_pkey PRIMARY KEY (id),
   CONSTRAINT track_kind_fkey FOREIGN KEY (kind) REFERENCES public.kind("name")
 )
