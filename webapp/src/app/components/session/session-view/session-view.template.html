@@ -7,13 +7,19 @@
   </div>
 
   <md-card class="session-details-card">
-    <h3 md-title>{{ session.name }}</h3>
-    <md-icon>today</md-icon>
+    <h2 md-title>{{ session.name }}</h2>
+    <div class="session-detail">
+      <md-icon>today</md-icon>
     <p>{{ getFormattedSessionDate() }}</p>
-    <md-icon>access_time</md-icon>
+    </div>
+    <div class="session-detail">
+      <md-icon>access_time</md-icon>
     <p>{{ getFormattedSessionTime() }}</p>
-    <md-icon>room</md-icon>
+    </div>
+    <div class="session-detail">
+      <md-icon>room</md-icon>
     <p>{{ session.roomName }}</p>
+    </div>
   </md-card>
 
   <div *ngIf="session.events.length" class="session-events-container">

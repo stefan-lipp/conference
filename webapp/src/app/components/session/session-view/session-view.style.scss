@@ -24,4 +24,21 @@
     }
 }
 
+@media only screen and (min-width: 600px) {
+    .session-detail {
+        display: inline;
+        padding-right: 2em;
+        vertical-align: center;
 
+        md-icon {
+            float: none;
+            padding-right: .5em;
+        }
+
+        p {
+            display: inline-block;
+            margin-top: -2em;
+            font-size: 1.1em;
+        }
+    }
+}
