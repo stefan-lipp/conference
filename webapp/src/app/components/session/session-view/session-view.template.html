@@ -13,7 +13,7 @@
     <md-icon>access_time</md-icon>
     <p>{{ getFormattedSessionTime() }}</p>
     <md-icon>room</md-icon>
-    <p>{{ session.getRoomInformation() }}</p>
+    <p>{{ session.roomName }}</p>
   </md-card>
 
   <div *ngIf="session.events.length" class="session-events-container">
