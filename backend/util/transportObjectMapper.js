@@ -97,7 +97,7 @@ function toEventTO (eventInstance) {
     speakers: (eventInstance.speakers || [ ])
       .sort((a, b) => { return a.number - b.number; })
       .map(toSpeakerTO),
-    roomName: eventInstance.roomname,
+    roomName: eventInstance.roomName,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
     duration: duration,
@@ -120,15 +120,16 @@ function toTrackTO (trackInstance) {
 
 /** Maps a instance of the Session database model to a simple Session transport object */
 function toSessionTO (sessionInstance) {
+  const events = (sessionInstance.events || []).map(toEventTO)
+    .sort((a, b) => { return moment(a.startTime) - moment(b.startTime); });
   return {
     id: sessionInstance.id,
     name: sessionInstance.name,
     track: sessionInstance.track ? toTrackTO(sessionInstance.track) : null,
     startTime: moment(sessionInstance.startTime).tz('Europe/Berlin'),
     endTime: moment(sessionInstance.endTime).tz('Europe/Berlin'),
-    // TODO
-    room: null,
-    events: (sessionInstance.events || []).map(toEventTO),
+    events: events,
+    roomName: events.length ? events[0].roomName : null,
   };
 }
 
