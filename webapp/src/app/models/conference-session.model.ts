@@ -41,6 +41,16 @@ export class ConferenceSession {
     this.endTime = endTime;
   }
 
+  public getRoomInformation(): string {
+    let eventRooms: string[] = [ ];
+    for (const event of this.events) {
+      if (eventRooms.indexOf(event.room) < 0) {
+        eventRooms.push(event.room);
+      }
+    }
+    return eventRooms.join(', ');
+  }
+
 }
 
 export interface ApiConferenceSession {

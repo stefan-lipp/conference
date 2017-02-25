@@ -37,5 +37,19 @@ export class SessionViewComponent implements OnInit {
     this.eventService.updateFavourStatus(event);
   }
 
+  /**
+   * Returns the formatted session date.
+   */
+  public getFormattedSessionDate(): string {
+    return this.session.startTime.format('MMMM Do YYYY');
+  }
+
+  /**
+   * Returns the formatted session start and end time.
+   */
+  public getFormattedSessionTime(): string {
+    return this.session.startTime.format('HH:mm') + ' - ' + this.session.startTime.format('HH:mm');
+  }
+
 
 }

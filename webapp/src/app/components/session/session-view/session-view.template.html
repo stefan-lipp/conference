@@ -1,13 +1,21 @@
 <div class="session-details-container">
+  <div class="navigation-area">
+    <a href="/events#calender">
+      <md-icon>arrow_back</md-icon>
+      <p>Calender</p>
+    </a>
+  </div>
+
   <md-card class="session-details-card">
-    <div class="subtitle-area">
-      <a href="/events#calender">
-        <md-icon>arrow_back</md-icon>
-        <h3>Calender</h3>
-      </a>
-    </div>
     <h3 md-title>{{ session.name }}</h3>
+    <md-icon>today</md-icon>
+    <p>{{ getFormattedSessionDate() }}</p>
+    <md-icon>access_time</md-icon>
+    <p>{{ getFormattedSessionTime() }}</p>
+    <md-icon>room</md-icon>
+    <p>{{ session.getRoomInformation() }}</p>
   </md-card>
+
   <div *ngIf="session.events.length" class="session-events-container">
       <md-list >
         <h3 md-subheader>Session Events</h3>

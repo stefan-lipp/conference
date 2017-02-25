@@ -1,17 +1,27 @@
-.session-details-card {
-    margin: 0 .5em;
-}
+.navigation-area {
+    margin: 0 1.2em;
 
-.subtitle-area {
-    display: flex;
-    align-items: center;
-    color: #AAA;
+    md-icon {
+        float: left;
+        padding-right: .2em;
+        font-size: 1.5em;
+    }
 
     a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: #AAA;
+      text-decoration: none;
+      color: #8e8e8e
     }
 }
+
+.session-details-card {
+    margin: 0 .5em;
+
+    md-icon {
+        float: left;
+        padding-right: 1em;
+        font-size: 1.4em;
+        color: #8e8e8e;
+    }
+}
+
+
