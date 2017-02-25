@@ -1,116 +1,92 @@
-<div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+<div class="event-details-container">
 
-<div class="subtitle-area">
-  <a href="/events#{{ event.id }}">
-    <md-icon>arrow_back</md-icon>
-    <h3>Event List</h3>
-  </a>
-</div>
+  <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
-<h2>{{ event.title }}</h2>
-<h3 *ngIf="event.speaker">{{ event.speaker }}</h3>
-<h4>{{ event.eventType }}</h4>
-
-<table class="general-info">
-  <tbody>
-    <tr *ngIf="event.duration">
-      <th>Duration:</th>
-      <td>{{ event.duration }}</td>
-    </tr>
-    <tr *ngIf="event.startTime">
-      <th>Start Time:</th>
-      <td>{{ event.startTime }}</td>
-    </tr>
-    <tr *ngIf="event.endTime">
-      <th>End Time:</th>
-      <td>{{ event.endTime }}</td>
-    </tr>
-    <tr *ngIf="event.room">
-      <th>Room:</th>
-      <td>
-        <span>
-          {{ event.room }}
-          <span class="align-right">
-            <button *ngIf="event.room" md-button color="accent" (click)="drawCanvas()">Get directions</button>
-          </span>
-        </span>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="align-right">
-  <span *ngIf="authService.loggedIn">
-    <button
-      *ngIf="!event.favored"
-      md-button
-      color="accent"
-      (click)="setFavorState(event, true)"
-    >
-      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
-    </button>
-    <button
-      *ngIf="event.favored"
-      md-button color="accent"
-      (click)="setFavorState(event, false)"
-    >
-      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
-    </button>
-  </span>
-</div>
-<div [class.hidden]="!showLocation">
-  <div>
-    <b>Room:</b><i> {{ event.room }}</i>
-  </div>
-  <canvas id="eventMapCanvas" height="350" width="460">Your browser does not support canvas</canvas>
-</div>
-
-<!-- Area for Paper Information-->
-<div *ngIf="event.paper">
-  <div class="paper-title">
-    <h3>{{ event.paper.title }}</h3>
-    <a
-      *ngIf="event.paper.link"
-      md-button
-      color="accent"
-      [href]="event.paper.link"
-      target="_blank"
-    >
-      <md-icon>file_download</md-icon>
-      Download
+  <div class="navigation-area">
+    <a href="/events#{{ event.id }}">
+      <md-icon>arrow_back</md-icon>
+      <p>Event List</p>
     </a>
   </div>
 
-  <h5 *ngIf="event.paper.authors && event.paper.authors.length==1">Author</h5>
-  <h5 *ngIf="event.paper.authors && event.paper.authors.length>1">Authors</h5>
-  <ul class="paper-authors">
-    <li *ngFor="let author of event.paper.authors"><a [routerLink]="'/person/' + author.id">{{ author.name }}</a></li>
-  </ul>
+  <md-card class="event-details-card">
+    <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
+    <h2 md-title>{{ event.title }}</h2>
+    <div class="event-detail" *ngIf="event.startTime">
+      <md-icon>today</md-icon>
+      <p>{{ getFormattedEventDate() }}</p>
+    </div>
+    <div class="event-detail" *ngIf="event.startTime">
+      <md-icon>access_time</md-icon>
+      <p>{{ getFormattedEventTime() }}</p>
+    </div>
+    <div class="event-detail" *ngIf="event.room">
+      <md-icon>room</md-icon>
+      <p>{{ event.room }}</p>
+    </div>
+    <br>
+    <div class="event-detail">
+        <md-icon>person_outline</md-icon>
+        <p>{{ event.speakers[0].name }}</p>
+      </div>
+      <div class="event-detail" *ngIf="event.speakers[0].institution">
+        <md-icon>business</md-icon>
+        <p>{{ event.speakers[0].institution.name }}</p>
+      </div>
 
-  <h5 *ngIf="event.paper.tag">Tag</h5>
-  <p *ngIf="event.paper.tag">{{ event.paper.tag }}</p>
+    <div class="align-right">
+      <span *ngIf="authService.loggedIn">
+        <button
+          *ngIf="!event.favored"
+          md-button
+          color="accent"
+          (click)="setFavorState(event, true)"
+        >
+          {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
+        </button>
+        <button
+          *ngIf="event.favored"
+          md-button color="accent"
+          (click)="setFavorState(event, false)"
+        >
+          {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
+        </button>
+      </span>
+    </div>
+  </md-card>
 
-  <h5 *ngIf="event.paper.keywords">Keywords</h5>
-  <p *ngIf="event.paper.keywords">{{ event.paper.keywords }}</p>
+  <md-list>
+    <h3 md-subheader>Paper</h3>
+    <md-card class="event-details-card">
+      <div *ngIf="event.paper">
+        <div class="paper-title">
+          <a
+            *ngIf="event.paper.link"
+            md-button
+            color="accent"
+            [href]="event.paper.link"
+            target="_blank"
+          >
+            <md-icon>file_download</md-icon>
+            Download
+          </a>
+        </div>
 
-  <h5 *ngIf="event.paper.abstract">Abstract</h5>
-  <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
-  <div *ngIf="authService.loggedIn" class="align-right">
-    <button
-      *ngIf="!event.favored"
-      md-raised-button
-      color="accent"
-      (click)="setFavorState(event, true)"
-    >
-      {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
-    </button>
-    <button
-      *ngIf="event.favored"
-      md-raised-button
-      color="accent"
-      (click)="setFavorState(event, false)"
-    >
-      {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
-    </button>
-  </div>
+        <h5 *ngIf="event.paper.authors && event.paper.authors.length==1">Author</h5>
+        <h5 *ngIf="event.paper.authors && event.paper.authors.length>1">Authors</h5>
+        <ul class="paper-authors">
+          <li *ngFor="let author of event.paper.authors"><a [routerLink]="'/person/' + author.id">{{ author.name }}</a></li>
+        </ul>
+
+        <h5 *ngIf="event.paper.tag">Tag</h5>
+        <p *ngIf="event.paper.tag">{{ event.paper.tag }}</p>
+
+        <h5 *ngIf="event.paper.keywords">Keywords</h5>
+        <p *ngIf="event.paper.keywords">{{ event.paper.keywords }}</p>
+
+        <h5 *ngIf="event.paper.abstract">Abstract</h5>
+        <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
+      </div>
+    </md-card>
+  </md-list>
 </div>

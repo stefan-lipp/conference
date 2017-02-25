@@ -48,7 +48,7 @@ export class SessionViewComponent implements OnInit {
    * Returns the formatted session start and end time.
    */
   public getFormattedSessionTime(): string {
-    return this.session.startTime.format('HH:mm') + ' - ' + this.session.startTime.format('HH:mm');
+    return this.session.startTime.format('HH:mm') + ' - ' + this.session.endTime.format('HH:mm');
   }
 
 

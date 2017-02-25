@@ -161,6 +161,11 @@ function eventSubroutes (app) {
             { model: PaperKeyword, as: 'keywords', required: false },
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
+          { model: Speaker, required: false, include: [
+            { model: Person, required: false, include: [
+              { model: Institution, required: false },
+            ] },
+          ] },
         ],
       }).then(event => {
         res.json(TOMapper.toEventTO(event));

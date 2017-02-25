@@ -23,12 +23,12 @@
   </md-card>
 
   <div *ngIf="session.events.length" class="session-events-container">
-      <md-list >
-        <h3 md-subheader>Session Events</h3>
-        <conference-event-list
-          [events]="session.events"
-          (onFavouriteStateChange)="setFavouriteState($event)"
-        ></conference-event-list>
-      </md-list>
-    </div>
+    <md-list >
+      <h3 md-subheader>Session Events</h3>
+      <conference-event-list
+        [events]="session.events"
+        (onFavouriteStateChange)="setFavouriteState($event)"
+      ></conference-event-list>
+    </md-list>
+  </div>
 </div>
