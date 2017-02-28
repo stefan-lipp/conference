@@ -50,6 +50,26 @@ export class EventViewComponent implements OnInit {
   }
 
   /**
+   * Returns the formatted event date.
+   */
+  public getFormattedEventDate(): string {
+    if (this.event.startTime) {
+      return this.event.startTime.format('MMMM Do YYYY');
+    }
+    return '- - -';
+  }
+
+  /**
+   * Returns the formatted event start and end time.
+   */
+  public getFormattedEventTime(): string {
+    if (this.event.startTime && this.event.endTime) {
+      return this.event.startTime.format('HH:mm') + ' - ' + this.event.endTime.format('HH:mm');
+    }
+    return '- - -';
+  }
+
+  /**
    *  method to build the graphical location information
    *
    * TODO change map with map of VLDB location

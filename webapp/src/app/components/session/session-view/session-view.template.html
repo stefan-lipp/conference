@@ -1,20 +1,34 @@
 <div class="session-details-container">
+  <div class="navigation-area">
+    <a href="/events#calender">
+      <md-icon>arrow_back</md-icon>
+      <p>Calender</p>
+    </a>
+  </div>
+
   <md-card class="session-details-card">
-    <div class="subtitle-area">
-      <a href="/events#calender">
-        <md-icon>arrow_back</md-icon>
-        <h3>Calender</h3>
-      </a>
+    <h2 md-title>{{ session.name }}</h2>
+    <div class="session-detail">
+      <md-icon>today</md-icon>
+    <p>{{ getFormattedSessionDate() }}</p>
     </div>
-    <h3 md-title>{{ session.name }}</h3>
+    <div class="session-detail">
+      <md-icon>access_time</md-icon>
+    <p>{{ getFormattedSessionTime() }}</p>
+    </div>
+    <div class="session-detail">
+      <md-icon>room</md-icon>
+    <p>{{ session.roomName }}</p>
+    </div>
   </md-card>
+
   <div *ngIf="session.events.length" class="session-events-container">
-      <md-list >
-        <h3 md-subheader>Session Events</h3>
-        <conference-event-list
-          [events]="session.events"
-          (onFavouriteStateChange)="setFavouriteState($event)"
-        ></conference-event-list>
-      </md-list>
-    </div>
+    <md-list >
+      <h3 md-subheader>Session Events</h3>
+      <conference-event-list
+        [events]="session.events"
+        (onFavouriteStateChange)="setFavouriteState($event)"
+      ></conference-event-list>
+    </md-list>
+  </div>
 </div>
