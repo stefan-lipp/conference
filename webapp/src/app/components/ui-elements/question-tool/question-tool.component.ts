@@ -38,10 +38,10 @@ export class QuestionToolComponent implements OnInit{
       this.comments = comments);
   }
 
- /**
-  * method called when submit comment button is clicked
-  * adds comment + user data and calls api in order to persist changes
-  */
+  /**
+   * Method called when submit comment button is clicked.
+   * Adds comment + user data and calls api in order to persist changes.
+   */
   public onSubmit (): void {
     if (this.newComment) {
       this.eventService.addComment(this.event.id, this.newComment)

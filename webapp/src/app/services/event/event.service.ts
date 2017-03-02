@@ -77,10 +77,12 @@ export class EventService {
     }
   }
 
- /** retrieves comments for a single event
-  * @param {string} eventId Id of the event the comment is connected to
-  * @return {Observable<Comment[]>}
-  */
+  /** 
+   * Retrieves comments for a single event.
+   * 
+   * @param {string} eventId Id of the event the comment is connected to
+   * @return {Observable<Comment[]>} Observable of the retrieved comments
+   */
   public getComments (eventId: string): Observable<Comment[]> {
     return this.httpService.get(API_ROUTES.events.comments
       .replace(':eventId', eventId))
@@ -88,12 +90,13 @@ export class EventService {
       .map(cs => cs.map(Comment.fromAPI));
   }
 
- /** posts comment for an event
-  * @param {string} eventId of the event 
-  * @param {string} comment the actual comments messsage
-  *
-  * @return {Observable<any>}
-  */
+  /** 
+   * Posts new comment for an event.
+   * 
+   * @param {string} eventId Id of the event 
+   * @param {string} comment the actual comments messsage
+   * @return {Observable<any>} Observable of the API response
+   */
   public addComment (eventId: string, comment: string ): Observable<any> {
     return this.httpService.post(API_ROUTES.events.comments
       .replace(':eventId', eventId), {
