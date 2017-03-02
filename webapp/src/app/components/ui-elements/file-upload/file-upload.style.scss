@@ -1,0 +1,50 @@
+.container{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .uploadform {
+        box-sizing: border-box;
+        max-width: 28em;
+        margin: .5em;
+        padding: 1em;
+        border: thin solid;
+        border-radius: 1rem;
+        background: #fff;
+        margin: 1rem;
+        text-align: center;
+        flex: 1 0 18rem;
+     
+        md-icon {
+            float: left;
+            padding-right: 1em;
+            font-size: 1.4em;
+            color: #8e8e8e;
+        }
+    }
+}
+
+.hugeIcon {
+    font-size: 4rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .details {
+        display: inline;
+        padding-right: 2em;
+        vertical-align: center;
+
+        md-icon {
+            float: none;
+            padding-right: .5em;
+        }
+
+        p {
+            display: inline-block;
+            margin-top: -2em;
+            font-size: 1.1em;
+        }
+    }
+}

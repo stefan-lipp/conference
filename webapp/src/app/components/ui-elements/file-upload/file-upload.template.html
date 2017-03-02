@@ -1,0 +1,32 @@
+<div class="container">
+<div class="uploadform">
+  <div *ngIf="file">
+    <p> Your uploaded file:</p>
+    <div class="details">
+      <md-icon>insert_drive_file</md-icon>
+      <p> {{ file.name }}</p> 
+    </div>
+    <div class="details">
+      <md-icon>switch_camera</md-icon>
+      <p> {{ file.size / 1000 }} KB</p>
+    </div>
+    <div class="details">
+      <button class="md-button">
+        <md-icon>file_upload</md-icon>
+        <p> submit this file</p>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!file">
+    <p> select an upload file </p>
+    <md-icon class="hugeIcon">file_upload</md-icon>
+  </div>
+
+  <input 
+   type="file"
+   (change)="fileChange($event)"
+   placeholder="Select file"
+   accept=".pdf"
+  >
+</div>
+</div>
