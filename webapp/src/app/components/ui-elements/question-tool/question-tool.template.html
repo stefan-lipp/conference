@@ -1,0 +1,23 @@
+<md-list>
+  <h5>Comments on this Event:</h5>
+  <md-list-item *ngFor="let comment of comments">
+    <b md-line>{{ comment.person.name }}</b>
+    <i md-line>{{ comment.timestamp }}</i>
+    <p md-line class="comment">{{ comment.comment }}</p>
+  </md-list-item>
+</md-list>  
+<textarea
+ [(ngModel)]="newComment"
+ maxlength="1000"
+ required
+ rows="5"
+ placeholder="add your question here"
+> 
+</textarea>
+<button 
+ md-button 
+ color="primary" 
+ (click)="onSubmit()" 
+ class="submit-Btn"
+>Comment
+</button>

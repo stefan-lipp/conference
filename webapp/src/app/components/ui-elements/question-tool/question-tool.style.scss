@@ -1,0 +1,28 @@
+md-list-item {
+    display: block;
+    margin: 1rem;
+    border-style: solid;
+    border-width: thin;
+    border-color: #03a9f4;
+    background-color: #eee;
+}
+
+i {
+    font-size: small;
+}
+
+textarea {
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #03a9f4;
+    display: flex;
+}
+
+.comment {
+    margin-top: 0.5rem;
+}
+
+.submit-Btn {
+    float: right;
+}

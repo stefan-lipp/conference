@@ -6,7 +6,10 @@ import { AuthHttp } from 'angular2-jwt';
 import { API_ROUTES } from '../api/routes';
 import { ApiMapperService } from '../api';
 import { AuthService } from '../auth';
-import { ConferenceEvent } from '../../models';
+import {
+  ConferenceEvent,
+  Comment,
+} from '../../models';
 
 @Injectable()
 export class EventService {
@@ -72,5 +75,32 @@ export class EventService {
       this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id))
         .subscribe(_ => null);
     }
+  }
+
+  /** 
+   * Retrieves comments for a single event.
+   * 
+   * @param {string} eventId Id of the event the comment is connected to
+   * @return {Observable<Comment[]>} Observable of the retrieved comments
+   */
+  public getComments (eventId: string): Observable<Comment[]> {
+    return this.httpService.get(API_ROUTES.events.comments
+      .replace(':eventId', eventId))
+      .map(res => res.json())
+      .map(cs => cs.map(Comment.fromAPI));
+  }
+
+  /** 
+   * Posts new comment for an event.
+   * 
+   * @param {string} eventId Id of the event 
+   * @param {string} comment the actual comments messsage
+   * @return {Observable<any>} Observable of the API response
+   */
+  public addComment (eventId: string, comment: string ): Observable<any> {
+    return this.httpService.post(API_ROUTES.events.comments
+      .replace(':eventId', eventId), {
+        comment: comment,
+      });
   }
 }
