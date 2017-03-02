@@ -22,6 +22,14 @@ export class SessionService {
     private http: Http,
   ) { }
 
+  private get httpService (): Http | AuthHttp {
+    if (this.authService.loggedIn) {
+      return this.authHttp;
+    } else {
+      return this.http;
+    }
+  }
+
   /**
    * Gets all sessions.
    *
@@ -46,12 +54,11 @@ export class SessionService {
       .map(this.apiMapperService.sessionApiToLocal);
   }
 
-  private get httpService (): Http | AuthHttp {
-    if (this.authService.loggedIn) {
-      return this.authHttp;
-    } else {
-      return this.http;
-    }
+  public create (session: ConferenceSession): Observable<ConferenceSession> {
+    return this.authHttp.post(API_ROUTES.sessions.create, session)
+      .map(res => res.json())
+      .map(s => ConferenceSession.fromAPI(s));
   }
+
 
 }

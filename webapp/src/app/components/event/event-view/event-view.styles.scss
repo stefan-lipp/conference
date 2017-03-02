@@ -1,8 +1,40 @@
-:host {
-    display: block;
-    background-color: #fff;
-    position: relative;
-    padding: .5rem 1rem;
+.navigation-area {
+    margin: 0 1.2em;
+
+    md-icon {
+        float: left;
+        padding-right: .2em;
+        font-size: 1.5em;
+    }
+
+    a {
+      text-decoration: none;
+      color: #8e8e8e
+    }
+}
+
+.favor-indicator {
+    margin-top: 7.5em;
+    z-index: 1;
+}
+
+.event-details-card {
+    margin: 0 .5em;
+
+    #eventType {
+      color: #8e8e8e;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    md-icon {
+        float: left;
+        padding-right: 1em;
+        font-size: 1.4em;
+        color: #8e8e8e;
+    }
 }
 
 .paper-authors {
@@ -11,22 +43,22 @@
     padding: 0 1rem;
 }
 
-.paper-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
 
-.subtitle-area {
-    display: flex;
-    align-items: center;
-    margin: 1rem 0 0 0;
+@media only screen and (min-width: 600px) {
+    .event-detail {
+        display: inline;
+        padding-right: 2em;
+        vertical-align: center;
 
-    a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #000;
+        md-icon {
+            float: none;
+            padding-right: .5em;
+        }
+
+        p {
+            display: inline-block;
+            margin-top: -2em;
+            font-size: 1.1em;
+        }
     }
 }

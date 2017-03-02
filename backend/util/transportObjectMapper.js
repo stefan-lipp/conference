@@ -10,7 +10,7 @@ const moment = require('moment');
 
 
 /**
- * Maps a instance of the Person database model to a Person transport object
+ * Maps an instance of the Institution database model to a Person transport object
  */
 function toInstitutionTO (institutionInstance) {
   return {
@@ -66,7 +66,8 @@ function toPaperTO (paperInstance) {
       .map(toAuthorTO),
     keywords: (paperInstance.keywords || []).map(toKeywordTO),
     abstract: paperInstance.abstract,
-    link: paperInstance.url,
+    link: paperInstance.link,
+    tag: paperInstance.tag,
   };
 }
 
@@ -96,7 +97,7 @@ function toEventTO (eventInstance) {
     speakers: (eventInstance.speakers || [ ])
       .sort((a, b) => { return a.number - b.number; })
       .map(toSpeakerTO),
-    roomName: eventInstance.roomname,
+    roomName: eventInstance.roomName,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
     duration: duration,
@@ -120,26 +121,32 @@ function toCommentTO (commentInstance) {
   };
 }
 
+/** Maps an instance of the Track database model to a Track transport object */
+function toTrackTO (trackInstance) {
+  return {
+    id: trackInstance.id,
+    name: trackInstance.name,
+    kind: trackInstance.kind,
+    color: trackInstance.color,
+    backgroundColor: trackInstance.backgroundColor,
+  };
+}
 
 /** Maps a instance of the Session database model to a simple Session transport object */
 function toSessionTO (sessionInstance) {
+  const events = (sessionInstance.events || []).map(toEventTO)
+    .sort((a, b) => { return moment(a.startTime) - moment(b.startTime); });
   return {
     id: sessionInstance.id,
     name: sessionInstance.name,
-    // TODO
-    track: {
-      id: null,
-      name: 'Dummy Track Name',
-      color: '#ffffff',
-      backgroundColor: '#03a9f4',
-    },
-    startTime: moment(sessionInstance.startTime),
-    endTime: moment(sessionInstance.endTime),
-    // TODO
-    room: null,
-    events: sessionInstance.events.map(toEventTO),
+    track: sessionInstance.track ? toTrackTO(sessionInstance.track) : null,
+    startTime: moment(sessionInstance.startTime).tz('Europe/Berlin'),
+    endTime: moment(sessionInstance.endTime).tz('Europe/Berlin'),
+    events: events,
+    roomName: events.length ? events[0].roomName : null,
   };
 }
+
 
 module.exports = {
   toCommentTO: toCommentTO,
@@ -147,5 +154,5 @@ module.exports = {
   toPaperTO: toPaperTO,
   toPersonTO: toPersonTO,
   toSessionTO: toSessionTO,
+  toTrackTO: toTrackTO,
 };
-

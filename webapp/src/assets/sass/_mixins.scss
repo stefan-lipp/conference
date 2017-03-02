@@ -1,0 +1,39 @@
+@mixin clearfix() {
+    &::after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+@mixin text-overflow() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css
+@mixin placeholder() {
+
+    /* WebKit, Blink, Edge */
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    /* Mozilla Firefox 19+ */
+    &::-moz-placeholder {
+        @content;
+        opacity:  1;
+    }
+
+    /* Internet Explorer 10-11 */
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+@mixin flex-centered() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

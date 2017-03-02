@@ -1,3 +1,44 @@
+.navigation-area {
+    margin: 0 1.2em;
+
+    md-icon {
+        float: left;
+        padding-right: .2em;
+        font-size: 1.5em;
+    }
+
+    a {
+      text-decoration: none;
+      color: #8e8e8e
+    }
+}
+
 .session-details-card {
     margin: 0 .5em;
+
+    md-icon {
+        float: left;
+        padding-right: 1em;
+        font-size: 1.4em;
+        color: #8e8e8e;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .session-detail {
+        display: inline;
+        padding-right: 2em;
+        vertical-align: center;
+
+        md-icon {
+            float: none;
+            padding-right: .5em;
+        }
+
+        p {
+            display: inline-block;
+            margin-top: -2em;
+            font-size: 1.1em;
+        }
+    }
 }
