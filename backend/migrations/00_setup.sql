@@ -153,7 +153,7 @@ CREATE TABLE EventRessource (
 );
 
 CREATE TABLE public.eventcomment (
-	id SERIAL primary key,
+	id SERIAL,
 	eventid int4 NULL,
 	personid uuid NULL,
 	"comment" text NOT NULL,

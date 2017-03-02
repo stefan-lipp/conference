@@ -46,8 +46,7 @@ function eventSubroutes (app) {
       }
 
       if (!eventId) {
-        // TODO proper error
-        res.status(400).send();
+        res.status(404).json(new Errors.NotFoundError());
         return;
       }
       req.body.personId = personId;
