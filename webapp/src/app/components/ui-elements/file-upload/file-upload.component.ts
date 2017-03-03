@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-/*import {
-  Headers,
-  RequestOptions,
-} from '@angular/http';
-*/
+import {
+  Component,
+  Input,
+} from '@angular/core';
+
+import { ConferenceEvent } from './../../../models';
+import { EventService } from './../../../services';
 
 /** file-upload component  */
 @Component({
@@ -14,7 +15,18 @@ import { Component } from '@angular/core';
 
 export class FileUploadComponent {
 
-private file: File;
+
+  @Input()
+  public event: ConferenceEvent;
+  private info: String = '';
+  private file: File;
+
+  /**
+   * Constructor for the FileUploadComponent.
+   */
+  constructor(
+    private eventService: EventService,
+  ) { }
 
   /**
    * Sets the file to the uploaded file
@@ -24,8 +36,16 @@ private file: File;
   public fileChange (event: any): void {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
-      this.file = fileList[0];
+      const newFile = fileList[0];
+      if (newFile.type === 'application/pdf') {
+        this.file = fileList[0];
+        this.info = '';
+      } else {
+        this.file = null;
+        this.info = 'Please restrict yourself to .pdf files';
+      }
     }
+
   }
 
 
@@ -33,24 +53,14 @@ private file: File;
    * Submits the file and calls API
    */
   public submitFile (): void {
-       /* build http RequestOptions
 
-        const formData: FormData = new FormData();
-        formData.append('uploadFile', file, file.name);
-        const headers = new Headers();
-        headers.append('Content-Type', 'multipart/form-data');
-        headers.append('Accept', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-        */
-
-        /* create uploadService.ts
-
-        this.http.post(`${this.apiEndPoint}`, formData, options)
-            .map(res => res.json())
-            .catch(error => Observable.throw(error))
-            .subscribe(
-                data => console.log('success'),
-                error => console.log(error)
-            )*/
+    this.info = 'successfully uploaded';
+/*
+    this.eventService.uploadFile(this.event.id, this.file).subscribe(
+      data => this.info = 'successfully uploaded',
+      error => this.info = error.toString(),
+    );*/
   }
+
+
 }
