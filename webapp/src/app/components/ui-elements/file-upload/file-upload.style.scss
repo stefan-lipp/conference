@@ -16,35 +16,27 @@
         margin: 1rem;
         text-align: center;
         flex: 1 0 18rem;
-     
-        md-icon {
-            float: left;
-            padding-right: 1em;
-            font-size: 1.4em;
-            color: #8e8e8e;
-        }
     }
+}
+
+md-icon {
+    font-size: 1.4em;
+    color: #8e8e8e;
+}
+
+caption {
+    margin: 1rem;
+    font-weight: bold;
 }
 
 .hugeIcon {
     font-size: 4rem;
 }
 
-@media only screen and (min-width: 600px) {
-    .details {
-        display: inline;
-        padding-right: 2em;
-        vertical-align: center;
+.rightAlign {
+    text-align: right;
+}
 
-        md-icon {
-            float: none;
-            padding-right: .5em;
-        }
-
-        p {
-            display: inline-block;
-            margin-top: -2em;
-            font-size: 1.1em;
-        }
-    }
+.info {
+    text-align: center
 }

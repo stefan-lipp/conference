@@ -1,32 +1,36 @@
 <div class="container">
-<div class="uploadform">
-  <div *ngIf="file">
-    <p> Your uploaded file:</p>
-    <div class="details">
-      <md-icon>insert_drive_file</md-icon>
-      <p> {{ file.name }}</p> 
+  <div class="uploadform">  
+    <table *ngIf="file">
+      <caption> Your pending File </caption>
+      <tr>
+        <td class="rightAlign"><md-icon>insert_drive_file</md-icon></td>
+        <td> {{ file.name }}</td>
+      </tr>
+      <tr>
+        <td class="rightAlign"><md-icon>switch_camera</md-icon></td>
+      <td> {{ file.size / 1000 }} KB</td>
+      </tr>
+      <tr>
+        <td class="rightAlign"><md-icon>file_upload</md-icon></td> 
+        <td>
+          <button md-raised-button (click)="submitFile()">
+            submit this file
+          </button>
+        </td>
+    </table>
+    
+    <div *ngIf="!file">
+      <md-icon class="hugeIcon">file_upload</md-icon>
     </div>
-    <div class="details">
-      <md-icon>switch_camera</md-icon>
-      <p> {{ file.size / 1000 }} KB</p>
+    <div *ngIf="info.length > 0">
+      <p class="info"> {{ info }} </p>
     </div>
-    <div class="details">
-      <button class="md-button">
-        <md-icon>file_upload</md-icon>
-        <p> submit this file</p>
-      </button>
-    </div>
-  </div>
-  <div *ngIf="!file">
-    <p> select an upload file </p>
-    <md-icon class="hugeIcon">file_upload</md-icon>
-  </div>
 
-  <input 
-   type="file"
-   (change)="fileChange($event)"
-   placeholder="Select file"
-   accept=".pdf"
-  >
-</div>
+    <input 
+     type="file"
+     (change)="fileChange($event)"
+     placeholder="Select file"
+     accept=".pdf"
+    >
+  </div>
 </div>
