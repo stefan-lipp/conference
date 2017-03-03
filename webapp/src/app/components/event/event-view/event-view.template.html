@@ -1,6 +1,5 @@
 <div class="event-details-container">
   
-  <upload-tool *ngIf="isAuthor()" [event]="event"></upload-tool>
   <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
   <div class="navigation-area">
@@ -9,7 +8,7 @@
       <p>Event List</p>
     </a>
   </div>
-
+  <upload-tool *nfIG="isAuthor()" [event]="event"></upload-tool>
   <md-card class="event-details-card">
     <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
     <h2 md-title>{{ event.title }}</h2>
@@ -90,5 +89,5 @@
       </div>
     </md-card>
   </md-list>
+  <question-tool [event]="event"></question-tool>
 </div>
-<question-tool [event]="event"></question-tool>
