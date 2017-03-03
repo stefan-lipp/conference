@@ -9,6 +9,7 @@ import { ConferenceEvent } from 'app/models';
 import {
   EventService,
   AuthService,
+  PersonService,
 } from 'app/services';
 
 @Component({
@@ -26,6 +27,7 @@ export class EventViewComponent implements OnInit {
   constructor (
     private route: ActivatedRoute,
     private eventService: EventService,
+    private personService: PersonService,
     public authService: AuthService,
   ) { }
 
@@ -94,4 +96,18 @@ export class EventViewComponent implements OnInit {
     hint.src = 'https://d30y9cdsu7xlg0.cloudfront.net/png/677417-200.png';
     context.drawImage(hint, room[0], room[1], 25 , 25);
   }
+
+  public isAuthor (): Boolean {
+    this.personService.getLoggedInPerson().subscribe(person => {
+      if (this.event.speakers.findIndex(speaker => speaker === person) > -1) {
+        return true;
+      } else if (this.event.paper.authors.findIndex(author => author === person) > -1) {
+        return true;
+      } else {
+        return this.authService.isAdmin;
+      }
+    });
+        return this.authService.isAdmin;
+  }
+
 }

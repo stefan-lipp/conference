@@ -1,5 +1,6 @@
 <div class="event-details-container">
-
+  
+  <upload-tool *ngIf="isAuthor()" [event]="event"></upload-tool>
   <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
   <div class="navigation-area">
