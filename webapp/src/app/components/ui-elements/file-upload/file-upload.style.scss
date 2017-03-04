@@ -5,9 +5,8 @@
     flex-wrap: wrap;
     justify-content: flex-start;
 
-    .uploadform {
+    .upload-form {
         box-sizing: border-box;
-        max-width: 28em;
         margin: .5em;
         padding: 1em;
         border: thin solid;
@@ -29,14 +28,19 @@ caption {
     font-weight: bold;
 }
 
-.hugeIcon {
+td {
+    max-width: 3rem;
+}
+
+.huge-icon {
     font-size: 4rem;
 }
 
-.rightAlign {
+.right-align {
     text-align: right;
 }
 
 .info {
     text-align: center
 }
+

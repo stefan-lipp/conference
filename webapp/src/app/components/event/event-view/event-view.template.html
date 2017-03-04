@@ -8,7 +8,6 @@
       <p>Event List</p>
     </a>
   </div>
-  <upload-tool *nfIG="isAuthor()" [event]="event"></upload-tool>
   <md-card class="event-details-card">
     <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
     <h2 md-title>{{ event.title }}</h2>
@@ -57,7 +56,7 @@
 
   <md-list>
     <h3 md-subheader>Paper</h3>
-    <md-card class="event-details-card">
+    <md-card class="details-card">
       <div *ngIf="event.paper">
         <div class="paper-title">
           <a
@@ -87,6 +86,15 @@
         <h5 *ngIf="event.paper.abstract">Abstract</h5>
         <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
       </div>
+    </md-card>
+  </md-list>
+
+  <md-list>
+  <!--md-list *ngIf="isAuthor()"-->
+    <h3 md-subheader>Event Ressources Upload</h3>
+    <md-card class="details-card">
+      <h5>As an authorized person for this event, you can upload resources like slides or posters.</h5>
+      <upload-tool [event]="event"></upload-tool>
     </md-card>
   </md-list>
   <question-tool [event]="event"></question-tool>

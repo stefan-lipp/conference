@@ -1,17 +1,17 @@
 <div class="container">
-  <div class="uploadform">  
+  <div class="upload-form">  
     <table *ngIf="file">
       <caption> Your pending File </caption>
       <tr>
-        <td class="rightAlign"><md-icon>insert_drive_file</md-icon></td>
+        <td class="right-align"><md-icon>insert_drive_file</md-icon></td>
         <td> {{ file.name }}</td>
       </tr>
       <tr>
-        <td class="rightAlign"><md-icon>switch_camera</md-icon></td>
+        <td class="right-align"><md-icon>switch_camera</md-icon></td>
       <td> {{ file.size / 1000 }} KB</td>
       </tr>
       <tr>
-        <td class="rightAlign"><md-icon>file_upload</md-icon></td> 
+        <td class="right-align"><md-icon>file_upload</md-icon></td> 
         <td>
           <button md-raised-button (click)="submitFile()">
             submit this file
@@ -20,7 +20,7 @@
     </table>
     
     <div *ngIf="!file">
-      <md-icon class="hugeIcon">file_upload</md-icon>
+      <md-icon class="huge-icon">file_upload</md-icon>
     </div>
     <div *ngIf="info.length > 0">
       <p class="info"> {{ info }} </p>
