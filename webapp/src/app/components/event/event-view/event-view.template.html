@@ -9,7 +9,7 @@
     </a>
   </div>
 
-  <md-card class="event-details-card">
+  <md-card class="details-card">
     <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
     <h2 md-title>{{ event.title }}</h2>
     <div class="event-detail" *ngIf="event.startTime">
@@ -57,7 +57,7 @@
 
   <md-list>
     <h3 md-subheader>Paper</h3>
-    <md-card class="event-details-card">
+    <md-card class="details-card">
       <div *ngIf="event.paper">
         <div class="paper-title">
           <a
@@ -89,5 +89,11 @@
       </div>
     </md-card>
   </md-list>
+  <md-list>
+    <h3 md-subheader>Comments</h3>
+    <md-card class="details-card">
+      <h5>You can ask a question here:</h5>
+      <question-tool [event]="event"></question-tool>
+    </md-card>
+  </md-list>
 </div>
-<question-tool [event]="event"></question-tool>
