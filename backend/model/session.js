@@ -49,6 +49,7 @@ module.exports = function (sequelize, DataTypes) {
       associate: (models) => {
         SessionModel.hasMany(models.event, { foreignKey: 'sessionid' });
         SessionModel.belongsTo(models.track, { foreignKey: 'trackid' });
+        SessionModel.belongsTo(models.person, { foreignKey: 'chair' });
       },
     },
   });
