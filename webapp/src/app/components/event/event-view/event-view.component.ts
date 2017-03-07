@@ -46,8 +46,10 @@ export class EventViewComponent implements OnInit {
    */
   public setFavorState (event: ConferenceEvent, state: boolean) {
     event.favored = state;
-    this.eventService.updateFavourStatus(event);
-  }
+    this.eventService.updateFavourStatus(event).subscribe(
+      (data: any) => { /* success */ },
+      (error) => event.favored = !event.favored,
+    );  }
 
   /**
    * Returns the formatted event date.
