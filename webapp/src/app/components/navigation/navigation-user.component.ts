@@ -3,7 +3,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { PersonService } from '../../services';
+import { AuthService } from '../../services';
 
 @Component({
   selector: 'conference-navigation-user',
@@ -36,15 +36,13 @@ export class NavigationUserComponent implements OnInit {
 
   private username: string;
 
-  constructor(private personService: PersonService) { }
+  constructor(private authService: AuthService) { }
 
   /**
    * @memberof OnInit
    */
   public ngOnInit () {
-    this.personService.getLoggedInPerson().subscribe(person =>
-      this.username = person.name
-    );
+    this.username = this.authService.userName;
   }
 
 }

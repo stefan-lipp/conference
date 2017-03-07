@@ -39,14 +39,4 @@ export class PersonService {
       .map(res => res.json())
       .map(list => Person.fromAPI(list));
   }
-
-  /**
-   * Gets the currently logged in person.
-   *
-   * @return {Observable<Person>} An observable containing the person
-   */
-  public getLoggedInPerson (): Observable<Person> {
-    return this.httpService.get(API_ROUTES.person.loggedIn)
-      .map(res => res.json());
-  }
 }

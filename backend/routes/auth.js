@@ -47,6 +47,7 @@ function authSubroutes (app) {
                 {
                   isAdmin: Boolean(userInstance.admin),
                   personId: userInstance.personId,
+                  personName: userInstance.person.name,
                 },
                 config.jwtSecret,
                 {
@@ -153,9 +154,17 @@ function authSubroutes (app) {
                 });
             } else {
               // Hash created, create token
-              const token = jwt.sign({ 'isAdmin': false }, config.jwtSecret, {
-                expiresIn: config.jwtExpirationTime,
-              });
+              const token = jwt.sign(
+                {
+                  isAdmin: Boolean(false),
+                  personId: personInstance.id,
+                  personName: personInstance.name,
+                },
+                config.jwtSecret,
+                {
+                  expiresIn: config.jwtExpirationTime,
+                }
+              );
 
               // Create userdata, update and save
               UserData.create({
