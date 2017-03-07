@@ -95,7 +95,7 @@ export class EventOverviewComponent implements OnInit {
     return this.allSessions
       .filter(s =>
         Boolean(s.startTime) && s.startTime.isValid() &&
-        Boolean(s.endTime) && s.endTime.isValid()
+        Boolean(s.endTime) && s.endTime.isValid(),
       )
       .map(s => <CalendarTrack> {
         color: s.track.color,
@@ -151,7 +151,10 @@ export class EventOverviewComponent implements OnInit {
 
   public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
     event.favored = state;
-    this.eventService.updateFavourStatus(event);
+    this.eventService.updateFavourStatus(event).subscribe(
+      (data: any) => { /* success */ },
+      (error) => event.favored = !event.favored,
+    );
   }
 
 }
