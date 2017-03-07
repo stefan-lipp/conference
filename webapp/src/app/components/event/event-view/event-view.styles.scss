@@ -18,7 +18,7 @@
     z-index: 1;
 }
 
-.event-details-card {
+.details-card {
     margin: 0 .5em;
 
     #eventType {
@@ -61,4 +61,8 @@
             font-size: 1.1em;
         }
     }
+}
+
+question-tool {
+    padding: 1rem;
 }
