@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('personalschedule', {
+  const Vote = sequelize.define('vote', {
     eventId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -25,4 +25,5 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
   });
+  return Vote;
 };

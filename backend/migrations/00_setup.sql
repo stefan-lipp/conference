@@ -192,22 +192,6 @@ WITH (
   OIDS=FALSE
 );
 
-
-
-
-
-CREATE TABLE public.personalschedule (
-  eventid int4 NOT NULL,
-  personid uuid NOT NULL,
-  CONSTRAINT personalschedule_pkey PRIMARY KEY (eventid,personid),
-  CONSTRAINT personalschedule_eventid_fkey FOREIGN KEY (eventid) REFERENCES public.event(id),
-  CONSTRAINT personalschedule_personid_fkey FOREIGN KEY (personid) REFERENCES public.person(id)
-)
-WITH (
-  OIDS=FALSE
-);
-
-
 CREATE TABLE public.favorite (
   eventid int4 NOT NULL,
   personid uuid NOT NULL,
@@ -219,6 +203,13 @@ WITH (
   OIDS=FALSE
 );
 
+CREATE TABLE public.vote (
+    eventid int4 NOT NULL,
+    personid uuid NOT NULL,
+    PRIMARY KEY (eventid,personid),
+    CONSTRAINT vote_eventid_fkey FOREIGN KEY (eventid) REFERENCES public.event(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT vote_personid_fkey FOREIGN KEY (personid) REFERENCES public.person(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE public.roomer_helper (
   eventid int4 NULL,
