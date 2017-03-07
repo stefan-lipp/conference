@@ -39,6 +39,7 @@ import {
 
 // Components
 import {
+  AdminOverviewComponent,
   CalendarComponent,
   EventListComponent,
   EventOverviewComponent,
@@ -71,7 +72,7 @@ const APP_PROVIDERS = [
 type StoreType = {
   state: InternalStateType,
   restoreInputValues: () => void,
-  disposeOldHosts: () => void
+  disposeOldHosts: () => void,
 };
 
 /**
@@ -80,6 +81,7 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
+    AdminOverviewComponent,
     AppComponent,
     CalendarComponent,
     EventListComponent,
