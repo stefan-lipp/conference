@@ -118,7 +118,7 @@ export class EventService {
     const formData: FormData = new FormData();
     formData.append('uploadFile', file, file.name);
     const headers = new Headers();
-    headers.append('Content-Type', 'multipart/form-data; boundary="--boundaryvalue--"');
+    headers.append('Content-Type', undefined);
     headers.append('Accept', 'application/pdf');
     let options = new RequestOptions({ headers: headers });
 
