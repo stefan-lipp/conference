@@ -58,7 +58,7 @@ WITH (
 
 CREATE TABLE public.institution (
   id uuid NOT NULL,
-  "name" varchar(255) NOT NULL,
+  "name" varchar(255) NOT NULL UNIQUE,
   details text NULL,
   iconurl varchar(255) NULL,
   url varchar(255) NULL,

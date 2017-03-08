@@ -14,6 +14,7 @@ const comments = require('./routes/comments');
 const persons = require('./routes/persons');
 const tracks = require('./routes/tracks');
 const sessions = require('./routes/sessions');
+const institutions = require('./routes/institutions');
 
 const models = require('./model/index');
 
@@ -46,6 +47,7 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.subroute('/api/sessions', sessions);
   app.subroute('/api/tracks', tracks);
   app.subroute('/api', persons);
+  app.subroute('/api', institutions);
 
   // Catch 404 and forward to error handler
   app.use((req, res, next) => {

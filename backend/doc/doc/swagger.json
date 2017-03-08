@@ -271,6 +271,68 @@
                 }
             }
         },
+        "/institutions": {
+            "get": {
+                "tags": [ "Institutions" ],
+                "summary": "Retrieve all institutions",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "List of all personal favorite events.",
+                        "schema": {
+                            "$ref": "#/definitions/InstitutionList"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [ "Institutions" ],
+                "summary": "Create new isntitution",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "name and url of the new institution",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Institutionn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data of the requested person."
+                    },
+                    "404": {
+                        "description": "The requested person could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+
+        },
         "/speaker/:personId/events": {
             "get": {
                 "tags": [ "Events" ],
@@ -349,7 +411,7 @@
                 }
             }
         },
-        "persons/:personId": {
+        "/persons/{personId}": {
             "get": {
                 "tags": [ "Persons" ],
                 "summary": "Retrieve person information.",
@@ -360,6 +422,53 @@
                         "schema": {
                             "$ref": "#/definitions/Person"
                         }
+                    },
+                    "404": {
+                        "description": "The requested person could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [ "Persons" ],
+                "summary": "Set person properties",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "person",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Email-address, name, institution and password for user to edit",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data of the requested person."
                     },
                     "404": {
                         "description": "The requested person could not be found.",
@@ -460,6 +569,24 @@
                 "favoured": { "type": "boolean" }
             }
         },
+        "InstitutionList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Institution"
+            }
+        },
+        "Institution": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": { "type": "uuid" },
+                "name": { "type": "string" },
+                "url": { "type": "string" }
+            }
+        },
         "PaperList": {
             "type": "array",
             "items": {
@@ -496,7 +623,33 @@
                 "name": { "type": "string" },
                 "email": { "type": "string" },
                 "details": { "type": "string" },
-                "institutionId": { "type": "uuid" }
+                "institutionId": { "type": "uuid" },
+                "password": {
+                    "type": "string",
+                    "description": "Password of the user."
+                },
+                "password_confirmation": {
+                    "type": "string",
+                    "description": "Confirmation of the password."
+                }
+            }
+        },
+        "InstitutionList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Institution"
+            }
+        },
+        "Institution": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": { "type": "uuid" },
+                "name": { "type": "string" },
+                "url": { "type": "string" }
             }
         },
         "Error": {

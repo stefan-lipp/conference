@@ -9,6 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     details: {
       type: DataTypes.TEXT,
@@ -16,7 +17,6 @@ module.exports = function (sequelize, DataTypes) {
     },
     url: {
       type: DataTypes.STRING,
-      field: 'iconurl',
       allowNull: true,
     },
     iconUrl: {
