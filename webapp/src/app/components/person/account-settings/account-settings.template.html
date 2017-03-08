@@ -1,0 +1,24 @@
+<md-card *ngIf="user">
+  <md-card-title>
+    <h2>{{ user.name }}</h2>
+  </md-card-title>
+  <md-card-content>
+     Email: {{ user.email }}    
+  </md-card-content>
+</md-card>
+<md-card >
+  <md-card-title>
+    change password
+  </md-card-title>
+  <md-card-content>
+    change password form here
+  </md-card-content>
+</md-card>
+<md-card *ngIf="user && user.institution">
+  <md-card-title>
+    Institution
+  </md-card-title>
+  <md-card-content>
+    {{user.institution.name}} change institution or create a new institution 
+  </md-card-content>
+</md-card>

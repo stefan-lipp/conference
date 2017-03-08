@@ -1,2 +1,2 @@
-export * from './session.routes.ts';
+export * from './session.routes';
 export * from './session-view';

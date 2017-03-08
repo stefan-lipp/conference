@@ -8,7 +8,7 @@ import { PersonService } from '../../services';
 @Component({
   selector: 'conference-navigation-user',
   template: `
-    <button md-button>
+    <button md-button routerLink="/settings">
       <i class="material-icons">person_outline</i>
       <span>{{ username }}</span>
     </button>

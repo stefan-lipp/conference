@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { PersonViewComponent } from './person-view';
+import { AccountSettingsComponent } from './account-settings';
 import {
   PersonResolver,
   PaperByAuthorResolver,
@@ -17,5 +18,9 @@ export const PERSON_ROUTES: Routes = [
       papers: PaperByAuthorResolver,
       talks: EventOfSpeakerResolver,
     },
+  },
+  {
+    path: 'settings',
+    component: AccountSettingsComponent,
   },
 ];

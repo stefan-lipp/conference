@@ -39,6 +39,7 @@ import {
 
 // Components
 import {
+  AccountSettingsComponent,
   CalendarComponent,
   EventListComponent,
   EventOverviewComponent,
@@ -80,6 +81,7 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
+    AccountSettingsComponent,
     AppComponent,
     CalendarComponent,
     EventListComponent,
