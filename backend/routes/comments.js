@@ -1,5 +1,6 @@
 const TOMapper = require('../util/transportObjectMapper');
 const Errors = require('../util/errors');
+const escape = require('../util/escape');
 
 const DataBase = require('../model/index');
 const EventComment = DataBase.sequelize.models.eventcomment;
@@ -51,6 +52,7 @@ function eventSubroutes (app) {
       }
       req.body.personId = personId;
       req.body.eventId = eventId;
+      req.body.comment = escape(req.body.comment);
 
       EventComment.create(req.body, {
         field: [ 'personId', 'eventId', 'comment' ],

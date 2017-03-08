@@ -14,6 +14,7 @@ const comments = require('./routes/comments');
 const persons = require('./routes/persons');
 const tracks = require('./routes/tracks');
 const sessions = require('./routes/sessions');
+const files = require('./routes/files');
 
 const models = require('./model/index');
 
@@ -40,6 +41,7 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.use('/doc', express.static(path.join(__dirname, 'doc')));
 
   app.subroute('/api', index);
+  app.subroute('/api', files);
   app.subroute('/api/auth', auth);
   app.subroute('/api/comments', comments);
   app.subroute('/api/events', events);

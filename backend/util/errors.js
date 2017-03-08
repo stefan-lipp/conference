@@ -14,6 +14,14 @@ function InternalServerError (message) {
   return this;
 }
 
+/** HTTP 400 Bad Request */
+function BadRequest (message) {
+  this.success = false;
+  this.error = true;
+  this.message = message || 'Bad Request';
+  return this;
+}
+
 /** HTTP 404 Not Found */
 function NotFoundError (message) {
   this.success = false;
@@ -26,4 +34,5 @@ module.exports = {
   UnauthorizedError: UnauthorizedError,
   InternalServerError: InternalServerError,
   NotFoundError: NotFoundError,
+  BadRequest: BadRequest,
 };
