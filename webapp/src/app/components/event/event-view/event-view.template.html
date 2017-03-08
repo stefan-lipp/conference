@@ -22,7 +22,7 @@
     </div>
     <div class="event-detail" *ngIf="event.room">
       <md-icon>room</md-icon>
-      <p>{{ event.room }}</p>
+      <p [routerLink]="[ '/directions', event.room.id ]" >{{ event.room.name }}</p>
     </div>
     <br>
     <div class="event-detail">

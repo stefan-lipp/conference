@@ -51,7 +51,8 @@ export class ConferenceEvent {
       room: Room.fromAPI({
         id: 1,
         name: apiRepresentation.roomName,
-        map:  apiRepresentation.roomName.replace(' ', '').toLowerCase(),
+        map:  apiRepresentation.roomName ?
+          apiRepresentation.roomName.replace(' ', '').toLowerCase() : 'pearl1',
       }),
       maxSize: apiRepresentation.maxSize,
     });

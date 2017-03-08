@@ -10,6 +10,8 @@ import {
   ApiTrack,
 } from './track.model';
 
+import { Room } from './room.model';
+
 
 export class ConferenceSession {
   public id: string;
@@ -17,7 +19,7 @@ export class ConferenceSession {
   public events: ConferenceEvent[ ];
   public track: Track;
 
-  public roomName: string;
+  public room: Room;
   public startTime: moment.Moment;
   public endTime: moment.Moment;
 
@@ -27,19 +29,25 @@ export class ConferenceSession {
       apiRepresentation.name,
       (apiRepresentation.events || [ ]).map(apiEvent => ConferenceEvent.fromAPI(apiEvent)),
       Track.fromApi(apiRepresentation.track),
-      apiRepresentation.roomName,
+      // TODO update when backend delieveres real Rooms
+      Room.fromAPI({
+        id: 2,
+        name: apiRepresentation.roomName,
+        map:  apiRepresentation.roomName ?
+          apiRepresentation.roomName.replace(' ', '').toLowerCase() : 'pearl1',
+      }),
       moment(apiRepresentation.startTime),
-      moment(apiRepresentation.endTime)
+      moment(apiRepresentation.endTime),
     );
   }
 
   constructor(id: string, name: string, events: ConferenceEvent[ ], track: Track,
-              roomName: string, startTime: moment.Moment, endTime: moment.Moment) {
+              room: Room, startTime: moment.Moment, endTime: moment.Moment) {
     this.id = id;
     this.name = name;
     this.track = track;
     this.events = events;
-    this.roomName = roomName;
+    this.room = room;
     this.startTime = startTime;
     this.endTime = endTime;
   }
