@@ -1,7 +1,6 @@
 import {
   Component,
   Input,
-  OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,6 +18,10 @@ export class DirectionsComponent {
 
   @Input()
   public room: Room;
+  public imageUrl: string = '../../../assets/img/roomplans/filename.png';
+  public showBuilding: string = 'https://www.google.de/maps/@48.14966,11.5656715,17z';
+  public planRoute: string =
+    'https://www.google.de/maps/dir//48.1494846,11.5675383/@48.14966,11.5656715,15z';
 
   /**
    * Constructor for the DirectionsComponent.
@@ -33,6 +36,9 @@ export class DirectionsComponent {
    * @memberof OnInit
    */
   public ngOnInit() {
-    this.route.data.subscribe((data: { room: Room }) => this.room = data.room);
+    this.route.data.subscribe((data: { room: Room }) => {
+      this.room = data.room;
+      this.imageUrl = this.imageUrl.replace('filename', data.room.map);
+    });
   }
 }

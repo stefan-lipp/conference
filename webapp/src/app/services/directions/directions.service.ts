@@ -24,7 +24,7 @@ export class DirectionsService {
     return Observable.of({
       id: 1,
       name: 'Pearl 1',
-      map: 'pearl',
+      map: 'pearl1',
     });
 
     /*return this.authHttp.get(API_ROUTES.room.replace(':roomId', roomId.toString(10)))
