@@ -91,6 +91,7 @@ module.exports = function (sequelize, DataTypes) {
         Event.belongsTo(models.session, { foreignKey: 'sessionid' });
         Event.hasMany(models.favorite, { foreignKey: 'eventid' });
         Event.hasMany(models.speaker, { foreignKey: 'eventid' });
+        Event.hasMany(models.vote, { foreignKey: 'eventid' });
       },
     },
   });
