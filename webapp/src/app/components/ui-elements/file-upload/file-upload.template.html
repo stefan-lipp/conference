@@ -13,10 +13,15 @@
       <tr>
         <td class="right-align"><md-icon>file_upload</md-icon></td> 
         <td>
-          <button md-raised-button (click)="submitFile()">
+          <button 
+           md-raised-button
+           (click)="submitFile()"
+           *ngIf="!uploading">
             submit this file
           </button>
+          <md-progress-bar mode="indeterminate" *ngIf="uploading"></md-progress-bar>
         </td>
+      </tr>
     </table>
     
     <div *ngIf="!file">

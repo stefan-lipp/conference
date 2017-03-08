@@ -20,6 +20,7 @@ export class FileUploadComponent {
   public event: ConferenceEvent;
   private info: String = '';
   private file: File;
+  private uploading: Boolean = false;
 
   /**
    * Constructor for the FileUploadComponent.
@@ -54,12 +55,19 @@ export class FileUploadComponent {
    */
   public submitFile (): void {
 
-    this.info = 'successfully uploaded';
-/*
+   // this.info = 'successfully uploaded';
+   this.uploading = true;
+
     this.eventService.uploadFile(this.event.id, this.file).subscribe(
-      data => this.info = 'successfully uploaded',
-      error => this.info = error.toString(),
-    );*/
+      data => {
+        this.info = 'successfully uploaded';
+        this.uploading = false;
+      },
+      error => {
+        this.info = error.toString();
+        this.uploading = false;
+      },
+    );
   }
 
 

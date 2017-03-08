@@ -118,12 +118,13 @@ export class EventService {
     const formData: FormData = new FormData();
     formData.append('uploadFile', file, file.name);
     const headers = new Headers();
-    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Content-Type', 'multipart/form-data; boundary="--boundaryvalue--"');
     headers.append('Accept', 'application/pdf');
     let options = new RequestOptions({ headers: headers });
 
     return this.httpService.post(API_ROUTES.events.upload
-      .replace(':eventId', eventId), formData, options )
+      .replace(':eventId', eventId), formData, options
+    )
       .map(res => res.json())
       .catch(error => Observable.throw(error));
   }
