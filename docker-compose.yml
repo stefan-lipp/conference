@@ -2,6 +2,7 @@ version: '2'
 
 volumes:
   psdata:
+  uploads:
 
 services:
   postgres:
@@ -27,6 +28,7 @@ services:
       - 3000
     volumes:
       - ./backend:/usr/src/app
+      - uploads:/usr/src/app/uploads
     restart: always
     links:
       - postgres
@@ -41,6 +43,7 @@ services:
       - "80:80"
     volumes:
       - ./webapp/dist:/usr/share/nginx/html
+      - uploads:/usr/share/nginx/uploads
     restart: always
     links:
       - backend
