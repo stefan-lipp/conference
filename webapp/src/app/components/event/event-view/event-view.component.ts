@@ -23,6 +23,7 @@ export class EventViewComponent implements OnInit {
   public event: ConferenceEvent;
 
   public showLocation: boolean = false;
+  private isAuthorised: boolean = false;
 
   constructor (
     private route: ActivatedRoute,
@@ -39,7 +40,8 @@ export class EventViewComponent implements OnInit {
    */
   public ngOnInit() {
     this.route.data.subscribe((data: { event: ConferenceEvent }) => this.event = data.event);
-  }
+    this.isAuthorised = this.checkAuthorisation();
+}
 
   /**
    *  method to set favorite sate of an event and commit this to the api
@@ -99,7 +101,7 @@ export class EventViewComponent implements OnInit {
     context.drawImage(hint, room[0], room[1], 25 , 25);
   }
 
-  public isAuthor (): Boolean {
+  public checkAuthorisation (): boolean {
     this.personService.getLoggedInPerson().subscribe(person => {
       if (this.event.speakers.findIndex(speaker => speaker === person) > -1) {
         return true;
