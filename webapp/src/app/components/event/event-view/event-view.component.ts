@@ -9,6 +9,7 @@ import { ConferenceEvent } from 'app/models';
 import {
   EventService,
   AuthService,
+  PersonService,
 } from 'app/services';
 
 @Component({
@@ -22,10 +23,12 @@ export class EventViewComponent implements OnInit {
   public event: ConferenceEvent;
 
   public showLocation: boolean = false;
+  private isAuthorised: boolean = false;
 
   constructor (
     private route: ActivatedRoute,
     private eventService: EventService,
+    private personService: PersonService,
     public authService: AuthService,
   ) { }
 
@@ -37,7 +40,8 @@ export class EventViewComponent implements OnInit {
    */
   public ngOnInit() {
     this.route.data.subscribe((data: { event: ConferenceEvent }) => this.event = data.event);
-  }
+    this.checkAuthorisation();
+}
 
   /**
    *  method to set favorite sate of an event and commit this to the api
@@ -96,4 +100,17 @@ export class EventViewComponent implements OnInit {
     hint.src = 'https://d30y9cdsu7xlg0.cloudfront.net/png/677417-200.png';
     context.drawImage(hint, room[0], room[1], 25 , 25);
   }
+
+  public checkAuthorisation (): void {
+    this.personService.getLoggedInPerson().subscribe(person => {
+      if (this.event.speakers.findIndex(speaker => speaker === person) > -1) {
+        this.isAuthorised = true;
+      } else if (this.event.paper.authors.findIndex(author => author === person) > -1) {
+        this.isAuthorised = true;
+      } else {
+        this.isAuthorised = this.authService.isAdmin;
+      }
+    });
+  }
+
 }
