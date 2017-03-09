@@ -16,9 +16,12 @@
       <md-icon>access_time</md-icon>
     <p>{{ getFormattedSessionTime() }}</p>
     </div>
-    <div class="session-detail">
+    <div
+      class="session-detail room-link"
+      [routerLink]="[ '/directions', session.room.id ]"
+    >
       <md-icon>room</md-icon>
-    <p>{{ session.roomName }}</p>
+      <p>{{ session.room.name }}</p>
     </div>
   </md-card>
 
