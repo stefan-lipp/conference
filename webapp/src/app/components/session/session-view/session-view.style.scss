@@ -15,6 +15,7 @@
 
 .session-details-card {
     margin: 0 .5em;
+    padding-bottom: -1em;
 
     md-icon {
         float: left;
@@ -22,9 +23,13 @@
         font-size: 1.4em;
         color: #8e8e8e;
     }
+
+    p {
+        margin-bottom: 0;
+    }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 850px) {
     .session-detail {
         display: inline;
         padding-right: 2em;

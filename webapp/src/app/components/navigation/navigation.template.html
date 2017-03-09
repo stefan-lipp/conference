@@ -1,6 +1,6 @@
 <nav>
   <md-toolbar color="primary">
-    <span class="toolbar-title toolbar-fill-remaining">{{ conference.name }} @ COMT</span>
+    <span class="toolbar-title toolbar-fill-remaining">{{ conference.name }}</span>
 
     <conference-navigation-user *ngIf="authService.loggedIn"></conference-navigation-user>
 
@@ -8,8 +8,8 @@
       <a md-menu-item routerLink="/events">Events</a>
       <span *ngIf="authService.loggedIn">
         <a md-menu-item routerLink="/my-schedule">My Schedule</a>
-        <a 
-         *ngIf="authService.isAdmin" 
+        <a
+         *ngIf="authService.isAdmin"
          md-menu-item
          routerLink="/admin"
         >

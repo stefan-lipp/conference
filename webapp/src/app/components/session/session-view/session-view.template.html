@@ -10,11 +10,11 @@
     <h2 md-title>{{ session.name }}</h2>
     <div class="session-detail">
       <md-icon>today</md-icon>
-    <p>{{ getFormattedSessionDate() }}</p>
+      <p>{{ getFormattedSessionDate() }}</p>
     </div>
     <div class="session-detail">
       <md-icon>access_time</md-icon>
-    <p>{{ getFormattedSessionTime() }}</p>
+      <p>{{ getFormattedSessionTime() }}</p>
     </div>
     <div
       class="session-detail room-link"
@@ -25,8 +25,28 @@
     </div>
   </md-card>
 
+  <div *ngIf="session.chair" class="session-details-card">
+    <md-list>
+      <h3 md-subheader>Session Chair</h3>
+      <md-card>
+        <div class="session-detail">
+          <md-icon>person_outline</md-icon>
+          <p>{{ session.chair.name }}
+        </div>
+        <div class="session-detail">
+          <md-icon>mail_outline</md-icon>
+          <p>{{ session.chair.email }}
+        </div>
+        <div class="session-detail">
+          <md-icon>business</md-icon>
+          <p>{{ session.chair.institution }}
+        </div>
+      </md-card>
+    </md-list>
+  </div>
+
   <div *ngIf="session.events.length" class="session-events-container">
-    <md-list >
+    <md-list>
       <h3 md-subheader>Session Events</h3>
       <conference-event-list
         [events]="session.events"

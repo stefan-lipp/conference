@@ -1,20 +1,15 @@
 import * as moment from 'moment';
 
 import {
+  Chair,
+  ApiChair,
   ConferenceEvent,
   ApiConferenceEvent,
-} from './conference-event.model';
-
-import {
   Track,
   ApiTrack,
-} from './track.model';
-
-import {
   Room,
   ApiRoom,
-} from './room.model';
-
+} from './'
 
 export class ConferenceSession {
   public id: string;
@@ -22,6 +17,7 @@ export class ConferenceSession {
   public events: ConferenceEvent[ ];
   public track: Track;
 
+  public chair: Chair;
   public room: Room;
   public startTime: moment.Moment;
   public endTime: moment.Moment;
@@ -32,6 +28,7 @@ export class ConferenceSession {
       apiRepresentation.name,
       (apiRepresentation.events || [ ]).map(apiEvent => ConferenceEvent.fromAPI(apiEvent)),
       Track.fromApi(apiRepresentation.track),
+      apiRepresentation.chair ? Chair.fromAPI(apiRepresentation.chair) : null,
       apiRepresentation.room ? Room.fromAPI(apiRepresentation.room) : null,
       moment(apiRepresentation.startTime),
       moment(apiRepresentation.endTime),
@@ -39,10 +36,11 @@ export class ConferenceSession {
   }
 
   constructor(id: string, name: string, events: ConferenceEvent[ ], track: Track,
-              room: Room, startTime: moment.Moment, endTime: moment.Moment) {
+              chair: Chair, room: Room, startTime: moment.Moment, endTime: moment.Moment) {
     this.id = id;
     this.name = name;
     this.track = track;
+    this.chair = chair;
     this.events = events;
     this.room = room;
     this.startTime = startTime;
@@ -56,6 +54,7 @@ export interface ApiConferenceSession {
   events: ApiConferenceEvent[ ];
   track: ApiTrack;
 
+  chair?: ApiChair;
   room?: ApiRoom;
   startTime?: string;
   endTime?: string;
