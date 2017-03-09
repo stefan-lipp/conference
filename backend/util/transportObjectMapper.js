@@ -10,7 +10,7 @@ const moment = require('moment');
 
 
 /**
- * Maps an instance of the Institution database model to a Person transport object
+ * Maps an instance of the Institution database model to a Institution transport object
  */
 function toInstitutionTO (institutionInstance) {
   return {
@@ -21,7 +21,7 @@ function toInstitutionTO (institutionInstance) {
 }
 
 /**
- * Maps an instance of the Institution database model to a Person transport object
+ * Maps an instance of the Room database model to a Room transport object
  */
 function toRoomTO (roomInstance) {
   return {
