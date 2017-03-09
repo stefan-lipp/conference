@@ -1,18 +1,18 @@
 import {
   Component,
   Input,
+  OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Room } from './../../models';
 
 @Component({
-  selector: 'directions',
+  selector: 'conference-directions',
   templateUrl: './directions.template.html',
   styleUrls: [ './directions.style.scss' ],
 })
-
-export class DirectionsComponent {
+export class DirectionsComponent implements OnInit {
 
 
   @Input()
