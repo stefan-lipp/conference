@@ -9,6 +9,7 @@ import { ConferenceEvent } from 'app/models';
 import {
   EventService,
   AuthService,
+  PersonService,
 } from 'app/services';
 
 @Component({
@@ -21,9 +22,12 @@ export class EventViewComponent implements OnInit {
   @Input()
   public event: ConferenceEvent;
 
+  private isAuthorised: boolean = false;
+
   constructor (
     private route: ActivatedRoute,
     private eventService: EventService,
+    private personService: PersonService,
     public authService: AuthService,
   ) { }
 
@@ -35,7 +39,8 @@ export class EventViewComponent implements OnInit {
    */
   public ngOnInit() {
     this.route.data.subscribe((data: { event: ConferenceEvent }) => this.event = data.event);
-  }
+    this.checkAuthorisation();
+}
 
   /**
    *  method to set favorite sate of an event and commit this to the api
@@ -67,5 +72,17 @@ export class EventViewComponent implements OnInit {
       return this.event.startTime.format('HH:mm') + ' - ' + this.event.endTime.format('HH:mm');
     }
     return '- - -';
+  }
+
+  public checkAuthorisation (): void {
+    this.personService.getLoggedInPerson().subscribe(person => {
+      if (this.event.speakers.findIndex(speaker => speaker === person) > -1) {
+        this.isAuthorised = true;
+      } else if (this.event.paper.authors.findIndex(author => author === person) > -1) {
+        this.isAuthorised = true;
+      } else {
+        this.isAuthorised = this.authService.isAdmin;
+      }
+    });
   }
 }

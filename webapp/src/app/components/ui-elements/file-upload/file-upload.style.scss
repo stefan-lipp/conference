@@ -1,0 +1,46 @@
+.container{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .upload-form {
+        box-sizing: border-box;
+        margin: .5em;
+        padding: 1em;
+        border: thin solid;
+        border-radius: 1rem;
+        background: #fff;
+        margin: 1rem;
+        text-align: center;
+        flex: 1 0 18rem;
+    }
+}
+
+md-icon {
+    font-size: 1.4em;
+    color: #8e8e8e;
+}
+
+caption {
+    margin: 1rem;
+    font-weight: bold;
+}
+
+td {
+    max-width: 3rem;
+}
+
+.huge-icon {
+    font-size: 4rem;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.info {
+    text-align: center
+}
+

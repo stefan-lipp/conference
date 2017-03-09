@@ -101,4 +101,21 @@ export class EventService {
         comment: comment,
       });
   }
+
+  /** 
+   * Posts uploaded file for an event.
+   * 
+   * @param {string} eventId Id of the event 
+   * @param {File} file the file to be uploaded
+   * @return {Observable<any>} Observable of the API response
+   */
+  public uploadFile (eventId: string, file: File ): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('uploadFile', file);
+
+    return this.httpService.post(API_ROUTES.events.upload
+      .replace(':eventId', eventId), formData)
+      .map(res => res.json())
+      .catch(error => Observable.throw(error));
+  }
 }
