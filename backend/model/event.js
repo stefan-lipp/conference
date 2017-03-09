@@ -29,13 +29,13 @@ module.exports = function (sequelize, DataTypes) {
         onUpdate: 'CASCADE',
       },
     },
-    roomName: {
-      type: DataTypes.STRING,
-      field: 'roomname',
+    roomId: {
+      type: DataTypes.INTEGER,
+      field: 'roomid',
       allowNull: true,
       references: {
         model: 'room',
-        key: 'name',
+        key: 'id',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       },
@@ -89,6 +89,7 @@ module.exports = function (sequelize, DataTypes) {
       associate: (models) => {
         Event.belongsTo(models.paper, { foreignKey: 'paperid' });
         Event.belongsTo(models.session, { foreignKey: 'sessionid' });
+        Event.belongsTo(models.room, { foreignKey: 'roomid' });
         Event.hasMany(models.favorite, { foreignKey: 'eventid' });
         Event.hasMany(models.speaker, { foreignKey: 'eventid' });
         Event.hasMany(models.vote, { foreignKey: 'eventid' });

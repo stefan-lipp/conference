@@ -1,6 +1,8 @@
 <div class="event-details-container">
 
-  <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
+  <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator">
+    <md-icon>star</md-icon>
+  </div>
 
   <div class="navigation-area">
     <a href="/events#{{ event.id }}">
@@ -8,7 +10,6 @@
       <p>Event List</p>
     </a>
   </div>
-
   <md-card class="details-card">
     <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
     <h2 md-title>{{ event.title }}</h2>
@@ -20,19 +21,23 @@
       <md-icon>access_time</md-icon>
       <p>{{ getFormattedEventTime() }}</p>
     </div>
-    <div class="event-detail" *ngIf="event.room">
+    <div
+      *ngIf="event.room"
+      class="event-detail room-link"
+      [routerLink]="[ '/directions', event.room.id ]"
+    >
       <md-icon>room</md-icon>
-      <p>{{ event.room }}</p>
+      <p>{{ event.room.name }}</p>
     </div>
     <br>
     <div class="event-detail">
-        <md-icon>person_outline</md-icon>
-        <p>{{ event.speakers[0].name }}</p>
-      </div>
-      <div class="event-detail" *ngIf="event.speakers[0].institution">
-        <md-icon>business</md-icon>
-        <p>{{ event.speakers[0].institution.name }}</p>
-      </div>
+      <md-icon>person_outline</md-icon>
+      <p>{{ event.speakers[0].name }}</p>
+    </div>
+    <div class="event-detail" *ngIf="event.speakers[0].institution">
+      <md-icon>business</md-icon>
+      <p>{{ event.speakers[0].institution.name }}</p>
+    </div>
 
     <div class="align-right">
       <span *ngIf="authService.loggedIn">
@@ -89,6 +94,15 @@
       </div>
     </md-card>
   </md-list>
+
+  <md-list *ngIf="isAuthorised">
+    <h3 md-subheader>Event Ressources Upload</h3>
+    <md-card class="details-card">
+      <h5>As an authorized person for this event, you can upload resources like slides or posters.</h5>
+      <upload-tool [event]="event"></upload-tool>
+    </md-card>
+  </md-list>
+
   <md-list>
     <h3 md-subheader>Comments</h3>
     <md-card class="details-card">

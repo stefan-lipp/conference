@@ -1,0 +1,24 @@
+<h1>{{room.name}}</h1>
+
+<md-list>
+  <h3 md-subheader>How to find room <b>{{ room.name }}</b></h3>
+  <md-card class="details-card">
+    <img src="{{imageUrl}}" alt="roomplan">
+
+    <md-card-actions>
+      <a
+       [href]="this.showBuilding"
+       target="_blank"
+      >
+        Show this building on GoogleMaps
+      </a>
+      <a
+       [href]="this.planRoute"
+       target="_blank"
+       class="align-right"
+      >
+        Plan a route to this building
+      </a>
+    </md-card-actions>
+  </md-card>
+</md-list>

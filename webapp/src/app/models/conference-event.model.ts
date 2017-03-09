@@ -9,7 +9,10 @@ import {
   Person,
   ApiPerson,
 } from './person.model';
-
+import {
+  Room,
+  ApiRoom,
+ } from './room.model';
 /**
  * Event model.
  */
@@ -24,7 +27,7 @@ export class ConferenceEvent {
   public paper?: Paper;
   public startTime?: moment.Moment;
   public endTime?: moment.Moment;
-  public room?: string;
+  public room?: Room;
   public maxSize?: number;
 
   public static fromAPI (apiRepresentation: ApiConferenceEvent): ConferenceEvent {
@@ -47,7 +50,7 @@ export class ConferenceEvent {
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],
-      room: apiRepresentation.roomName,
+      room: apiRepresentation.room ? Room.fromAPI(apiRepresentation.room) : null,
       maxSize: apiRepresentation.maxSize,
     });
   }
@@ -91,7 +94,7 @@ export interface ApiConferenceEvent {
   paper: ApiPaper;
   favored: boolean;
   speakers: ApiPerson[];
-  roomName?: string;
+  room?: ApiRoom;
   startTime?: string;
   endTime?: string;
   duration: string;
