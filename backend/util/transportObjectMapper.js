@@ -10,7 +10,7 @@ const moment = require('moment');
 
 
 /**
- * Maps an instance of the Institution database model to a Person transport object
+ * Maps an instance of the Institution database model to a Institution transport object
  */
 function toInstitutionTO (institutionInstance) {
   return {
@@ -20,6 +20,16 @@ function toInstitutionTO (institutionInstance) {
   };
 }
 
+/**
+ * Maps an instance of the Room database model to a Room transport object
+ */
+function toRoomTO (roomInstance) {
+  return {
+    id: roomInstance.id,
+    name: roomInstance.name,
+    map: roomInstance.map,
+  };
+}
 
 /**
  * Maps a instance of the Person database model to a Person transport object
@@ -97,7 +107,7 @@ function toEventTO (eventInstance) {
     speakers: (eventInstance.speakers || [ ])
       .sort((a, b) => { return a.number - b.number; })
       .map(toSpeakerTO),
-    roomName: eventInstance.roomName,
+    room: eventInstance.room ? toRoomTO(eventInstance.room) : null,
     startTime: startTime ? startTime.format() : null,
     endTime: startTime ? startTime.add(duration, 'minutes').format() : null,
     duration: duration,
@@ -144,7 +154,7 @@ function toSessionTO (sessionInstance) {
     endTime: moment(sessionInstance.endTime).tz('Europe/Berlin'),
     chair: sessionInstance.person ? toPersonTO(sessionInstance.person) : null,
     events: events,
-    roomName: events.length ? events[0].roomName : null,
+    room: events.length ? events[0].room : null,
   };
 }
 
@@ -154,6 +164,7 @@ module.exports = {
   toEventTO: toEventTO,
   toPaperTO: toPaperTO,
   toPersonTO: toPersonTO,
+  toRoomTO: toRoomTO,
   toSessionTO: toSessionTO,
   toTrackTO: toTrackTO,
 };

@@ -25,6 +25,8 @@ import {
   AuthService,
   ApiService,
   ApiMapperService,
+  DirectionsService,
+  DirectionsResolver,
   EventService,
   EventResolver,
   EventOfSpeakerResolver,
@@ -39,11 +41,14 @@ import {
 
 // Components
 import {
+  AdminOverviewComponent,
   CalendarComponent,
+  DirectionsComponent,
   EventListComponent,
   EventOverviewComponent,
   EventViewComponent,
   EventViewOverlayComponent,
+  FileUploadComponent,
   LoginComponent,
   MyScheduleComponent,
   NavigationComponent,
@@ -71,7 +76,7 @@ const APP_PROVIDERS = [
 type StoreType = {
   state: InternalStateType,
   restoreInputValues: () => void,
-  disposeOldHosts: () => void
+  disposeOldHosts: () => void,
 };
 
 /**
@@ -80,13 +85,16 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
+    AdminOverviewComponent,
     AppComponent,
     CalendarComponent,
+    DirectionsComponent,
     EventListComponent,
     EventOverviewComponent,
     EventFilterPipe,
     EventViewComponent,
     EventViewOverlayComponent,
+    FileUploadComponent,
     MyScheduleComponent,
     NoContentComponent,
     LoginComponent,
@@ -123,6 +131,8 @@ type StoreType = {
     AuthService,
     ApiService,
     ApiMapperService,
+    DirectionsService,
+    DirectionsResolver,
     EventService,
     EventResolver,
     EventOfSpeakerResolver,

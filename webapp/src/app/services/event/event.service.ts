@@ -65,16 +65,14 @@ export class EventService {
    * Updates the favour status of an event.
    *
    * @param {ConferenceEvent} event The event whose favour status to update.
-   * @return void
+   * @return {Observable<any>} Observable return by the API call
    */
-  public updateFavourStatus(event: ConferenceEvent): void {
+  public updateFavourStatus(event: ConferenceEvent): Observable<any> {
     if (event.favored) {
-      this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { })
-        .subscribe(_ => null);
+      return this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { });
     } else {
-      this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id))
-        .subscribe(_ => null);
-    }
+      return this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id));
+     }
   }
 
   /** 
@@ -102,5 +100,22 @@ export class EventService {
       .replace(':eventId', eventId), {
         comment: comment,
       });
+  }
+
+  /** 
+   * Posts uploaded file for an event.
+   * 
+   * @param {string} eventId Id of the event 
+   * @param {File} file the file to be uploaded
+   * @return {Observable<any>} Observable of the API response
+   */
+  public uploadFile (eventId: string, file: File ): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('uploadFile', file);
+
+    return this.httpService.post(API_ROUTES.events.upload
+      .replace(':eventId', eventId), formData)
+      .map(res => res.json())
+      .catch(error => Observable.throw(error));
   }
 }

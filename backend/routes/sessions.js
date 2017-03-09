@@ -15,6 +15,7 @@ const PaperKeyword = DataBase.sequelize.models.paperkeyword;
 const Favorite = DataBase.sequelize.models.favorite;
 const Author = DataBase.sequelize.models.author;
 const Person = DataBase.sequelize.models.person;
+const Room = DataBase.sequelize.models.room;
 const Speaker = DataBase.sequelize.models.speaker;
 const Track = DataBase.sequelize.models.track;
 
@@ -37,6 +38,7 @@ function sessionSubroutes (app) {
               ] },
             ] },
             { model: Favorite, where: { personId: personId }, required: false },
+            { model: Room, required: false },
           ] },
         { model: Track, required: true },
         ],
@@ -152,6 +154,7 @@ function sessionSubroutes (app) {
               { model: PaperKeyword, as: 'keywords', required: false },
             ] },
             { model: Favorite, where: { personId: personId }, required: false },
+            { model: Room, required: false },
             { model: Speaker, required: false, include: [
               { model: Person, required: false, include: [
                 { model: Institution, required: false },

@@ -29,14 +29,10 @@ WITH (
 );
 
 CREATE TABLE public.room (
-  "name" varchar(255) NOT NULL,
-  "size" int4 NOT NULL,
-  conferenceid int4 NOT NULL,
-  CONSTRAINT room_pkey PRIMARY KEY ("name"),
-  CONSTRAINT room_conferenceid_fkey FOREIGN KEY (conferenceid) REFERENCES public.conference(id)
-)
-WITH (
-  OIDS=FALSE
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    map TEXT,
+    size INTEGER NOT NULL
 );
 
 CREATE TABLE public.track (
@@ -130,7 +126,7 @@ CREATE TABLE public.event (
   id SERIAL,
   sessionid int4 NULL,
   paperid int4 NULL,
-  roomname varchar(255) NULL,
+  roomid integer NULL,
   alias varchar(255) NULL,
   duration time NOT NULL,
   starttime timestamptz NULL,
@@ -142,7 +138,7 @@ CREATE TABLE public.event (
   CONSTRAINT event_conferenceid_fkey FOREIGN KEY (conferenceid) REFERENCES public.conference(id),
   CONSTRAINT event_kind_fkey FOREIGN KEY (kind) REFERENCES public.kind("name"),
   CONSTRAINT event_paperid_fkey FOREIGN KEY (paperid) REFERENCES public.paper(id) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT event_roomname_fkey FOREIGN KEY (roomname) REFERENCES public.room("name"),
+  CONSTRAINT event_roomname_fkey FOREIGN KEY (roomid) REFERENCES public.room("id"),
   CONSTRAINT event_sessionid_fkey FOREIGN KEY (sessionid) REFERENCES public."session"(id)
 )
 WITH (

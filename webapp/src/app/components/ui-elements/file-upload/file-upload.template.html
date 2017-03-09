@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="upload-form">  
+    <table *ngIf="file">
+      <caption> Your pending File </caption>
+      <tr>
+        <td class="right-align"><md-icon>insert_drive_file</md-icon></td>
+        <td> {{ file.name }}</td>
+      </tr>
+      <tr>
+        <td class="right-align"><md-icon>switch_camera</md-icon></td>
+      <td> {{ file.size / 1000 }} KB</td>
+      </tr>
+      <tr>
+        <td class="right-align"><md-icon>file_upload</md-icon></td> 
+        <td>
+          <button 
+           md-raised-button
+           (click)="submitFile()"
+           *ngIf="!uploading">
+            submit this file
+          </button>
+          <md-progress-bar mode="indeterminate" *ngIf="uploading"></md-progress-bar>
+        </td>
+      </tr>
+    </table>
+    
+    <div *ngIf="!file">
+      <md-icon class="huge-icon">file_upload</md-icon>
+    </div>
+    <div *ngIf="info.length > 0">
+      <p class="info"> {{ info }} </p>
+    </div>
+
+    <input 
+     type="file"
+     (change)="fileChange($event)"
+     placeholder="Select file"
+     accept=".pdf"
+    >
+  </div>
+</div>
