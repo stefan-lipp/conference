@@ -325,7 +325,7 @@
         "/rooms/{roomId}": {
             "get": {
                 "tags": [ "Rooms" ],
-                "summary": "Retreve room by id",
+                "summary": "Retrieve room by id",
                 "description": "",
                 "parameters": [
                     {
