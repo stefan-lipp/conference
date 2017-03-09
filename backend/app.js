@@ -13,6 +13,7 @@ const events = require('./routes/events');
 const comments = require('./routes/comments');
 const persons = require('./routes/persons');
 const tracks = require('./routes/tracks');
+const rooms = require('./routes/rooms');
 const sessions = require('./routes/sessions');
 
 const models = require('./model/index');
@@ -44,6 +45,7 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.subroute('/api/comments', comments);
   app.subroute('/api/events', events);
   app.subroute('/api/sessions', sessions);
+  app.subroute('/api/rooms', rooms);
   app.subroute('/api/tracks', tracks);
   app.subroute('/api', persons);
 

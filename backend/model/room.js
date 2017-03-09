@@ -2,24 +2,20 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define('room', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
-      primaryKey: true,
+      allowNull: false,
+    },
+    map: {
+      type: DataTypes.STRING,
     },
     size: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    conferenceId: {
-      type: DataTypes.INTEGER,
-      field: 'conferenceid',
-      allowNull: false,
-      references: {
-        model: 'conference',
-        key: 'id',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      },
     },
   });
 };
