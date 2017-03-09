@@ -111,7 +111,6 @@ export class EventViewComponent implements OnInit {
         this.isAuthorised = this.authService.isAdmin;
       }
     });
-    this.isAuthorised = this.authService.isAdmin;
   }
 
 }
