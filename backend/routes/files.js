@@ -3,8 +3,11 @@ const multer = require('multer');
 
 const Errors = require('../util/errors');
 const DataBase = require('../model/index');
+const Author = DataBase.sequelize.models.author;
 const Event = DataBase.sequelize.models.event;
 const EventResource = DataBase.sequelize.models.eventressource;
+const Paper = DataBase.sequelize.models.paper;
+const Speaker = DataBase.sequelize.models.speaker;
 
 const EVENT_FILES_BASE_PATH = path.join(__dirname, '..', 'uploads', 'events');
 // Max. 10 MB
@@ -19,10 +22,22 @@ function uploadEventResource (req, res) {
     return res.status(400).json(new Errors.BadRequest());
   }
 
-  Event.findById(eventId)
+  Event.findById(eventId, {
+    include: [
+      { model: Speaker },
+      { model: Paper, include: [ { model: Author } ] },
+    ],
+  })
     .then(event => {
 
-      // @TODO Access Control
+      const authorizedPersonnel = [ ]
+        .concat(...(event.paper && event.paper.authors.map(a => a.personId)))
+        .concat(...event.speakers.map(s => s.personId));
+      if (!req.decoded) {
+        return res.status(401).json(new Errors.UnauthorizedError());
+      } else if (!req.decoded.isAdmin && !authorizedPersonnel.includes(req.decoded.personId)) {
+        return res.status(403).json(new Errors.Forbidden());
+      }
 
       EventResource.findOrInitialize({
         where: { eventid: eventId },
@@ -39,22 +54,37 @@ function uploadEventResource (req, res) {
         const upload = multer({
           storage: eventFileStorage,
           fileFilter: (req, file, callback) => {
-
-            // @TODO Filter for PDFs only
+            const isPdf = (file.mimetype === 'application/pdf');
+            if (!isPdf) {
+              return callback(new Errors.InvalidFileFormatError(), false);
+            }
 
             callback(null, true);
           },
           limits: {
             fieldSize: MAX_FILE_SIZE,
           },
-        }).single('slides');
+        }).single('uploadFile');
 
         upload(req, res, (err) => {
           if (err) {
+            if (err instanceof Errors.InvalidFileFormatError) {
+              return res.status(400).send(err);
+            }
+
+            if (err.message === 'Unexpected field') {
+              return res.status(400)
+                .send(new Errors.InvalidFileFormatError(`Unexpected file in ${err.field}`));
+            }
+
             if (process.env.ENV === 'development') {
               console.error(err);
             }
             return res.status(500).send(new Errors.InternalServerError());
+          }
+
+          if (!req.file) {
+            return res.status(400).send(new Errors.InvalidFileFormatError('No file provided'));
           }
 
           const fileURL = `/uploads/events/${eventId}/${fileName}`;
