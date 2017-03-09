@@ -1,3 +1,4 @@
+BEGIN;
 CREATE TABLE roomNew (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -11,7 +12,7 @@ SELECT ROW_NUMBER() OVER (ORDER BY name), name, replace(name, ' ',''),SIZE FROM 
 
 ALTER TABLE event ADD COLUMN roomid INTEGER REFERENCES roomnew(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
-UPDATE event set roomid = r.id FROM (Select r.id,r.name FROM room r) r WHERE r.name=roomname ;
+UPDATE event set roomid = r.id FROM (Select r.id,r.name FROM roomnew r) r WHERE r.name=roomname ;
 
 
 ALTER TABLE event DROP COLUMN roomname; 
@@ -19,3 +20,4 @@ ALTER TABLE event DROP COLUMN roomname;
 DROP TABLE room;
 
 ALTER TABLE roomnew RENAME TO room;
+COMMIT;
