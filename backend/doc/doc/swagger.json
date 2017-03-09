@@ -278,7 +278,7 @@
                 "description": "",
                 "responses": {
                     "200": {
-                        "description": "List of all personal favorite events.",
+                        "description": "List of all institutions",
                         "schema": {
                             "$ref": "#/definitions/InstitutionList"
                         }

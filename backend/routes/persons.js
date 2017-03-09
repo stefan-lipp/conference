@@ -81,14 +81,17 @@ function personSubroutes (app) {
 
       Person.findById(personId, {
         include: [
-          { model: Institution, required: false },
           { association: Person.belongsTo(UserData, { foreignKey: 'id', as: 'userdata' }),
           },
         ],
       })
         .then(person => {
+          console.log(req.body.institution);
           if (req.body.name && req.body.name.length > 3 && req.body.name.length < 100) {
             person.name = escape(req.body.name);
+          }
+          if (req.body.institution) {
+            person.institutionId = req.body.institution;
           }
           bcrypt.hash(req.body.password, null, null, (err, hash) => {
             if (!err && req.body.password) {
