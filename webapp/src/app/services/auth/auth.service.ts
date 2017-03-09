@@ -84,7 +84,7 @@ export class AuthService {
   ): Observable<any> {
     return this.http.post(
       API_ROUTES.register,
-      this.apiMapper.registerDataLocalToApi(registerData)
+      this.apiMapper.registerDataLocalToApi(registerData),
     );
   }
 
