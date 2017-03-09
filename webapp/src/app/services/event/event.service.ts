@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Http,
-  Headers,
-  RequestOptions,
- } from '@angular/http';
+import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AuthHttp } from 'angular2-jwt';
 
@@ -114,17 +110,11 @@ export class EventService {
    * @return {Observable<any>} Observable of the API response
    */
   public uploadFile (eventId: string, file: File ): Observable<any> {
-    // build http RequestOptions
     const formData: FormData = new FormData();
-    formData.append('uploadFile', file, file.name);
-    const headers = new Headers();
-    headers.append('Content-Type', undefined);
-    headers.append('Accept', 'application/pdf');
-    let options = new RequestOptions({ headers: headers });
+    formData.append('uploadFile', file);
 
     return this.httpService.post(API_ROUTES.events.upload
-      .replace(':eventId', eventId), formData, options
-    )
+      .replace(':eventId', eventId), formData)
       .map(res => res.json())
       .catch(error => Observable.throw(error));
   }
