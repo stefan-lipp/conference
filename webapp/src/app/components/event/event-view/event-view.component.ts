@@ -40,7 +40,7 @@ export class EventViewComponent implements OnInit {
    */
   public ngOnInit() {
     this.route.data.subscribe((data: { event: ConferenceEvent }) => this.event = data.event);
-    this.isAuthorised = this.checkAuthorisation();
+    this.checkAuthorisation();
 }
 
   /**
@@ -101,17 +101,17 @@ export class EventViewComponent implements OnInit {
     context.drawImage(hint, room[0], room[1], 25 , 25);
   }
 
-  public checkAuthorisation (): boolean {
+  public checkAuthorisation (): void {
     this.personService.getLoggedInPerson().subscribe(person => {
       if (this.event.speakers.findIndex(speaker => speaker === person) > -1) {
-        return true;
+        this.isAuthorised = true;
       } else if (this.event.paper.authors.findIndex(author => author === person) > -1) {
-        return true;
+        this.isAuthorised = true;
       } else {
-        return this.authService.isAdmin;
+        this.isAuthorised = this.authService.isAdmin;
       }
     });
-        return this.authService.isAdmin;
+        this.isAuthorised = this.authService.isAdmin;
   }
 
 }
