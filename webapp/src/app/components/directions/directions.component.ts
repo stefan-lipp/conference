@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Room } from './../../models';
 
-/** file-upload component  */
 @Component({
   selector: 'directions',
   templateUrl: './directions.template.html',
@@ -18,6 +17,7 @@ export class DirectionsComponent {
 
   @Input()
   public room: Room;
+
   public imageUrl: string = '../../../assets/img/roomplans/filename.png';
   public showBuilding: string = 'https://www.google.de/maps/@48.14966,11.5656715,17z';
   public planRoute: string =
