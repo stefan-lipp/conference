@@ -6,7 +6,6 @@ import {
 import { ConferenceEvent } from './../../../models';
 import { EventService } from './../../../services';
 
-/** file-upload component  */
 @Component({
   selector: 'upload-tool',
   templateUrl: './file-upload.template.html',
@@ -18,13 +17,11 @@ export class FileUploadComponent {
 
   @Input()
   public event: ConferenceEvent;
+
   private info: String = '';
   private file: File;
   private uploading: Boolean = false;
 
-  /**
-   * Constructor for the FileUploadComponent.
-   */
   constructor(
     private eventService: EventService,
   ) { }
@@ -49,15 +46,11 @@ export class FileUploadComponent {
 
   }
 
-
   /**
    * Submits the file and calls API
    */
   public submitFile (): void {
-
-   // this.info = 'successfully uploaded';
    this.uploading = true;
-
     this.eventService.uploadFile(this.event.id, this.file).subscribe(
       data => {
         this.info = 'successfully uploaded';
@@ -69,6 +62,4 @@ export class FileUploadComponent {
       },
     );
   }
-
-
 }
