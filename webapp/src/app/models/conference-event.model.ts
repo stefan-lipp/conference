@@ -9,7 +9,10 @@ import {
   Person,
   ApiPerson,
 } from './person.model';
-import { Room } from './room.model';
+import {
+  Room,
+  ApiRoom,
+ } from './room.model';
 /**
  * Event model.
  */
@@ -47,13 +50,7 @@ export class ConferenceEvent {
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],
-      // @TODO: update if backend part is updated 
-      room: Room.fromAPI({
-        id: 1,
-        name: apiRepresentation.roomName,
-        map:  apiRepresentation.roomName ?
-          apiRepresentation.roomName.replace(' ', '').toLowerCase() : 'pearl1',
-      }),
+      room: apiRepresentation.room ? Room.fromAPI(apiRepresentation.room) : null,
       maxSize: apiRepresentation.maxSize,
     });
   }
@@ -97,7 +94,7 @@ export interface ApiConferenceEvent {
   paper: ApiPaper;
   favored: boolean;
   speakers: ApiPerson[];
-  roomName?: string;
+  room?: ApiRoom;
   startTime?: string;
   endTime?: string;
   duration: string;

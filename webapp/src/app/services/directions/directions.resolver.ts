@@ -20,7 +20,7 @@ export class DirectionsResolver implements Resolve<Room> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<Room> {
-     return this.directionsService.getRoom(route.params['RoomId']);
+     return this.directionsService.getRoom(route.params['roomId']);
   }
 
 }

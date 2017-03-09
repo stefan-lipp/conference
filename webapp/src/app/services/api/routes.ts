@@ -31,5 +31,5 @@ export const API_ROUTES = {
     update: `${API_BASE_URL}/tracks/:trackId`,
     delete: `${API_BASE_URL}/tracks/:trackId`,
   },
-  room: `${API_BASE_URL}/room/:roomId`,
+  room: `${API_BASE_URL}/rooms/:roomId`,
 };

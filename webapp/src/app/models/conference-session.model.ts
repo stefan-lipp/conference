@@ -10,7 +10,10 @@ import {
   ApiTrack,
 } from './track.model';
 
-import { Room } from './room.model';
+import {
+  Room,
+  ApiRoom,
+} from './room.model';
 
 
 export class ConferenceSession {
@@ -29,13 +32,7 @@ export class ConferenceSession {
       apiRepresentation.name,
       (apiRepresentation.events || [ ]).map(apiEvent => ConferenceEvent.fromAPI(apiEvent)),
       Track.fromApi(apiRepresentation.track),
-      // TODO update when backend delieveres real Rooms
-      Room.fromAPI({
-        id: 2,
-        name: apiRepresentation.roomName,
-        map:  apiRepresentation.roomName ?
-          apiRepresentation.roomName.replace(' ', '').toLowerCase() : 'pearl1',
-      }),
+      apiRepresentation.room ? Room.fromAPI(apiRepresentation.room) : null,
       moment(apiRepresentation.startTime),
       moment(apiRepresentation.endTime),
     );
@@ -59,7 +56,7 @@ export interface ApiConferenceSession {
   events: ApiConferenceEvent[ ];
   track: ApiTrack;
 
-  roomName?: string;
+  room?: ApiRoom;
   startTime?: string;
   endTime?: string;
 }
