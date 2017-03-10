@@ -18,7 +18,7 @@ export class DirectionsComponent implements OnInit {
   @Input()
   public room: Room;
 
-  public imageUrl: string = '../../../assets/img/roomplans/filename.png';
+  public imageUrl: string = '/assets/img/roomplans/filename';
   public showBuilding: string = 'https://www.google.de/maps/@48.14966,11.5656715,17z';
   public planRoute: string =
     'https://www.google.de/maps/dir//48.1494846,11.5675383/@48.14966,11.5656715,15z';

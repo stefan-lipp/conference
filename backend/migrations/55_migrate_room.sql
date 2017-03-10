@@ -20,4 +20,7 @@ ALTER TABLE event DROP COLUMN roomname;
 DROP TABLE room;
 
 ALTER TABLE roomnew RENAME TO room;
+
+UPDATE room SET MAP = LOWER(map)||'.png' WHERE map IS NOT NULL AND map <> '';
+
 COMMIT;
