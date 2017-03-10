@@ -114,6 +114,7 @@ function toEventTO (eventInstance) {
     maxSize: eventInstance.maxSize,
     kind: eventInstance.kind,
     favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),
+    voted: Boolean(eventInstance.vote && eventInstance.vote.length),
   };
 }
 

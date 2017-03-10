@@ -333,27 +333,15 @@
                 "tags": [ "Events","Votes" ],
                 "summary": "Retreive events ordered by voteing",
                 "description": "",
-                "responses": {
-                    "200": {
-                        "description": "List events ordered by voteing",
-                        "schema": {
-                            "$ref": "#/definitions/EventList"
-                        }
-                    },
-                    "500": {
-                        "description": "Unhandeled error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": false,
+                        "type": "string"
                     }
-                }
-            }
-        },
-        "/events/votes": {
-            "get": {
-                "tags": [ "Events","Votes" ],
-                "summary": "Retreive events ordered by voteing",
-                "description": "",
+                ],
                 "responses": {
                     "200": {
                         "description": "List events ordered by voteing",

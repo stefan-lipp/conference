@@ -161,6 +161,7 @@ function eventSubroutes (app) {
             { model: PaperKeyword, as: 'keywords', required: false },
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
+          { model: Vote, where: { personId: personId }, required: false },
         ],
         order: [ [ DataBase.sequelize.literal(
             '(SELECT count(*) FROM vote WHERE vote.eventid=event.id)'
