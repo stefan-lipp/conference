@@ -115,6 +115,7 @@ function toEventTO (eventInstance) {
     kind: eventInstance.kind,
     favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),
     voted: Boolean(eventInstance.vote && eventInstance.vote.length),
+    votecount: eventInstance.votecount ? eventInstance.votecount : undefined,
   };
 }
 
