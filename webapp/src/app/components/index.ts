@@ -7,3 +7,4 @@ export * from './no-content';
 export * from './person';
 export * from './session';
 export * from './ui-elements';
+export * from './directions';

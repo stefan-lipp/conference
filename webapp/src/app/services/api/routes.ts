@@ -10,6 +10,7 @@ export const API_ROUTES = {
     favorite: `${API_BASE_URL}/events/favorites/:eventid`,
     favorites: `${API_BASE_URL}/events/favorites`,
     comments: `${API_BASE_URL}/comments/events/:eventId`,
+    upload:  `${API_BASE_URL}/events/:eventId/slides`,
   },
   sessions: {
     all: `${API_BASE_URL}/sessions`,
@@ -31,4 +32,5 @@ export const API_ROUTES = {
     update: `${API_BASE_URL}/tracks/:trackId`,
     delete: `${API_BASE_URL}/tracks/:trackId`,
   },
+  room: `${API_BASE_URL}/rooms/:roomId`,
 };

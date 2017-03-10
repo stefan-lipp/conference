@@ -322,6 +322,38 @@
                 }
             }
         },
+        "/rooms/{roomId}": {
+            "get": {
+                "tags": [ "Rooms" ],
+                "summary": "Retrieve room by id",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "roomId",
+                        "in": "path",
+                        "description": "room",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                    },
+                    "404": {
+                        "description": "The requested room could not be found.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "/author/:personId/papers": {
             "get": {
                 "tags": [ "Papers" ],

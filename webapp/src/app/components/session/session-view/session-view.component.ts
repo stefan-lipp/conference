@@ -25,7 +25,7 @@ export class SessionViewComponent implements OnInit {
    */
   public ngOnInit() {
     this.route.data.subscribe((data: { session: ConferenceSession }) =>
-      this.session = data.session
+      this.session = data.session,
     );
   }
 
@@ -34,7 +34,10 @@ export class SessionViewComponent implements OnInit {
    */
   public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
     event.favored = state;
-    this.eventService.updateFavourStatus(event);
+    this.eventService.updateFavourStatus(event).subscribe(
+      (data: any) => { /* success */ },
+      (error) => event.favored = !event.favored,
+    );
   }
 
   /**

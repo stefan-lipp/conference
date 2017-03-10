@@ -9,7 +9,10 @@ import {
   Person,
   ApiPerson,
 } from './person.model';
-
+import {
+  Room,
+  ApiRoom,
+ } from './room.model';
 /**
  * Event model.
  */
@@ -24,7 +27,7 @@ export class ConferenceEvent {
   public paper?: Paper;
   public startTime?: moment.Moment;
   public endTime?: moment.Moment;
-  public room?: string;
+  public room?: Room;
   public maxSize?: number;
 
   public static fromAPI (apiRepresentation: ApiConferenceEvent): ConferenceEvent {
@@ -47,7 +50,7 @@ export class ConferenceEvent {
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
       type: EventType[apiRepresentation.kind],
-      room: apiRepresentation.roomName,
+      room: apiRepresentation.room ? Room.fromAPI(apiRepresentation.room) : null,
       maxSize: apiRepresentation.maxSize,
     });
   }
@@ -67,6 +70,17 @@ export class ConferenceEvent {
       case EventType.Entertainment: return 'Entertainment';
       default: return 'General Event';
     }
+  }
+
+  /** @returns this.title in a format suitable for URLs */
+  public get urlEncodedTitle (): string {
+    return this.title
+      .replace(/[^A-Za-z0-9]/g, ' ')
+      .trim()
+      .replace(/ +/g, '-')
+      .substr(0, 64)
+      .toLowerCase()
+      .replace(/-[^-]*$/, '');
   }
 
 }
@@ -91,7 +105,7 @@ export interface ApiConferenceEvent {
   paper: ApiPaper;
   favored: boolean;
   speakers: ApiPerson[];
-  roomName?: string;
+  room?: ApiRoom;
   startTime?: string;
   endTime?: string;
   duration: string;

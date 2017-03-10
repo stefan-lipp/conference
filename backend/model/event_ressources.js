@@ -16,12 +16,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  }, {
-    classMethods: {
-      associate: (models) => {
-        EventRessource.belongsTo(models.paper, { foreignKey: 'paperid' });
-      },
-    },
   });
   return EventRessource;
 };

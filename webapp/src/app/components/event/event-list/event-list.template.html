@@ -7,7 +7,7 @@
   <md-card-content>
     <span
       class="eventTitleLabel"
-      [routerLink]="[ '/events', event.id ]"
+      [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
     >
       {{ event.title }}
     </span>
@@ -31,7 +31,7 @@
     md-button
     color="accent"
     class="detailsButton"
-    [routerLink]="[ '/events', event.id ]"
+    [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
   >
     Details
   </button>
