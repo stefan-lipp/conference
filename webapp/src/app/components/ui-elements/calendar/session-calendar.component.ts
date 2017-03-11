@@ -23,8 +23,6 @@ export class SessionCalendarComponent implements OnInit {
 
   public selectedDay: moment.Moment = moment();
 
-  constructor () { }
-
   public ngOnInit () {
     /*
     TODO: get this working again.

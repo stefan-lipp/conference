@@ -152,6 +152,7 @@ function toSessionTO (sessionInstance) {
     track: sessionInstance.track ? toTrackTO(sessionInstance.track) : null,
     startTime: moment(sessionInstance.startTime).tz('Europe/Berlin'),
     endTime: moment(sessionInstance.endTime).tz('Europe/Berlin'),
+    chair: sessionInstance.person ? toPersonTO(sessionInstance.person) : null,
     events: events,
     room: events.length ? events[0].room : null,
   };

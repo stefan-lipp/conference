@@ -3,15 +3,16 @@ import {
   Institution,
   ApiInstitution,
 } from './institution.model';
+
 /**
- * Person model.
+ * Person model
  */
 export class Person {
 
   public id: string;
   public name: string;
   public email: string;
-  // optionals
+
   public details?: string;
   public institution?: Institution;
 
@@ -35,7 +36,7 @@ export interface ApiPerson {
   id: string;
   name: string;
   email: string;
-  // optionals
+
   details?: string;
   institution?: ApiInstitution;
 }

@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
 /**
- * Institution model.
+ * Institution model
  */
 export class Institution {
 
@@ -25,6 +25,6 @@ export class Institution {
 export interface ApiInstitution {
   id: string;
   name: string;
-  // optionals
+
   iconUrl?: string;
 }
