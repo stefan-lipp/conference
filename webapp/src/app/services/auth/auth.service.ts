@@ -80,7 +80,7 @@ export class AuthService {
     if (!tokenData) {
       return null;
     }
-    return String(tokenData.personName);
+    return tokenData.personName;
   }
 
   /**
