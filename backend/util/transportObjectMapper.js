@@ -97,7 +97,7 @@ function toEventTO (eventInstance) {
   const startTime = eventInstance.startTime ?
     moment(eventInstance.startTime).tz('Europe/Berlin') :
     null;
-  console.log(eventInstance);
+
   return {
     id: eventInstance.id,
     title: ((eventInstance.paper && eventInstance.paper.title) ||

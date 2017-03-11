@@ -176,7 +176,11 @@ function eventSubroutes (app) {
           ), 'DESC' ] ],
       })
         .then((events) => {
-          res.json(events.map(TOMapper.toEventTO));
+          res.json(events.map(e => {
+            var r = TOMapper.toEventTO(e);
+            r.votecount = e.dataValues.votecount;
+            return r;
+          }));
         })
         .catch((err) => {
           if (process.env.ENV === 'development') {
