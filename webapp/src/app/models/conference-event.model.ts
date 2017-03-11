@@ -76,6 +76,17 @@ export class ConferenceEvent {
     }
   }
 
+  /** @returns this.title in a format suitable for URLs */
+  public get urlEncodedTitle (): string {
+    return this.title
+      .replace(/[^A-Za-z0-9]/g, ' ')
+      .trim()
+      .replace(/ +/g, '-')
+      .substr(0, 64)
+      .toLowerCase()
+      .replace(/-[^-]*$/, '');
+  }
+
 }
 
 /**

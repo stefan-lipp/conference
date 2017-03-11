@@ -29,7 +29,7 @@ export class VotingComponent implements OnInit {
   /**
    * Adds a vote to a given event.
    *
-   * @param {ConferenceEvent} event The event to add a vote to.
+   * @param {ConferenceEvent} event The event to add a vote to.
    */
   public voteFor (event: ConferenceEvent): void {
     this.votingService.voteForEventId(event.id).subscribe(res =>

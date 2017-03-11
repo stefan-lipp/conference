@@ -1,8 +1,5 @@
 import * as _ from 'lodash';
 
-/**
- * Room model.
- */
 export class Room {
 
   public id: Number;

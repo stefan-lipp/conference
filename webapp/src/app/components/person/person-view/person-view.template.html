@@ -28,7 +28,9 @@
   </md-card-title>
   <md-card-content>
     <ul>
-      <li *ngFor="let event of talks"><a routerLink="{{ '/events/' + event.id }}">{{ event.title }}</a></li> <!-- TODO show event component like in list !-->
+      <li *ngFor="let event of talks">
+        <a [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]">{{ event.title }}</a>
+      </li> <!-- TODO show event component like in list !-->
     </ul>
   </md-card-content>
 </md-card>

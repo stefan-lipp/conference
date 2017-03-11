@@ -40,7 +40,7 @@ export class EventViewComponent implements OnInit {
   public ngOnInit() {
     this.route.data.subscribe((data: { event: ConferenceEvent }) => this.event = data.event);
     this.checkAuthorisation();
-}
+  }
 
   /**
    *  method to set favorite sate of an event and commit this to the api
@@ -52,7 +52,8 @@ export class EventViewComponent implements OnInit {
     this.eventService.updateFavourStatus(event).subscribe(
       (data: any) => { /* success */ },
       (error) => event.favored = !event.favored,
-    );  }
+    );
+  }
 
   /**
    * Returns the formatted event date.

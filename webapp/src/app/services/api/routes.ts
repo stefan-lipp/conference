@@ -37,5 +37,5 @@ export const API_ROUTES = {
     get: `${API_BASE_URL}/events/votes`,
     add: `${API_BASE_URL}/events/votes/:eventId`,
     remove: `${API_BASE_URL}/events/votes/:eventId`,
-  }
+  },
 };

@@ -162,6 +162,9 @@ function sessionSubroutes (app) {
             ] },
           ] },
           { model: Track, required: true },
+          { model: Person, required: false, include: [
+            { model: Institution, required: false },
+          ] },
         ],
         order: [ [ 'startTime', 'ASC' ] ],
       }).then(session => {
