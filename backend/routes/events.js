@@ -174,7 +174,6 @@ function eventSubroutes (app) {
         order: [ [ DataBase.sequelize.literal(
             '(SELECT count(*) FROM vote WHERE vote.eventid=event.id)'
           ), 'DESC' ] ],
-        // raw: true, // allows votecount as not event member
       })
         .then((events) => {
           res.json(events.map(TOMapper.toEventTO));

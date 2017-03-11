@@ -97,7 +97,7 @@ function toEventTO (eventInstance) {
   const startTime = eventInstance.startTime ?
     moment(eventInstance.startTime).tz('Europe/Berlin') :
     null;
-
+  console.log(eventInstance);
   return {
     id: eventInstance.id,
     title: ((eventInstance.paper && eventInstance.paper.title) ||
@@ -114,7 +114,7 @@ function toEventTO (eventInstance) {
     maxSize: eventInstance.maxSize,
     kind: eventInstance.kind,
     favored: Boolean(eventInstance.favorites && eventInstance.favorites.length),
-    voted: Boolean(eventInstance.vote && eventInstance.vote.length),
+    voted: Boolean(eventInstance.votes && eventInstance.votes.length),
     votecount: eventInstance.votecount ? eventInstance.votecount : undefined,
   };
 }
