@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import {
   AuthService,
-  PersonService,
 } from '../../services';
 import { Conference } from '../../models';
 
@@ -21,16 +20,13 @@ export class NavigationComponent implements OnInit {
 
   constructor (
     private authService: AuthService,
-    private personService: PersonService,
   ) { }
 
   /**
    * @memberof OnInit
    */
   public ngOnInit () {
-    this.personService.getLoggedInPerson().subscribe(person => {
-      this.username = person.name;
-    });
+    this.username = this.authService.userName;
   }
 
 }

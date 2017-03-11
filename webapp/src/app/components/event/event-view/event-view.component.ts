@@ -76,14 +76,12 @@ export class EventViewComponent implements OnInit {
   }
 
   public checkAuthorisation (): void {
-    this.personService.getLoggedInPerson().subscribe(person => {
-      if (this.event.speakers.findIndex(speaker => speaker === person) > -1) {
-        this.isAuthorised = true;
-      } else if (this.event.paper.authors.findIndex(author => author === person) > -1) {
-        this.isAuthorised = true;
-      } else {
-        this.isAuthorised = this.authService.isAdmin;
-      }
-    });
-  }
+    if (this.event.speakers.some(speaker => speaker.id === this.authService.userId)) {
+      this.isAuthorised = true;
+    } else if (this.event.paper.authors.some(author => author.id == this.authService.userId)) {
+      this.isAuthorised = true;
+    } else {
+      this.isAuthorised = this.authService.isAdmin;
+    }
+  };
 }
