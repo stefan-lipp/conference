@@ -13,9 +13,8 @@
     }
 }
 
-.favor-indicator {
-    margin-top: 7.5em;
-    z-index: 1;
+.favor-indicator + * {
+    margin-top: 0;
 }
 
 .details-card {
@@ -28,7 +27,9 @@
     h2 {
       margin-top: 0;
     }
+}
 
+.event-detail {
     md-icon {
         float: left;
         padding-right: 1em;
