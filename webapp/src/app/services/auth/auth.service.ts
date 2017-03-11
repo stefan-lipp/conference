@@ -96,7 +96,7 @@ export class AuthService {
     if (!tokenData) {
       return null;
     }
-    return String(tokenData.personId);
+    return tokenData.personId;
   }
   /**
    * Logs the user out and navigates to a given page
