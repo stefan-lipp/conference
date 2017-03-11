@@ -16,7 +16,8 @@ function toInstitutionTO (institutionInstance) {
   return {
     id: institutionInstance.id,
     name: institutionInstance.name,
-    iconUrl: institutionInstance.iconUrl,
+    url: institutionInstance.url ? institutionInstance.url : null,
+    iconUrl: institutionInstance.iconUrl ? institutionInstance.iconUrl : null,
   };
 }
 
@@ -151,6 +152,7 @@ function toSessionTO (sessionInstance) {
 module.exports = {
   toCommentTO: toCommentTO,
   toEventTO: toEventTO,
+  toInstitutionTO: toInstitutionTO,
   toPaperTO: toPaperTO,
   toPersonTO: toPersonTO,
   toSessionTO: toSessionTO,
