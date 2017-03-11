@@ -23,6 +23,7 @@ export class ConferenceEvent {
   public duration: number; // in minutes
   public type: EventType;
   public favored: boolean;
+  public voted: boolean = false;
   public speakers: Person[];
   public paper?: Paper;
   public startTime?: moment.Moment;

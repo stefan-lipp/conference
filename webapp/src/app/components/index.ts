@@ -8,3 +8,4 @@ export * from './person';
 export * from './session';
 export * from './ui-elements';
 export * from './directions';
+export * from './voting';

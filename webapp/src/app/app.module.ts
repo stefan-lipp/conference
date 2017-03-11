@@ -37,6 +37,7 @@ import {
   SessionService,
   SessionResolver,
   TrackService,
+  VotingService,
 } from './services';
 
 // Components
@@ -60,6 +61,7 @@ import {
   SessionViewComponent,
   ScheduleEditorComponent,
   TrackEditorComponent,
+  VotingComponent,
 } from './components';
 
 // Directives
@@ -107,6 +109,7 @@ type StoreType = {
     SessionViewComponent,
     ScheduleEditorComponent,
     TrackEditorComponent,
+    VotingComponent,
   ],
   entryComponents: [
     EventViewOverlayComponent,
@@ -143,6 +146,7 @@ type StoreType = {
     SessionService,
     SessionResolver,
     TrackService,
+    VotingService,
   ],
 })
 export class AppModule {

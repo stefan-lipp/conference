@@ -14,9 +14,9 @@
         <span *ngIf="authService.loggedIn">My Schedule</span>
         <span *ngIf="!authService.loggedIn">Schedule</span>
       </button>
-      <button md-menu-item routerLink="/vote">
+      <button md-menu-item routerLink="/voting">
         <md-icon>star_border</md-icon>
-        <span>Vote</span>
+        <span>Voting</span>
       </button>
       <span *ngIf="authService.loggedIn">
         <button *ngIf="authService.isAdmin" md-menu-item routerLink="/admin">
