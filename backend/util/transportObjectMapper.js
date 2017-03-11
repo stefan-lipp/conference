@@ -76,7 +76,7 @@ function toPaperTO (paperInstance) {
       .map(toAuthorTO),
     keywords: (paperInstance.keywords || []).map(toKeywordTO),
     abstract: paperInstance.abstract,
-    link: paperInstance.link,
+    link: paperInstance.url,
     tag: paperInstance.tag,
   };
 }
