@@ -1,6 +1,6 @@
 button {
     float: right;
-    margin-top: -.7em;
+    margin-top: -.8em;
 }
 
 .position-label {
@@ -10,11 +10,16 @@ button {
 
 .title-label {
     display: inline-block;
-    max-width: calc(100% - 6em);
+    max-width: calc(100% - 8em);
     margin-left: 1em;
     white-space: nowrap;
     overflow:hidden !important;
     text-overflow: ellipsis;
+}
+
+.votecount-label {
+    display: block;
+    float: right;
 }
 
 .voted-button {

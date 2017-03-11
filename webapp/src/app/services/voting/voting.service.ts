@@ -27,10 +27,7 @@ export class VotingService {
   public getEventsOrderedByVotes (): Observable<ConferenceEvent[]> {
     return this.authHttp.get(API_ROUTES.voting.get)
       .map(res => res.json())
-      .map(list => {
-        console.debug(list);
-        return list.map(this.apiMapperService.eventApiToLocal)
-      });
+      .map(list => list.map(this.apiMapperService.eventApiToLocal));
   }
 
   /**
