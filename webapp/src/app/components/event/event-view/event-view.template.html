@@ -1,8 +1,5 @@
 <div class="event-details-container">
 
-  <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator">
-    <md-icon>star</md-icon>
-  </div>
 
   <div class="navigation-area">
     <a href="/events#{{ event.id }}">
@@ -11,6 +8,11 @@
     </a>
   </div>
   <md-card class="details-card">
+
+    <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator">
+      <md-icon>star</md-icon>
+    </div>
+
     <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
     <h2 md-title>{{ event.title }}</h2>
     <div class="event-detail" *ngIf="event.startTime">
