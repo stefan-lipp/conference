@@ -32,4 +32,25 @@ export class VotingService {
         return list.map(this.apiMapperService.eventApiToLocal)
       });
   }
+
+  /**
+   * Adds a vote for the event with a given identifier.
+   *
+   * @param {string} eventId The event identifier.
+   */
+  public voteForEventId (eventId: string): Observable<any> {
+    return this.authHttp.post(API_ROUTES.voting.add
+      .replace(':eventId', eventId), { });
+  }
+
+  /**
+   * Removes a vote for the event with a given identifier.
+   *
+   * @param {string} eventId The event identifier.
+   */
+  public removeVoteForEventId (eventId: string): Observable<any> {
+    return this.authHttp.delete(API_ROUTES.voting.remove
+      .replace(':eventId', eventId));
+  }
+
 }

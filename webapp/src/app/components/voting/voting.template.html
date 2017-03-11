@@ -1,6 +1,28 @@
 <md-list>
   <h3 md-subheader>Vote for the events you liked most.</h3>
-  <md-card md-list-item *ngFor="let event of events">
-    {{ event.title }}
+  <md-card
+    md-list-item
+    *ngFor="let event of events; let index = index"
+  >
+    <md-card-subtitle>
+      <span class="position-label">{{ index + 1 }}.</span>
+      <span class="title-label">{{ event.title }}</span>
+
+      <button
+        md-icon-button
+        *ngIf="!event.voted"
+        (click)="voteFor(event)"
+      >
+        <md-icon>star_border</md-icon>
+      </button>
+      <button
+        md-icon-button
+        *ngIf="event.voted"
+        class="voted-button"
+        (click)="removeVoteFor(event)"
+      >
+        <md-icon>star</md-icon>
+      </button>
+    </md-card-subtitle>
   </md-card>
 </md-list>

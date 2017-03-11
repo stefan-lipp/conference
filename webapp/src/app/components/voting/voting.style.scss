@@ -1,0 +1,26 @@
+button {
+    float: right;
+    margin-top: -.7em;
+}
+
+.position-label {
+    display: block;
+    float: left;
+}
+
+.title-label {
+    display: inline-block;
+    max-width: calc(100% - 6em);
+    margin-left: 1em;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}
+
+.voted-button {
+    color: #FDD835;
+
+    md-icon {
+      font-size: 1.8em;
+    }
+}

@@ -27,4 +27,24 @@ export class VotingComponent implements OnInit {
       .subscribe(events => this.events = events);
   }
 
+  /**
+   *
+   * @param event
+   */
+  public voteFor (event: ConferenceEvent): void {
+    this.votingService.voteForEventId(event.id).subscribe(res =>
+      event.voted = true
+    );
+  }
+
+  /**
+   *
+   * @param event
+   */
+  public removeVoteFor (event: ConferenceEvent): void {
+    this.votingService.removeVoteForEventId(event.id).subscribe(res =>
+      event.voted = false
+    );
+  }
+
 }
