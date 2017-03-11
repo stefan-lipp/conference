@@ -161,10 +161,20 @@ function eventSubroutes (app) {
             { model: PaperKeyword, as: 'keywords', required: false },
           ] },
           { model: Favorite, where: { personId: personId }, required: false },
+          { model: Vote, where: { personId: personId }, required: false },
         ],
+        attributes: {
+          include: [
+            [
+              '(SELECT count(*) FROM vote WHERE vote.eventid=event.id GROUP BY vote.eventid)',
+              'votecount',
+            ],
+          ],
+        },
         order: [ [ DataBase.sequelize.literal(
             '(SELECT count(*) FROM vote WHERE vote.eventid=event.id)'
           ), 'DESC' ] ],
+        raw: true, // allows votecount as not event member
       })
         .then((events) => {
           res.json(events.map(TOMapper.toEventTO));
