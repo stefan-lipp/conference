@@ -61,4 +61,10 @@ export class SessionService {
   }
 
 
+  public getFavorites (): Observable<ConferenceSession[]> {
+    return this.httpService.get(API_ROUTES.sessions.favorites)
+      .map(res => res.json())
+      .map(list => list.map(this.apiMapperService.sessionApiToLocal));
+  }
+
 }
