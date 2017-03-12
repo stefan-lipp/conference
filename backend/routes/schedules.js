@@ -60,7 +60,7 @@ function scheduleSubroutes (app) {
           var sMatrix = [ [ ], [ ] ];
           ss.forEach(s => {
             let inserted = false;
-            for (let i = 0; i < sMatrix.length; ++i) {
+            for (let i = 0; i < sMatrix.length; i += 1) {
               if (sMatrix[i].some(x => sessionTimeOverlap(x.session, s))) {
                 continue;
               }
@@ -76,7 +76,7 @@ function scheduleSubroutes (app) {
             order: [ [ 'size', 'DESC' ] ],
           })
           .then(rs => {
-            for (var i = 0; i < sMatrix.length && i < rs.length; ++i) {
+            for (let i = 0; i < sMatrix.length && i < rs.length; i += 1) {
               sMatrix[i].forEach(s => {
                 s.room = rs[i];
                 return s;
@@ -89,8 +89,8 @@ function scheduleSubroutes (app) {
             })
             .then(es => {
               es.forEach(e => {
-                for (let i = 0; i < sMatrix.length; ++i) {
-                  for (let j = 0; j < sMatrix[i].length; ++j) {
+                for (let i = 0; i < sMatrix.length; i += 1) {
+                  for (let j = 0; j < sMatrix[i].length; j += 1) {
                     if (e.kind === sMatrix[i][j].session.track.kind &&
                         fitTime(
                           sMatrix[i][j].session, moment.duration(e.duration).minutes() +

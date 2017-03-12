@@ -65,7 +65,7 @@ function sessionSubroutes (app) {
       const session = {
         name: escape(req.body.name),
         events: [],
-        trackid: escape(req.body.track.id+""),
+        trackid: escape(String(req.body.track.id)),
         startTime: moment(escape(req.body.startTime)).tz('Europe/Berlin'),
         endTime: moment(escape(req.body.endTime)).tz('Europe/Berlin'),
       };
