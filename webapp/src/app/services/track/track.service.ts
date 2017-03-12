@@ -53,4 +53,15 @@ export class TrackService {
     return this.authHttp
       .delete(API_ROUTES.tracks.delete.replace(':trackId', track.id.toString(10)));
   }
+
+  /**
+   * Performs a scheduling
+   *
+   *
+   * @returns {Observable<Track>} Track in new state
+   */
+  public schedule (): Observable<any> {
+    return this.authHttp.post(API_ROUTES.schedule.all, { })
+      .map(res => res.json());
+  }
 }

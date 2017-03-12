@@ -16,6 +16,7 @@ const tracks = require('./routes/tracks');
 const rooms = require('./routes/rooms');
 const sessions = require('./routes/sessions');
 const files = require('./routes/files');
+const schedules = require('./routes/schedules');
 
 const models = require('./model/index');
 
@@ -50,6 +51,7 @@ models.sequelize.sync({ force: forceSync }).then(() => {
   app.subroute('/api/rooms', rooms);
   app.subroute('/api/tracks', tracks);
   app.subroute('/api', persons);
+  app.subroute('/api/schedules', schedules);
 
   // Catch 404 and forward to error handler
   app.use((req, res, next) => {

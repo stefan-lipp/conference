@@ -65,9 +65,9 @@ function sessionSubroutes (app) {
       const session = {
         name: escape(req.body.name),
         events: [],
-        trackid: escape(req.body.track.id),
-        startTime: escape(moment(req.body.startTime).tz('Europe/Berlin')),
-        endTime: escape(moment(req.body.endTime).tz('Europe/Berlin')),
+        trackid: escape(String(req.body.track.id)),
+        startTime: moment(escape(req.body.startTime)).tz('Europe/Berlin'),
+        endTime: moment(escape(req.body.endTime)).tz('Europe/Berlin'),
       };
       if (session.startTime >= session.endTime) {
         res.status(400).send();
