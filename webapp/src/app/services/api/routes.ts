@@ -33,4 +33,9 @@ export const API_ROUTES = {
     delete: `${API_BASE_URL}/tracks/:trackId`,
   },
   room: `${API_BASE_URL}/rooms/:roomId`,
+  voting: {
+    get: `${API_BASE_URL}/events/votes`,
+    add: `${API_BASE_URL}/events/votes/:eventId`,
+    remove: `${API_BASE_URL}/events/votes/:eventId`,
+  },
 };

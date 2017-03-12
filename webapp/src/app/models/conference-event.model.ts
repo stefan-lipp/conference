@@ -23,7 +23,9 @@ export class ConferenceEvent {
   public duration: number; // in minutes
   public type: EventType;
   public favored: boolean;
+  public voted: boolean;
   public speakers: Person[];
+  public voteCount?: number;
   public paper?: Paper;
   public startTime?: moment.Moment;
   public endTime?: moment.Moment;
@@ -45,7 +47,9 @@ export class ConferenceEvent {
       title: apiRepresentation.title,
       duration: apiRepresentation.duration,
       favored: apiRepresentation.favored,
+      voted: apiRepresentation.voted,
       speakers: apiRepresentation.speakers.map(Person.fromAPI),
+      voteCount: apiRepresentation.votecount,
       paper: apiRepresentation.paper ? Paper.fromAPI(apiRepresentation.paper) : null,
       startTime: moment(apiRepresentation.startTime),
       endTime: moment(apiRepresentation.endTime),
@@ -104,8 +108,10 @@ export interface ApiConferenceEvent {
   title: string;
   paper: ApiPaper;
   favored: boolean;
+  voted: boolean;
   speakers: ApiPerson[];
   room?: ApiRoom;
+  votecount?: number;
   startTime?: string;
   endTime?: string;
   duration: string;

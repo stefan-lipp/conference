@@ -75,7 +75,7 @@
     "no-shadow-restricted-names": "error",
     "no-shadow": "warn",
     "no-undef-init": "error",
-    "no-undefined": "error",
+    "no-undefined": "warn",
     "no-use-before-define": "error",
     "global-require": "error",
     "handle-callback-err": [ "error", "err" ],

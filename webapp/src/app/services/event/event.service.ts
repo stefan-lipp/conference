@@ -75,9 +75,9 @@ export class EventService {
      }
   }
 
-  /** 
+  /**
    * Retrieves comments for a single event.
-   * 
+   *
    * @param {string} eventId Id of the event the comment is connected to
    * @return {Observable<Comment[]>} Observable of the retrieved comments
    */
@@ -88,10 +88,10 @@ export class EventService {
       .map(cs => cs.map(Comment.fromAPI));
   }
 
-  /** 
+  /**
    * Posts new comment for an event.
-   * 
-   * @param {string} eventId Id of the event 
+   *
+   * @param {string} eventId Id of the event
    * @param {string} comment the actual comments messsage
    * @return {Observable<any>} Observable of the API response
    */
@@ -102,10 +102,10 @@ export class EventService {
       });
   }
 
-  /** 
+  /**
    * Posts uploaded file for an event.
-   * 
-   * @param {string} eventId Id of the event 
+   *
+   * @param {string} eventId Id of the event
    * @param {File} file the file to be uploaded
    * @return {Observable<any>} Observable of the API response
    */

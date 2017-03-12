@@ -5,21 +5,34 @@
     <conference-navigation-user *ngIf="authService.loggedIn"></conference-navigation-user>
 
     <md-menu x-position="before" #menu="mdMenu">
-      <a md-menu-item routerLink="/events">Events</a>
+      <button md-menu-item routerLink="/events">
+        <md-icon>bookmark_border</md-icon>
+        <span>Events</span>
+      </button>
+      <button md-menu-item routerLink="/my-schedule">
+        <md-icon>alarm</md-icon>
+        <span *ngIf="authService.loggedIn">My Schedule</span>
+        <span *ngIf="!authService.loggedIn">Schedule</span>
+      </button>
+      <button md-menu-item routerLink="/voting">
+        <md-icon>star_border</md-icon>
+        <span>Voting</span>
+      </button>
       <span *ngIf="authService.loggedIn">
-        <a md-menu-item routerLink="/my-schedule">My Schedule</a>
-        <a
-         *ngIf="authService.isAdmin"
-         md-menu-item
-         routerLink="/admin"
-        >
-          Admin Tools
-        </a>
-        <a md-menu-item (click)="authService.logout('/events')">Logout</a>
+        <button *ngIf="authService.isAdmin" md-menu-item routerLink="/admin">
+          <md-icon>lock_open</md-icon>
+          <span>Admin Tools</span>
+        </button>
+        <button md-menu-item (click)="authService.logout('/events')">
+          <md-icon>exit_to_app</md-icon>
+          <span>Logout</span>
+        </button>
       </span>
       <span *ngIf="!authService.loggedIn">
-        <a md-menu-item routerLink="/my-schedule">Schedule</a>
-        <a md-menu-item routerLink="/login">Login</a>
+        <button md-menu-item routerLink="/login">
+          <md-icon>person_outline</md-icon>
+          <span>Login</span>
+        </button>
       </span>
     </md-menu>
 

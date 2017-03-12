@@ -94,6 +94,22 @@
                 "tags": [ "Events" ],
                 "summary": "Retrieve all comments to an event",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                     },
@@ -177,11 +193,27 @@
                 }
             }
         },
-        "/event/:eventid/favorite": {
+        "/event/favorites/{eventId}": {
             "post": {
                 "tags": [ "Events" ],
                 "summary": "Favor this event",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Event favored"
@@ -204,6 +236,22 @@
                 "tags": [ "Events" ],
                 "summary": "Unfavor this event",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "204": {
                         "description": "Event un-favored"
@@ -223,7 +271,7 @@
                 }
             }
         },
-        "events/:eventId": {
+        "events/{eventId}": {
             "get": {
                 "tags": [ "Events" ],
                 "summary": "Retrieve a single events.",
@@ -255,6 +303,15 @@
                 "tags": [ "Events","Favorites" ],
                 "summary": "Retrieve all personal favorite events.",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "List of all personal favorite events.",
@@ -271,11 +328,129 @@
                 }
             }
         },
-        "/speaker/:personId/events": {
+        "/events/votes": {
+            "get": {
+                "tags": [ "Events","Votes" ],
+                "summary": "Retreive events ordered by voteing",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List events ordered by voteing",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/events/votes/{eventId}": {
+            "post": {
+                "tags": [ "Events","Votes" ],
+                "summary": "Retreive events ordered by voteing",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List events ordered by voteing",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [ "Events","Votes" ],
+                "summary": "Retreive events ordered by voteing",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List events ordered by voteing",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    },
+                    "500": {
+                        "description": "Unhandeled error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/speaker/{personId}/events": {
             "get": {
                 "tags": [ "Events" ],
                 "summary": "Retrieve events of a speaker.",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Data of the requested event."
@@ -300,6 +475,15 @@
                 "tags": [ "Sessions" ],
                 "summary": "Retrieve events of a speaker.",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Data of the requested event.",
@@ -359,6 +543,22 @@
                 "tags": [ "Papers" ],
                 "summary": "Retrieve papers of an author.",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Data of the requested author.",
@@ -381,11 +581,27 @@
                 }
             }
         },
-        "persons/:personId": {
+        "persons/{personId}": {
             "get": {
                 "tags": [ "Persons" ],
                 "summary": "Retrieve person information.",
                 "description": "",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "JWT for user authoization",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "description": "event",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Data of the requested person.",
