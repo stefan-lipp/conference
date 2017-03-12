@@ -51,12 +51,53 @@ export class AuthService {
     return tokenNotExpired();
   }
 
+  /**
+   * Getter whether a user is admin in
+   * @return {boolean} is User loged in
+   */
   public get isAdmin (): boolean {
     const token = localStorage.getItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
+    if (!token) {
+      return false;
+    }
     const tokenData = (new JwtHelper()).decodeToken(token);
+    if (!tokenData) {
+      return false;
+    }
     return Boolean(tokenData.isAdmin);
   }
 
+  /**
+   * Getter user name
+   * @return {string} logged in users' name
+   */
+  public get userName (): string {
+    const token = localStorage.getItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
+    if (!token) {
+      return null;
+    }
+    const tokenData = (new JwtHelper()).decodeToken(token);
+    if (!tokenData) {
+      return null;
+    }
+    return tokenData.personName;
+  }
+
+  /**
+   * Getter user id
+   * @return {string} logged in user's id
+   */
+  public get userId (): string {
+    const token = localStorage.getItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
+    if (!token) {
+      return null;
+    }
+    const tokenData = (new JwtHelper()).decodeToken(token);
+    if (!tokenData) {
+      return null;
+    }
+    return tokenData.personId;
+  }
   /**
    * Logs the user out and navigates to a given page
    *
