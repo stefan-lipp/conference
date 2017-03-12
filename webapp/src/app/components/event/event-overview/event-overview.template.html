@@ -36,7 +36,7 @@
     <a *ngIf="selectedEvents.length > 0" href="/events#pageTop" class="info">Go to top</a>
 
   </md-tab>
-  <md-tab label="Calendar">
+  <md-tab *ngIf="conference.scheduled" label="Calendar">
     <conference-calendar
       [tracks]="tracks"
     ></conference-calendar>

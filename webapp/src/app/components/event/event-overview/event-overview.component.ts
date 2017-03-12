@@ -6,6 +6,7 @@ import {
 import { Router } from '@angular/router';
 
 import {
+  Conference,
   ConferenceEvent,
   ConferenceSession,
 } from '../../../models';
@@ -28,6 +29,7 @@ export class EventOverviewComponent implements OnInit {
   public loading: boolean = true;
   public selectedTab = 0;
 
+  private conference: Conference = new Conference();
   /** Current filter query */
   public filterQuery: string = '';
 
