@@ -22,7 +22,7 @@ export class VotingComponent implements OnInit {
   /**
    * @memberof OnInit
    */
-  ngOnInit () {
+  public ngOnInit () {
     this.reloadVotings();
   }
 

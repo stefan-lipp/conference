@@ -6,7 +6,12 @@
   >
     <md-card-subtitle>
       <span class="position-label">{{ index + 1 }}.</span>
-      <span class="title-label">{{ event.title }}</span>
+      <span
+        class="title-label"
+        [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
+      >
+        {{ event.title }}
+      </span>
 
       <button
         md-icon-button
@@ -24,7 +29,7 @@
         <md-icon>star</md-icon>
       </button>
 
-      <span class="votecount-label">{{ event.votecount }}</span>
+      <span class="votecount-label">{{ event.voteCount }}</span>
     </md-card-subtitle>
   </md-card>
 </md-list>
