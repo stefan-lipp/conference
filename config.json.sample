@@ -1,5 +1,6 @@
 {
   "name": "Your-Name-Here",
+  "scheduled" : false,
   "startDate": "2016-09-05",
   "endDate": "2016-09-09"
 }

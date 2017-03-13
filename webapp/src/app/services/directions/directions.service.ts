@@ -21,7 +21,7 @@ export class DirectionsService {
    * Makes api call to get the Room of an id 
    */
   public getRoom (roomId: number): Observable<Room> {
-    return this.authHttp.get(API_ROUTES.room.replace(':roomId', roomId.toString(10)))
+    return this.http.get(API_ROUTES.room.replace(':roomId', roomId.toString(10)))
       .map(res => res.json())
       .map(this.roomApiToLocal);
   }
