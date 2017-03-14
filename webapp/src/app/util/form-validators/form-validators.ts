@@ -39,12 +39,12 @@ export class FormValidators {
     if (typeof value === 'string') {
       return (formControl: FormControl) =>
         formControl.value === value ? null : {
-          matching: false,
+          nonEqual: true,
         };
     } else if (typeof value === 'function') {
       return (formControl: FormControl) =>
         formControl.value === value() ? null : {
-          matching: false,
+          nonEqual: true,
         };
     } else {
       throw 'Invalid input in validateEquality function';

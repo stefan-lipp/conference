@@ -70,6 +70,10 @@
           <li *ngIf="form.controls['passwordConfirmation'].errors.required">
             Password confirmation is required.
           </li>
+
+          <li *ngIf="form.controls['passwordConfirmation'].errors.nonEqual">
+            Passwords do not match.
+          </li>
         </ul>
       </label>
 

@@ -12,17 +12,24 @@ import { AuthService } from '../../../services';
 @Component({
   selector: 'conference-login',
   templateUrl: './login.template.html',
-  styleUrls: [ './login.style.scss' ],
 })
 export class LoginComponent {
 
+  /**
+   * @type {FormGroup}
+   * @memberOf LoginComponent
+   */
   public form: FormGroup;
 
+  /**
+   * @type {{ message: string }[]}
+   * @memberOf LoginComponent
+   */
   public globalErrors: { message: string }[] = [ ];
 
   constructor (
-    private formBuilder: FormBuilder,
     private authService: AuthService,
+    private formBuilder: FormBuilder,
     private router: Router,
   ) {
     this.form = this.formBuilder.group({
@@ -38,6 +45,8 @@ export class LoginComponent {
    *
    * @param {{ email: string, password: string }} data Form data
    * @return {void}
+   *
+   * @memberOf LoginComponent
    */
   public onSubmit (data: { email: string, password: string }): void {
     this.authService.login(data).subscribe(
@@ -46,26 +55,27 @@ export class LoginComponent {
       },
       (res: Response) => {
         const err = res.json();
-        if (res.status === 401) {
-          // 401 Unauthorized
-          this.globalErrors = [ {
-            message: err.message,
-          } ];
-          if (ENV === 'development') {
-            console.error(res.status, err);
-          }
-        } else if (res.status === 404) {
-          // 404 Not Found
-          this.globalErrors = [ {
-            message: 'Login is temporarily not available. Please try again at a later time.',
-          } ];
-        } else {
-          this.globalErrors = [ {
-            message: err.message,
-          } ];
-          if (ENV === 'development') {
-            console.error(res.status, err);
-          }
+        switch (res.status) {
+          case 401:
+          case 403:
+            // 401 Unauthorized || 403 Forbidden
+            this.globalErrors = [ {
+              message: err.message,
+            } ];
+            break;
+          case 404:
+            // 404 Not Found
+            this.globalErrors = [ {
+              message: 'Login is temporarily not available. Please try again at a later time.',
+            } ];
+            break;
+          default:
+            this.globalErrors = [ {
+              message: err.message,
+            } ];
+        }
+        if (ENV === 'development') {
+          console.error(res.status, err);
         }
       },
     );
