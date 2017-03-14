@@ -5,33 +5,57 @@ import {
 } from './institution.model';
 
 /**
- * Person model
+ * Local person model
+ *
+ * @export
+ * @class Person
  */
 export class Person {
 
-  public id: string;
-  public name: string;
-  public email: string;
-
-  public details?: string;
-  public institution?: Institution;
-
+  /**
+   * Transforms API representation of a person to local
+   *
+   * @static
+   * @param {ApiPerson} apiRepresentation
+   * @returns {Person}
+   *
+   * @memberOf Person
+   */
   public static fromAPI (apiRepresentation: ApiPerson): Person {
-    return new Person ({
-      id: apiRepresentation.id,
-      name: apiRepresentation.name,
-      email: apiRepresentation.email,
-      details: apiRepresentation.details,
-      institution: apiRepresentation.institution ?
-        Institution.fromAPI(apiRepresentation.institution) : null,
-    });
+    return new Person (
+      apiRepresentation.id,
+      apiRepresentation.name,
+      apiRepresentation.email,
+      apiRepresentation.details,
+      <Institution> apiRepresentation.institution,
+    );
   }
 
-  constructor (data: any) {
-    _.merge(this, data);
-  }
+  /**
+   * Creates an instance of Person.
+   * @param {string} id
+   * @param {string} name
+   * @param {string} email
+   * @param {string} [details='']
+   * @param {Institution} [institution]
+   *
+   * @memberOf Person
+   */
+  constructor (
+    public id: string,
+    public name: string,
+    public email: string,
+    public details: string = '',
+    public institution?: Institution,
+  ) { }
 }
 
+/**
+ * API Person model
+ *
+ * @export
+ * @interface ApiPerson
+ */
 export interface ApiPerson {
   id: string;
   name: string;

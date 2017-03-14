@@ -1,27 +1,20 @@
-import * as _ from 'lodash';
-
-export class Room {
-
-  public id: Number;
-  public name: string;
-  public map: string;
-
-  public static fromAPI (apiRepresentation: ApiRoom): Room {
-    return new Room({
-      id: apiRepresentation.id,
-      name: apiRepresentation.name,
-      map: apiRepresentation.map,
-    });
-  }
-
-   constructor (data: any) {
-    _.merge(this, data);
-  }
-
-}
-
+/**
+ * API Room model
+ *
+ * @export
+ * @interface ApiRoom
+ */
 export interface ApiRoom {
   id: number;
   name: string;
   map: string;
 }
+
+/**
+ * Local room model
+ *
+ * @export
+ * @interface Room
+ * @extends {ApiRoom}
+ */
+export interface Room extends ApiRoom { }
