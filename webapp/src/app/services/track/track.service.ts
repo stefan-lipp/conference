@@ -24,8 +24,7 @@ export class TrackService {
    */
   public getAll (): Observable<Track[]> {
     return this.authHttp.get(API_ROUTES.tracks.all)
-      .map(res => res.json())
-      .map(tracks => tracks.map(Track.fromApi));
+      .map(res => <Track[]> res.json());
   }
 
   /**
@@ -39,14 +38,12 @@ export class TrackService {
       API_ROUTES.tracks.update.replace(':trackId', track.id.toString(10)),
       track
     )
-      .map(res => res.json())
-      .map(t => Track.fromApi(t));
+      .map(res => <Track> res.json());
   }
 
   public create (track: Track): Observable<Track> {
     return this.authHttp.post(API_ROUTES.tracks.create, track)
-      .map(res => res.json())
-      .map(t => Track.fromApi(t));
+      .map(res => <Track> res.json());
   }
 
   public delete (track: Track): Observable<any> {

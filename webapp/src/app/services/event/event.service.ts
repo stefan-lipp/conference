@@ -69,21 +69,26 @@ export class EventService {
    */
   public updateFavourStatus(event: ConferenceEvent): Observable<any> {
     if (event.favored) {
-      return this.authHttp.post(API_ROUTES.events.favorite.replace(':eventid', event.id), { });
+      return this.authHttp.post(
+        API_ROUTES.events.favorite.replace(':eventid', event.id.toString(10)),
+        { },
+      );
     } else {
-      return this.authHttp.delete(API_ROUTES.events.favorite.replace(':eventid', event.id));
+      return this.authHttp.delete(
+        API_ROUTES.events.favorite.replace(':eventid', event.id.toString(10)));
      }
   }
 
   /**
    * Retrieves comments for a single event.
    *
-   * @param {string} eventId Id of the event the comment is connected to
+   * @param {number} eventId Id of the event the comment is connected to
    * @return {Observable<Comment[]>} Observable of the retrieved comments
    */
-  public getComments (eventId: string): Observable<Comment[]> {
+  public getComments (eventId: number): Observable<Comment[]> {
     return this.httpService.get(API_ROUTES.events.comments
-      .replace(':eventId', eventId))
+      .replace(':eventId', eventId.toString(10))
+    )
       .map(res => res.json())
       .map(cs => cs.map(Comment.fromAPI));
   }
@@ -91,30 +96,30 @@ export class EventService {
   /**
    * Posts new comment for an event.
    *
-   * @param {string} eventId Id of the event
+   * @param {number} eventId Id of the event
    * @param {string} comment the actual comments messsage
    * @return {Observable<any>} Observable of the API response
    */
-  public addComment (eventId: string, comment: string ): Observable<any> {
-    return this.httpService.post(API_ROUTES.events.comments
-      .replace(':eventId', eventId), {
-        comment: comment,
-      });
+  public addComment (eventId: number, comment: string ): Observable<any> {
+    return this.httpService.post(
+      API_ROUTES.events.comments.replace(':eventId', eventId.toString(10)),
+      { comment: comment },
+    );
   }
 
   /**
    * Posts uploaded file for an event.
    *
-   * @param {string} eventId Id of the event
+   * @param {number} eventId Id of the event
    * @param {File} file the file to be uploaded
    * @return {Observable<any>} Observable of the API response
    */
-  public uploadFile (eventId: string, file: File ): Observable<any> {
+  public uploadFile (eventId: number, file: File ): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('uploadFile', file);
 
     return this.httpService.post(API_ROUTES.events.upload
-      .replace(':eventId', eventId), formData)
+      .replace(':eventId', eventId.toString(10)), formData)
       .map(res => res.json())
       .catch(error => Observable.throw(error));
   }

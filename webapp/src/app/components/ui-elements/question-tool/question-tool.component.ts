@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 import {
   Component,
   Input,
@@ -5,8 +7,9 @@ import {
 } from '@angular/core';
 
 import {
-  ConferenceEvent,
   Comment,
+  ConferenceEvent,
+  Person,
 } from './../../../models';
 import { EventService } from './../../../services';
 
@@ -46,18 +49,14 @@ export class QuestionToolComponent implements OnInit{
     if (this.newComment) {
       this.eventService.addComment(this.event.id, this.newComment)
         .subscribe(_ => {
-          const newEntry: Comment = {
-            timestamp: 'just now',
-            person: {
-              name: 'You',
-              id: null,
-              email: '',
-            },
-            comment: this.newComment,
-          };
-        this.comments.push(newEntry);
-        this.newComment = '';
-      });
+          const newEntry: Comment = new Comment(
+            moment(),
+            new Person(null, 'You', ''),
+            this.newComment,
+          );
+          this.comments.push(newEntry);
+          this.newComment = '';
+        });
     }
   }
 }

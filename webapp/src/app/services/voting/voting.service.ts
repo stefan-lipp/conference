@@ -35,19 +35,19 @@ export class VotingService {
    *
    * @param {string} eventId The event identifier.
    */
-  public voteForEventId (eventId: string): Observable<any> {
+  public voteForEventId (eventId: number): Observable<any> {
     return this.authHttp.post(API_ROUTES.voting.add
-      .replace(':eventId', eventId), { });
+      .replace(':eventId', eventId.toString(10)), { });
   }
 
   /**
    * Removes a vote for the event with a given identifier.
    *
-   * @param {string} eventId The event identifier.
+   * @param {number} eventId The event identifier.
    */
-  public removeVoteForEventId (eventId: string): Observable<any> {
+  public removeVoteForEventId (eventId: number): Observable<any> {
     return this.authHttp.delete(API_ROUTES.voting.remove
-      .replace(':eventId', eventId));
+      .replace(':eventId', eventId.toString(10)));
   }
 
 }
