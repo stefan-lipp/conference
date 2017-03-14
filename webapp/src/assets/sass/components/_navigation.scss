@@ -5,3 +5,24 @@ conference-navigation {
     z-index: 2;
     box-shadow: .1em .1em .1em #888888;
 }
+
+conference-navigation-user {
+    [md-button] {
+        border: thin solid #ffffff;
+        border-radius: 1rem;
+        margin: 0 1rem;
+        padding: 0 .5rem;
+        display: flex;
+        align-items: center;
+        min-width: auto;
+        height: 2rem
+    }
+
+    .username {
+        display: none;
+
+        @include breakpoint(md) {
+            display: block;
+        }
+    }
+}
