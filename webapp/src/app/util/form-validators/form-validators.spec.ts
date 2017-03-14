@@ -42,8 +42,9 @@ describe('FormValidators', () => {
       });
 
       it('should accept equal input', () => {
-        const INPUT_FN = () => 'foo';
-        const fc = new FormControl(INPUT_FN());
+        const INPUT = 'foo';
+        const INPUT_FN = () => INPUT;
+        const fc = new FormControl(INPUT);
         expect(FormValidators.validateEquality(INPUT_FN)(fc)).toBeNull();
       });
     });
