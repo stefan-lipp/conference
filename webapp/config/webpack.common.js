@@ -21,7 +21,8 @@ const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Conference Tool',
+  title: 'CoMT',
+  description: 'CoMT Conference Management Tool',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
 };
