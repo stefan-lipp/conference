@@ -29,8 +29,8 @@ export class EventOverviewComponent implements OnInit {
   public loading: boolean = true;
   public selectedTab = 0;
 
-  public conference: Conference = new Conference();
-  
+  public conference = Conference;
+
   /** Current filter query */
   public filterQuery: string = '';
 

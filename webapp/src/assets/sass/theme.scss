@@ -1,4 +1,3 @@
-@import 'variables';
 @import '~@angular/material/core/theming/all-theme';
 // Plus imports for other components in your app.
 
@@ -9,8 +8,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$conference-app-primary: md-palette($md-base-color);
-$conference-app-accent:  md-palette($md-accent-color);
+$conference-app-primary: md-palette($md-light-blue);
+$conference-app-accent:  md-palette($md-blue-grey);
 
 // The warn palette is optional (defaults to red).
 $conference-app-warn:    md-palette($md-red);

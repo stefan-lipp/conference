@@ -14,7 +14,7 @@ import { Conference } from '../../models';
 })
 export class NavigationComponent implements OnInit {
 
-  public conference: Conference = new Conference();
+  public conference = Conference;
 
   private username: string;
 
