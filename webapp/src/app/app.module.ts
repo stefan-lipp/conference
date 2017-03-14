@@ -20,21 +20,21 @@ import { AppState, InternalStateType } from './app.service';
 // Services
 import {
   AdminGuard,
+  ApiMapperService,
+  ApiService,
   AuthGuard,
   AuthService,
-  ApiService,
-  ApiMapperService,
-  DirectionsService,
   DirectionsResolver,
-  EventService,
-  EventResolver,
+  DirectionsService,
   EventOfSpeakerResolver,
-  PaperService,
+  EventResolver,
+  EventService,
   PaperByAuthorResolver,
-  PersonService,
+  PaperService,
   PersonResolver,
-  SessionService,
+  PersonService,
   SessionResolver,
+  SessionService,
   TrackService,
   VotingService,
 } from './services';
@@ -55,10 +55,10 @@ import {
   NavigationUserComponent,
   NoContentComponent,
   PersonViewComponent,
-  RegisterComponent,
   QuestionToolComponent,
-  SessionViewComponent,
+  RegisterComponent,
   ScheduleEditorComponent,
+  SessionViewComponent,
   TrackEditorComponent,
   VotingComponent,
 } from './components';
@@ -66,7 +66,6 @@ import {
 // Directives
 
 // Pipes
-import { EventFilterPipe } from './pipes';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -109,21 +108,19 @@ type StoreType = {
     DirectionsComponent,
     EventListComponent,
     EventOverviewComponent,
-    EventFilterPipe,
     EventViewComponent,
     EventViewOverlayComponent,
     FileUploadComponent,
-    MyScheduleComponent,
-    NoContentComponent,
     LoginComponent,
+    MyScheduleComponent,
     NavigationComponent,
     NavigationUserComponent,
     NoContentComponent,
     PersonViewComponent,
     QuestionToolComponent,
     RegisterComponent,
-    SessionViewComponent,
     ScheduleEditorComponent,
+    SessionViewComponent,
     TrackEditorComponent,
     VotingComponent,
   ],
