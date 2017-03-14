@@ -22,6 +22,10 @@ export class Person {
    * @memberOf Person
    */
   public static fromAPI (apiRepresentation: ApiPerson): Person {
+    if (!apiRepresentation) {
+      return null;
+    }
+
     return new Person (
       apiRepresentation.id,
       apiRepresentation.name,

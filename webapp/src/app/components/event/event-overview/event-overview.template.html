@@ -22,7 +22,7 @@
       Continue at last visited event?
     </a>
 
-    <md-list *ngFor="let subsetByType selectedEventsByType">
+    <md-list *ngFor="let subsetByType of selectedEventsByType">
       <h3
         md-subheader
         *ngIf="subsetByType.events.length"
