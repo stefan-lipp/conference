@@ -15,7 +15,6 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
 // Services
@@ -71,8 +70,25 @@ import { EventFilterPipe } from './pipes';
 
 // Application wide providers
 const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS,
   AppState,
+  AdminGuard,
+  AuthGuard,
+  AuthService,
+  ApiService,
+  ApiMapperService,
+  DirectionsService,
+  DirectionsResolver,
+  EventService,
+  EventResolver,
+  EventOfSpeakerResolver,
+  PaperService,
+  PaperByAuthorResolver,
+  PersonService,
+  PersonResolver,
+  SessionService,
+  SessionResolver,
+  TrackService,
+  VotingService,
 ];
 
 type StoreType = {
@@ -129,24 +145,6 @@ type StoreType = {
       headerName: 'x-access-token',
       noTokenScheme: true,
     }),
-    AdminGuard,
-    AuthGuard,
-    AuthService,
-    ApiService,
-    ApiMapperService,
-    DirectionsService,
-    DirectionsResolver,
-    EventService,
-    EventResolver,
-    EventOfSpeakerResolver,
-    PaperService,
-    PaperByAuthorResolver,
-    PersonService,
-    PersonResolver,
-    SessionService,
-    SessionResolver,
-    TrackService,
-    VotingService,
   ],
 })
 export class AppModule {
