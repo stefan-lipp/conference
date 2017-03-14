@@ -1,32 +1,25 @@
-button {
-    float: right;
-    margin-top: -.8em;
-}
-
-.position-label {
-    display: block;
-    float: left;
-}
-
-.title-label {
-    display: inline-block;
-    max-width: calc(100% - 8em);
-    margin-left: 1em;
-    white-space: nowrap;
-    overflow:hidden !important;
-    text-overflow: ellipsis;
-    cursor: pointer;
-}
-
-.votecount-label {
-    display: block;
-    float: right;
+md-input {
+    width: 100%;
 }
 
 .voted-button {
     color: #FDD835;
+}
 
-    md-icon {
-      font-size: 1.8em;
-    }
+span {
+    padding: 0 .5rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.md-list-item {
+    width: 100%;
+    align-items: flex-start;
+}
+
+.title-label {
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

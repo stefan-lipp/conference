@@ -1,35 +1,42 @@
-<md-list>
-  <h3 md-subheader>Vote for the events you liked most.</h3>
-  <md-card
-    md-list-item
-    *ngFor="let event of events; let index = index"
+<h3 md-subheader>Vote for the events you liked most.</h3>
+<md-card>
+  <md-input
+    type="text"
+    placeholder="Search..."
+    floatingPlaceholder="false"
+    [(ngModel)]="filterQuery"
+    (input)="applyFilter()"
   >
-    <md-card-subtitle>
-      <span class="position-label">{{ index + 1 }}.</span>
+  </md-input>
+  <md-list>
+    <md-list-item
+      *ngFor="let pair of eventsWithPosition"
+    >
+      <span>{{ pair[0] }}.</span>
       <span
         class="title-label"
-        [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
+        [routerLink]="[ '/events', pair[1].id, pair[1].urlEncodedTitle ]"
       >
-        {{ event.title }}
+        {{ pair[1].title }}
       </span>
 
       <button
         md-icon-button
-        *ngIf="!event.voted"
-        (click)="voteFor(event)"
+        *ngIf="!pair[1].voted"
+        (click)="voteFor(pair[1])"
       >
         <md-icon>star_border</md-icon>
       </button>
       <button
         md-icon-button
-        *ngIf="event.voted"
+        *ngIf="pair[1].voted"
         class="voted-button"
-        (click)="removeVoteFor(event)"
+        (click)="removeVoteFor(pair[1])"
       >
         <md-icon>star</md-icon>
       </button>
 
-      <span class="votecount-label">{{ event.voteCount }}</span>
-    </md-card-subtitle>
-  </md-card>
-</md-list>
+      <span>{{ pair[1].voteCount || 0 }}</span>
+    </md-list-item>
+  </md-list>
+</md-card>
