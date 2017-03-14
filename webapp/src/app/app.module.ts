@@ -20,8 +20,6 @@ import { AppState, InternalStateType } from './app.service';
 // Services
 import {
   AdminGuard,
-  ApiMapperService,
-  ApiService,
   AuthGuard,
   AuthService,
   DirectionsResolver,
@@ -73,8 +71,6 @@ const APP_PROVIDERS = [
   AdminGuard,
   AuthGuard,
   AuthService,
-  ApiService,
-  ApiMapperService,
   DirectionsService,
   DirectionsResolver,
   EventService,

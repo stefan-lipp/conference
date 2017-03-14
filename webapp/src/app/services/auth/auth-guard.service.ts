@@ -4,15 +4,26 @@ import { CanActivate } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
+/**
+ * Guard to require login on routes
+ *
+ * @export
+ * @class AuthGuard
+ * @implements {CanActivate}
+ */
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) {}
+  ) { }
 
-  public canActivate () {
+  /**
+   * @returns {boolean}
+   * @memberOf CanActivate
+   */
+  public canActivate (): boolean {
     if (this.authService.loggedIn) {
       return true;
     } else {
@@ -22,15 +33,27 @@ export class AuthGuard implements CanActivate {
   }
 }
 
+/**
+ * Guard to require login as admin on routes
+ *
+ * @export
+ * @class AdminGuard
+ * @implements {CanActivate}
+ */
 @Injectable()
 export class AdminGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) {}
+  ) { }
 
-  public canActivate () {
+  /**
+   * @returns {boolean}
+   *
+   * @memberOf CanActivate
+   */
+  public canActivate (): boolean {
     if (this.authService.loggedIn && this.authService.isAdmin) {
       return true;
     } else if (this.authService.loggedIn) {

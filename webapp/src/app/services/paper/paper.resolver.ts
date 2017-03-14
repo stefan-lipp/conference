@@ -9,13 +9,25 @@ import { Observable } from 'rxjs';
 import { PaperService } from '../paper';
 import { Paper } from '../../models';
 
+/**
+ * @export
+ * @class PaperByAuthorResolver
+ * @implements {Resolve<Paper[]>}
+ */
 @Injectable()
 export class PaperByAuthorResolver implements Resolve<Paper[]> {
 
   constructor (
     private paperService: PaperService,
-  ) {}
+  ) { }
 
+  /**
+   * @param {ActivatedRouteSnapshot} route
+   * @param {RouterStateSnapshot} state
+   * @returns {Observable<Paper[]>}
+   *
+   * @memberOf Resolve
+   */
   public resolve (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,

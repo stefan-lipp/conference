@@ -3,12 +3,18 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 
+/**
+ * Validators helper class
+ *
+ * @export
+ * @class FormValidators
+ */
 export class FormValidators {
 
   /**
    * Validates whether the value entered in a FormControl is a valid email address
    * @see http://regexlib.com/REDetails.aspx?regexp_id=26
-   *
+   * @static
    * @param {FormControl} formControl FormControl to validate
    * @return {Object} null when valid, { invalidEmail: true } when invalid
    */
@@ -24,6 +30,7 @@ export class FormValidators {
   /**
    * Validates whether a given FormControl has the same value as a given string
    *
+   * @static
    * @param {string | (() => string)} value Either a simple string to compare to
    *                                        or a function that returns a string
    * @return {ValidatorFn} Validation function

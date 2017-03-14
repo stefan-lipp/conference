@@ -10,12 +10,14 @@ import { Observable } from 'rxjs';
 import { SessionService } from '../session';
 import { ConferenceSession } from '../../models';
 
+/**
+ * @export
+ * @class SessionResolver
+ * @implements {Resolve<ConferenceSession>}
+ */
 @Injectable()
 export class SessionResolver implements Resolve<ConferenceSession> {
 
-  /**
-   * Constructor of the session resolver.
-   */
   constructor (
     private sessionService: SessionService,
   ) { }
@@ -26,6 +28,8 @@ export class SessionResolver implements Resolve<ConferenceSession> {
    * @param {ActivatedRouteSnapshot} route The activated route to resolve.
    * @param {RouterStateSnapshot} state A state snapshot of the current route.
    * @return {Observable<ConferenceSession>} Observable containing a conference session.
+   *
+   * @memberOf Resolve
    */
   public resolve (
     route: ActivatedRouteSnapshot,

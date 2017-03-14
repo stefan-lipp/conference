@@ -9,17 +9,25 @@ import {
   JwtHelper,
 } from 'angular2-jwt';
 
-import { API_ROUTES } from '../api/routes';
-import { ApiMapperService } from '../api/api-mapper.service';
+import { API_ROUTES } from '../api-routes';
 
+/**
+ * Service for various authentication related tasks
+ *
+ * @export
+ * @class AuthService
+ */
 @Injectable()
 export class AuthService {
 
   /**
    * Checks a given response for a new token and updates.
    *
+   * @static
    * @param {Response} res Response
-   * @return {Response} unchanged response
+   * @returns {Response} unchanged response
+   *
+   * @memberOf AuthService
    */
   public static refreshToken (res: Response): Response {
     try {
@@ -39,13 +47,15 @@ export class AuthService {
   constructor (
     private http: Http,
     private authHttp: AuthHttp,
-    private apiMapper: ApiMapperService,
     private router: Router,
-  ) {}
+  ) { }
 
   /**
    * Getter whether a user is logged in
    * @TODO
+   * @readonly
+   * @type {boolean}
+   * @memberOf AuthService
    */
   public get loggedIn () {
     return tokenNotExpired();
@@ -53,7 +63,10 @@ export class AuthService {
 
   /**
    * Getter whether a user is admin in
-   * @return {boolean} is User loged in
+   *
+   * @readonly
+   * @type {boolean}
+   * @memberOf AuthService
    */
   public get isAdmin (): boolean {
     const token = localStorage.getItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
@@ -68,8 +81,11 @@ export class AuthService {
   }
 
   /**
-   * Getter user name
-   * @return {string} logged in users' name
+   * Logged in users userName
+   *
+   * @readonly
+   * @type {string}
+   * @memberOf AuthService
    */
   public get userName (): string {
     const token = localStorage.getItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
@@ -84,8 +100,9 @@ export class AuthService {
   }
 
   /**
-   * Getter user id
-   * @return {string} logged in user's id
+   * @readonly
+   * @type {string}
+   * @memberOf AuthService
    */
   public get userId (): string {
     const token = localStorage.getItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
@@ -98,14 +115,17 @@ export class AuthService {
     }
     return tokenData.personId;
   }
+
   /**
    * Logs the user out and navigates to a given page
    *
    * @see Router.navigateByUrl
    *  (https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigateByUrl-anchor)
-   * @param {string | UrlTree} url Target to redirect to after logout. default: 'login'
+   * @param {(string | UrlTree)} url Target to redirect to after logout. default: 'login'
    * @param {NavigationExtras} extras
-   * @return {Promise<boolean>} result of navigateByUrl call
+   * @returns {Promise<boolean>} result of navigateByUrl call
+   *
+   * @memberOf AuthService
    */
   public logout (url: string | UrlTree = 'login', extras?: NavigationExtras): Promise<boolean> {
     localStorage.removeItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);
@@ -119,13 +139,15 @@ export class AuthService {
    *
    * @param {{ email: string, password: string, passwordConfirmation: string }} registerData
    * @return {Observable<any>}
+   *
+   * @memberOf AuthService
    */
   public register (
     registerData: { email: string, name: string, password: string, passwordConfirmation: string },
   ): Observable<any> {
     return this.http.post(
       API_ROUTES.register,
-      this.apiMapper.registerDataLocalToApi(registerData),
+      registerData,
     );
   }
 
@@ -135,6 +157,8 @@ export class AuthService {
    *
    * @param {{ email: string, password: string }} loginData User credentials
    * @return {Observable<any>}
+   *
+   * @memberOf AuthService
    */
   public login (loginData: { email: string, password: string }): Observable<any> {
     return this.http.post(API_ROUTES.login, loginData)
