@@ -9,6 +9,7 @@ import {
   Conference,
   ConferenceEvent,
   ConferenceSession,
+  EventType,
 } from '../../../models';
 import {
   EventService,
@@ -37,10 +38,6 @@ export class EventOverviewComponent implements OnInit {
   /** Subset of all events */
   public selectedEvents: ConferenceEvent[] = [ ];
 
-  public eventTypes: string[] = [
-    'Keynote', 'Research Talk', 'Industry Talk', 'Tutorial', 'Workshop', 'Demo',
-  ];
-
   /** List of all available events */
   private allEvents: ConferenceEvent[] = [ ];
 
@@ -63,6 +60,30 @@ export class EventOverviewComponent implements OnInit {
     } else if (url.includes('#')) {
       this.lastVisitedLink = url;
     }
+  }
+
+  /**
+   * Selected events grouped by their EventType
+   *
+   * @readonly
+   * @type {{ type: string, events: ConferenceEvent[] }[]}
+   * @memberOf EventOverviewComponent
+   */
+  public get selectedEventsByType (): { type: string, events: ConferenceEvent[] }[] {
+    const groupedDict = this.selectedEvents.reduce((dict, event) => {
+      const type = event.eventType;
+      if (!dict.hasOwnProperty(type)) {
+        dict[type] = [ ];
+      }
+      dict[type].push(event);
+      return dict;
+    }, { });
+    return Object.keys(groupedDict).map(type => {
+      return {
+        type: type,
+        events: groupedDict[type],
+      };
+    });
   }
 
   /**
