@@ -10,10 +10,10 @@ The tool is intended for use at [VLDB 2017](http://www.vldb.org/2017/) and poten
 
 ## Setup
 - Install nodejs and Docker (incl. creating a docker-machine)
-- Create database in `postgres-db` by executing `deployment/Database.sql`. The postgres instance is accessible under port `54321`.
-- Create a user for the `postgres-db` database create by executing `deployment/User.sql`. _Note:_ Replace username and password.
+- Create database in `postgres-db` by executing `backend/migration/00_setup.sql`. The postgres instance is accessible under port `54321`.
 - _Optional:_ Load data, if available, into the database.
-- copy `config.json.sample` to `config.json` and configute it to you needs
+- copy `config.json.sample` to `config.json` and configute it to your needs
+- copy `backend/dbconfig.json.template` to `backend/dbconfig.json` and configute it to your needs
 
 ## Startup
 Use `docker-compose up` to start the docker containers. Includes:

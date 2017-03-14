@@ -15,11 +15,11 @@
 
     <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
     <h2 md-title>{{ event.title }}</h2>
-    <div class="event-detail" *ngIf="event.startTime">
+    <div class="event-detail" *ngIf="event.startTime && event.startTime.isValid()">
       <md-icon>today</md-icon>
       <p>{{ getFormattedEventDate() }}</p>
     </div>
-    <div class="event-detail" *ngIf="event.startTime">
+    <div class="event-detail" *ngIf="event.startTime && event.startTime.isValid()">
       <md-icon>access_time</md-icon>
       <p>{{ getFormattedEventTime() }}</p>
     </div>

@@ -9,7 +9,7 @@
         <md-icon>bookmark_border</md-icon>
         <span>Events</span>
       </button>
-      <button md-menu-item routerLink="/my-schedule">
+      <button *ngIf="conference.scheduled" md-menu-item routerLink="/my-schedule">
         <md-icon>alarm</md-icon>
         <span *ngIf="authService.loggedIn">My Schedule</span>
         <span *ngIf="!authService.loggedIn">Schedule</span>

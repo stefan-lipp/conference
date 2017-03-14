@@ -78,10 +78,10 @@ export class EventViewComponent implements OnInit {
   public checkAuthorisation (): void {
     if (this.event.speakers.some(speaker => speaker.id === this.authService.userId)) {
       this.isAuthorised = true;
-    } else if (this.event.paper.authors.some(author => author.id == this.authService.userId)) {
+    } else if (this.event.paper.authors.some(author => author.id === this.authService.userId)) {
       this.isAuthorised = true;
     } else {
       this.isAuthorised = this.authService.isAdmin;
     }
-  };
+  }
 }

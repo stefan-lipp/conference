@@ -14,6 +14,7 @@ export const API_ROUTES = {
   },
   sessions: {
     all: `${API_BASE_URL}/sessions`,
+    favorites: `${API_BASE_URL}/sessions/favorites`,
     create: `${API_BASE_URL}/sessions`,
     update: `${API_BASE_URL}/sessions/:sessionId`,
     delete: `${API_BASE_URL}/sessions/:sessionId`,

@@ -7,8 +7,8 @@ import {
   CalendarTrack,
   CalendarEvent,
 } from '../ui-elements/calendar';
-import { EventService } from '../../services';
-import { ConferenceEvent } from '../../models';
+import { SessionService } from '../../services';
+import { ConferenceSession } from '../../models';
 
 @Component({
   selector: 'conference-my-schedule',
@@ -17,30 +17,37 @@ import { ConferenceEvent } from '../../models';
 })
 export class MyScheduleComponent implements OnInit {
 
-  public tracks: CalendarTrack[];
+	/** List of all available sessions */
+  private allSessions: ConferenceSession[] = [ ];
 
   constructor (
-    private eventService: EventService,
+    private sessionService: SessionService,
   ) { }
 
-  public ngOnInit () {
-    this.eventService.getFavorites().subscribe((events: ConferenceEvent[]) => {
-      // TODO convert events into calendar tracks
-      this.tracks = [ {
-        color: '#fff',
-        backgroundColor: '#03a9f4',
+
+  public get tracks (): CalendarTrack[] {
+    // TODO convert events into calendar tracks
+    return this.allSessions
+      .filter(s =>
+        Boolean(s.startTime) && s.startTime.isValid() &&
+        Boolean(s.endTime) && s.endTime.isValid(),
+      )
+      .map(s => <CalendarTrack> {
+        color: s.track.color,
+        backgroundColor: s.track.backgroundColor,
         isDisplayed: true,
-        events: events
-          .filter(e =>
-            Boolean(e.startTime) && e.startTime.isValid() &&
-            Boolean(e.endTime) && e.endTime.isValid()
-          )
-          .map(e => <CalendarEvent> Object({
-            title: e.title,
-            startTime: e.startTime,
-            endTime: e.endTime,
-          })),
-      } ];
+        events: [ <CalendarEvent> Object({
+          title: s.name,
+          id: s.id,
+          startTime: s.startTime,
+          endTime: s.endTime,
+        }) ],
+      });
+  }
+
+  public ngOnInit () {
+    this.sessionService.getFavorites().subscribe(sessions => {
+      this.allSessions = sessions;
     });
   }
 
