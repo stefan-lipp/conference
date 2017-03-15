@@ -45,7 +45,6 @@ import {
   EventListComponent,
   EventOverviewComponent,
   EventViewComponent,
-  EventViewOverlayComponent,
   FileUploadComponent,
   LoginComponent,
   MyScheduleComponent,
@@ -105,7 +104,6 @@ type StoreType = {
     EventListComponent,
     EventOverviewComponent,
     EventViewComponent,
-    EventViewOverlayComponent,
     FileUploadComponent,
     LoginComponent,
     MyScheduleComponent,
@@ -119,9 +117,6 @@ type StoreType = {
     SessionViewComponent,
     TrackEditorComponent,
     VotingComponent,
-  ],
-  entryComponents: [
-    EventViewOverlayComponent,
   ],
   imports: [
     BrowserModule,
