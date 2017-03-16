@@ -1,47 +1,53 @@
 <md-card *ngFor="let event of events">
-  <a id="{{ event.id }}"></a>
+  <a [id]="event.id"></a>
+
   <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator"><md-icon>star</md-icon></div>
 
-  <md-card-title class="eventTypeLabel">{{ event.eventType }}</md-card-title>
+  <md-card-title>
+    <span class="type-desc">{{ event.eventType }}</span>
+    <h5>
+      <a
+        [href]="'/events/' + event.id + '/' + event.urlEncodedTitle"
+        [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
+      >
+        {{ event.title }}
+      </a>
+    </h5>
+  </md-card-title>
 
   <md-card-content>
-    <span
-      class="eventTitleLabel"
-      [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
-    >
-      {{ event.title }}
-    </span>
+    <ul class="keywords">
+      <li *ngFor="let keyword of event.paper.keywords">
+        {{ keyword }}
+      </li>
+    </ul>
 
-    <div class="eventKeywordSection">
-      <span
-        *ngFor="let keyword of event.paper.keywords"
-        class="keywordLabel">{{ keyword }}</span>
-    </div>
-
-    <div class="eventSpeakerSection">
-      <md-icon class="speakerIcon">person_outline</md-icon>
+    <div class="speakers">
+      <md-icon class="speaker-icon">person_outline</md-icon>
       <div>
-        <span *ngIf="event.speakers.length" class="speakerLabel">{{ event.speakers[0].name }}</span>
-        <span *ngIf="event.speakers.length && event.speakers[0].institution" class="speakerLabel">{{ event.speakers[0].institution.name }}</span>
+        <span *ngIf="event.speakers.length"><em>{{ event.speakers[0].name }}</em></span>
+        <span *ngIf="event.speakers.length && event.speakers[0].institution" class="speaker-label">
+          {{ event.speakers[0].institution.name }}
+        </span>
       </div>
     </div>
   </md-card-content>
 
-  <button
-    md-button
-    color="accent"
-    class="detailsButton"
-    [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
-  >
-    Details
-  </button>
-
-  <button
+  <md-card-footer>
+    <button
       md-button
       color="accent"
-      class="favouriteButton"
-      *ngIf="!event.favored"
-      [disabled]="!authService.loggedIn"
+      class="details-button"
+      [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]"
+    >
+      Details
+    </button>
+
+    <button
+      md-button
+      color="accent"
+      class="favourite-button"
+      *ngIf="authService.loggedIn && !event.favored"
       (click)="onFavouriteStateChange.emit([event, true])"
     >
       {{ event.starttime ? 'Add to my schedule' : 'Mark' }}
@@ -49,11 +55,11 @@
     <button
       md-button
       color="accent"
-      class="favouriteButton"
-      *ngIf="event.favored"
-      [disabled]="!authService.loggedIn"
+      class="favourite-button"
+      *ngIf="authService.loggedIn && event.favored"
       (click)="onFavouriteStateChange.emit([event, false])"
     >
       {{ event.starttime ? 'Remove from my schedule' : 'Unmark' }}
     </button>
+  </md-card-footer>
 </md-card>
