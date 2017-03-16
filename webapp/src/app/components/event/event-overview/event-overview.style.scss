@@ -19,7 +19,7 @@ $secondary-bar-height: 48px;
 }
 
 .search-bar {
-    padding: 0;
+    padding: 0 .5rem;
     height: $secondary-bar-height;
 
     md-input, input {

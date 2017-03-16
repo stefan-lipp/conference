@@ -19,13 +19,19 @@ conference-event-list {
     }
 }
 
+.type-desc {
+    font-size: .8rem;
+    color: #8e8e8e;
+}
+
+
 .favor-indicator {
     position: absolute;
     right: 1.5rem;
     top: 0;
     padding: .5rem 0;
     background-color: map-get($md-red, 500);
-    color: #fff;
+    color: #fff !important;
     width: 2rem;
     box-sizing: border-box;
     text-align: center;

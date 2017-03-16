@@ -63,6 +63,9 @@ import {
 // Directives
 
 // Pipes
+import {
+  FormatMomentPipe,
+} from './pipes';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -105,6 +108,7 @@ type StoreType = {
     EventOverviewComponent,
     EventViewComponent,
     FileUploadComponent,
+    FormatMomentPipe,
     LoginComponent,
     MyScheduleComponent,
     NavigationComponent,

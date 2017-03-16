@@ -1,45 +1,62 @@
-<div class="event-details-container">
-
+<div *ngIf="event">
 
   <div class="navigation-area">
     <a href="/events#{{ event.id }}">
       <md-icon>arrow_back</md-icon>
-      <p>Event List</p>
+      Event List
     </a>
   </div>
-  <md-card class="details-card">
 
+  <md-card>
     <div *ngIf="authService.loggedIn && event.favored" class="favor-indicator">
       <md-icon>star</md-icon>
     </div>
 
-    <p id="eventType">{{ event.eventType }} - {{ event.duration }} min</p>
-    <h2 md-title>{{ event.title }}</h2>
-    <div class="event-detail" *ngIf="event.startTime && event.startTime.isValid()">
-      <md-icon>today</md-icon>
-      <p>{{ getFormattedEventDate() }}</p>
-    </div>
-    <div class="event-detail" *ngIf="event.startTime && event.startTime.isValid()">
-      <md-icon>access_time</md-icon>
-      <p>{{ getFormattedEventTime() }}</p>
-    </div>
-    <div
-      *ngIf="event.room"
-      class="event-detail room-link"
-      [routerLink]="[ '/directions', event.room.id ]"
-    >
-      <md-icon>room</md-icon>
-      <p>{{ event.room.name }}</p>
-    </div>
-    <br>
-    <div class="event-detail">
-      <md-icon>person_outline</md-icon>
-      <p>{{ event.speakers[0].name }}</p>
-    </div>
-    <div class="event-detail" *ngIf="event.speakers[0].institution">
-      <md-icon>business</md-icon>
-      <p>{{ event.speakers[0].institution.name }}</p>
-    </div>
+    <md-card-title>
+      <span class="type-desc">{{ event.eventType }} - {{ event.duration }} min</span>
+      <h2 md-title>{{ event.title }}</h2>
+    </md-card-title>
+
+    <table class="event-detail">
+      <tbody>
+        <tr *ngIf="event.startTime?.isValid()">
+          <th><md-icon>today</md-icon></th>
+          <td>{{ event.startTime | formatMoment : 'MMMM Do YYYY' }}</td>
+        </tr>
+        <tr *ngIf="event.startTime?.isValid()">
+          <th><md-icon>access_time</md-icon></th>
+          <td>
+            {{ event.startTime | formatMoment : 'HH:mm' }} - {{ event.startTime | formatMoment : 'HH:mm' }}
+          </td>
+        </tr>
+        <tr *ngIf="event.room">
+          <th><md-icon>room</md-icon></th>
+          <td>
+            <a
+              [href]="'/directions/' + event.room.id"
+              [routerLink]="[ '/directions', event.room.id ]"
+            >
+              {{ event.room.name }}
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th><md-icon>person_outline</md-icon></th>
+          <td>
+            <a
+              [href]="'/person/' + event.speakers[0].id"
+              [routerLink]="[ '/person', event.speakers[0].id ]"
+            >
+              {{ event.speakers[0].name }}
+            </a>
+          </td>
+        </tr>
+        <tr *ngIf="event.speakers[0].institution">
+          <th><md-icon>business</md-icon></th>
+          <td>{{ event.speakers[0].institution.name }}</td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="align-right">
       <span *ngIf="authService.loggedIn">
@@ -62,58 +79,60 @@
     </div>
   </md-card>
 
-  <md-list>
+  <div *ngIf="event.paper">
     <h3 md-subheader>Paper</h3>
-    <md-card class="details-card">
-      <div *ngIf="event.paper">
-        <div class="paper-title">
-          <a
-            *ngIf="event.paper.link"
-            md-button
-            color="accent"
-            [href]="event.paper.link"
-            target="_blank"
-          >
-            <md-icon>file_download</md-icon>
-            Download
-          </a>
-        </div>
+    <md-card>
+      <md-card-title><h4>{{ event.paper.title }}</h4></md-card-title>
 
-        <h5 *ngIf="event.paper.authors && event.paper.authors.length==1">Author</h5>
-        <h5 *ngIf="event.paper.authors && event.paper.authors.length>1">Authors</h5>
-        <ul class="paper-authors">
-          <li *ngFor="let author of event.paper.authors"><a [routerLink]="'/person/' + author.id">{{ author.name }}</a></li>
-        </ul>
-
-        <h5 *ngIf="event.paper.tag">Tag</h5>
-        <p *ngIf="event.paper.tag">{{ event.paper.tag }}</p>
-
-        <h5 *ngIf="event.paper.keywords">Keywords</h5>
-        <ul class="keywords">
+      <div class="paper-metainfo">
+        <ul *ngIf="event.paper.keywords?.length" class="keywords">
           <li *ngFor="let keyword of event.paper.keywords">
             {{ keyword }}
           </li>
         </ul>
-
-        <h5 *ngIf="event.paper.abstract">Abstract</h5>
-        <p *ngIf="event.paper.abstract">{{ event.paper.abstract }}</p>
+        <a
+          *ngIf="event.paper.link"
+          md-button
+          color="accent"
+          [href]="event.paper.link"
+          target="_blank"
+        >
+          <md-icon>file_download</md-icon>
+          Download
+        </a>
       </div>
-    </md-card>
-  </md-list>
 
-  <md-list *ngIf="isAuthorised">
+      <h5>{{ event.paper.authors.length > 1 ? 'Authors' : 'Author' }}</h5>
+      <ul class="paper-authors">
+        <li *ngFor="let author of event.paper.authors">
+          <a [routerLink]="'/person/' + author.id">{{ author.name }}</a>
+          <span *ngIf="author.institution.name">{{ author.institution.name }}</span>
+        </li>
+      </ul>
+
+      <h5 *ngIf="event.paper.tag">Tag</h5>
+      <p *ngIf="event.paper.tag">{{ event.paper.tag }}</p>
+
+      <h5 *ngIf="event.paper.abstract">Abstract</h5>
+      <p *ngIf="event.paper.abstract" class="abstract">{{ event.paper.abstract }}</p>
+    </md-card>
+  </div>
+
+  <div *ngIf="isAuthorised">
     <h3 md-subheader>Event Ressources Upload</h3>
-    <md-card class="details-card">
-      <h5>As an authorized person for this event, you can upload resources like slides or posters.</h5>
-      <upload-tool [event]="event"></upload-tool>
+    <md-card>
+      <label>
+        As an authorized person for this event, you can upload resources like slides or posters.
+        <upload-tool [event]="event"></upload-tool>
+      </label>
     </md-card>
-  </md-list>
+  </div>
 
-  <md-list>
+  <div *ngIf="authService.loggedIn">
     <h3 md-subheader>Comments</h3>
-    <md-card class="details-card">
+    <md-card>
       <h5>You can ask a question here:</h5>
       <question-tool [event]="event"></question-tool>
     </md-card>
-  </md-list>
+  </div>
 </div>
