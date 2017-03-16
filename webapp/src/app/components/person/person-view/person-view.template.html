@@ -3,34 +3,38 @@
     <h2>{{ person.name }}</h2>
   </md-card-title>
   <md-card-content>
-    <dl>
-      <dt> Email: </dt><dd>{{ person.email }}</dd>
-      <dt *ngIf="person.website"> Website: </dt><dd *ngIf="person.website">{{ person.website }}</dd>
-    </dl>
-  </md-card-content>
-</md-card>
-<md-card *ngIf="papers.length > 0">
-  <md-card-title>
-    Paper
-  </md-card-title>
-  <md-card-content>
-    <dl>
-      <span *ngFor="let paper of papers">
-        <dt> <a target="_blank" href="{{ paper.link }}"> {{ paper.title }}</a> </dt>
-        <dd> <span *ngFor="let author of paper.authors"><a [routerLink]="[ '/person', author.id ]">{{ author.name}}</a>&nbsp;</span></dd>
-      </span>
-    </dl>
-  </md-card-content>
-</md-card>
-<md-card *ngIf="talks.length > 0">
-  <md-card-title>
-    Talks
-  </md-card-title>
-  <md-card-content>
-    <ul>
-      <li *ngFor="let event of talks">
-        <a [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]">{{ event.title }}</a>
-      </li> <!-- TODO show event component like in list !-->
-    </ul>
+    <table>
+      <tr>
+        <th>Email</th>
+        <td>{{ person.email }}</td>
+      </tr>
+      <tr *ngIf="person.website">
+        <th>Website</th>
+        <td>{{ person.website }}</td>
+      </tr>
+    </table>
+
+    <div *ngIf="papers?.length">
+      <h3>Paper</h3>
+      <ul class="paper-list">
+        <li *ngFor="let paper of papers">
+          <a target="_blank" [href]="paper.link">{{ paper.title }}</a>
+          <ul>
+            <li *ngFor="let author of paper.authors" [class.author-self]="author.id === person.id">
+              <a [routerLink]="[ '/person', author.id ]">{{ author.name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="talks.length">
+      <h3>Talks</h3>
+      <ul class="talks-list">
+        <li *ngFor="let event of talks">
+          <a [routerLink]="[ '/events', event.id, event.urlEncodedTitle ]">{{ event.title }}</a>
+        </li> <!-- TODO @schrm show event component like in list !-->
+      </ul>
+    </div>
   </md-card-content>
 </md-card>
