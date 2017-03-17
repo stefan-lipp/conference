@@ -1,0 +1,34 @@
+<label class="input-area">
+  <md-icon>file_upload</md-icon>
+  <input
+    type="file"
+    (change)="updateFile($event)"
+    placeholder="Select file"
+    accept=".pdf"
+  >
+</label>
+
+<p class="info" *ngIf="info">{{ info }}</p>
+
+<md-progress-bar mode="indeterminate" *ngIf="uploading"></md-progress-bar>
+
+<table *ngIf="file">
+  <caption>Your pending File</caption>
+  <tr>
+    <td class="right-align"><md-icon>insert_drive_file</md-icon></td>
+    <td> {{ file.name }}</td>
+  </tr>
+  <tr>
+    <td class="right-align"><md-icon>switch_camera</md-icon></td>
+  <td> {{ file.size / 1000 }} KB</td>
+  </tr>
+</table>
+
+<div class="align-right" *ngIf="file">
+  <button
+    md-raised-button
+    (click)="submitFile()"
+    *ngIf="!uploading">
+    Submit this file
+  </button>
+</div>

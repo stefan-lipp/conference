@@ -121,10 +121,8 @@
   <div *ngIf="isAuthorised">
     <h3 md-subheader>Event Ressources Upload</h3>
     <md-card>
-      <label>
-        As an authorized person for this event, you can upload resources like slides or posters.
-        <upload-tool [event]="event"></upload-tool>
-      </label>
+      <span>As an authorized person for this event, you can upload resources like slides or posters.</span>
+      <event-file-upload [event]="event"></event-file-upload>
     </md-card>
   </div>
 
