@@ -1,22 +1,33 @@
-<md-list>
-  <md-list-item *ngFor="let comment of comments">
-    <b md-line>{{ comment.person.name }}</b>
-    <i md-line>{{ comment.timestamp }}</i>
-    <p md-line class="comment">{{ comment.comment }}</p>
+<div class="input-area">
+  <textarea
+    [(ngModel)]="newComment"
+    maxlength="1000"
+    rows="5"
+    placeholder="Add your questions here"
+    required
+  ></textarea>
+
+  <button
+    md-button
+    type="button"
+    color="primary"
+    (click)="onSubmit()"
+  >
+    Comment
+  </button>
+</div>
+<md-list *ngIf="comments">
+  <md-list-item *ngFor="let comment of comments.reverse()">
+    <div md-line class="comment-header">
+      <a
+        *ngIf="comment.person.id"
+        [href]="'/person/' + comment.person.id"
+        [routerLink]="[ '/person', comment.person.id ]"
+        class="comment-author"
+      >{{ comment.person.name }}</a>
+      <span *ngIf="!comment.person.id" class="comment-author">{{ comment.person.name }}</span>
+      <span class="comment-timestamp">{{ comment.formattedTime }}</span>
+    </div>
+    <p md-line class="comment-content">{{ comment.comment }}</p>
   </md-list-item>
-</md-list>  
-<textarea
- [(ngModel)]="newComment"
- maxlength="1000"
- required
- rows="5"
- placeholder="add your question here"
-> 
-</textarea>
-<button 
- md-button 
- color="primary" 
- (click)="onSubmit()" 
- class="submit-Btn"
->Comment
-</button>
+</md-list>

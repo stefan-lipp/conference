@@ -56,7 +56,7 @@ export class Comment {
    * @memberOf Comment
    */
   public get formattedTime (): string {
-    if (this.timestamp.diff(moment()) < 60 * 1000) {
+    if (moment().diff(this.timestamp) < 60 * 1000) {
       return 'Just now';
     }
     return this.timestamp.format('MMM Do, HH:mm');
