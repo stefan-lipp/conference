@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import {
@@ -13,7 +16,7 @@ import { PersonService } from '../../../services';
   templateUrl: './person-view.template.html',
   styleUrls: [ './person-view.styles.scss' ],
 })
-export class PersonViewComponent {
+export class PersonViewComponent implements OnInit {
 
   public person: Person;
   public papers: Paper[];
@@ -22,7 +25,12 @@ export class PersonViewComponent {
   constructor (
     private route: ActivatedRoute,
     private personService: PersonService,
-  ) {
+  ) { }
+
+  /**
+   * @memberOf OnInit
+   */
+  public ngOnInit () {
     this.route.data.subscribe(
       (data: { person: Person, papers: Paper[], talks: ConferenceEvent[] }) => {
       this.person = data.person;

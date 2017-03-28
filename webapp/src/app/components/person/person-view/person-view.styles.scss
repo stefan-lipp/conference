@@ -1,12 +1,60 @@
-.paper-authors {
-    list-style-type: none;
-    margin: 1rem 0;
-    padding: 0 1rem;
+:host {
+    display: block;
+    padding: 0 .5rem .5rem;
 }
 
-.paper-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+h2 {
+    margin: 0;
+    font-size: inherit;
+}
+
+table {
+    tr {
+        background-color: transparent;
+        border: none;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    th, td {
+        padding: .5rem .5rem .5rem 0;
+    }
+}
+
+.paper-list, .talks-list {
+    list-style-type: none;
+    padding: 0;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        border-bottom: thin dotted #8e8e8e;
+    }
+
+    > li {
+        margin-bottom: .5rem;
+    }
+
+    ul {
+        font-size: .8rem;
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: .5rem 0 .5rem 1rem;
+
+        li {
+            display: block;
+
+            &:not(:last-of-type)::after {
+                content: ',';
+                padding-right: .5rem;
+            }
+        }
+    }
+}
+
+.author-self {
+    font-weight: bold;
 }

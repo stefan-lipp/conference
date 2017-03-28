@@ -9,13 +9,25 @@ import { Observable } from 'rxjs';
 import { DirectionsService } from './directions.service';
 import { Room } from '../../models';
 
+/**
+ * @export
+ * @class DirectionsResolver
+ * @implements {Resolve<Room>}
+ */
 @Injectable()
 export class DirectionsResolver implements Resolve<Room> {
 
   constructor (
     private directionsService: DirectionsService,
-  ) {}
+  ) { }
 
+  /**
+   * @param {ActivatedRouteSnapshot} route
+   * @param {RouterStateSnapshot} state
+   * @returns {Observable<Room>}
+   *
+   * @memberOf Resolve
+   */
   public resolve (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,

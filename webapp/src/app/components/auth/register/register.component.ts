@@ -19,13 +19,21 @@ const MAX_PASSWORD_LENGTH = 53;
 })
 export class RegisterComponent {
 
+  /**
+   * @type {FormGroup}
+   * @memberOf RegisterComponent
+   */
   public form: FormGroup = null;
 
+  /**
+   * @type {{ message: string }[]}
+   * @memberOf RegisterComponent
+   */
   public globalErrors: { message: string }[] = [ ];
 
   constructor (
-    private formBuilder: FormBuilder,
     private authService: AuthService,
+    private formBuilder: FormBuilder,
     private router: Router,
   ) {
     this.form = this.formBuilder.group({
@@ -43,7 +51,6 @@ export class RegisterComponent {
       ]) ],
       'passwordConfirmation': [ '', Validators.compose([
         Validators.required,
-        // @TODO Equal to password
       ]) ],
     });
   }
@@ -55,6 +62,8 @@ export class RegisterComponent {
    *
    * @param {{ email: string, password: string, passwordConfirmation: string }} data Form data
    * @return {void}
+   *
+   * @memberOf RegisterComponent
    */
   public onSubmit (
     data: { email: string, name: string, password: string, passwordConfirmation: string }
@@ -63,32 +72,34 @@ export class RegisterComponent {
       this.authService.register(data).subscribe(res => {
         this.router.navigate([ 'login' ], { queryParams: { registerSuccess: true } });
       }, (res: Response) => {
-        if (res.status === 400) {
-          // 400 Bad Request
-          this.globalErrors.push({
-            message: 'An error occured. Please make sure all fields are filled out correctly.',
-          });
-          if (ENV === 'development') {
-            console.error(res);
-          }
-        } else if (res.status === 404) {
-          // 404 Not found
-          this.globalErrors.push({
-            message: 'Registration is temporarily not available. Please try again at a later time.',
-          });
-        } else {
-          this.globalErrors.push({
-            message: 'An error occured. Please try again at a later time.',
-          });
-          if (ENV === 'development') {
-            console.error(res.status, res);
-          }
+        switch (res.status) {
+          case 400:
+            // 400 Bad Request
+            this.globalErrors = [ {
+              message: 'An error occured. Please make sure all fields are filled out correctly.',
+            } ];
+            break;
+          case 404:
+            // 404 Not found
+            this.globalErrors = [ {
+              message:
+                'Registration is temporarily not available. Please try again at a later time.',
+            } ];
+            break;
+          default:
+            this.globalErrors = [ {
+              message: 'An error occured. Please try again at a later time.',
+            } ];
+        }
+
+        if (ENV === 'development') {
+          console.error(res.status, res);
         }
       });
     } else {
-      this.globalErrors.push({
+      this.globalErrors = [ {
         message: 'An error occured. Please make sure all fields are filled out correctly.',
-      });
+      } ];
     }
   }
 

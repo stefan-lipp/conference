@@ -3,24 +3,24 @@ import {
   Input,
 } from '@angular/core';
 
-import { ConferenceEvent } from './../../../models';
-import { EventService } from './../../../services';
+import { ConferenceEvent } from '../../../models';
+import { EventService } from '../../../services';
 
 @Component({
-  selector: 'upload-tool',
-  templateUrl: './file-upload.template.html',
-  styleUrls: [ './file-upload.style.scss' ],
+  selector: 'event-file-upload',
+  templateUrl: './event-file-upload.template.html',
+  styleUrls: [ './event-file-upload.style.scss' ],
 })
-
-export class FileUploadComponent {
-
+export class EventFileUploadComponent {
 
   @Input()
   public event: ConferenceEvent;
 
-  private info: String = '';
+  private info: string = '';
+
   private file: File;
-  private uploading: Boolean = false;
+
+  private uploading: boolean = false;
 
   constructor(
     private eventService: EventService,
@@ -28,15 +28,18 @@ export class FileUploadComponent {
 
   /**
    * Sets the file to the uploaded file
-   * 
+   *
    * @param {any} event onchange event triggering this action
+   *
+   * @memberOf EventFileUploadComponent
    */
-  public fileChange (event: any): void {
+  public updateFile (event: any): void {
     const fileList: FileList = event.target.files;
+
     if (fileList.length > 0) {
       const newFile = fileList[0];
       if (newFile.type === 'application/pdf') {
-        this.file = fileList[0];
+        this.file = newFile;
         this.info = '';
       } else {
         this.file = null;
@@ -47,13 +50,15 @@ export class FileUploadComponent {
   }
 
   /**
-   * Submits the file and calls API
+   * Submits the file by calling the API
+   *
+   * @memberOf EventFileUploadComponent
    */
   public submitFile (): void {
-   this.uploading = true;
+    this.uploading = true;
     this.eventService.uploadFile(this.event.id, this.file).subscribe(
       data => {
-        this.info = 'successfully uploaded';
+        this.info = 'Successfully uploaded';
         this.uploading = false;
       },
       error => {

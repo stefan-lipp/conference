@@ -38,27 +38,20 @@ $column-gap-v: 1rem;
     }
 }
 
-html, body {
+html {
     margin: 0;
     padding: 0;
 }
 
+body {
+    margin: 4em 0 0 0;
+    padding: 0;
+}
+
 main {
-    margin-top: 64px;
+  max-width: 64em;
+  margin: 64px auto 0;
 }
-
-.container-wrapper {
-    background: color(background-base);
-
-    &.transparent {
-        background: transparent;
-    }
-
-    &.active {
-        background: color(divider);
-    }
-}
-
 
 .container {
     margin: 0 auto;

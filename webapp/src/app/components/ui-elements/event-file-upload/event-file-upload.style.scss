@@ -1,0 +1,53 @@
+@import '~@angular/material/core/theming/all-theme';
+
+:host {
+    display: block;
+    margin: 1rem 0;
+    padding: .5rem;
+    border: thin solid #8e8e8e;
+    border-radius: 2px;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    md-icon {
+        font-size: 3rem;
+        display: block;
+        height: auto;
+        width: auto;
+        margin: .5rem;
+    }
+}
+
+md-icon {
+    font-size: 1.4em;
+    color: #8e8e8e;
+}
+
+.info {
+    text-align: center;
+    border: thin solid map-get(md-palette($md-amber), 700);
+    color: map-get(md-palette($md-amber), 700);
+    background-color: map-get(md-palette($md-amber), 50);
+    font-size: .8rem;
+    padding: .5rem;
+    margin: .5rem;
+    border-radius: 2px;
+}
+
+caption {
+    margin: 1rem;
+    font-weight: bold;
+}
+
+.align-right {
+    text-align: right;
+}
+
+td:first-of-type {
+    width: 1rem;
+}

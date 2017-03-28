@@ -1,30 +1,19 @@
-import * as _ from 'lodash';
-
 /**
- * Institution model
+ * API Institution model
+ *
+ * @export
+ * @interface ApiInstitution
  */
-export class Institution {
-
-  public id: string;
-  public name: string;
-  public iconUrl?: string;
-
-  public static fromAPI (apiRepresentation: ApiInstitution): Institution {
-    return new Institution ({
-      id: apiRepresentation.id,
-      name: apiRepresentation.name,
-      iconUrl: apiRepresentation.iconUrl,
-    });
-  }
-
-  constructor (data: any) {
-    _.merge(this, data);
-  }
-}
-
 export interface ApiInstitution {
   id: string;
   name: string;
-
   iconUrl?: string;
 }
+
+/**
+ * Local institution model
+ *
+ * @export
+ * @interface Institution
+ */
+export interface Institution extends ApiInstitution { }

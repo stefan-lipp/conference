@@ -1,2 +1,2 @@
 export * from './paper.service';
-export * from './paperByAuthor.resolver';
+export * from './paper.resolver';

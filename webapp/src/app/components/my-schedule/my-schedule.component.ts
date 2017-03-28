@@ -17,16 +17,27 @@ import { ConferenceSession } from '../../models';
 })
 export class MyScheduleComponent implements OnInit {
 
-	/** List of all available sessions */
+  /**
+   * List of all available sessions
+   *
+   * @private
+   * @type {ConferenceSession[]}
+   * @memberOf MyScheduleComponent
+   */
   private allSessions: ConferenceSession[] = [ ];
 
   constructor (
     private sessionService: SessionService,
   ) { }
 
-
+  /**
+   * Calendar-tracks based on the sessions
+   *
+   * @readonly
+   * @type {CalendarTrack[]}
+   * @memberOf MyScheduleComponent
+   */
   public get tracks (): CalendarTrack[] {
-    // TODO convert events into calendar tracks
     return this.allSessions
       .filter(s =>
         Boolean(s.startTime) && s.startTime.isValid() &&
@@ -45,6 +56,9 @@ export class MyScheduleComponent implements OnInit {
       });
   }
 
+  /**
+   * @memberOf OnInit
+   */
   public ngOnInit () {
     this.sessionService.getFavorites().subscribe(sessions => {
       this.allSessions = sessions;

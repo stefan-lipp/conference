@@ -124,7 +124,7 @@ function authSubroutes (app) {
         email: req.body.email,
         name: req.body.name,
         password: req.body.password,
-        passwordConfirmation: req.body.password_confirmation,
+        passwordConfirmation: req.body.passwordConfirmation,
       };
       // Validate password
       // TODO validate email and name

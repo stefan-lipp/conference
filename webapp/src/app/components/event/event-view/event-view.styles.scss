@@ -1,73 +1,102 @@
-.navigation-area {
-    margin: 0 1.2em;
-
-    md-icon {
-        float: left;
-        padding-right: .2em;
-        font-size: 1.5em;
-    }
-
-    a {
-      text-decoration: none;
-      color: #8e8e8e
-    }
+:host {
+    display: block;
+    padding: .5rem;
 }
 
-.favor-indicator + * {
+.navigation-area a {
+    display: flex;
+    align-items: center;
+    padding: .5rem 0;
+    margin-bottom: .5rem;
+    text-decoration: none;
+    color: #8e8e8e
+}
+
+.favor-indicator:first-child + * {
     margin-top: 0;
 }
 
-.details-card {
-    margin: 0 .5em;
+:not(.favor-indicator) > md-icon {
+    color: #8e8e8e;
+}
 
-    #eventType {
-      color: #8e8e8e;
-    }
+h2 {
+    margin-top: 0;
+}
 
-    h2 {
-      margin-top: 0;
-    }
+h4 {
+    margin: 0;
+    font-weight: 300;
+}
+
+[md-subheader] {
+    display: block;
+    box-sizing: border-box;
+    padding: 1rem 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #8e8e8e;
 }
 
 .event-detail {
-    md-icon {
-        float: left;
-        padding-right: 1em;
-        font-size: 1.4em;
-        color: #8e8e8e;
+    tbody {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    tr {
+        display: block;
+        background-color: transparent;
+        border: none;
+    }
+
+    td, th {
+        padding: .5rem .5rem .5rem 1rem;
+    }
+
+    a {
+        text-decoration: none;
+        border-bottom: thin dotted #8e8e8e;
+        color: inherit;
+    }
+}
+
+.paper-metainfo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    a {
+        flex-shrink: 1;
     }
 }
 
 .paper-authors {
-    list-style-type: none;
-    margin: 1rem 0;
-    padding: 0 1rem;
-}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
+    li {
+        display: block;
+        padding: 0 1rem 1rem 0;
+        text-align: center;
+    }
 
-@media only screen and (min-width: 600px) {
-    .event-detail {
-        display: inline;
-        padding-right: 2em;
-        vertical-align: center;
+    span, a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
 
-        md-icon {
-            float: none;
-            padding-right: .5em;
-        }
+    span {
+        font-size: .8rem;
+    }
 
-        p {
-            display: inline-block;
-            margin-top: -2em;
-            font-size: 1.1em;
-        }
+    a {
+        border-bottom: thin dotted #8e8e8e;
     }
 }
 
-question-tool {
-    padding: 1rem;
-}
-
-.room-link {
-    cursor: pointer;
-}

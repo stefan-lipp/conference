@@ -19,23 +19,32 @@ import {
 })
 export class EventViewComponent implements OnInit {
 
+  /**
+   * Event to display
+   *
+   * @type {ConferenceEvent}
+   * @memberOf EventViewComponent
+   */
   @Input()
   public event: ConferenceEvent;
 
-  private isAuthorised: boolean = false;
+  /**
+   * Whether the current user is authorized
+   *
+   * @type {boolean}
+   * @memberOf EventViewComponent
+   */
+  public isAuthorised: boolean = false;
 
   constructor (
-    private route: ActivatedRoute,
+    public authService: AuthService,
     private eventService: EventService,
     private personService: PersonService,
-    public authService: AuthService,
+    private route: ActivatedRoute,
   ) { }
 
   /**
-   * Gets an event without paper via the Resolver
-   * and fetches Event (incl. Paper)
-   *
-   * @memberof OnInit
+   * @memberOf OnInit
    */
   public ngOnInit() {
     this.route.data.subscribe((data: { event: ConferenceEvent }) => this.event = data.event);
@@ -43,38 +52,28 @@ export class EventViewComponent implements OnInit {
   }
 
   /**
-   *  method to set favorite sate of an event and commit this to the api
+   * Set favorite sate of an event and commit this to the API
+   *
    * @param {ConferenceEvent} event event to be updated
    * @param {boolean} state new bookmarking status
+   *
+   * @memberOf EventViewComponent
    */
-  public setFavorState (event: ConferenceEvent, state: boolean) {
+  public setFavorState (event: ConferenceEvent, state: boolean): void {
     event.favored = state;
     this.eventService.updateFavourStatus(event).subscribe(
-      (data: any) => { /* success */ },
-      (error) => event.favored = !event.favored,
+      // on success: do nothing (already set above)
+      data => null,
+      // on error: reset
+      error => event.favored = !event.favored,
     );
   }
 
   /**
-   * Returns the formatted event date.
+   * Updates the isAuthorised flag
+   *
+   * @memberOf EventViewComponent
    */
-  public getFormattedEventDate(): string {
-    if (this.event.startTime) {
-      return this.event.startTime.format('MMMM Do YYYY');
-    }
-    return '- - -';
-  }
-
-  /**
-   * Returns the formatted event start and end time.
-   */
-  public getFormattedEventTime(): string {
-    if (this.event.startTime && this.event.endTime) {
-      return this.event.startTime.format('HH:mm') + ' - ' + this.event.endTime.format('HH:mm');
-    }
-    return '- - -';
-  }
-
   public checkAuthorisation (): void {
     if (this.event.speakers.some(speaker => speaker.id === this.authService.userId)) {
       this.isAuthorised = true;

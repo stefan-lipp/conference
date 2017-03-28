@@ -1,21 +1,9 @@
-export class Track {
-  public id: number;
-  public name: string;
-  public kind: string;
-  public color: string;
-  public backgroundColor: string;
-
-  public static fromApi (apiRepresentation: ApiTrack): Track {
-    return <Track> {
-      id: apiRepresentation.id,
-      name: apiRepresentation.name,
-      kind: apiRepresentation.kind,
-      color: apiRepresentation.color,
-      backgroundColor: apiRepresentation.backgroundColor,
-    };
-  }
-}
-
+/**
+ * API Track model
+ *
+ * @export
+ * @interface ApiTrack
+ */
 export interface ApiTrack {
   id: number;
   name: string;
@@ -23,3 +11,12 @@ export interface ApiTrack {
   color: string;
   backgroundColor: string;
 }
+
+/**
+ * Local Track model
+ *
+ * @export
+ * @interface Track
+ * @extends {ApiTrack}
+ */
+export interface Track extends ApiTrack { }

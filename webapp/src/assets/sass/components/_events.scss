@@ -19,13 +19,19 @@ conference-event-list {
     }
 }
 
+.type-desc {
+    font-size: .8rem;
+    color: #8e8e8e;
+}
+
+
 .favor-indicator {
     position: absolute;
     right: 1.5rem;
     top: 0;
     padding: .5rem 0;
     background-color: map-get($md-red, 500);
-    color: #fff;
+    color: #fff !important;
     width: 2rem;
     box-sizing: border-box;
     text-align: center;
@@ -60,4 +66,19 @@ conference-event-list {
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f44336', endColorstr='#f44336',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     }
 
+}
+
+.keywords {
+    color: #555;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        font-size: .7em;
+        padding: .3em .7em;
+        margin: 0 .2em .3em 0;
+        border: thin solid #ddd;
+        border-radius: 1em;
+    }
 }

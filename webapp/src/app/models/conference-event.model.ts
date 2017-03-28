@@ -1,5 +1,4 @@
 import * as moment from 'moment';
-import * as _ from 'lodash';
 
 import {
   Paper,
@@ -13,56 +12,93 @@ import {
   Room,
   ApiRoom,
  } from './room.model';
+
 /**
- * Event model.
+ * Local event model
+ *
+ * @export
+ * @class ConferenceEvent
  */
 export class ConferenceEvent {
 
-  public id: string;
-  public title: string;
-  public duration: number; // in minutes
-  public type: EventType;
-  public favored: boolean;
-  public voted: boolean;
-  public speakers: Person[];
-  public voteCount?: number;
-  public paper?: Paper;
-  public startTime?: moment.Moment;
-  public endTime?: moment.Moment;
-  public room?: Room;
-  public maxSize?: number;
-
+  /**
+   * Transforms API-representation of an Event to ConferenceEvent
+   *
+   * @static
+   * @param {ApiConferenceEvent} apiRepresentation
+   * @returns {ConferenceEvent}
+   *
+   * @memberOf ConferenceEvent
+   */
   public static fromAPI (apiRepresentation: ApiConferenceEvent): ConferenceEvent {
-    if (apiRepresentation.paper) {
-      if (apiRepresentation.paper.abstract){
-        const input: string = apiRepresentation.paper.abstract;
-        let front: string = input.slice(0, 9);
-        const rest: string = input.slice(9);
-        apiRepresentation.paper.abstract = front.replace('Abstract:', '') + rest;
-      }
+    if (!apiRepresentation) {
+      return null;
     }
 
-    return new ConferenceEvent({
-      id: apiRepresentation.id,
-      title: apiRepresentation.title,
-      duration: apiRepresentation.duration,
-      favored: apiRepresentation.favored,
-      voted: apiRepresentation.voted,
-      speakers: apiRepresentation.speakers.map(Person.fromAPI),
-      voteCount: apiRepresentation.votecount,
-      paper: apiRepresentation.paper ? Paper.fromAPI(apiRepresentation.paper) : null,
-      startTime: moment(apiRepresentation.startTime),
-      endTime: moment(apiRepresentation.endTime),
-      type: EventType[apiRepresentation.kind],
-      room: apiRepresentation.room ? Room.fromAPI(apiRepresentation.room) : null,
-      maxSize: apiRepresentation.maxSize,
-    });
+    if (apiRepresentation.paper && apiRepresentation.paper.abstract) {
+      apiRepresentation.paper.abstract = apiRepresentation.paper.abstract
+        .replace(/^abstract: ?/i, '');
+    }
+
+    return new ConferenceEvent(
+      apiRepresentation.id,
+      apiRepresentation.title,
+      EventType[apiRepresentation.kind],
+      moment(apiRepresentation.startTime),
+      moment(apiRepresentation.endTime),
+      apiRepresentation.duration,
+      apiRepresentation.maxSize,
+      (apiRepresentation.speakers || [ ]).map(Person.fromAPI),
+      Paper.fromAPI(apiRepresentation.paper),
+      <Room> apiRepresentation.room,
+      apiRepresentation.favored,
+      apiRepresentation.voted,
+      apiRepresentation.votecount,
+    );
   }
 
-  constructor (data: any) {
-    _.merge(this, data);
-  }
+  /**
+   * Creates an instance of ConferenceEvent.
+   *
+   * @param {number} id
+   * @param {string} title
+   * @param {EventType} type
+   * @param {moment.Moment} startTime
+   * @param {moment.Moment} endTime
+   * @param {string} duration
+   * @param {number} maxSize
+   * @param {Person[]} speakers
+   * @param {Paper} paper
+   * @param {Room} room
+   * @param {boolean} favored
+   * @param {boolean} voted
+   * @param {number} voteCount
+   *
+   * @memberOf ConferenceEvent
+   */
+  constructor (
+    public id: number,
+    public title: string,
+    public type: EventType,
+    public startTime: moment.Moment,
+    public endTime: moment.Moment,
+    public duration: string,
+    public maxSize: number,
+    public speakers: Person[],
+    public paper: Paper,
+    public room: Room,
+    public favored: boolean,
+    public voted: boolean,
+    public voteCount: number,
+  ) { }
 
+  /**
+   * String representation of the events type
+   *
+   * @readonly
+   * @type {string}
+   * @memberOf ConferenceEvent
+   */
   public get eventType (): string {
     switch (this.type) {
       case EventType.Keynote: return 'Keynote';
@@ -76,7 +112,13 @@ export class ConferenceEvent {
     }
   }
 
-  /** @returns this.title in a format suitable for URLs */
+  /**
+   * Title in a format suitable for URLs
+   *
+   * @readonly
+   * @type {string}
+   * @memberOf ConferenceEvent
+   */
   public get urlEncodedTitle (): string {
     return this.title
       .replace(/[^A-Za-z0-9]/g, ' ')
@@ -90,7 +132,10 @@ export class ConferenceEvent {
 }
 
 /**
- * Event type enumeration.
+ * Event types
+ *
+ * @export
+ * @enum {number}
  */
 export enum EventType {
   Research,
@@ -102,7 +147,12 @@ export enum EventType {
   Entertainment,
 }
 
-// TODO check with actual API
+/**
+ * API event model
+ *
+ * @export
+ * @interface ApiConferenceEvent
+ */
 export interface ApiConferenceEvent {
   id: number;
   title: string;
@@ -115,6 +165,6 @@ export interface ApiConferenceEvent {
   startTime?: string;
   endTime?: string;
   duration: string;
-  maxSize?: string;
+  maxSize?: number;
   kind?: string;
 }

@@ -39,7 +39,7 @@ export class CalendarComponent {
   @Input()
   public selectedDay: moment.Moment = moment();
 
-  public conference: Conference = new Conference();
+  public conference = Conference;
 
   constructor (
     private elem: ElementRef,

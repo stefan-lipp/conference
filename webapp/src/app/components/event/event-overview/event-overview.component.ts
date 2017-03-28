@@ -9,6 +9,7 @@ import {
   Conference,
   ConferenceEvent,
   ConferenceSession,
+  EventType,
 } from '../../../models';
 import {
   EventService,
@@ -26,25 +27,62 @@ import {
 })
 export class EventOverviewComponent implements OnInit {
 
+  /**
+   * Whether currently loading the event data from the API
+   *
+   * @type {boolean}
+   * @memberOf EventOverviewComponent
+   */
   public loading: boolean = true;
+
+  /**
+   * Currently active tab
+   *
+   * @memberOf EventOverviewComponent
+   */
   public selectedTab = 0;
 
-  public conference: Conference = new Conference();
-  
-  /** Current filter query */
+  public conference = Conference;
+
+  /**
+   * Current filter query
+   *
+   * @type {string}
+   * @memberOf EventOverviewComponent
+   */
   public filterQuery: string = '';
 
-  /** Subset of all events */
+  /**
+   * Subset of all events, by filterQuery
+   *
+   * @type {ConferenceEvent[]}
+   * @memberOf EventOverviewComponent
+   */
   public selectedEvents: ConferenceEvent[] = [ ];
 
-  public eventTypes: string[] = [
-    'Keynote', 'Research Talk', 'Industry Talk', 'Tutorial', 'Workshop', 'Demo',
-  ];
+  /**
+   * selectedEvents grouped by their type
+   *
+   * @memberOf EventOverviewComponent
+   */
+  public selectedEventsByType: { type: string, events: ConferenceEvent[] }[] = [ ];
 
-  /** List of all available events */
+  /**
+   * List of all available events
+   *
+   * @private
+   * @type {ConferenceEvent[]}
+   * @memberOf EventOverviewComponent
+   */
   private allEvents: ConferenceEvent[] = [ ];
 
-  /** List of all available sessions */
+  /**
+   * List of all available sessions
+   *
+   * @private
+   * @type {ConferenceSession[]}
+   * @memberOf EventOverviewComponent
+   */
   private allSessions: ConferenceSession[] = [ ];
 
   private lastVisitedLink: string;
@@ -68,7 +106,7 @@ export class EventOverviewComponent implements OnInit {
   /**
    * Gets all events of the conference
    *
-   * @memberof OnInit
+   * @memberOf OnInit
    */
   public ngOnInit () {
     this.eventService.getAll().subscribe(events => {
@@ -80,14 +118,20 @@ export class EventOverviewComponent implements OnInit {
     });
   }
 
-  /** Setter for allEvents */
+  /**
+   * @memberOf EventOverviewComponent
+   */
   @Input()
   public set events (events: ConferenceEvent[]) {
     this.allEvents = events;
-    this.filter();
+    this.applyFilter();
   }
 
-  /** Getter for allEvents */
+  /**
+   * @readonly
+   * @type {ConferenceEvent[]}
+   * @memberOf EventOverviewComponent
+   */
   public get events (): ConferenceEvent[] {
     return this.allEvents;
   }
@@ -117,42 +161,55 @@ export class EventOverviewComponent implements OnInit {
    * Sets selectedEvents to all Events from events matching the filterQuery
    *
    * @return {void}
+   *
+   * @memberOf EventOverviewComponent
    */
-  public filter (): void {
+  public applyFilter (): void {
     if (this.filterQuery.length) {
       const query = this.filterQuery.toLowerCase();
+
       this.selectedEvents = this.events.filter(event => {
-          return (event.title.toLowerCase().includes(query)) ||
-            (
-              (event.speakers) && event.speakers.some(speaker => {
-                return speaker.name.toLowerCase().includes(query) ||
-                  (speaker.institution &&
-                    speaker.institution.name.toLowerCase().includes(query));
-              })
-            ) ||
-            (
-              (event.paper) && (
-                (
-                  (event.paper.keywords) &&
-                  (event.paper.keywords.some(keyword => {
-                    return keyword.toLowerCase().includes(query);
-                  }))
-                ) ||
-                (
-                  (event.paper.authors) &&
-                  (event.paper.authors.some(author => {
-                    return author.name.toLowerCase().includes(query);
-                  }))
-                )
-              )
-            );
-        });
+        const titleMatches: boolean = event.title.toLowerCase().includes(query);
+        const speakerMatches: boolean = event.speakers && event.speakers.some(speaker =>
+          speaker.name.toLowerCase().includes(query) ||
+          (speaker.institution && speaker.institution.name.toLowerCase().includes(query))
+        );
+        const keywordsMatch: boolean = event.paper && event.paper.keywords &&
+          event.paper.keywords.some(keyword => keyword.toLowerCase().includes(query));
+        const authorsMatch: boolean = event.paper && event.paper.authors &&
+          event.paper.authors.some(author => author.name.toLowerCase().includes(query));
+
+        return titleMatches || speakerMatches || keywordsMatch || authorsMatch;
+      });
     } else {
       this.selectedEvents = this.events;
     }
+
+    // Grouped by type
+    const groupedDict = this.selectedEvents.reduce((dict, event) => {
+      const type = event.eventType;
+      if (!dict.hasOwnProperty(type)) {
+        dict[type] = [ ];
+      }
+      dict[type].push(event);
+      return dict;
+    }, { });
+    this.selectedEventsByType = Object.keys(groupedDict).map(type => {
+      return {
+        type: type,
+        events: groupedDict[type],
+      };
+    });
   }
 
-  public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]) {
+  /**
+   * Makes API call to set favourite state of an event
+   *
+   * @param {[ ConferenceEvent, boolean ]} [ event, state ]
+   *
+   * @memberOf EventOverviewComponent
+   */
+  public setFavouriteState ([ event, state ]: [ ConferenceEvent, boolean ]): void {
     event.favored = state;
     this.eventService.updateFavourStatus(event).subscribe(
       (data: any) => { /* success */ },

@@ -1,1 +1,1 @@
-export * from './event-filter.pipe';
+export * from './format-moment.pipe';

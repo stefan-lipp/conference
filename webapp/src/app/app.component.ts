@@ -16,8 +16,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
   ],
   templateUrl: 'app.template.html',
 })
-export class AppComponent {
-
-  public name: string = 'Conference Tool';
-
-}
+export class AppComponent { }

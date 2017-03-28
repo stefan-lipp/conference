@@ -15,7 +15,6 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
 // Services
@@ -23,8 +22,57 @@ import {
   AdminGuard,
   AuthGuard,
   AuthService,
-  ApiService,
-  ApiMapperService,
+  DirectionsResolver,
+  DirectionsService,
+  EventOfSpeakerResolver,
+  EventResolver,
+  EventService,
+  PaperByAuthorResolver,
+  PaperService,
+  PersonResolver,
+  PersonService,
+  SessionResolver,
+  SessionService,
+  TrackService,
+  VotingService,
+} from './services';
+
+// Components
+import {
+  AdminOverviewComponent,
+  CalendarComponent,
+  DirectionsComponent,
+  EventFileUploadComponent,
+  EventListComponent,
+  EventOverviewComponent,
+  EventViewComponent,
+  LoginComponent,
+  MyScheduleComponent,
+  NavigationComponent,
+  NavigationUserComponent,
+  NoContentComponent,
+  PersonViewComponent,
+  QuestionToolComponent,
+  RegisterComponent,
+  ScheduleEditorComponent,
+  SessionViewComponent,
+  TrackEditorComponent,
+  VotingComponent,
+} from './components';
+
+// Directives
+
+// Pipes
+import {
+  FormatMomentPipe,
+} from './pipes';
+
+// Application wide providers
+const APP_PROVIDERS = [
+  AppState,
+  AdminGuard,
+  AuthGuard,
+  AuthService,
   DirectionsService,
   DirectionsResolver,
   EventService,
@@ -38,41 +86,6 @@ import {
   SessionResolver,
   TrackService,
   VotingService,
-} from './services';
-
-// Components
-import {
-  AdminOverviewComponent,
-  CalendarComponent,
-  DirectionsComponent,
-  EventListComponent,
-  EventOverviewComponent,
-  EventViewComponent,
-  EventViewOverlayComponent,
-  FileUploadComponent,
-  LoginComponent,
-  MyScheduleComponent,
-  NavigationComponent,
-  NavigationUserComponent,
-  NoContentComponent,
-  PersonViewComponent,
-  RegisterComponent,
-  QuestionToolComponent,
-  SessionViewComponent,
-  ScheduleEditorComponent,
-  TrackEditorComponent,
-  VotingComponent,
-} from './components';
-
-// Directives
-
-// Pipes
-import { EventFilterPipe } from './pipes';
-
-// Application wide providers
-const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS,
-  AppState,
 ];
 
 type StoreType = {
@@ -91,28 +104,23 @@ type StoreType = {
     AppComponent,
     CalendarComponent,
     DirectionsComponent,
+    EventFileUploadComponent,
     EventListComponent,
     EventOverviewComponent,
-    EventFilterPipe,
     EventViewComponent,
-    EventViewOverlayComponent,
-    FileUploadComponent,
-    MyScheduleComponent,
-    NoContentComponent,
+    FormatMomentPipe,
     LoginComponent,
+    MyScheduleComponent,
     NavigationComponent,
     NavigationUserComponent,
     NoContentComponent,
     PersonViewComponent,
     QuestionToolComponent,
     RegisterComponent,
-    SessionViewComponent,
     ScheduleEditorComponent,
+    SessionViewComponent,
     TrackEditorComponent,
     VotingComponent,
-  ],
-  entryComponents: [
-    EventViewOverlayComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,24 +137,6 @@ type StoreType = {
       headerName: 'x-access-token',
       noTokenScheme: true,
     }),
-    AdminGuard,
-    AuthGuard,
-    AuthService,
-    ApiService,
-    ApiMapperService,
-    DirectionsService,
-    DirectionsResolver,
-    EventService,
-    EventResolver,
-    EventOfSpeakerResolver,
-    PaperService,
-    PaperByAuthorResolver,
-    PersonService,
-    PersonResolver,
-    SessionService,
-    SessionResolver,
-    TrackService,
-    VotingService,
   ],
 })
 export class AppModule {

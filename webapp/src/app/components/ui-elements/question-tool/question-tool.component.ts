@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 import {
   Component,
   Input,
@@ -5,12 +7,15 @@ import {
 } from '@angular/core';
 
 import {
-  ConferenceEvent,
   Comment,
+  ConferenceEvent,
+  Person,
 } from './../../../models';
-import { EventService } from './../../../services';
+import {
+  EventService,
+  AuthService,
+} from './../../../services';
 
-/** question-tool component  */
 @Component({
   selector: 'question-tool',
   templateUrl: './question-tool.template.html',
@@ -20,13 +25,15 @@ export class QuestionToolComponent implements OnInit{
 
   @Input()
   public event: ConferenceEvent;
+
   public comments: Comment[];
+
   private newComment: string;
 
   constructor (
+    private authService: AuthService,
     private eventService: EventService,
-  )
-  {  }
+  ) { }
 
   /**
    * Gets the comments of the event
@@ -34,30 +41,27 @@ export class QuestionToolComponent implements OnInit{
    * @memberof OnInit
    */
   public ngOnInit () {
-    this.eventService.getComments(this.event.id).subscribe(comments =>
-      this.comments = comments);
+    this.eventService.getComments(this.event.id)
+      .subscribe(comments => this.comments = comments);
   }
 
   /**
-   * Method called when submit comment button is clicked.
-   * Adds comment + user data and calls api in order to persist changes.
+   * Form submit handler
+   * Adds comment + user data and calls API to persist changes.
+   *
+   * @memberOf QuestionToolComponent
    */
   public onSubmit (): void {
-    if (this.newComment) {
+    if (this.newComment && this.authService.loggedIn) {
       this.eventService.addComment(this.event.id, this.newComment)
         .subscribe(_ => {
-          const newEntry: Comment = {
-            timestamp: 'just now',
-            person: {
-              name: 'You',
-              id: null,
-              email: '',
-            },
-            comment: this.newComment,
-          };
-        this.comments.push(newEntry);
-        this.newComment = '';
-      });
+          this.comments.push(new Comment(
+            moment(),
+            new Person(this.authService.userId, this.authService.userName, ''),
+            this.newComment,
+          ));
+          this.newComment = '';
+        });
     }
   }
 }
